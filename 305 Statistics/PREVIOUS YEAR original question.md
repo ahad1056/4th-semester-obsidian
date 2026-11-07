@@ -3,7 +3,6 @@
 
 
 
-
 # University of Chittagong
 ### Department of Electrical and Electronic Engineering
 #### $4^{\text{th}}$ Semester B.Sc. Engineering Examination- 2022
@@ -156,6 +155,7 @@ $$P = \begin{pmatrix}
    - ii) $P(X_3 = 3, X_2 = 1, X_1 = 1, X_0 = 3)$
    - iii) $P(X_3 = 3, X_1 = 1, X_0 = 3)$
    - iv) $P(X_2 = 2)$
+
 
 # University of Chittagong
 ### Department of Applied Physics, Electronics & Communication Engineering
@@ -574,6 +574,9 @@ b) What is meant by standard normal variate? Write down its density function. Sh
 c) Write short notes on: `[3]`
    - (i) Stochastic processes
    - (ii) Queuing system
+
+
+
 
 # Fourth Semester B.Sc. Engineering Examination 2024
 ### Department of Electrical and Electronic Engineering
