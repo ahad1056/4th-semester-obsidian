@@ -8,11 +8,11 @@
 ---
 
 ## 📏 MODULE 1: Measures of Dispersion
-- [x] Range
-- [x] Mean deviation
-- [x] Quartile deviation
-- [x] Standard deviation
-- [x] Coefficient of variation
+- [ ] Range
+- [ ] Mean deviation
+- [ ] Quartile deviation
+- [ ] Standard deviation
+- [ ] Coefficient of variation
 
 ---
 
