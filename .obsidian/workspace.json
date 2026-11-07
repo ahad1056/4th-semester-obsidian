@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "305 Statistics/PREVIOUS YEAR original question.md",
-                "mode": "preview",
+                "file": "305 Statistics/PREVIOUS YEAR ANALYSED QUESTION.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PREVIOUS YEAR original question"
+              "title": "PREVIOUS YEAR ANALYSED QUESTION"
             }
           }
         ]
@@ -83,8 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -201,9 +200,10 @@
   },
   "active": "2aa05422371f6c0f",
   "lastOpenFiles": [
-    "Course Syllabus Statistics and Probability (EEE 481).md",
     "481 Statistics and Probability '3'/statistics and probability.md",
+    "305 Statistics/PREVIOUS YEAR ANALYSED QUESTION.md",
     "305 Statistics/PREVIOUS YEAR original question.md",
+    "Course Syllabus Statistics and Probability (EEE 481).md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
     "305 Statistics",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
