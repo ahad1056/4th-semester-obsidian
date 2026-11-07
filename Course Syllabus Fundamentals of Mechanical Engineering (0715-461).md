@@ -1,7 +1,7 @@
 
 
 ## 📊 Overall Progress
-- [ ] Complete Syllabus Read-Through
+- [x] Complete Syllabus Read-Through
 - [ ] Midterm Revision
 - [ ] Final Exam Revision
 
