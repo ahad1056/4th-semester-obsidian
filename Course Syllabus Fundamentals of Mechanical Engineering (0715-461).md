@@ -8,7 +8,7 @@
 ---
 
 ## 🌡️ MODULE 1: Laws of Thermodynamics
-- [ ] Thermodynamic systems
+- [x] Thermodynamic systems
 - [ ] The first law of thermodynamics and its consequences
 - [ ] Heat capacity and Specific heat capacity
 - [ ] Consequences of first Law
