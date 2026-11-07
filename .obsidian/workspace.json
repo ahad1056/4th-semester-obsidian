@@ -11,10 +11,14 @@
             "id": "2aa05422371f6c0f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Course Syllabus Fundamentals of Mechanical Engineering (0715-461)"
             }
           }
         ]
