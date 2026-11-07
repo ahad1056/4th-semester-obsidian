@@ -20,7 +20,7 @@
   "updateSubmodules": false,
   "syncMethod": "merge",
   "rebaseAutoStash": "enabled",
-  "mergeStrategy": "theirs",
+  "mergeStrategy": "ours",
   "customMessageOnAutoBackup": false,
   "autoBackupAfterFileChange": false,
   "treeStructure": false,
