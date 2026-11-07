@@ -166,3 +166,34 @@
 - [Y24,Q7c,M5] c) Consider a three-state Markov chain with states A,B,C and transition probability matrix... i) Which states are accessible states? ii) Interpret the transition probabilities. iii) Draw the transition state diagram. iv) Find the long-run stationary probability. [5]
 - [Y24,Q8b,M2.5] b) Three customers A, B, and C wait at a service counter with processing times of 10, 20, and 30 minutes, respectively. Calculate the average waiting time under: First Come First Serve (FCFS), Last Come First Serve (LCFS). Compare and comment on the results. [2.5]
 - [Y24,Q8c,M4.5] c) Customers arrive at a bank according to a Poisson process with an average rate of $\lambda = 3$ customers per minute. In an arrival interval of 2 minutes, calculate the probability that the number of arriving customers is: i) Exactly 4 ii) Greater than 4 iii) Less than 4. [4.5]
+---
+### 🎯 MODULE 5: Estimation & Test of Hypothesis
+> **Topics Covered:** Concepts of estimator and estimate, Standard error, Confidence interval, Concepts of hypothesis, critical value, level of significance, P-value, Type-I & Type-II error, Z-test, t-test, Chi-square test.
+
+**Theoretical Questions & Definitions**
+- [Y21,Q3a,M2.5] a) Explain the terms: Estimation, estimator, estimate value, confidence interval, and width of a confidence interval. [2.5]
+- [Y22,Q4a,M2] a) Define the following terms: i) Standard error ii) Point estimation iii) Interval estimation, and iv) Confidence interval [2]
+- [Y24,Q4a,M2] a) Define the following terms: (i) Standard error (ii) Point estimate (iii) Interval estimator (iv) Confidence interval [2]
+- [Y21,Q3b,M3.5] b) State the criteria of a good estimator. Distinguish between point estimation and interval estimation. [3.5]
+- [Y22,Q4b,M2] b) Write down the criteria of a good estimator and briefly explain them. [2]
+- [Y24,Q4b,M2] b) What is meant by a 95% confidence interval of the mean? State the key properties of a good estimator. [2]
+- [Y21,Q4a,M5] a) Differentiate the following concepts: i) Null hypothesis and alternative hypothesis ii) Simple and composite hypothesis iii) Type I and type II error iv) Size of a test and power of a test v) Statistic and test statistic [5]
+- [Y22,Q3a,M2.5] a) Distinguish between: i) Type I and type II error, ii) Level of significance and p-value, and iii) One tail test and two tail test. [2.5]
+- [Y23,Q4a,M3] a) Define null hypothesis, one tail test, and contingency table. [3]
+- [Y24,Q5a,M2] a) Define the t-test statistic and list the practical applications of the t-test. [2]
+- [Y21,Q4b,M1.5] b) Explain the different steps involved in hypothesis testing. [1.5]
+- [Y22,Q3b,M3.5] b) Write down the steps of testing hypothesis. [3.5]
+- [Y23,Q4b,M2] b) Mention various steps involved in hypothesis testing process. [2]
+
+**Mathematical & Applied Problems**
+- [Y23,Q1d_i,M1] d) Fill in the blanks. i) An error made in accepting the null hypothesis, when in fact it is false, is called ___ error. [1]
+- [Y21,Q3c,M3] c) How can you compute the confidence limits for the population mean with known variance? A random sample of 120 electric bulbs are tested and the mean duration is found as 87.8 hours with standard deviation 11.5 hours. Find a 95% confidence interval for $\mu$. [3]
+- [Y22,Q4c,M5] c) Gasoline prices rose dramatically during the recent months of this year. A study was conducted with 16 trucks if the fuel consumption, in miles per gallon, for these 16 trucks were: 15.6, 21.0, 18.5, 19.3, 19.7, 16.9, 20.2, 14.5, 16.5, 19.2, 18.7, 18.2, 18.0, 17.5, 18.5, 20.5. i) Estimate the population mean fuel consumption for the trucks with 90% confidence. ii) Later it has been found that the actual population mean consumption is 20 miles per gallon. What conclusion might the statistician draw about his sample? [5]
+- [Y24,Q4c,M5] c) Fuel consumption (in miles per gallon) recorded for 24 trucks is given below: (data same as above with 8 more data points)... i) Estimate the population mean fuel consumption with a 90% confidence interval. ii) If the actual population mean consumption is known to be 20 miles per gallon, what conclusion can the statistician draw regarding this sample? [5]
+- [Y21,Q4c,M2.5] c) For testing purpose, twenty computers were tested to see what minimum temperature will damage the computer. The average damaging temperature was found to be 109 degrees with a standard deviation of 3 degrees. Can you conclude at 5% level of significance that the average temperature required to damage a computer is less than 110 degrees? [2.5]
+- [Y24,Q5b,M3.5] b) The expected lifetime of electric light bulbs produced by a given process is 1500 hours. A sample of 10 bulbs from a new batch showed a mean lifetime of 1410 hours with a standard deviation of 90 hours. Test the hypothesis that the mean lifetime has not changed at $\alpha = 0.05$ significance level (Given $t_{0.025} = 2.26$). [3.5]
+- [Y22,Q3c,M3] c) The following table shows the results of inoculation against Hepatitis B in a certain village: (table provided). Test whether inoculation is effective for the disease or not at 5% level of significance. (The critical value of $\chi^2$ with 1 df at 5% level of significance is 3.84.) [3]
+- [Y23,Q4c,M4] c) A tobacco company claims that there is no relationship between smoking and lungs ailments. To investigate the claim a random sample of 300 males of 40-50 are given medical test. The observed sample results are shown below: (table provided). On the basis of the information, can it be concluded that smoking and lungs ailments are independent? Use $\alpha = 0.05$. [4]
+- [Y24,Q5c,M3.5] c) An electronics firm evaluated whether worker disabilities affect performance. Using a significance level of $\alpha = 0.05$, determine whether disabilities impact performance based on the sample data below: (table provided). (Given critical value: $\chi^2_{0.05,2} = 5.99$) [3.5]
+
+---
