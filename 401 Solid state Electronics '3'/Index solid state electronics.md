@@ -8,7 +8,7 @@
 
 ---
 ## Supplementary
-- [[401 Solid state Electronics '3'/Syllabus|Course Syllabus]]
+- [[Course Syllabus Solid State Electronics (0714-401)|Course Syllabus]]
 - [[401 Solid state Electronics '3'/Formula Sheet|Formula Sheet]]
 - [[PRIVIOUS YEAR ANALYSED QUESTION ]]
 - [[PRIVIOUS YEAR original question ]]
