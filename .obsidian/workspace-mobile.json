@@ -11,10 +11,24 @@
             "id": "63e4879e73b65d88",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "markdown",
+              "state": {
+                "file": "481 Statistics and Probability '3'/Index of statistics and probability.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Index of statistics and probability"
+            }
+          },
+          {
+            "id": "248b3f0e72a2932e",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -154,9 +168,19 @@
           "icon": "lucide-list",
           "title": "Outline"
         }
+      },
+      {
+        "id": "56cdf318110030ab",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {},
+          "icon": "git-pull-request",
+          "title": "Source Control"
+        }
       }
     ],
-    "currentTab": 0
+    "currentTab": 3
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,9 +196,18 @@
   },
   "active": "63e4879e73b65d88",
   "lastOpenFiles": [
+    "Course Syllabus Communication Systems (0714-403).md",
+    "Dashboard.md",
+    "481 Statistics and Probability '3'/Index of statistics and probability.md",
+    "461 fundamental of Mechanical engineering '3+1'/Index.md",
+    "403 Communication system '3+1'/Index.md",
+    "481 Statistics and Probability '3'",
+    "461 fundamental of Mechanical engineering '3+1'",
+    "403 Communication system '3+1'",
+    "Course Syllabus Statistics and Probability (EEE 481).md",
+    "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
     "401 Solid state Electronics '3'/Index solid state electronics.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "Dashboard.md",
     "491 Professional Law and Ethics '3'/Chapter 3 - Intellectual Property Rights & Patents.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "401 Solid state Electronics '3'/Syllabus.md",

@@ -8,7 +8,7 @@
 ---
 
 ## 🗂️ MODULE 1: General Business & Commercial Law
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 1 - General Business Law|Chapter 1 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] Principle of law of contract
@@ -21,7 +21,7 @@
 ---
 
 ## 🏢 MODULE 2: Company Law
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 2 - Company Law|Chapter 2 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] The Companies Act (with special reference to amendments & ordinances applicable to BD)
@@ -32,7 +32,7 @@
 ---
 
 ## 👷 MODULE 3: Labor Law
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 3 - Labor Law|Chapter 3 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] Scope and sources of labor law
@@ -45,7 +45,7 @@
 ---
 
 ## 💰 MODULE 4: Income Tax Law
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 4 - Income Tax Law|Chapter 4 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] TIN (Taxpayer Identification Number) & Fake TIN consequences
@@ -58,7 +58,7 @@
 ---
 
 ## ⚙️ MODULE 5: Engineering Ethics & Professional Practice
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 5 - Engineering Ethics|Chapter 5 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] History and Development of Engineering Ethics
@@ -70,7 +70,7 @@
 ---
 
 ## 💻 MODULE 6: Cyber Laws & Ethics
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 6 - Cyber Laws|Chapter 6 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] Digital privacy & Intellectual property
@@ -81,7 +81,7 @@
 ---
 
 ## 🤝 MODULE 7: Ethical Expectations & Professional Codes
-**Linked Notes:** [[491 Professional Law and Ethics '3'/Chapter 7 - Ethical Expectations|Chapter 7 Note]]
+**Linked Notes:** 
 
 ### Topics:
 - [ ] Employers and Employees inter-professional relationship
