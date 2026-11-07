@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Test note from phone ..md",
+                "file": "401 Solid state Electronics '3'/Index solid state electronics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Test note from phone ."
+              "title": "Index solid state electronics"
             }
           }
         ]
@@ -117,7 +117,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Test note from phone ..md",
+            "file": "401 Solid state Electronics '3'/Index solid state electronics.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -136,7 +136,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "Test note from phone ..md",
+            "file": "401 Solid state Electronics '3'/Index solid state electronics.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
@@ -150,7 +150,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "Test note from phone ..md",
+            "file": "401 Solid state Electronics '3'/Index solid state electronics.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
@@ -176,6 +176,9 @@
   },
   "active": "63e4879e73b65d88",
   "lastOpenFiles": [
+    "Dashboard.md",
+    "401 Solid state Electronics '3'/Index solid state electronics.md",
+    "401 Solid state Electronics '3'",
     "Test note from phone ..md"
   ]
 }
