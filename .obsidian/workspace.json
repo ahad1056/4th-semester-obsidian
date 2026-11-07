@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9a6ec19de13f865b",
+        "id": "cf6d78fc6e345e92",
         "type": "tabs",
         "children": [
           {
-            "id": "6c18c743fa54332b",
+            "id": "2aa05422371f6c0f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
+                "file": "Dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -167,17 +167,23 @@
               "icon": "lucide-list",
               "title": "Outline"
             }
+          },
+          {
+            "id": "8025ad97b71e7070",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-<<<<<<< main
-    "width": 300,
-    "collapsed": true
-=======
     "width": 200
->>>>>>> origin/main
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -191,23 +197,31 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6c18c743fa54332b",
+  "active": "f4d14c3ea0c953cf",
   "lastOpenFiles": [
-    "Course Syllabus Communication Systems (0714-403).md",
-    "403 Communication system '3+1'/Index.md",
-    "403 Communication system '3+1'",
+    "491 Professional Law and Ethics '3'/Chapter 3 - Intellectual Property Rights & Patents.md",
     "461 fundamental of Mechanical engineering '3+1'/Index.md",
+    "405 electrical machene 2 '3+1'/Index.md",
+    "403 Communication system '3+1'/Index.md",
+    "401 Solid state Electronics '3'/Syllabus.md",
+    "Dashboard.md",
+    "403 Communication system '3+1'/COMMUNICATION SYSTEM.md",
+    "Course Syllabus Communication Systems (0714-403).md",
+    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
+    "401 Solid state Electronics '3'/Index solid state electronics.md",
+    "405 electrical machene 2 '3+1'/INDEX.md",
+    "Course Syllabus Electrical Machine II (0713-405).md",
+    "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
+    "405 electrical machene 2 '3+1'",
+    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
+    "403 Communication system '3+1'",
     "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
     "461 fundamental of Mechanical engineering '3+1'",
     "Course Syllabus Statistics and Probability (EEE 481).md",
     "481 Statistics and Probability '3'/Index of statistics and probability.md",
-    "Dashboard.md",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "481 Statistics and Probability '3'",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
-    "401 Solid state Electronics '3'/Index solid state electronics.md",
     "PRIVIOUS YEAR original question.md",
-    "401 Solid state Electronics '3'/Syllabus.md",
     "491 Professional Law and Ethics '3'",
     "401 Solid state Electronics '3'",
     "Test note from phone ..md"
