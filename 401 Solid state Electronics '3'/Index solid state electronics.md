@@ -10,3 +10,5 @@
 ## Supplementary
 - [[401 Solid state Electronics '3'/Syllabus|Course Syllabus]]
 - [[401 Solid state Electronics '3'/Formula Sheet|Formula Sheet]]
+- [[PRIVIOUS YEAR ANALYSED QUESTION ]]
+- [[PRIVIOUS YEAR original question ]]
