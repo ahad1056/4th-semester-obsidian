@@ -3,6 +3,7 @@
 
 
 
+
 # Fourth Semester B.Sc. Engineering Examination 2024
 ### Department of Electrical and Electronic Engineering
 #### Fourth Semester B.Sc. Engineering Examination 2024
@@ -346,3 +347,142 @@ c) Consider a two state Markov chain with transition probability matrix:
 $$P = \begin{pmatrix} \frac{3}{4} & \frac{1}{4} \\[6pt] \frac{1}{2} & \frac{1}{2} \end{pmatrix}$$
 
    Find stationary distribution of P.
+
+
+
+
+
+
+
+<div align="center">
+
+# University of Chittagong
+### Department of Electrical and Electronic Engineering
+#### $4^{\text{th}}$ Semester B.Sc. Engineering Examination- 2021
+**Course No:** STAT-471  
+**Course Title:** Statistics and Probability  
+
+**Total Marks:** 54 &nbsp;|&nbsp; **Time:** 4 Hours  
+
+---
+
+*[Answer **six** questions taking any **three** from each section and use separate answer script for each section. All sub-questions in a question must be answered together.]*  
+*[Figures in the right hand margin indicate full marks]*
+
+</div>
+
+---
+
+## Section: A
+
+### Question 1 `[Marks: 3 + 2 + 4 = 9]`
+
+a) What do you mean by dispersion? What are its measures? How does an absolute measure differ from relative measures? `[3]`
+
+b) Explain any one absolute measure of dispersion. `[2]`
+
+c) The following are some of the particulars of the distribution of weights and heights of 100 boys in a class: `[4]`
+
+| Particulars | Weights | Heights |
+| :--- | :---: | :---: |
+| **Mean** | 60 kgs | 65 inches |
+| **Standard deviation** | 7 kgs | 4 inches |
+
+Which distribution shows greater variability?
+
+---
+
+### Question 2 `[Marks: 2 + 3.5 + 3.5 = 9]`
+
+a) In which situations would you prefer coefficient of variation over standard deviation? `[2]`
+
+b) Distinguish between standard deviation and coefficient of variation. Find the mean and standard deviation of the first $n$ natural numbers. `[3.5]`
+
+c) Total serum proteins (TSP in gm%) of two groups of students are examined and given below: `[3.5]`
+
+| Group | Values | | | | | | |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Group-I** | 8 | 5 | 10 | 9 | 10 | 8 | 6 |
+| **Group-II** | 8 | 7 | 9 | 8 | 8 | 9 | 8 |
+
+Calculate the coefficient of variation for both groups and tell which group is more consistent regarding TSP.
+
+---
+
+### Question 3 `[Marks: 2.5 + 3.5 + 3 = 9]`
+
+a) Explain the terms: Estimation, estimator, estimate value, confidence interval, and width of a confidence interval. `[2.5]`
+
+b) State the criteria of a good estimator. Distinguish between point estimation and interval estimation. `[3.5]`
+
+c) How can you compute the confidence limits for the population mean with known variance? A random sample of 120 electric bulbs are tested and the mean duration is found as 87.8 hours with standard deviation 11.5 hours. Find a 95% confidence interval for $\mu$. `[3]`
+
+---
+
+### Question 4 `[Marks: 5 + 1.5 + 2.5 = 9]`
+
+a) Differentiate the following concepts: `[5]`
+   - i) Null hypothesis and alternative hypothesis
+   - ii) Simple and composite hypothesis
+   - iii) Type I and type II error
+   - iv) Size of a test and power of a test
+   - v) Statistic and test statistic
+
+b) Explain the different steps involved in hypothesis testing. `[1.5]`
+
+c) For testing purpose, twenty computers were tested to see what minimum temperature will damage the computer. The average damaging temperature was found to be 109 degrees with a standard deviation of 3 degrees. Can you conclude at 5% level of significance that the average temperature required to damage a computer is less than 110 degrees? `[2.5]`
+
+---
+
+## Section-B
+
+### Question 5 `[Marks: 3 + 3 + 3 = 9]`
+
+a) Define sample space, probability of an event, random experiment, conditional probability, and Venn-diagram. Also state and prove the additive laws of probability for two events. `[3]`
+
+b) State and prove Bayes' theorem. State its applications. `[3]`
+
+c) Define classical probability. If $A$ and $B$ are two events with $P[A] = 0.5$, $P[B] = 0.7$, and $P[AB] = 0.4$, find: `[3]`
+   - (i) $P[\overline{B}]$
+   - (ii) $P[A \cup B]$
+   - (iii) $P[A \mid B]$
+   - (iv) Are the events $A$ and $B$ independent?
+
+---
+
+### Question 6 `[Marks: 4 + 3 + 2 = 9]`
+
+a) What do you mean by random variable? Classify it with examples. Define probability mass function, probability density function, and distribution function. `[4]`
+
+b) Define mathematical expectation of a random variable with its properties. Also define variance and standard deviation of a random variable. `[3]`
+
+c) A bakery has the following probability function of daily demand for marriage day cake: `[2]`
+
+| No. of cakes demanded, $X = x$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Probability, $P(X = x)$** | 0.02 | 0.07 | 0.09 | 0.12 | $K$ | 0.2 | 0.18 | 0.02 |
+
+   - i) Find the value of $K$.
+   - ii) Calculate the expected number of marriage day cakes demanded per day.
+
+---
+
+### Question 7 `[Marks: 3.5 + 3.5 + 2 = 9]`
+
+a) What is a Bernoulli trial? Define binomial distribution and state its important properties. What are the underlying assumptions to derive a binomial distribution? `[3.5]`
+
+b) What do you mean by Poisson distribution? Give some practical examples of Poisson variate. Show that the mean and variance of Poisson distribution are the same. `[3.5]`
+
+c) Suppose the mean and variance of a binomial distribution are 4 and 3 respectively. Find the probability function. `[2]`
+
+---
+
+### Question 8 `[Marks: 3 + 3 + 3 = 9]`
+
+a) Define a normal distribution. Mention its chief features. Also state some of its uses. `[3]`
+
+b) What is meant by standard normal variate? Write down its density function. Show that the mean and variance of a standard normal variate are 0 and 1 respectively. `[3]`
+
+c) Write short notes on: `[3]`
+   - (i) Stochastic processes
+   - (ii) Queuing system
