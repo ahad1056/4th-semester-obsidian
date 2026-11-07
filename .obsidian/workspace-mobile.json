@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "405 electrical machene 2 '3+1'/Index.md",
+                "file": "Dashboard.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Index"
+              "title": "Dashboard"
             }
           },
           {
@@ -197,6 +197,10 @@
   "active": "63e4879e73b65d88",
   "lastOpenFiles": [
     "405 electrical machene 2 '3+1'/Index.md",
+    "403 Communication system '3+1'/COMMUNICATION SYSTEM.md",
+    "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
+    "Course Syllabus Electrical Machine II (0713-405).md",
+    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "405 electrical machene 2 '3+1'",
     "481 Statistics and Probability '3'/Index of statistics and probability.md",
     "Course Syllabus Communication Systems (0714-403).md",
