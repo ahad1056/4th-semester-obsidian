@@ -4,6 +4,117 @@
 
 
 
+<div align="center">
+
+# University of Chittagong
+### Department of Electrical and Electronic Engineering
+#### $4^{\text{th}}$ Semester B.Sc. Engineering Examination-2018
+**Course Code:** EEE-413  
+**Course Title:** Solid States Physics  
+
+**Total Marks:** 52.5 &nbsp;|&nbsp; **Time:** 4 Hours  
+
+---
+
+*[Answer **6 (six)** questions taking any **3 (three)** from each section and use separate answer script for each section. Figures in the right hand margin indicate full marks.]*
+
+</div>
+
+---
+
+## Section: A
+
+### Question 1 `[Marks: 2 + 4 + 2.75 = 8.75]`
+
+a. Distinguish between primitive cell and non primitive cell. `[2]`
+
+b. What are Millar indices? Draw the planes having Millar indices $(101)$, $(112)$, $(200)$ and $(\bar{1}00)$. `[4]`
+
+c. Calculate the packing fraction of hexagonal closed packed structure. `[2.75]`
+
+---
+
+### Question 2 `[Marks: 1.5 + 3.25 + 2 + 2 = 8.75]`
+
+a. What are Slip, Slip direction and Slip plane? `[1.5]`
+
+b. Show that elastic energy per unit length of a screw dislocation is: `[3.25]`
+
+$$E_s = \left(\frac{G b^2}{4\pi}\right)\log(R/r_0)$$
+
+c. Compare between Schottky defect and Frankle defect. `[2]`
+
+d. If $1\text{ eV}$ energy is required to move an atom from the crystal's interior to the surface, then what is the proportion of vacancies present in the crystal at $1000^\circ\text{K}$ and at $300^\circ\text{K}$. `[2]`
+
+---
+
+### Question 3 `[Marks: 4.75 + 2 + 2 = 8.75]`
+
+a. Discuss about dispersive, orientational and induced interaction for Vander Waals bond. `[4.75]`
+
+b. Explain the term cohesive energy. `[2]`
+
+c. Write down the characteristics of metallic crystals. `[2]`
+
+---
+
+### Question 4 `[Marks: 4 + 2 + 2.75 = 8.75]`
+
+a. Find the dispersion relation for one-dimensional monatomic linear lattices. `[4]`
+
+b. Give the significance of acoustical and optical branch. `[2]`
+
+c. Define group velocity and phase velocity. Show that dispersion relationship for which the group velocity is equal to the phase velocity $v$ has the form $\omega = a k$. `[2.75]`
+
+---
+
+## Section: B
+
+### Question 5 `[Marks: 2.75 + 2 + 2 + 2 = 8.75]`
+
+a. Show that the spacing $d$ of plane $(h \, k \, l)$ in a simple cubic lattice of side $a$ is: `[2.75]`
+
+$$d = \frac{a}{\sqrt{h^2+k^2+l^2}}$$
+
+b. For a cubic lattice find the distance and angle of the plane $[100]$, $[110]$ and $[111]$. `[2]`
+
+c. Describe NaCl crystal structure. `[2]`
+
+d. The primitives of a crystal are $1.2\text{ \AA}$, $1.8\text{ \AA}$ and $2\text{ \AA}$ along whose Miller indices $(231)$ cut intercept $1.2\text{ \AA}$ along x-axis. What will be the lengths of intercept along y and z axes? `[2]`
+
+---
+
+### Question 6 `[Marks: 2.5 + 2 + 2.5 + 1.75 = 8.75]`
+
+a. Deduce Bragg's law using reflection of x-ray beams from crystals. `[2.5]`
+
+b. Describe powder-photograph method of X-ray diffraction. `[2]`
+
+c. Prove that, every reciprocal lattice vector is normal to a lattice plane of the crystal lattice. `[2.5]`
+
+d. The Bragg angle corresponding to the first order reflection from $(111)$ planes in a crystal is $30^\circ$, when X-rays of wavelength $1.75\text{ \AA}$ are used. Calculate the interatomic spacing. `[1.75]`
+
+---
+
+### Question 7 `[Marks: 3.5 + 2 + 2 + 1.25 = 8.75]`
+
+a. Obtain an expression for the specific heat capacity at constant volume and pressure. `[3.5]`
+
+b. Show that classical value of specific heat capacity is given by $C_V = 3R$. `[2]`
+
+c. Explain the terms phonon and phonon momentum. `[2]`
+
+d. What are the failures of Einstein theory? `[1.25]`
+
+---
+
+### Question 8 `[Marks: 2.75 + 4 + 2 = 8.75]`
+
+a. State and explain Bloch theorem. `[2.75]`
+
+b. Show that the density of states can be given as $g(E) = E^{1/2}$. `[4]`
+
+c. Define Brillouin Zone. Draw the first three Brillouin Zones of a square lattice. `[2]`
 
 
 
