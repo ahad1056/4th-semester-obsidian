@@ -6,6 +6,165 @@
 <div align="center">
 
 # University of Chittagong
+### Department of Applied Physics, Electronics & Communication Engineering
+#### Fourth Semester B.Sc. Engineering Examination 2016
+**Course Code:** LAW 451  
+**Course Title:** Professional Law and Ethics  
+
+**Full Marks:** 35 &nbsp;|&nbsp; **Time:** 3 hours  
+
+---
+
+*[Answer **six** questions taking any **three** from each section and use separate answer script for each section]*  
+*[Figures in the right hand margin indicate full marks]*
+
+</div>
+
+---
+
+## Section A
+
+### Question 1 `[Marks: 2 5/6 + 3 = 5 5/6]`
+
+a. Define contract. What are the essential elements of a valid contract? `[2 5/6]`
+
+b. Define agency. Who can be an agent? How many kinds of partners are available in our existing legal framework? `[3]`
+
+---
+
+### Question 2 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. 'A company has a separate entity distinct from its members' — explain. `[3]`
+
+b. Define and classify insurance. Describe the fundamental principles of insurance contracts. `[2 5/6]`
+
+---
+
+### Question 3 `[Marks: 2 5/6 + 3 = 5 5/6]`
+
+a. Is a company a legal person? How? `[2 5/6]`
+
+b. Define negotiable instruments. What do you know about a 'Bill of exchange' and 'Cheque'? `[3]`
+
+---
+
+### Question 4 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. What is partnership? How can a valid partnership be created? `[3]`
+
+b. Discuss the salient features of the labour Act, 2006. `[2 5/6]`
+
+---
+
+## Section B
+
+### Question 5 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. What should be human qualities of an engineer? `[3]`
+
+b. Describe the obligations of an engineer to the clients and to other engineers. `[2 5/6]`
+
+---
+
+### Question 6 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. Give your opinion — 'What measures should be taken in order to improve the quality of engineering profession?' `[3]`
+
+b. Explain the concept of — 'Employers and employees inter professional relationship'. `[2 5/6]`
+
+---
+
+### Question 7 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. What is the relevance of the study of ethics in engineering? `[3]`
+
+b. How is legal ethics different from engineering ethics? `[2 5/6]`
+
+---
+
+### Question 8 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. Enumerate the desired characteristics of a professional code. Why is institutionalization of ethical conduct necessary? `[3]`
+
+b. What do you mean by the term 'Law'? 'Ethics directly derives from conscience' — Explain. `[2 5/6]`
+
+
+
+
+
+
+
+<div align="center">
+
+# University of Chittagong
+### Department of Electrical & Electronic Engineering
+#### $4^{\text{th}}$ Semester B.Sc. Engineering Examination 2017
+**Course Code:** LAW 451  
+**Course Title:** Professional Law and Ethics  
+
+**Full Marks:** 35 &nbsp;|&nbsp; **Time:** 3 hours  
+
+---
+
+*[Answer **six** questions taking any **three** from each section and use separate answer script for each section]*  
+*[Figures in the right hand margin indicate full marks]*
+
+</div>
+
+---
+
+## Section A
+
+### Question 1 `[Marks: 2 5/6 + 3 = 5 5/6]`
+
+a. Define contract. What are the essential pre-conditions of a valid contract?
+
+b. When is a contract voidable? Distinguish between 'void agreement' and 'voidable contract'.
+
+---
+
+### Question 2 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. What is Bailment? Explain the characteristic features of a Bailment.
+
+b. Define agency. Explain the nature of agency.
+
+---
+
+### Question 3 `[Marks: 2 5/6 + 3 = 5 5/6]`
+
+a. Define negotiable instruments. What is a 'Promissory note' and 'Bill of Exchange'?
+
+b. Define cheque. Discuss the essential features of a cheque.
+
+---
+
+### Question 4 `[Marks: 2 + 2 + 1 5/6 = 5 5/6]`
+
+Write short notes (any two):  
+a. Company as a legal entity  
+b. Elementary principles of labor law  
+c. Formation of a company  
+
+---
+
+## Section B
+
+### Question 5 `[Marks: 3 + 2 5/6 = 5 5/6]`
+
+a. Define Ethics. State the utility of study of ethics in engineering.
+
+b. Make a comparative study between legal ethics and engineering ethics.
+
+
+
+
+
+
+
+<div align="center">
+
+# University of Chittagong
 ### Department of Electrical and Electronic Engineering
 #### Fourth Semester B.Sc. Engineering Examination-2018
 **Course Code:** LAW-451  
