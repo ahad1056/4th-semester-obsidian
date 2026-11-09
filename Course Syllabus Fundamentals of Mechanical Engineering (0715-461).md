@@ -1,14 +1,14 @@
 
 
 ## 📊 Overall Progress
-- [x] Complete Syllabus Read-Through
+- [ ] Complete Syllabus Read-Through
 - [ ] Midterm Revision
 - [ ] Final Exam Revision
 
 ---
 
 ## 🌡️ MODULE 1: Laws of Thermodynamics
-- [x] Thermodynamic systems
+- [ ] Thermodynamic systems
 - [ ] The first law of thermodynamics and its consequences
 - [ ] Heat capacity and Specific heat capacity
 - [ ] Consequences of first Law
