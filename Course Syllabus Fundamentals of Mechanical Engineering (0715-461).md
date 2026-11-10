@@ -17,7 +17,7 @@
 - [ ] The second law of thermodynamics and its consequences
 - [ ] Entropy
 - [ ] Combined first law and second law
-
+1Q
 ---
 
 ## ⚡ MODULE 2: Introduction to Sources of Energy
@@ -25,13 +25,13 @@
 - [ ] Steam turbines
 - [ ] Introduction to internal combustion engines and their cycles
 - [ ] Gas turbines
-
+4Q
 ---
 
 ## 🔥 MODULE 3: Basics of Conduction and Convection
 - [ ] Fundamentals of conduction and convection
 - [ ] Critical thickness of insulation
-
+1Q
 ---
 
 ## ❄️ MODULE 4: Refrigeration and Air Conditioning
@@ -44,4 +44,4 @@
 ## 🌊 MODULE 5: Fluid Machinery
 - [ ] Impulse and reaction turbines
 - [ ] Centrifugal pumps
-- [ ] Fans, blowers, and compressors
+- [ ] Fans, blowers, and comprpessors
