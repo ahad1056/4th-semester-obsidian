@@ -10,4 +10,4 @@
 - [[Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule|Important Formulas, Modulation Theorems & Carson's Rule]]
 - [[Communication Systems/PREVIOUS YEAR ANALYSED QUESTION|PREVIOUS YEAR ANALYSED QUESTION]]
 - [[Communication Systems/PREVIOUS YEAR original question|PREVIOUS YEAR original question]]
-- [[Communication Daily Class Not]]
+- [[Communication Daily Class Note ]]

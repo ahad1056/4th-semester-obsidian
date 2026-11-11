@@ -12,3 +12,4 @@
 - [[401 Solid state Electronics '3'/Formula Sheet|Formula Sheet]]
 - [[Solid State ANALYSED QUESTION]]
 - [[PRIVIOUS YEAR original question ]]
+- [[Solid State Daily Class Note]]
