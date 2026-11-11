@@ -15,7 +15,7 @@ Class Notes: Statistics Fundamentals
 
 📊 Variables & Scales of Measurement
 
-Types of Variables:
+Types of Variables: ==🔴There are 2 type of variables== 
 
 - Qualitative: Does not represent by number. Includes Nominal and Ordinal.
 - Quantitative: Represents by number. Includes Ratio and Interval.

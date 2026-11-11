@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Syllabus Statistics and Probability (EEE 481).md",
-                "mode": "preview",
+                "file": "Stat Daily Class Note.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Course Syllabus Statistics and Probability (EEE 481)"
+              "title": "Stat Daily Class Note"
             }
           }
         ]
@@ -83,7 +83,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -201,9 +202,30 @@
   "active": "2aa05422371f6c0f",
   "lastOpenFiles": [
     "481 Statistics and Probability '3'/statistics and probability.md",
+    "Course Syllabus Statistics and Probability (EEE 481).md",
+    "start_span.md",
+    "mechanical Daily Class Note.md",
+    "end_span.md",
+    "Stat Daily Class Note.md",
+    "Solid State Daily Class Note.md",
+    "Solid State ANALYSED QUESTION.md",
+    "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
+    "JPEG_20261111_063619_3092808849562626665.jpg",
+    "JPEG_20261111_061003_5723788556355093903.jpg",
+    "JPEG_20261111_055804_3730326127798271696.jpg",
+    "JPEG_20261111_055659_8646015617116971960.jpg",
+    "IMG_20261110_112233.jpg",
+    "IMG_20261110_112229.jpg",
+    "IMG_20261110_112222.jpg",
+    "IMG_20261110_112222 1.jpg",
+    "Communication Systems/PREVIOUS YEAR original question.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
+    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
+    "Communication Systems",
+    "Communication Daily Class Note.md",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "305 Statistics/PREVIOUS YEAR ANALYSED QUESTION.md",
     "305 Statistics/PREVIOUS YEAR original question.md",
-    "Course Syllabus Statistics and Probability (EEE 481).md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
     "305 Statistics",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
@@ -216,17 +238,11 @@
     "Dashboard.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "Course Syllabus Communication Systems (0714-403).md",
-    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
-    "491 Professional Law and Ethics '3'/Chapter 3 - Intellectual Property Rights & Patents.md",
-    "403 Communication system '3+1'/COMMUNICATION SYSTEM.md",
-    "405 electrical machene 2 '3+1'/INDEX.md",
     "405 electrical machene 2 '3+1'",
     "403 Communication system '3+1'",
     "461 fundamental of Mechanical engineering '3+1'",
     "481 Statistics and Probability '3'",
-    "PRIVIOUS YEAR original question.md",
     "491 Professional Law and Ethics '3'",
-    "401 Solid state Electronics '3'",
-    "Test note from phone ..md"
+    "401 Solid state Electronics '3'"
   ]
 }
