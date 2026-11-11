@@ -84,7 +84,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -199,7 +200,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d887b592527dbc4c",
+  "active": "2aa05422371f6c0f",
   "lastOpenFiles": [
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Course Syllabus Communication Systems (0714-403).md",
