@@ -6,9 +6,28 @@ According to Section 2(e), **an agreement is formed by a promise or a set of pro
 **consideration for each other**
 
 #### Contracts can be classified on different bases such as 
-- enforceability
-- formation
-- performance.
+1. enforceability
+2. formation
+3. performance.
+
+
+- ### On the Basis of Enforceability
+     -  Valid Contract
+     - Void Contract
+     - Voidable Contract
+     - Void Agreement
+     - Unenforceable Contract
+     - Illegal Contract
+- ### On the Basis of Formation
+    
+     - Express Contract
+     - Implied Contract
+     - Quasi-Contract
+- ### On the Basis of Performance
+     - Executed Contract
+     - Executory Contract
+     - Unilateral Contract
+     - Bilateral Contract
 
 
 
