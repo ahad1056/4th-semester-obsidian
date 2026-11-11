@@ -23,12 +23,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stat Daily Class Note.md",
+                "file": "403 Communication system '3+1'/Communication system.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Stat Daily Class Note"
+              "title": "Communication system"
             }
           }
         ],
@@ -62,7 +62,7 @@
         "state": {
           "type": "search",
           "state": {
-            "query": "tag:#thermodynamics",
+            "query": "",
             "matchingCase": false,
             "explainSearch": false,
             "collapseAll": false,
@@ -194,8 +194,11 @@
   },
   "active": "ad163c946efc928f",
   "lastOpenFiles": [
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "Stat Daily Class Note.md",
+    "IMG_20261110_112233.jpg",
+    "IMG_20261110_112229.jpg",
+    "IMG_20261110_112222.jpg",
+    "481 Statistics and Probability '3'/statistics and probability.md",
     "end_span.md",
     "start_span.md",
     "Communication Systems/Chapter 2 - Amplitude Modulation (AM) Systems.md",
@@ -224,7 +227,6 @@
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "Dashboard.md",
     "Communication Systems",
-    "491 Professional Law and Ethics '3'/Chapter 3 - Intellectual Property Rights & Patents.md",
     "305 Statistics",
     "491 Professional Law and Ethics '3'",
     "481 Statistics and Probability '3'",

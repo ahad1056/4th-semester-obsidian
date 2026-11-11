@@ -1,3 +1,57 @@
+
+# 8 November class 1 
+
+![[IMG_20261110_112229.jpg|200]]![[IMG_20261110_112233.jpg|200]]
+
+Class Notes: Statistics Fundamentals
+
+📌 Core Definitions
+
+- Population: The totality of all elements under study.
+- Sample: The portion or the representative part of the population.
+- Variable: The changing characteristic of the population which varies from person to person or phenomenon to phenomenon.
+- Data (Observation): The numerical expression of a variable.
+  - For example, if height is the variable, then 6 feet 0 inches is the data.
+
+📊 Variables & Scales of Measurement
+
+Types of Variables:
+
+- Qualitative: Does not represent by number. Includes Nominal and Ordinal.
+- Quantitative: Represents by number. Includes Ratio and Interval.
+  - Continuous: Can include fractions.
+  - Discrete: Integer numbers only.
+
+Scales of Measurement:
+
+1. Nominal
+2. Ordinal
+3. Interval: Described as a "Weak Scale" (Example: Temperature).
+4. Ratio: Described as a "Strong scale".
+
+📂 Data Sources & Distribution
+
+- Source of Data:
+  - Primary Data: Can be grouped or ungrouped.
+  - Secondary Data.
+- Frequency Distribution Table: Consists of columns for Class Interval, Tally range, and Frequency.
+
+🎯 Central Tendency
+
+- Central tendency refers to the central value of the data.
+- Measures include:
+  - Mean
+  - Median
+  - Mode
+- Types of Mean: A.M (Arithmetic Mean), G.M (Geometric Mean), and H.M (Harmonic Mean).
+- Important Relationship: A.M is greater than or equal to G.M, which is greater than or equal to H.M.
+
+---
+
+Tags: #statistics #data #variables #central-tendency #measurement-scales #class-notes
+
+
+
 # 10 November class 2
 ![[JPEG_20261111_055659_8646015617116971960.jpg| 200]]
 ![[JPEG_20261111_055804_3730326127798271696.jpg| 200]]
