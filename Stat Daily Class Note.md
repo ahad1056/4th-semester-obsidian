@@ -70,7 +70,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 **1. Frequency Distribution:**
 - The notes demonstrate how to create a frequency distribution table by determining the class interval, frequency ($f_i$), mid-value ($x$), and cumulative frequency ($cf$)
-- Sturges' formula for calculating the number of classes ($k$) is given: 
+- [^12]Sturges' formula for calculating the number of classes ($k$) is given: 
   $$ k = 1 + 3.225 \log_{10}(N) $$
 - The formula for finding the Class Interval ($I$) is: 
   $$ I = \frac{\text{Range}}{k} $$
@@ -97,7 +97,257 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 **Tags:** #statistics #class-notes #math #frequency-distribution #mean #median
 
 
-[^1]: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[^13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
 
 [^2]: যে উপাত্তগুলোকে বিভিন্ন নাম বা শ্রেণিতে ভাগ করা যায়, কিন্তু তাদের মধ্যে কোনো নির্দিষ্ট ক্রম বা Ranking থাকে না, তাকে Nominal Data বলে।
 
@@ -182,3 +432,21 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 	    
 	
 	**কখন ব্যবহার করা হয়?** যখন কোনো কিছুর হার (Rate) বা গতি (Speed) হিসাব করতে হয়। _উদাহরণ:_ আপনি যদি ২০ কিমি/ঘণ্টা বেগে কোথাও যান এবং ৩০ কিমি/ঘণ্টা বেগে ফিরে আসেন, তবে আপনার গড় গতি A.M দিয়ে বের করলে ভুল হবে, সঠিক গড় গতি বের করতে H.M ব্যবহার করতে হয়।
+
+[^12]: স্টার্জেস লক্ষ্য করেছিলেন যে, একটি আদর্শ বা স্বাভাবিক ডেটাসেট ঘণ্টা আকৃতির (Bell curve) আচরণ করে।
+	
+	তার ধারণা অনুযায়ী, যদি ডেটাকে $k$ সংখ্যক শ্রেণীতে ভাগ করা হয়, তবে মোট ডেটার সংখ্যা ($N$) হবে ২-এর ঘাতের (power) সমান। গাণিতিকভাবে তিনি এটি এভাবে লেখেন:
+	
+	$$N = 2^{k-1}$$
+	
+	এই সমীকরণটি সমাধান করেই মূলত সূত্রটি এসেছে:
+	$$\log_2(N) = k - 1$$
+$$k = 1 + \log_2(N)$$
+$$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
+	$$k = 1 + 3.322 \log_{10}(N)$$
+
+[^13]: কোনো ডেটাসেটের **সবচেয়ে বড় মান (Maximum Value)** এবং **সবচেয়ে ছোট মানের (Minimum Value)** মধ্যকার পার্থক্যকেই **Range** বলা হয়।
+	
+	### সূত্র:
+	
+	$$\text{Range} = \text{সর্বোচ্চ মান (Highest Value)} - \text{সর্বনিম্ন মান (Lowest Value)}$$
