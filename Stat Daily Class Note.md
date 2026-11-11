@@ -85,7 +85,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 **3. Median:**
 - The algorithm for finding the median class depends on the total observation: use position $\frac{n}{2}$ for even numbers, and position $\frac{n+1}{2}$ for odd numbers
 - The main formula for calculating the median is:
-  $$ Me = L + \frac{\frac{N}{2} - cf}{f} \times c $$[
+  $$ Me = L + \frac{\frac{N}{2} - cf}{f} \times c $$
   *(Here, $L$ = lower limit, $cf$ = cumulative frequency just above the median class, $f$ = frequency of the median class, and $c$ = class interval)
 
 **4. Quartile & Quantile:**
