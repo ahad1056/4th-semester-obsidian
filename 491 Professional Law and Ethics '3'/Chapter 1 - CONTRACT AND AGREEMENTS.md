@@ -3,8 +3,8 @@
 According to Section 2(h) of the Contract Act, 1872, "**An agreement enforceable by law is a**
 **contract**." Thus, every contract is an agreement, but every agreement is not a contract. An agreement becomes a contract only when it is recognized and enforceable by law. 
 
-According to Section 2(e), an agreement is formed by a promise or a set of promises that form
-consideration for each other
+According to Section 2(e), **an agreement is formed by a promise or a set of promises that form**
+**consideration for each other**
 
 #### Essential Elements of a Valid Contract
 1. Offer and Acceptance[^1]
@@ -16,6 +16,7 @@ consideration for each other
 7. Certainty of Terms[^4]
 8. Possibility of Performance[^5]
 9. Not Expressly Declared Void[^6]
+10. Compliance with Legal Formalities
 
 
 
@@ -81,5 +82,5 @@ consideration for each other
 	● Agreements with minors
 	● Agreements with unlawful objects
 	
-	[^7]: 
+	[^7]: জুয়া বা বাজির চুক্তি (Wagering Agreements
 	
