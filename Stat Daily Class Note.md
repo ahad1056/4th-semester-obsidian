@@ -88,7 +88,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
   $$ Me = L + \frac{\frac{N}{2} - cf}{f} \times c $$
   *(Here, $L$ = lower limit, $cf$ = cumulative frequency just above the median class, $f$ = frequency of the median class, and $c$ = class interval)
 
-**4. Quartile & Quantile:**
+**4. [^17]Quartile & [^18]Quantile:**
 - The formula for calculating the $i$-th Quartile ($Q_i$) is:
   $$ Q_i = L + \frac{\frac{iN}{4} - cf}{f_{Qi}} \times c $$
 - A diagram illustrates that the 2nd quartile ($Q_2$) is equal to the median.
@@ -484,3 +484,33 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	- **$[10, 20)$** $\to$ ১০ অন্তর্ভুক্ত হবে, কিন্তু ২০ বাদ যাবে (১০ থেকে ১৯.৯৯ পর্যন্ত)।
 	    
 	- **$(10, 20]$** $\to$ ১০ বাদ যাবে, কিন্তু ২০ অন্তর্ভুক্ত হবে (১০.০১ থেকে ২০ পর্যন্ত)।
+
+[^17]: **Quartile (চতুর্থক)** হলো এমন কিছু মান বা পয়েন্ট, যা সাজানো কোনো ডেটাসেটকে সমান **৪টি ভাগে** ভাগ করে।
+	
+	যেমন—Median (মধ্যক) একটি ডেটাসেটকে সমান ২ ভাগ করে, ঠিক তেমনি Quartile পুরো ডেটাসেটকে ৪ ভাগ করতে **৩টি পয়েন্ট** ব্যবহার করে। এই ৩টি পয়েন্টকে **$Q_1$, $Q_2$, এবং $Q_3$** বলা হয়।
+	
+	### Quartile-এর গুরুত্ব
+	
+	- ডেটাগুলো কীভাবে ছড়িয়ে আছে (Data Distribution) তা বুঝতে এটি সাহায্য করে।
+	    
+	- **Interquartile Range (IQR = $Q_3 - Q_1$)** বের করে ডেটাসেটের চরম বা অস্বাভাবিক মানগুলো (Outliers) সহজে চিহ্নিত করা যায়।
+	
+	### ৩টি Quartile-এর পরিচয়
+	
+	১. **$Q_1$ (First Quartile / Lower Quartile):**
+	
+	- এটি প্রথম **২৫%** ডেটাকে নির্দেশ করে। অর্থাৎ, ২৫% ডেটা এই মানের নিচে থাকে এবং ৭৫% ডেটা এর ওপরে থাকে।
+	    
+	
+	২. **$Q_2$ (Second Quartile / Middle Quartile):**
+	
+	- এটি ঠিক মাঝখানের **৫০%** ডেটাকে নির্দেশ করে। **$Q_2$ আর Median (মধ্যক) একই কথা।** ৫০% ডেটা এর নিচে এবং ৫০% ডেটা এর ওপরে থাকে।
+	    
+	
+	৩. **$Q_3$ (Third Quartile / Upper Quartile):**
+	
+	- এটি **৭৫%** ডেটাকে নির্দেশ করে। অর্থাৎ, ৭৫% ডেটা এই মানের নিচে থাকে এবং বাকি ২৫% ডেটা এর ওপরে থাকে।
+
+[^18]: **Quantile (কোয়ান্টাইল)** হলো পরিসংখ্যানের একটি সার্বিক ধারণা, যা সাজানো কোনো ডেটাসেটকে নির্দিষ্ট সংখ্যক **সমান অংশে** ভাগ করার কাট-অফ পয়েন্ট বা সীমানাগুলোকে বোঝায়।
+	
+	সহজ কথায়, আপনি যদি একটি ডেটাসেটকে ছোট থেকে বড় সাজিয়ে সেটিকে কয়েকটি সমান টুকরো করতে চান, তবে যেই পয়েন্টগুলোতে ভাগ করবেন, সেগুলোকে বলা হয় Quantile।
