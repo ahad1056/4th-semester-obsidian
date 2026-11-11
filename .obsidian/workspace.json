@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stat Daily Class Note.md",
+                "file": "Communication Daily Class Note.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Stat Daily Class Note"
+              "title": "Communication Daily Class Note"
             }
           }
         ]
@@ -79,7 +79,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -201,13 +202,15 @@
   },
   "active": "2aa05422371f6c0f",
   "lastOpenFiles": [
-    "Untitled.base",
-    "481 Statistics and Probability '3'/statistics and probability.md",
+    "403 Communication system '3+1'/Communication system.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
     "Course Syllabus Statistics and Probability (EEE 481).md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "Stat Daily Class Note.md",
+    "Untitled.base",
     "start_span.md",
     "mechanical Daily Class Note.md",
     "end_span.md",
-    "Stat Daily Class Note.md",
     "Solid State Daily Class Note.md",
     "Solid State ANALYSED QUESTION.md",
     "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
@@ -220,7 +223,6 @@
     "IMG_20261110_112222.jpg",
     "IMG_20261110_112222 1.jpg",
     "Communication Systems/PREVIOUS YEAR original question.md",
-    "Communication Systems/Chapter 2 -NOISE.md",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Communication Systems",
     "Communication Daily Class Note.md",
@@ -230,7 +232,6 @@
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
     "305 Statistics",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "403 Communication system '3+1'/Communication system.md",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",

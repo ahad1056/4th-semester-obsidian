@@ -93,7 +93,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
   $$ Q_i = L + \frac{\frac{iN}{4} - cf}{f_{Qi}} \times c $$
 - A diagram illustrates that the 2nd quartile ($Q_2$) is equal to the median.
 - The topics of "Inter quartile Range" and "Quartile deviation" are listed.
-- The "Quantile family" is categorized under central tendency measurement
+- The "Quantile family" is categorized under central tendency measurement[^19]
 
 ---
 **Tags:** #statistics #class-notes #math #frequency-distribution #mean #median
@@ -514,3 +514,4 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 [^18]: **Quantile (কোয়ান্টাইল)** হলো পরিসংখ্যানের একটি সার্বিক ধারণা, যা সাজানো কোনো ডেটাসেটকে নির্দিষ্ট সংখ্যক **সমান অংশে** ভাগ করার কাট-অফ পয়েন্ট বা সীমানাগুলোকে বোঝায়।
 	
 	সহজ কথায়, আপনি যদি একটি ডেটাসেটকে ছোট থেকে বড় সাজিয়ে সেটিকে কয়েকটি সমান টুকরো করতে চান, তবে যেই পয়েন্টগুলোতে ভাগ করবেন, সেগুলোকে বলা হয় Quantile।
+: 
