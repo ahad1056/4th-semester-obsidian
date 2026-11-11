@@ -34,7 +34,7 @@ Scales of Measurement:
 - Source of Data:
   - Primary Data: Can be grouped or ungrouped.
   - Secondary Data.
-- Frequency Distribution Table: Consists of columns for Class Interval, Tally range, and Frequency.
+-[^4] Frequency Distribution Table: Consists of columns for Class Interval, Tally range, and Frequency.
 
 🎯 Central Tendency
 
@@ -102,3 +102,5 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 [^3]: যে উপাত্তগুলোকে বিভিন্ন শ্রেণিতে ভাগ করার পাশাপাশি একটি নির্দিষ্ট ক্রম বা Ranking-এ সাজানো যায়, তাকে Ordinal Data বলে।
 	
+
+[^4]: **Frequency Distribution Table:** এটি এমন একটি পরিসংখ্যানগত ছক, যেখানে এলোমেলো ডেটাকে নির্দিষ্ট শ্রেণী ব্যবধানে (Class Interval) ভাগ করে ট্যালি (Tally) এবং গণসংখ্যার (Frequency) মাধ্যমে গুছিয়ে উপস্থাপন করা হয়, যাতে একনজরেই ডেটার মূল চিত্র বোঝা যায়।
