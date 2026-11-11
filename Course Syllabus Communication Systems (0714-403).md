@@ -8,13 +8,13 @@
 ---
 
 ## 🌐 MODULE 1: Fundamentals of Communication Systems
-- [ ] Basic principles & fundamental elements of communication system
+- [x] Basic principles & fundamental elements of communication system
 - [ ] System limitations & message source
 - [ ] Bandwidth requirements & types of transmission media
 - [ ] Bandwidth and transmission capacity
 - [ ] Introduction to analog and digital communication systems
-- [ ] Baseband and carrier communication
-- [ ] Definition and sources of noise
+- [ ] Baseband and carrier communication 
+- [x] Definition and sources of noise
 - [ ] Characteristics of various types of noise
 
 ---
