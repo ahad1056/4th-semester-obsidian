@@ -12,3 +12,4 @@
 - [[491 Professional Law and Ethics '3'/Important Case Studies & Laws|Important Case Studies & Laws]]
 - [[491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION|PREVIOUS YEAR ANALYSED QUESTION]]
 - [[491 Professional Law and Ethics '3'/PREVIOUS YEAR original question|PREVIOUS YEAR original question]]
+- [[LAW daily class notes]]
