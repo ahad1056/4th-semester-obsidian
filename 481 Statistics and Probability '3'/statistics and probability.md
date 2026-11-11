@@ -1,10 +1,5 @@
 ## Course Chapters
 - [[305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection|Chapter 1: Introduction to Statistics & Data Collection]]
-- [[305 Statistics/Chapter 2 - Measures of Central Tendency & Dispersion|Chapter 2: Measures of Central Tendency & Dispersion]]
-- [[305 Statistics/Chapter 3 - Probability Theory & Random Variables|Chapter 3: Probability Theory & Random Variables]]
-- [[305 Statistics/Chapter 4 - Probability Distributions (Binomial, Poisson, Normal)|Chapter 4: Probability Distributions (Binomial, Poisson, Normal)]]
-- [[305 Statistics/Chapter 5 - Hypothesis Testing & Inferential Statistics|Chapter 5: Hypothesis Testing & Inferential Statistics]]
-- [[305 Statistics/Chapter 6 - Regression & Correlation Analysis|Chapter 6: Regression & Correlation Analysis]]
 
 ---
 

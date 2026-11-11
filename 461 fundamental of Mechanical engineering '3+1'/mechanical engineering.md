@@ -12,3 +12,4 @@
 - [[Mechanical Engineering/Important Formulas, Material Constants & Thermodynamic Tables|Important Formulas, Material Constants & Thermodynamic Tables]]
 - [[Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION|PREVIOUS YEAR ANALYSED QUESTION]]
 - [[Mechanical Engineering/PREVIOUS YEAR original question|PREVIOUS YEAR original question]]
+- [[mechanical Daily Class Note]]
