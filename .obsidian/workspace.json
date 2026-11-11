@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Stat Daily Class Note.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -201,6 +201,7 @@
   },
   "active": "2aa05422371f6c0f",
   "lastOpenFiles": [
+    "Untitled.base",
     "481 Statistics and Probability '3'/statistics and probability.md",
     "Course Syllabus Statistics and Probability (EEE 481).md",
     "start_span.md",
@@ -237,7 +238,6 @@
     "Course Syllabus Electrical Machine II (0713-405).md",
     "Dashboard.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-    "Course Syllabus Communication Systems (0714-403).md",
     "405 electrical machene 2 '3+1'",
     "403 Communication system '3+1'",
     "461 fundamental of Mechanical engineering '3+1'",
