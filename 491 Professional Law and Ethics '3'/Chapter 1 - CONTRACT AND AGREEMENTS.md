@@ -13,9 +13,9 @@ consideration for each other
 4. Capacity of Parties[^3]
 5. Free Consent
 6. Lawful Object
-7. Certainty of Terms
-8. Possibility of Performance
-9. Not Expressly Declared Void
+7. Certainty of Terms[^4]
+8. Possibility of Performance[^5]
+9. Not Expressly Declared Void[^6]
 
 
 
@@ -71,3 +71,15 @@ consideration for each other
 	● Is not disqualified by any law
 	
 	A contract made by an incompetent person is not valid.
+[^4]: According to Section 29, agreements with uncertain meanings are void.
+[^5]: According to Section 56, an agreement to do an impossible act is void from the beginning
+[^6]: ## void agreements 
+	● Wagering[^7] agreements
+	● Agreements in restraint of marriage
+	● Agreements in restraint of trade
+	● Agreements in restraint of legal proceedings
+	● Agreements with minors
+	● Agreements with unlawful objects
+	
+	[^7]: 
+	
