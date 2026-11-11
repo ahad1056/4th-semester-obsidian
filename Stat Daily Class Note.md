@@ -17,15 +17,15 @@ Class Notes: Statistics Fundamentals
 
 Types of Variables: ==🔴There are 2 type of variables== 
 
-- Qualitative: Does not represent by number. Includes Nominal and Ordinal.
+- Qualitative: Does not represent by number. Includes [^2]Nominal and [^3]Ordinal.
 - Quantitative: Represents by number. Includes Ratio and Interval.
   - Continuous: Can include fractions.
   - Discrete: Integer numbers only.
 
 Scales of Measurement:
 
-1. Nominal
-2. Ordinal
+1. [^2]Nominal
+2. [^3]Ordinal
 3. Interval: Described as a "Weak Scale" (Example: Temperature).
 4. Ratio: Described as a "Strong scale".
 
@@ -96,3 +96,9 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 **Tags:** #statistics #class-notes #math #frequency-distribution #mean #median
 
 
+[^1]: 
+
+[^2]: যে উপাত্তগুলোকে বিভিন্ন নাম বা শ্রেণিতে ভাগ করা যায়, কিন্তু তাদের মধ্যে কোনো নির্দিষ্ট ক্রম বা Ranking থাকে না, তাকে Nominal Data বলে।
+
+[^3]: যে উপাত্তগুলোকে বিভিন্ন শ্রেণিতে ভাগ করার পাশাপাশি একটি নির্দিষ্ট ক্রম বা Ranking-এ সাজানো যায়, তাকে Ordinal Data বলে।
+	
