@@ -80,6 +80,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - The formula for calculating the mean of grouped data is provided as:
   $$ \bar{x} = \frac{\sum fx}{\sum f} $$
 - A solved example shows $\sum fx = 87$ and $\sum f = 15$, resulting in a mean of $5.8$
+
+
 **3. Median:**
 - The algorithm for finding the median class depends on the total observation: use position $\frac{n}{2}$ for even numbers, and position $\frac{n+1}{2}$ for odd numbers
 - The main formula for calculating the median is:
