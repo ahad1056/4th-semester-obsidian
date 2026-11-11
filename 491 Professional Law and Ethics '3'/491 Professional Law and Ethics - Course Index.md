@@ -1,6 +1,6 @@
 
 ## Course Chapters
-- [[491 Professional Law and Ethics '3'/Chapter 1 - Introduction to Legal System|Chapter 1: Introduction to Legal System]]
+- [[Chapter 1 - CONTRACT AND AGREEMENTS|Chapter 1:  CONTRACT AND AGREEMENTS]] 
 
 ---
 ## Supplementary & Exam Prep
