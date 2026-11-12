@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -257,8 +257,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "32a96c330feb787e",
+  "active": "3ade64437e9898df",
   "lastOpenFiles": [
+    "Course Syllabus Communication Systems (0714-403).md",
     "start_span.md",
     "end_span.md",
     "Untitled.base",
@@ -267,7 +268,6 @@
     "Communication Systems/Chapter 2 -NOISE.md",
     "Communication Daily Class Note.md",
     "Communication Systems/PREVIOUS YEAR original question.md",
-    "Course Syllabus Communication Systems (0714-403).md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Stat Daily Class Note.md",
