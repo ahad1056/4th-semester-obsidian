@@ -11,10 +11,14 @@
             "id": "8b758e4a05059190",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "PREVIOUS YEAR original question"
             }
           },
           {
@@ -23,36 +27,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LAW daily class notes.md",
+                "file": "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LAW daily class notes"
+              "title": "PREVIOUS YEAR ANALYSED QUESTION"
             }
           },
           {
             "id": "94c62225c08a6716",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Course Syllabus Professional Law & Ethics (EEE 491)"
             }
           },
           {
             "id": "09a3aa7f97db07d6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "LAW daily class notes.md",
+                "mode": "preview",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "LAW daily class notes"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -212,15 +224,24 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ad163c946efc928f",
+  "active": "94c62225c08a6716",
   "lastOpenFiles": [
+    "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
+    "Electrical Machines",
+    "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
+    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
+    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "LAW daily class notes.md",
+    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
+    "Dashboard.md",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
+    "Untitled.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Untitled.base",
     "2026-11-11.md",
     "JPEG_20261111_103927_1828953819829583125.jpg",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "LAW daily class notes.md",
-    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "Solid State Daily Class Note.md",
     "IMG_20261110_112222 1.jpg",
     "401 Solid state Electronics '3'/solid state electronics.md",
@@ -242,15 +263,7 @@
     "JPEG_20261111_055659_8646015617116971960.jpg",
     "PRIVIOUS YEAR original question.md",
     "Solid State ANALYSED QUESTION.md",
-    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
-    "Communication Systems/Chapter 2 -NOISE.md",
-    "Communication Systems/PREVIOUS YEAR original question.md",
-    "Course Syllabus Communication Systems (0714-403).md",
-    "Course Syllabus Electrical Machine II (0713-405).md",
-    "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
-    "Course Syllabus Statistics and Probability (EEE 481).md",
-    "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "Communication Systems",
     "305 Statistics",
     "491 Professional Law and Ethics '3'",
