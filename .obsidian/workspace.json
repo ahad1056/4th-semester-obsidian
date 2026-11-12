@@ -8,59 +8,73 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7f7c1c19e91ff005",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 1 - Introduction to Statistics & Data Collection"
-            }
-          },
-          {
-            "id": "48ca726446c6dafe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "STAT-471 Exam Questions Archive (Clustered by Syllabus)"
-            }
-          },
-          {
-            "id": "00d5d176d5e27de5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "STAT-471 Exam Questions Archive (Clustered by Syllabus)"
-            }
-          },
-          {
             "id": "e043536078f0a3cf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stat Daily Class Note.md",
-                "mode": "preview",
+                "file": "Communication Systems/Chapter 2 -NOISE.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Stat Daily Class Note"
+              "title": "Chapter 2 -NOISE"
+            }
+          },
+          {
+            "id": "32a96c330feb787e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Course Syllabus Communication Systems (0714-403).md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Course Syllabus Communication Systems (0714-403)"
+            }
+          },
+          {
+            "id": "edabd4247abd266c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PREVIOUS YEAR ANALYSED QUESTION"
+            }
+          },
+          {
+            "id": "3ade64437e9898df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Communication Daily Class Note.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Communication Daily Class Note"
+            }
+          },
+          {
+            "id": "6a6ac5fa93fc0f70",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Communication Systems/PREVIOUS YEAR original question.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PREVIOUS YEAR original question"
             }
           }
         ],
@@ -127,7 +141,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -242,12 +257,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e043536078f0a3cf",
+  "active": "3ade64437e9898df",
   "lastOpenFiles": [
+    "Communication Systems/PREVIOUS YEAR original question.md",
+    "403 Communication system '3+1'/Communication system.md",
+    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "Communication Daily Class Note.md",
+    "Course Syllabus Communication Systems (0714-403).md",
+    "Communication Systems/Chapter 2 -NOISE.md",
+    "Stat Daily Class Note.md",
     "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
     "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
     "481 Statistics and Probability '3'/statistics and probability.md",
-    "Stat Daily Class Note.md",
     "305 Statistics/PREVIOUS YEAR original question.md",
     "Course Syllabus Statistics and Probability (EEE 481).md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
@@ -262,17 +283,11 @@
     "Untitled.base",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "JPEG_20261111_103927_1828953819829583125.jpg",
-    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "Course Syllabus Communication Systems (0714-403).md",
     "2026-11-11.md",
-    "Communication Daily Class Note.md",
-    "403 Communication system '3+1'/Communication system.md",
-    "Communication Systems/Chapter 2 -NOISE.md",
     "start_span.md",
     "mechanical Daily Class Note.md",
     "end_span.md",
     "Solid State Daily Class Note.md",
-    "Solid State ANALYSED QUESTION.md",
     "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
     "JPEG_20261111_063619_3092808849562626665.jpg",
     "JPEG_20261111_061003_5723788556355093903.jpg",
