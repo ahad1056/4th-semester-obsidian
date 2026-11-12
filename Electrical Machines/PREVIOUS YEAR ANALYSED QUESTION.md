@@ -50,3 +50,64 @@
 - `[Y24 Q8b M4 ]` Why is single phase induction motor not self-starting? Explain capacitor start induction run method to make it self-starting with necessary diagrams.
     
 - `[Y24 Q8c M3 ]` An overhead crane in a factory is driven horizontally by means of two similar linear induction motors, whose rotors are the two steel I-beams. The 3-phase, 4 pole linear stators have a pole pitch of 6 mm and are energized by a variable frequency electronic source. When one of the motors was tested, it was found that stator frequency was 25 Hz, power to stator was 6 kW, stator Cu and iron losses were 1.2 kW and crane speed was 2.4 m/s. Calculate (i) synchronous speed, (ii) slip, (iii) power input to rotor, (iv) Cu losses in the rotor, (v) gross mechanical power developed and (vi) thrust.
+
+- `[Y23 Q5a M2 ]` Discuss the different types of induction motor with their differences and features.
+    
+- `[Y23 Q5b M3 ]` Prove that an induction motor with a 3-phase supply can produce a rotating field at a constant magnitude and speed.
+    
+- `[Y23 Q5c M2 ]` A 150 kW, 3000 V, 50 Hz, 6-pole, star-connected induction motor has a star-connected slip-ring rotor with a transformation ratio of 3.6 (stator/rotor). The rotor resistance is 0.1 Ω per phase and its leakage reactance per phase is 3.61 mH. The stator impedance may be neglected. Find the starting current and starting torque on rated voltage with short-circuited slip-rings.
+    
+- `[Y23 Q5d M2 ]` Derive the torque equation developed by an induction motor under running condition.
+    
+- `[Y23 Q6a M2 ]` Discuss the relation between the torque and slip in an induction motor.
+    
+- `[Y23 Q6b M3 ]` A 230 V, 6-pole, 3-phase, 50 Hz, 15 kW induction motor drives a constant torque load at rated frequency, rated voltage and rated kW output, and has a speed of 980 rpm and an efficiency of 93%. Calculate (i) the new operating speed if there is a 10% drop in voltage and 5% drop in frequency and (ii) the new output power. Assume all losses to remain constant.
+    
+- `[Y23 Q6c M2 ]` The power input to the rotor of a 400 V, 50 Hz, 6-pole, 3-phase induction motor is 20 kW. The slip is 3%. Calculate (i) the frequency of rotor currents (ii) rotor speed (iii) rotor copper losses and (iv) rotor resistance per phase if rotor current is 60 A.
+    
+- `[Y23 Q6d M2 ]` Write the operating principle of the linear induction motor.
+    
+- `[Y23 Q7a M2 ]` Draw and explain the complete torque/speed characteristics curve of a 3-phase induction motor.
+    
+- `[Y23 Q7b M2 ]` A 220 V, 3-phase, 4-pole, 50 Hz, Y-connected induction motor is rated 3.73 kW. The equivalent circuit parameters are R₁=0.45 Ω, X₁=0.8 Ω, R’₂=0.4 Ω, X’₂=0.8 Ω, B₀= - 1/30 mho. The stator core loss is 50 W and rotational loss is 150 W. For a slip of 0.04, find the input current, p.f., air-gap power, mechanical power, gross power, output power, and efficiency.
+    
+- `[Y23 Q7c M3 ]` Why is the starting of induction motors a concerned issue? Describe the auto-starter method for starting squirrel-case induction motors with necessary diagram.
+    
+- `[Y23 Q7d M2 ]` Briefly discuss the speed control of induction motors.
+    
+- `[Y23 Q8a M3 ]` Explain the rotating behavior with externally initial start of a single-phase induction motor by the double-field revolving theory.
+    
+- `[Y23 Q8b M2 ]` Why is the single-phase induction motor not self-starting? How to make it self-starting?
+    
+- `[Y23 Q8c M2 ]` How can you reverse the direction of rotation of a capacitor start-induction-run motor? What can be the reasons if a split-phase motor runs too slow?
+    
+- `[Y23 Q8d M2 ]` Write the short notes on the plugging of an induction motor.
+
+
+- `[Y22 Q5a M2]` Why is induction motor called as rotating transformer?
+    
+- `[Y22 Q5b M2]` The rotor slots of 3 phase induction motor are not quite parallel to the shaft but are purposely given a slight skew. Why?
+    
+- `[Y22 Q5c M2]` Prove that the resultant flux in the induction motor due to three phase supply is 1.5 times the maximum value of the flux due to any phase.
+    
+- `[Y22 Q5d M3]` Calculate the torque exerted by an 8 pole, 50 Hz, 3 phase induction motor operating with a 4% slip which develops a maximum torque of 150 kg-m at a speed of 660 rpm. The resistance per phase of the rotor is 0.5 Ω.
+    
+- `[Y22 Q6a M2]` Show that for the larger value of slip is inversely proportional to the torque in induction motor.
+    
+- `[Y22 Q6b M2]` Explain plugging of induction motor.
+    
+- `[Y22 Q6c M2]` An 8 pole, 50 Hz, 3 phase slip-ring induction motor has effective rotor resistance of 0.08 Ω/phase where stalling speed is 650 rpm. How much resistance must be inserted in the rotor phase to obtain the maximum torque at starting? Ignore the magnetizing current and stator leakage impedance.
+    
+- `[Y22 Q6d M3]` A 3-phase induction motor having 6 pole, star connected winding runs on 240 V, 50 Hz supply. The rotor resistance and standstill reactance are 0.12 Ω and 0.85 Ω per phase respectively. The ratio of stator to rotor turns is 1.8. Full load slip is 4%. Calculate the developed torque at full load, maximum torque and speed at maximum torque.
+    
+- `[Y22 Q7a M2]` What do you mean by crawling and cogging? _(Note: Image `image_a46428.png` is upside down. Reading from the inverted text.)_
+    
+- `[Y22 Q7b M3]` Prove that the star-delta switch is equivalent to an auto transformer of ratio 58% approximately. _(Note: Reading from the inverted text in image `image_a46428.png`.)_
+    
+- `[Y22 Q7c M4]` A 400 V, 3 phase, 50 Hz, 4 pole, star connected induction motor takes a line current of 10 A with 0.86 pf lagging. Its total stator losses are 5% of the input. Rotor copper losses are 4% of the input to the rotor and mechanical losses are 3% of the rotor input. Calculate (i) slip, (ii) speed, (iii) torque developed in the rotor and (iv) shaft torque. _(Note: Reading from the inverted text in image `image_a46428.png`.)_
+    
+- `[Y22 Q8a M3]` Why is single phase induction motor not self-starting? Explain capacitor start induction run method to make it self-starting with necessary diagrams. _(Note: Reading from the inverted text in image `image_a46428.png`.)_
+    
+- `[Y22 Q8b M3]` A 115 V, 60 Hz, 3 phase, Y-connected, 6 pole induction motor has an equivalent T-circuit consisting of stator impedance of (0.07 + j0.3) Ω and an equivalent rotor impedance at standstill of (0.08 + j0.3) Ω. Magnetizing brunch has conductance of 0.022 mho/phase and susceptance of 0.158 mho/per phase. Find (i) secondary current, (ii) primary current, (iii) primary pf, (iv) gross power output, (v) gross torque and (vi) gross efficiency. _(Note: Reading from the inverted text in image `image_a46428.png` and continuing to `image_a46421.png`.)_
+    
+- `[Y22 Q8c M3]` An overhead crane in a factory is driven horizontally by means of two similar linear induction motors, whose rotors are the two steel I-beams. The 3-phase, 4 pole linear stators have a pole pitch of 6 mm and are energized by a variable frequency electronic source. When one of the motors was tested, it was found that stator frequency was 25 Hz, power to stator was 6 kW, stator Cu and iron losses were 1.2 kW and crane speed was 2.4 m/s. Calculate (i) synchronous speed, (ii) slip, (iii) power input to rotor, (iv) Cu losses ion the rotor, (v) gross mechanical power developed and (vi) thrust.
