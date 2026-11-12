@@ -38,12 +38,11 @@ Noise is categorized into two main types:
 - Cosmic noise[^8]
 - Manmade noise[^9]
 
-🧮 Signal to Noise Ratio[^10]  & Noise Figure
+##### 🧮 Signal to Noise Ratio[^10]  & Noise Factor , Noise Figure[^12] .
 
-- Signal to noise ratio:Measured at a certain point.
-- Noise Figure Calculation:
-  - F = (Input S/N ratio) / (Output S/N ratio)
-
+- Signal to noise ratio: Measured at a certain point.
+- Noise Factor[^11] Calculation:
+  $$F = \frac{\text{Input SNR}}{\text{Output SNR}}$$
 ---
 
 Tags: #communication #bandwidth #noise #signals #class-notes
@@ -101,3 +100,25 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	- **Significance:** It determines the quality of a communication system. A higher SNR indicates a clearer, stronger signal with less background noise.
 	    
 	- **Measurement:** It is always measured at a specific single point in the system (e.g., at the input of a receiver, or at the output of an amplifier).
+[^11]: **A. Noise Factor (F):****Definition:** It is the ratio of the Signal-to-Noise ratio at the input of a device to the Signal-to-Noise ratio at its output.
+	
+	**Formula:**
+	
+	$$F = \frac{\text{Input SNR}}{\text{Output SNR}}$$
+	
+	**Key Characteristics of Noise Factor (F):**
+	
+	- Because every electronic device adds its own internal noise (like thermal or shot noise), the Output SNR is always lower than the Input SNR.
+	    
+	- Therefore, the Noise Factor (F) of a practical system is always **greater than 1**.
+	    
+	- For an _ideal_, noiseless device, F = 1.
+[^12]: **Noise Figure (NF):** 
+	
+	**Definition:** The Noise Figure is simply the Noise Factor (F) expressed in decibels (dB). Exam questions often use "Noise Figure" and "Noise Factor" interchangeably, but technically, NF is the logarithmic version of F.
+	
+	**Formula:**
+	
+	$$\text{NF (in dB)} = 10 \log_{10} (F)$$
+	
+	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
