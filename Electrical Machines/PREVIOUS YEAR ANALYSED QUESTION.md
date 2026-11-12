@@ -111,3 +111,301 @@
 - `[Y22 Q8b M3]` A 115 V, 60 Hz, 3 phase, Y-connected, 6 pole induction motor has an equivalent T-circuit consisting of stator impedance of (0.07 + j0.3) Ω and an equivalent rotor impedance at standstill of (0.08 + j0.3) Ω. Magnetizing brunch has conductance of 0.022 mho/phase and susceptance of 0.158 mho/per phase. Find (i) secondary current, (ii) primary current, (iii) primary pf, (iv) gross power output, (v) gross torque and (vi) gross efficiency. _(Note: Reading from the inverted text in image `image_a46428.png` and continuing to `image_a46421.png`.)_
     
 - `[Y22 Q8c M3]` An overhead crane in a factory is driven horizontally by means of two similar linear induction motors, whose rotors are the two steel I-beams. The 3-phase, 4 pole linear stators have a pole pitch of 6 mm and are energized by a variable frequency electronic source. When one of the motors was tested, it was found that stator frequency was 25 Hz, power to stator was 6 kW, stator Cu and iron losses were 1.2 kW and crane speed was 2.4 m/s. Calculate (i) synchronous speed, (ii) slip, (iii) power input to rotor, (iv) Cu losses ion the rotor, (v) gross mechanical power developed and (vi) thrust.
+
+- `[Y24 Q5a M2]` How can you convert an induction motor into an alternator?
+    
+- `[Y24 Q5b M3]` Draw the wiring diagram of a basic 3 phase 2 pole alternator
+    
+- `[Y24 Q5c M3]` Explain how damper winding and short pitching in alternators can improve the power quality.
+    
+- `[Y24 Q5d M1]` Briefly explain the effect of high THD (total harmonic distortion) in the generated power?
+    
+- `[Y24 Q6a M2]` What are salient pole motors? Compare it with the cylindrical type variation.
+    
+- `[Y24 Q6b M3]` Explain how load "type" can affect the output voltage of an alternator.
+    
+- `[Y24 Q6c M2]` Explain synchronous impedance method for measuring voltage regulation in an alternator.
+    
+- `[Y24 Q6d M2]` A 3-phase, star-connected alternator supplies a load of 10 MW at p.f. 0.85 lagging and at 11 kV (terminal voltage). Its resistance is 0.1 ohm per phase and synchronous reactance 0.66 ohm per phase. Calculate the line value of e.m.f. generated.
+    
+- `[Y24 Q7a M3]` Explain how a synchronous motor is started.
+    
+- `[Y24 Q7b M3]` Explain why modern EVs use IPM-SynRM? Show how the electronic control is used to reduce back EMF created by permanent magnets at high speed in these motors.
+    
+- `[Y24 Q7c M3]` What are reluctance motors? What advantage does a reluctance motor have compared to a permanent magnet motor?
+    
+- `[Y24 Q8a M3]` Explain how Tesla motors could overcome the structural limitation of their reluctance motors
+    
+- `[Y24 Q8b M3]` Why does an IPM-SynRM motor have higher torque at higher speed than an SCIM?
+    
+- `[Y24 Q8c M3]` What is meant by "V-curves" and "inverted V-curves" of a synchronous motor?
+
+
+- `[Y23 Q5a M3]` Explain the construction detail and working principle of a 3-$\phi$ alternator.
+    
+      
+    
+- `[Y23 Q5b M1]` How can you control the output voltage and frequency of a 3-$\phi$ alternator?
+    
+      
+    
+- `[Y23 Q5c M3]` What do you mean by the term synchronization of an alternator? Explain the dark-lamp method of synchronizing.
+    
+      
+    
+- `[Y23 Q5d M2]` A 3-$\phi$, 16-pole alternator has a star-connected winding with 144 slots and 10 conductors per slot. The flux per pole is 0.03 Wb, Sinusoidally distributed and the speed is 375 r.p.m. Find the frequency, the phase e.m.f. and the line e.m.f. Assume a full-pitched coil.
+    
+      
+    
+- `[Y23 Q6a M1]` Differentiate between induction motor and synchronous motor.
+    
+      
+    
+- `[Y23 Q6b M2]` What are the procedures for starting a synchronous motor?
+    
+      
+    
+- `[Y23 Q6c M1]` What do you mean by the term hunting or surging of a synchronous motor?
+    
+      
+    
+- `[Y23 Q6d M2]` What is the effect of changing excitation of a synchronous motor at constant load?
+    
+      
+    
+- `[Y23 Q6e M3]` A 75 kW, 3-$\phi$, Y-connected, 50 Hz, 440 V cylindrical rotor synchronous motor operates at rated condition with 0.8 p.f. leading. The motor efficiency excluding field and stator losses, is 95% and Xs= 2.5 $\Omega$. Calculate i. Mechanical power developed ii. Armature current iii. Back E. M. F. iv. Power angle and v. Maximum or pull-out torque of the motor.
+    
+      
+    
+- `[Y23 Q7a M2]` Explain why capacitive loads are used for improving power factor.
+    
+      
+    
+- `[Y23 Q7b M2]` Explain synchronous impedance method for measuring voltage regulation in an alternator.
+    
+      
+    
+- `[Y23 Q7c M3]` A 60-kVA, 220 V, 50-Hz, 1-$\phi$ alternator has effective armature resistance of 0.016 $\Omega$ and an armature leakage reactance of 0.07 $\Omega$. Compute the voltage induced in the armature when the alternator is delivering reated current at a load power factor of (a) unity, (b) 0.7 lagging and (c) 0.7 leading.
+    
+      
+    
+- `[Y23 Q7d M2]` What advantage does a reluctance motor have copared to a permanent magnet motor? Explain how Tesla motors could overcome the stractural limitation of their reluctance motors?
+    
+      
+    
+- `[Y23 Q8a M2]` Show at least three reasons why we need electronic controls for synchronous motors.
+    
+      
+    
+- `[Y23 Q8b M2]` Why does an IPM-SynRM motor have higher torque at a higher speed than an SCIM?
+    
+      
+    
+- `[Y23 Q8c M3]` What kind of motor will you use for designing an electric rickshaw? Explain why in terms of features and price performance. (There is no absolute right choice for this. Choose the one you think is most suitable.)
+    
+      
+    
+- `[Y23 Q8d M2]` Explain how wind turbines and hydro-power generators function.
+  
+
+- `[Y21 Q1a M2]` Squirrel Cage Induction Motors (SCIM) are often preferred for their rugged construction. Explain this by comparing it to other motor types.
+    
+      
+    
+- `[Y21 Q1b M2]` Draw the rotor of an SCIM and explain why the rotor bars are skewed.
+    
+      
+    
+- `[Y21 Q1c M3]` If we need to design an SCIM that will have a speed of roughly about 750 r.p.m., what kind of stator design are we going to need? How can you improve your design for higher torque? Give a brief analytical answer.
+    
+      
+    
+- `[Y21 Q1d M2]` A 12-pole, 3-phase alternator driven at a speed of 500 r.p.m. supplies power to an 8-pole, 3-phase induction motor. If the slip of the motor, at full-load is 3%, calculate the full-load speed of the motor.
+    
+      
+    
+- `[Y21 Q2a M1.5]` Draw the power flow diagram of a 3-phase induction motor.
+    
+      
+    
+- `[Y21 Q2b M3]` From fundamentals, deduce a relationship between rotor power input, rotor copper loss and developed mechanical power in case of an induction motor.
+    
+      
+    
+- `[Y21 Q2c M2.5]` Explain the procedure of no-load and blocked rotor tests on a 3-phase induction motor.
+    
+      
+    
+- `[Y21 Q2d M2]` With a neat diagram explain the cascade connection method of speed control of a 3-phase induction motor.
+    
+      
+    
+- `[Y21 Q3a M3]` Derive the following: (i) Torque equation of an induction motor (ii) Condition for maximum torque under running condition?
+    
+      
+    
+- `[Y21 Q3b M2]` Explain the torque-slip and torque speed characteristics of a 3-phase induction motor.
+    
+      
+    
+- `[Y21 Q3c M2]` Develop the equivalent circuit of a polyphase induction motor.
+    
+      
+    
+- `[Y21 Q3d M2]` State the working principle of 3-phase induction motor.
+    
+      
+    
+- `[Y21 Q4a M3]` Draw the equivalent circuit of a single phase induction motor without any auxiliary winding and explain why it only rotates when turned manually.
+    
+      
+    
+- `[Y21 Q4b M3]` Show that we can measure the power consumed by a 3-phase induction motor using just two watt meters.
+    
+      
+    
+- `[Y21 Q4c M3]` Why do you need a circle diagram? Show the steps to construct the circle diagram of an IM.
+    
+      
+    
+- `[Y21 Q5a M3]` A capacitor is needed along with the auxiliary winding to make a single phase motor self starting. Explain why.
+    
+      
+    
+- `[Y21 Q5b M2]` Compare shaded pole motor with BLDC motor for PC cooling fan application.
+    
+      
+    
+- `[Y21 Q5c M2]` Explain why heating is an issue with IPM-SynRM and show a solution to this.
+    
+      
+    
+- `[Y21 Q5d M2]` An 8-pole, 50-Hz, 3-phase slip-ring induction motor has an effective rotor resistance of 0.08 $\Omega$/phase. Stalling speed is 650 r.p.m. How much resistance must be inserted in the rotor phase to obtain the maximum torque at the starting?
+    
+      
+    
+- `[Y21 Q6a M4]` Explain why modern EVs use IPM-SynRM? Show how the electronic control is used to reduce back emf created by permanent magnets at high speed in these motors.
+    
+      
+    
+- `[Y21 Q6b M2]` How does short pitch winding in alternators help improve the power quality?
+    
+      
+    
+- `[Y21 Q6c M3]` Calculate the pitch factor for the under-given windings: (a) 36 stator slots, 4-poles, coil-span, 1 to 8 (b) 72 stator slots, 6-poles, coils span 1 to 10 and (c) 96 stator slots, 6-poles, coil span 1 to 12. Sketch the three coil spans.
+    
+      
+    
+- `[Y21 Q7a M4]` What advantage does a reluctance motor have compared to a permanent magnet motor? Explain how Tesla motors could overcome the structural limitations of their reluctance motors?
+    
+      
+    
+- `[Y21 Q7b M3]` Explain with a diagram, the effects of rotor back emf on an alternator output.
+    
+      
+    
+- `[Y21 Q7c M2]` Why does the power supply company charge for low power factor?
+    
+      
+    
+- `[Y21 Q8a M2]` With suitable curves explain the variation of current and power factor with excitation.
+    
+      
+    
+- `[Y21 Q8b M2]` The input to a 3-phase, 11KV, and 50 Hz star connected synchronous motor is 60A. The effective resistance and synchronous reactance per phase are 1 $\Omega$ and 30 $\Omega$, respectively. Find: (i) Power supplied to the motor (ii) Induced emf /phase at 0.8PF lagging and 0.8PF leading.
+    
+      
+    
+- `[Y21 Q8c M2]` Derive the expression for power developed by the synchronous motor.
+    
+      
+    
+- `[Y21 Q8d M3]` A 400V, 3-phase, star connected synchronous motor has an armature resistance of 0.2 $\Omega$ per phase and synchronous reactance of 2 $\Omega$ per phase. While driving a certain load, it takes 25A from the supply. Calculate the back emf induced in the motor if it is working with (i) 0.8 lagging (ii) 0.9 leading and (iii) unity power factor conditions.
+
+এখানে আপনার দেওয়া ২০২১ সালের প্রশ্নপত্রের (Section-A এবং Section-B) সবগুলো প্রশ্ন নির্দিষ্ট ফরম্যাটে নিচে দেওয়া হলো:
+
+* `[Y21 Q1a M2]` Squirrel Cage Induction Motors (SCIM) are often preferred for their rugged construction. Explain this by comparing it to other motor types.
+
+
+* `[Y21 Q1b M2]` Draw the rotor of an SCIM and explain why the rotor bars are skewed.
+
+
+* `[Y21 Q1c M3]` If we need to design an SCIM that will have a speed of roughly about 750 r.p.m., what kind of stator design are we going to need? How can you improve your design for higher torque? Give a brief analytical answer.
+
+
+* `[Y21 Q1d M2]` A 12-pole, 3-phase alternator driven at a speed of 500 r.p.m. supplies power to an 8-pole, 3-phase induction motor. If the slip of the motor, at full-load is 3%, calculate the full-load speed of the motor.
+
+
+* `[Y21 Q2a M1.5]` Draw the power flow diagram of a 3-phase induction motor.
+
+
+* `[Y21 Q2b M3]` From fundamentals, deduce a relationship between rotor power input, rotor copper loss and developed mechanical power in case of an induction motor.
+
+
+* `[Y21 Q2c M2.5]` Explain the procedure of no-load and blocked rotor tests on a 3-phase induction motor.
+
+
+* `[Y21 Q2d M2]` With a neat diagram explain the cascade connection method of speed control of a 3-phase induction motor.
+
+
+* `[Y21 Q3a M3]` Derive the following: (i) Torque equation of an induction motor (ii) Condition for maximum torque under running condition?
+
+
+* `[Y21 Q3b M2]` Explain the torque-slip and torque speed characteristics of a 3-phase induction motor.
+
+
+* `[Y21 Q3c M2]` Develop the equivalent circuit of a polyphase induction motor.
+
+
+* `[Y21 Q3d M2]` State the working principle of 3-phase induction motor.
+
+
+* `[Y21 Q4a M3]` Draw the equivalent circuit of a single phase induction motor without any auxiliary winding and explain why it only rotates when turned manually.
+
+
+* `[Y21 Q4b M3]` Show that we can measure the power consumed by a 3-phase induction motor using just two watt meters.
+
+
+* `[Y21 Q4c M3]` Why do you need a circle diagram? Show the steps to construct the circle diagram of an IM.
+
+
+* `[Y21 Q5a M3]` A capacitor is needed along with the auxiliary winding to make a single phase motor self starting. Explain why.
+
+
+* `[Y21 Q5b M2]` Compare shaded pole motor with BLDC motor for PC cooling fan application.
+
+
+* `[Y21 Q5c M2]` Explain why heating is an issue with IPM-SynRM and show a solution to this.
+
+
+* `[Y21 Q5d M2]` An 8-pole, 50-Hz, 3-phase slip-ring induction motor has an effective rotor resistance of 0.08 $\Omega$/phase. Stalling speed is 650 r.p.m. How much resistance must be inserted in the rotor phase to obtain the maximum torque at the starting?
+
+
+* `[Y21 Q6a M4]` Explain why modern EVs use IPM-SynRM? Show how the electronic control is used to reduce back emf created by permanent magnets at high speed in these motors.
+
+
+* `[Y21 Q6b M2]` How does short pitch winding in alternators help improve the power quality?
+
+
+* `[Y21 Q6c M3]` Calculate the pitch factor for the under-given windings: (a) 36 stator slots, 4-poles, coil-span, 1 to 8 (b) 72 stator slots, 6-poles, coils span 1 to 10 and (c) 96 stator slots, 6-poles, coil span 1 to 12. Sketch the three coil spans.
+
+
+* `[Y21 Q7a M4]` What advantage does a reluctance motor have compared to a permanent magnet motor? Explain how Tesla motors could overcome the structural limitations of their reluctance motors?
+
+
+* `[Y21 Q7b M3]` Explain with a diagram, the effects of rotor back emf on an alternator output.
+
+
+* `[Y21 Q7c M2]` Why does the power supply company charge for low power factor?
+
+
+* `[Y21 Q8a M2]` With suitable curves explain the variation of current and power factor with excitation.
+
+
+* `[Y21 Q8b M2]` The input to a 3-phase, 11KV, and 50 Hz star connected synchronous motor is 60A. The effective resistance and synchronous reactance per phase are 1 $\Omega$ and 30 $\Omega$, respectively. Find: (i) Power supplied to the motor (ii) Induced emf /phase at 0.8PF lagging and 0.8PF leading.
+
+
+* `[Y21 Q8c M2]` Derive the expression for power developed by the synchronous motor.
+
+
+* `[Y21 Q8d M3]` A 400V, 3-phase, star connected synchronous motor has an armature resistance of 0.2 $\Omega$ per phase and synchronous reactance of 2 $\Omega$ per phase. While driving a certain load, it takes 25A from the supply. Calculate the back emf induced in the motor if it is working with (i) 0.8 lagging (ii) 0.9 leading and (iii) unity power factor conditions.
