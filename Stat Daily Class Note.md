@@ -519,3 +519,50 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 # 12 November Class 3
 ![[IMG_20261112_114640.jpg|100]]![[IMG_20261112_114645.jpg|100]]![[IMG_20261112_114650.jpg|100]]![[IMG_20261112_114653.jpg|100]]
 
+# Class Notes: Statistics - Central Tendency & Dispersion
+
+## 📌 Frequency Distribution & Mode
+- **FDT (Frequency Distribution Table):** A table is shown to explain how to arrange class intervals, mid-values, and frequencies, where the total frequency (Sum of f) = 15.
+- **Mode:** The value that occurs most frequently in a dataset is called the mode.
+- **Types of Mode:**
+  - Unimodal.
+  - Bimodal (Example: 2, 2, 4, 5, 6, 6).
+  - Multimodal (Example: 2, 2, 4, 5, 6, 6, 7, 7).
+- **Formula for Mode:** For grouped data:
+  $$Mo = L + \left(\frac{\Delta_1}{\Delta_1 + \Delta_2}\right) \times c$$
+  - $L$ = Lower limit of the modal class.
+  - $f_0$ = Frequency of the modal class.
+  - $f_1$ = Frequency of the pre-modal class (the class preceding the modal class).
+
+## 📌 Mean & Symmetric Distribution
+- **Symmetric Distribution:** In this type of distribution, mean = mode = median.
+- **Shortcut / Coded Method for Mean:**
+  - $A$ = Assumed mean or arbitrary origin.
+  - $C$ = Scale (class interval width).
+  - Formula:
+    $$\bar{x} = A + c\bar{u}$$
+    where,
+    $$\bar{u} = \frac{\sum fu}{\sum f}$$
+  - An example was solved where the mean, $\bar{x} = 7.8$.
+- **Note:** Arithmetic mean depends on the scale and origin.
+
+## 📌 Measures of Dispersion
+- **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
+- **Types of Dispersion:**
+  - **Absolute Measures:** 1. Range, 2. Quartile Deviation (QD), 3. Mean Deviation (MD), 4. Variance, 5. Standard Deviation.
+  - **Relative Measures:** 1. Coefficient of Range, 2. Coefficient of QD, 3. Coefficient of MD, 4. Coefficient of Variation.
+- Two additional topics were mentioned: Sampling Fluctuation and Extreme Value.
+
+## 📐 Important Formulas of Dispersion
+- **Mean Deviation (M.D):**
+  $$M.D = \frac{\sum |D_i|}{N}$$
+  - Where $|D_i| = |x_i - \bar{x}|$ (absolute deviation).
+- **Important Proof Topic:** The sum of the deviations of all observations from their arithmetic mean is always zero.
+  $$\sum (x_i - \bar{x}) = 0$$
+- **Variance:** Variance is the average of the squared deviations of all observations from their arithmetic mean.
+  $$\text{Variance} = \frac{\sum (x_i - \bar{x})^2}{N}$$
+- **Standard Deviation (SD):** Standard deviation is the positive square root of the variance.
+  $$SD = \sigma = \sqrt{V(x)}$$
+
+---
+**Tags:** #statistics #mean #mode #dispersion #variance #standard-deviation #class-notes
