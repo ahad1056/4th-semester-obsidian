@@ -514,6 +514,49 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 [^18]: **Quantile (কোয়ান্টাইল)** হলো পরিসংখ্যানের একটি সার্বিক ধারণা, যা সাজানো কোনো ডেটাসেটকে নির্দিষ্ট সংখ্যক **সমান অংশে** ভাগ করার কাট-অফ পয়েন্ট বা সীমানাগুলোকে বোঝায়।
 	
 	সহজ কথায়, আপনি যদি একটি ডেটাসেটকে ছোট থেকে বড় সাজিয়ে সেটিকে কয়েকটি সমান টুকরো করতে চান, তবে যেই পয়েন্টগুলোতে ভাগ করবেন, সেগুলোকে বলা হয় Quantile।
+[^20]: **Proof of Coded Method for Mean:**
+	
+	ধরি, $u_i = \frac{x_i - A}{c}$$\Rightarrow x_i = A + c u_i$
+	
+	উভয়পাশে ফ্রিকোয়েন্সি $f_i$ দ্বারা গুণ করে সমষ্টি (summation) নিলে:$\sum f_i x_i = \sum f_i (A + c u_i)$$\Rightarrow \sum f_i x_i = A \sum f_i + c \sum f_i u_i$
+	
+	উভয়পক্ষকে মোট ফ্রিকোয়েন্সি $N$ (যেখানে $N = \sum f_i$) দিয়ে ভাগ করে পাই:$\frac{\sum f_i x_i}{N} = A \frac{\sum f_i}{N} + c \frac{\sum f_i u_i}{N}$
+	
+	যেহেতু, $\frac{\sum f_i x_i}{N} = \bar{x}$, $\frac{\sum f_i u_i}{N} = \bar{u}$ এবং $\frac{\sum f_i}{N} = 1$ অতএব, $\bar{x} = A + c\bar{u}$ (প্রমাণিত)
+[^21]: **প্রশ্ন:** নিচের ডেটাসেট থেকে শর্টকাট পদ্ধতিতে গড় (Mean) নির্ণয় করো।
+	
+	- শ্রেণী (Class): ১০-২০, ২০-৩০, ৩০-৪০, ৪০-৫০, ৫০-৬০
+	    
+	- ফ্রিকোয়েন্সি ($f$): ২, ৮, ১৫, ১০, ৫
+	    
+	
+	**সমাধান:** প্রথমে আমাদের শ্রেণীগুলোর মধ্যবিন্দু ($x$) বের করতে হবে। এরপর হিসাবের সুবিধার জন্য মাঝামাঝি একটি মানকে Assumed Mean ($A$) হিসেবে ধরে নেব।
+	
+	ধরি, Assumed Mean, $A = 35$ (কারণ এটি ডেটার মাঝামাঝি আছে) শ্রেণী ব্যবধান, $c = 10$
+	
+	এবার নিচের টেবিলটি তৈরি করি:
+	
+	| **শ্রেণী (Class)** | **ফ্রিকোয়েন্সি (f)** | **মধ্যবিন্দু (x)** | **u=cx−A​**               | **fu**            |
+	| ------------------ | -------------------- | ------------------ | ------------------------- | ----------------- |
+	| ১০-২০              | ২                    | ১৫                 | $\frac{15 - 35}{10} = -2$ | ২ × (-২) = -৪     |
+	| ২০-৩০              | ৮                    | ২৫                 | $\frac{25 - 35}{10} = -1$ | ৮ × (-১) = -৮     |
+	| **৩০-৪০**          | **১৫**               | **৩৫ ($A$)**       | $\frac{35 - 35}{10} = 0$  | ১৫ × ০ = ০        |
+	| ৪০-৫০              | ১০                   | ৪৫                 | $\frac{45 - 35}{10} = 1$  | ১০ × ১ = ১০       |
+	| ৫০-৬০              | ৫                    | ৫৫                 | $\frac{55 - 35}{10} = 2$  | ৫ × ২ = ১০        |
+	| **মোট**            | **$\sum f = 40$**    |                    |                           | **$\sum fu = 8$** |
+	
+	**হিসাব:** আমরা জানি, শর্টকাট পদ্ধতির সূত্র হলো:
+	
+	$$\bar{x} = A + c\bar{u}$$
+	
+	যেখানে, $\bar{u} = \frac{\sum fu}{\sum f}$
+	
+	তাহলে,$\bar{u} = \frac{8}{40} = 0.2$
+	
+	এবার গড়ের মূল সূত্রে মানগুলো বসাই:$\bar{x} = 35 + 10 \times (0.2)$$\bar{x} = 35 + 2$$\bar{x} = 37$
+	
+	**উত্তর:** নির্ণেয় গড় ($\bar{x}$) = ৩৭।
+
 : 
 
 # 12 November Class 3
@@ -536,14 +579,14 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 
 ## 📌 Mean & Symmetric Distribution
 - **Symmetric Distribution:** In this type of distribution, mean = mode = median.
-- **Shortcut / Coded Method for Mean:**
+- **Shortcut / Coded Method[^20] for Mean:**
   - $A$ = Assumed mean or arbitrary origin.
   - $C$ = Scale (class interval width).
   - Formula:
     $$\bar{x} = A + c\bar{u}$$
     where,
     $$\bar{u} = \frac{\sum fu}{\sum f}$$
-  - An example was solved where the mean, $\bar{x} = 7.8$.
+  - An example[^21] was solved where the mean, $\bar{x} = 7.8$.
 - **Note:** Arithmetic mean depends on the scale and origin.
 
 ## 📌 Measures of Dispersion
