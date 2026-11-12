@@ -519,7 +519,7 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 # 12 November Class 3
 ![[IMG_20261112_114640.jpg|100]]![[IMG_20261112_114645.jpg|100]]![[IMG_20261112_114650.jpg|100]]![[IMG_20261112_114653.jpg|100]]
 
-# Class Notes: Statistics - Central Tendency & Dispersion
+### Class Notes: Statistics - Central Tendency & Dispersion
 
 ## 📌 Frequency Distribution & Mode
 - **FDT (Frequency Distribution Table):** A table is shown to explain how to arrange class intervals, mid-values, and frequencies, where the total frequency (Sum of f) = 15.
