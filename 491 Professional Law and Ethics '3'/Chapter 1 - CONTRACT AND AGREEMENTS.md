@@ -14,14 +14,15 @@ According to Section 2(e), **an agreement is formed by a promise or a set of pro
      -  Valid Contract
      - Void Contract
      - Voidable Contract
-     - Void Agreement
      - Unenforceable Contract
      - Illegal Contract
+     - Void Agreement
 - ### On the Basis of Formation
     
      - Express Contract
      - Implied Contract
      - Quasi-Contract
+ 
 - ### On the Basis of Performance
      - Executed Contract
      - Executory Contract
@@ -34,9 +35,9 @@ According to Section 2(e), **an agreement is formed by a promise or a set of pro
 1. Offer and Acceptance[^1]
 2. Intention to Create Legal Relationship
 3. Lawful Consideration[^2]
-4. Capacity of Parties[^3]
-5. Free Consent[^8]
-6. Lawful Object
+4. Lawful Object
+5. Capacity of Parties[^3]
+6. Free Consent[^8]
 7. Certainty of Terms[^4]
 8. Possibility of Performance[^5]
 9. Not Expressly Declared Void[^6]
