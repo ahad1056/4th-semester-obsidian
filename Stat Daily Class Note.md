@@ -549,8 +549,19 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 ## 📌 Measures of Dispersion
 - **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
 - **Types of Dispersion:**
-  - **Absolute Measures:** 1. Range, 2. Quartile Deviation (QD), 3. Mean Deviation (MD), 4. Variance, 5. Standard Deviation.
-  - **Relative Measures:** 1. Coefficient of Range, 2. Coefficient of QD, 3. Coefficient of MD, 4. Coefficient of Variation.
+  ###  **Absolute Measures:** 
+  1. Range, 
+  2. Quartile Deviation (QD), 
+  3. Mean Deviation (MD), 
+  4. Variance, 
+  5. Standard Deviation.
+
+  ###  **Relative Measures:** 
+  1. Coefficient of Range, 
+  2. Coefficient of QD, 
+  3. Coefficient of MD, 
+  4. Coefficient of Variation.
+
 - Two additional topics were mentioned: Sampling Fluctuation and Extreme Value.
 
 ## 📐 Important Formulas of Dispersion
