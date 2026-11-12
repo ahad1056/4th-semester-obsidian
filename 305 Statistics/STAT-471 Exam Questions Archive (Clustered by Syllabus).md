@@ -1,8 +1,4 @@
 
-# 📈 STAT-471: Statistics and Probability 
-## 📑 Exam Questions Archive (Clustered by Syllabus)
-
----
 
 ### 📏 MODULE 1: Measures of Dispersion (Including Basic Statistics)
 > **Topics Covered:** Intro to Stats, Data Types, Frequency Distributions, Central Tendency, Measures of Dispersion, Correlation, and Regression.

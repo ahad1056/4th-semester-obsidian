@@ -1,10 +1,5 @@
 ## Course Chapters
 - [[Electrical Machines/Chapter 1 - Principles of Electromechanical Energy Conversion|Chapter 1: Principles of Electromechanical Energy Conversion]]
-- [[Electrical Machines/Chapter 2 - Transformers (Single-Phase & Three-Phase)|Chapter 2: Transformers (Single-Phase & Three-Phase)]]
-- [[Electrical Machines/Chapter 3 - DC Generators and Motors|Chapter 3: DC Generators and Motors]]
-- [[Electrical Machines/Chapter 4 - Three-Phase Induction Motors|Chapter 4: Three-Phase Induction Motors]]
-- [[Electrical Machines/Chapter 5 - Synchronous Generators and Motors|Chapter 5: Synchronous Generators and Motors]]
-- [[Electrical Machines/Chapter 6 - Fractional Kilowatt Motors & Special Machines|Chapter 6: Fractional Kilowatt Motors & Special Machines]]
 
 ---
 
