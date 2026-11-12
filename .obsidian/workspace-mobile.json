@@ -83,12 +83,22 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Machine Daily Class Notes.md",
+                "file": "Stat Daily Class Note.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Machine Daily Class Notes"
+              "title": "Stat Daily Class Note"
+            }
+          },
+          {
+            "id": "4b4c854c345302ca",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
@@ -254,11 +264,17 @@
   },
   "active": "50b093a265e23c41",
   "lastOpenFiles": [
+    "IMG_20261112_114653.jpg",
+    "IMG_20261112_114650.jpg",
+    "IMG_20261112_114645.jpg",
+    "Communication Daily Class Note.md",
+    "Stat Daily Class Note.md",
+    "IMG_20261112_114640.jpg",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "Machine Daily Class Notes.md",
     "IMG_20261112_100343.jpg",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
-    "Machine Daily Class Notes.md",
     "Dashboard.md",
-    "Communication Daily Class Note.md",
     "403 Communication system '3+1'/Communication system.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
@@ -279,19 +295,13 @@
     "IMG_20261110_112222 1.jpg",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "JPEG_20261111_063619_3092808849562626665.jpg",
-    "Stat Daily Class Note.md",
     "IMG_20261110_112233.jpg",
     "IMG_20261110_112229.jpg",
     "IMG_20261110_112222.jpg",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "end_span.md",
     "start_span.md",
     "Communication Systems/Chapter 2 - Amplitude Modulation (AM) Systems.md",
     "mechanical Daily Class Note.md",
-    "JPEG_20261111_061003_5723788556355093903.jpg",
-    "JPEG_20261111_055804_3730326127798271696.jpg",
-    "JPEG_20261111_055659_8646015617116971960.jpg",
-    "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
     "Communication Systems",
     "305 Statistics",
     "491 Professional Law and Ethics '3'",

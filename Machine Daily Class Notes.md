@@ -1,3 +1,5 @@
+
+
 # 12 November Class 1
 ![[IMG_20261112_100343.jpg|200]]
 
@@ -23,3 +25,7 @@ Class Notes: Machine
 ---
 
 Tags: #machine #magnetism #conductor #current #homework #class-notes
+
+
+
+
