@@ -134,7 +134,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
 - **Types of Dispersion:**
   ###  **Absolute Measures:** 
-  1. Range,[^22]
+  1. Range,
   2. Quartile Deviation (QD), 
   3. Mean Deviation (MD), 
   4. Variance, 
@@ -615,8 +615,7 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	এবার গড়ের মূল সূত্রে মানগুলো বসাই:$\bar{x} = 35 + 10 \times (0.2)$$\bar{x} = 35 + 2$$\bar{x} = 37$
 	
 	**উত্তর:** নির্ণেয় গড় ($\bar{x}$) = ৩৭।
-[^22]: 
 
-: 
+	
 
 
