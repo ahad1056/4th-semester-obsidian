@@ -28,7 +28,7 @@
               "type": "markdown",
               "state": {
                 "file": "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -84,7 +84,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#math",
+                "query": "Y22",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -113,8 +113,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -231,15 +230,15 @@
   },
   "active": "48ca726446c6dafe",
   "lastOpenFiles": [
-    "Course Syllabus Statistics and Probability (EEE 481).md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
-    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-    "Stat Daily Class Note.md",
-    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
+    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
+    "Course Syllabus Statistics and Probability (EEE 481).md",
+    "Stat Daily Class Note.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Course Syllabus Electrical Machine II (0713-405).md",
     "Electrical Machines",
-    "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "LAW daily class notes.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",

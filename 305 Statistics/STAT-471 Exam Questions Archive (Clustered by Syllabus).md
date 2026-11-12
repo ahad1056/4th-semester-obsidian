@@ -1,63 +1,68 @@
 
+# 📈 STAT-471: Statistics and Probability 
+## 📑 Exam Questions Archive (Clustered by Syllabus)
+
+---
 
 ### 📏 MODULE 1: Measures of Dispersion (Including Basic Statistics)
-> **Topics Covered:** Intro to Stats, Data Types, Frequency Distributions, Central Tendency, Measures of Dispersion, Correlation, and Regression.
 
-**Theoretical Questions & Definitions**
-- [Y16,Q1a,M1] a) Define and distinguish between Statistic and Applied Statistics. Discuss in brief the role of statistics in Engineering & Technology. [2.75]
-- [Y18,Q1a,M1] a) What is statistics? Write the role of statistics in Engineering. [2.75]
-- [Y23,Q1a,M1] a) Define statistics. Write down some functions of Statistics. Being a student of EEE, discuss the importance of studying statistics in various fields especially in engineering research. [3]
-- [Y16,Q1b,M1] b) Differentiate the followings: (i) Population and Sample (ii) Variable and Random Variable (iii) Discrete Variable and Continuous Variable (iv) Primary data and Secondary data. [4]
-- [Y18,Q2a,M1] a) Define variable. Distinguish between qualitative variable and quantitative variable. [1.75]
-- [Y18,Q2b,M1] b) What do you mean by measurement of scale? Write down the different scales of measurement. Identify the following variables as proper scaling measurement: Blood Pressure, Temperature in an equipment, No. of defect, Economic Status, Sugar Level, Eye Color, Electric Fuse, IQ test score, General Knowledge, Teaching Performance. [5]
-- [Y23,Q1f,M1] f) State the type of scale (nominal/ordinal/interval/ratio) of the following case: i) Economic status of worker working in a factory; ii) Body temperature of patients in a hospital. [1]
-- [Y16,Q2a,M1] a) Define frequency and frequency distribution. Describe the various steps involved in the construction of a frequency distribution from raw data. [3.75]
-- [Y16,Q2c,M1] c) What are the important graphs for representing a frequency distribution of quantitative data? Describe any one of them. [3]
-- [Y18,Q2c,M1] c) What is graphical presentation of data? Distinguish between ogive curve and cumulative frequency polygon. [2]
-- [Y16,Q3a,M1] a) Define mean, median and mode for a discrete distribution after explaining the concept of mean, median and mode. State the important properties of arithmetic mean and prove any one of them. [3]
-- [Y16,Q3b,M1] b) What are the desirable properties of a good measure of central tendency? Which one is the best? Why? [2.75]
-- [Y18,Q3a,M1] a) What is central tendency? Mention the different measures of central tendency. Which measure do you consider the best and why? Prove that for two positive non zero observations: i) $A.M. \ge G.M. \ge H.M.$ ii) $A.M. \times H.M. = (G.M.)^2$ [6]
-- [Y18,Q3b,M1] b) Show that for first $n$ natural numbers arithmetic mean is equal to $\frac{n+1}{2}$. [2.75]
-- [Y22,Q1a,M1] a) What do you mean by dispersion? What are the important measures of dispersion? [2]
-- [Y16,Q4a,M1] a) What is meant by dispersion of a set of data? What are its important measures? What are the differences between standard deviation and coefficient of variation? [2.75]
-- [Y18,Q4a,M1] a) Explain the term dispersion. Why do you need to study dispersion? What are different absolute and relative measures of dispersion? Distinguish between standard deviation and co-efficient of variation. [3.75]
-- [Y21,Q1a,M1] a) What do you mean by dispersion? What are its measures? How does an absolute measure differ from relative measures? [3]
-- [Y21,Q1b,M1] b) Explain any one absolute measure of dispersion. [2]
-- [Y23,Q2a,M1] a) Define measures of dispersion and explain why they are important in statistics. [2]
-- [Y24,Q1a,M1] a) Define measure of dispersion. Show that for any two positive observations, the standard deviation is equal to half of their range. [3]
-- [Y22,Q1b,M1] b) Define standard deviation and coefficient of variation. Why sometimes coefficient of variation is better than standard deviation as a measure of dispersion? [3]
-- [Y21,Q2a,M1] a) In which situations would you prefer coefficient of variation over standard deviation? [2]
-- [Y21,Q2b,M1] b) Distinguish between standard deviation and coefficient of variation. Find the mean and standard deviation of the first $n$ natural numbers. [3.5]
-- [Y23,Q2b,M1] b) Define standard deviation and coefficient of variation. Why sometimes coefficient of variation is better than standard deviation as a measure of dispersion? [3]
-- [Y24,Q1b,M1] b) Define the coefficient of variation. Explain why the coefficient of variation is sometimes preferred over standard deviation as a measure of dispersion. [3]
-- [Y16,Q7a,M1] a) Define correlation coefficient. State the important properties of it. Show that correlation coefficient ($r$) lies between -1 and +1. [3]
-- [Y18,Q5a,M1] a) What is correlation? Mention the important properties of correlation coefficient. [2.25]
-- [Y18,Q5b,M1] b) Show that correlation coefficient lies between -1 and +1. [2.50]
-- [Y16,Q7b,M1] b) What is scatter diagram? Draw a scatter diagram showing positive, negative and no correlation. Interpret when $r = 0, r = -1, r = +1$. [3]
-- [Y18,Q6b,M1] b) Interpret the following results when correlation coefficient between two variables $x$ and $y$ is: i) $r = 0.78$ ii) $r = -0.93$ iii) $r = 1.0$ iv) $r = 0.61$ [3.75]
-- [Y16,Q8a,M1] a) What do you mean by regression? Distinguish between correlation analysis and regression analysis. [2.5]
-- [Y18,Q5c,M1] c) The regression line represents the impact of GPA on study period: $GPA = 1.70 + (0.35 \times study period)$, $r^2 = 0.84$. Explain the above result. [4]
-- [Y16,Q8c,M1] c) c [Note: Question was incomplete in original source]
+Topics Covered: Intro to Stats, Data Types, Frequency Distributions, Central Tendency, Measures of Dispersion, Correlation, and Regression.
 
-**Mathematical & Applied Problems**
-- [Y16,Q1c,M1] c) There are 60 students in the class. The data set consists of marks obtained by them in a class test. (i) Does the data set belong to the population or a sample? (ii) What is the variable being measured? (iii) Is the variable quantitative or qualitative? (iv) What is the experimental unit? [2]
-- [Y23,Q1b,M1] b) There are 50 (fifty) students in a class. The data set consists of the GPA obtained by them in 4th semester: i) Does the data set belong to population or sample? ii) What is name of the variable here? iii) What type of variable is it? iv) It was found from the record that average GPA of the students is 3.40; would you represent it as parameter or statistic? [2]
-- [Y23,Q1c_ii,M1] c) State which of the following statement are true and which are false: ii) Range is defined as the difference between highest and lowest value of observations. [1]
-- [Y23,Q1e,M1] e) Multiple choice: i) Data collected from "BARC" is an example of: a) Primary b) Global c) Secondary d) None. ii) Budget allocations in different sectors can be represented graphically by: a) pie diagram b) histogram c) ogive curve d) None. [1]
-- [Y16,Q2b,M1] b) Construct a frequency table taking suitable class interval for the following data (downloaded file in M.B.): 17.0, 10.5, 9.0... [2]
-- [Y16,Q3c,M1] c) Give the following frequency distribution: Calculate median, mean, first quartile, 77th percentile, 8th decile and mode of the distribution and comment. [3]
-- [Y18,Q1b,M1] b) Following data represent the life time (in hours) of electric fuse: i) Construct a frequency distribution table. ii) Compute Arithmetic mean, Median and Mode from the frequency distribution. [6]
-- [Y16,Q4b,M1] b) Find the variance of first $n$ natural numbers. Also show that the coefficient of variation of first $n$ natural number is: $C.V. = \sqrt{\frac{n-1}{3(n+1)}} \times 100$ [3]
-- [Y16,Q4c,M1] c) The mean of 5 observations is 5 and the variance is 8. If three of the 5 observations are 2, 4, 6; find the other two. [3]
-- [Y18,Q4b,M1] b) The ages of the people at a youth camp are summarized... i) Compute mean deviation and standard deviation from mean. ii) Calculate co-efficient of variation and comment on the uniformity of the data set. [5]
-- [Y22,Q1c,M1] c) The normal daily high temperatures... for 10 selected cities... The normal monthly precipitation... Which set is more variability? [4]
-- [Y21,Q1c,M1] c) The following are some of the particulars of the distribution of weights and heights of 100 boys in a class... Which distribution shows greater variability? [4]
-- [Y21,Q2c,M1] c) Total serum proteins (TSP in gm%) of two groups of students are examined... Calculate the coefficient of variation for both groups and tell which group is more consistent regarding TSP. [3.5]
-- [Y23,Q2c,M1] c) The following frequency distribution shows the average number of pupils per teacher in the 50 states of the United States. Find the variance and standard deviation for the data. [4]
-- [Y24,Q1c,M1] c) Calculate the variance and standard deviation for the following set of examination scores: Scores: 92, 95, 85, 80, 75, 50 [3]
-- [Y16,Q7c,M1] c) You are given the following information on age (X) and blood pressure (Y) of 10 offenders... Obtain the correlation coefficient and comment. [2.75]
-- [Y16,Q8b,M1] b) A study was made by a retail merchant to determine the relation between monthly advertising expenditure (X) and profit (Y). The following data are recorded... [2.5]
-- [Y18,Q6a,M1] a) The following table represents Age and Weight distribution of students in the EEE department in C.U. i) Find the regression line of Weight on Age. ii) Find the regression line of Age on Weight. iii) Show that correlation coefficient is the geometric mean of two regression coefficients. [5]
+#### Theoretical Questions & Definitions
+- [Y16,Q1a,M1] a) Define and distinguish between Statistic and Applied Statistics. Discuss in brief the role of statistics in Engineering & Technology. [2.75] #theory #definition
+- [Y18,Q1a,M1] a) What is statistics? Write the role of statistics in Engineering. [2.75] #theory #definition
+- [Y23,Q1a,M1] a) Define statistics. Write down some functions of Statistics. Being a student of EEE, discuss the importance of studying statistics in various fields especially in engineering research. [3] #theory #definition
+- [Y16,Q1b,M1] b) Differentiate the followings: (i) Population and Sample (ii) Variable and Random Variable (iii) Discrete Variable and Continuous Variable (iv) Primary data and Secondary data. [4] #theory #definition
+- [Y18,Q2a,M1] a) Define variable. Distinguish between qualitative variable and quantitative variable. [1.75] #theory #definition
+- [Y18,Q2b,M1] b) What do you mean by measurement of scale? Write down the different scales of measurement. Identify the following variables as proper scaling measurement: Blood Pressure, Temperature in an equipment, No. of defect, Economic Status, Sugar Level, Eye Color, Electric Fuse, IQ test score, General Knowledge, Teaching Performance. [5] #theory #definition #applied
+- [Y23,Q1f,M1] f) State the type of scale (nominal/ordinal/interval/ratio) of the following case: i) Economic status of worker working in a factory; ii) Body temperature of patients in a hospital. [1] #theory #applied
+- [Y16,Q2a,M1] a) Define frequency and frequency distribution. Describe the various steps involved in the construction of a frequency distribution from raw data. [3.75] #theory #definition
+- [Y16,Q2c,M1] c) What are the important graphs for representing a frequency distribution of quantitative data? Describe any one of them. [3] #theory
+- [Y18,Q2c,M1] c) What is graphical presentation of data? Distinguish between ogive curve and cumulative frequency polygon. [2] #theory #definition
+- [Y16,Q3a,M1] a) Define mean, median and mode for a discrete distribution after explaining the concept of mean, median and mode. State the important properties of arithmetic mean and prove any one of them. [3] #theory #definition #derivation
+- [Y16,Q3b,M1] b) What are the desirable properties of a good measure of central tendency? Which one is the best? Why? [2.75] #theory
+- [Y18,Q3a,M1] a) What is central tendency? Mention the different measures of central tendency. Which measure do you consider the best and why? Prove that for two positive non zero observations: i) A.M. \ge G.M. \ge H.M. ii) A.M. \times H.M. = (G.M.)^2 [6] #theory #definition #derivation
+- [Y18,Q3b,M1] b) Show that for first n natural numbers arithmetic mean is equal to \frac{n+1}{2}. [2.75] #derivation
+- [Y22,Q1a,M1] a) What do you mean by dispersion? What are the important measures of dispersion? [2] #theory #definition
+- [Y16,Q4a,M1] a) What is meant by dispersion of a set of data? What are its important measures? What are the differences between standard deviation and coefficient of variation? [2.75] #theory #definition
+- [Y18,Q4a,M1] a) Explain the term dispersion. Why do you need to study dispersion? What are different absolute and relative measures of dispersion? Distinguish between standard deviation and co-efficient of variation. [3.75] #theory #definition
+- [Y21,Q1a,M1] a) What do you mean by dispersion? What are its measures? How does an absolute measure differ from relative measures? [3] #theory #definition
+- [Y21,Q1b,M1] b) Explain any one absolute measure of dispersion. [2] #theory
+- [Y23,Q2a,M1] a) Define measures of dispersion and explain why they are important in statistics. [2] #theory #definition
+- [Y24,Q1a,M1] a) Define measure of dispersion. Show that for any two positive observations, the standard deviation is equal to half of their range. [3] #theory #definition #derivation
+- [Y22,Q1b,M1] b) Define standard deviation and coefficient of variation. Why sometimes coefficient of variation is better than standard deviation as a measure of dispersion? [3] #theory #definition
+- [Y21,Q2a,M1] a) In which situations would you prefer coefficient of variation over standard deviation? [2] #theory
+- [Y21,Q2b,M1] b) Distinguish between standard deviation and coefficient of variation. Find the mean and standard deviation of the first n natural numbers. [3.5] #theory #definition #derivation
+- [Y23,Q2b,M1] b) Define standard deviation and coefficient of variation. Why sometimes coefficient of variation is better than standard deviation as a measure of dispersion? [3] #theory #definition
+- [Y24,Q1b,M1] b) Define the coefficient of variation. Explain why the coefficient of variation is sometimes preferred over standard deviation as a measure of dispersion. [3] #theory #definition
+- [Y16,Q7a,M1] a) Define correlation coefficient. State the important properties of it. Show that correlation coefficient (r) lies between -1 and +1. [3] #theory #definition #derivation
+- [Y18,Q5a,M1] a) What is correlation? Mention the important properties of correlation coefficient. [2.25] #theory #definition
+- [Y18,Q5b,M1] b) Show that correlation coefficient lies between -1 and +1. [2.50] #derivation
+- [Y16,Q7b,M1] b) What is scatter diagram? Draw a scatter diagram showing positive, negative and no correlation. Interpret when r = 0, r = -1, r = +1. [3] #theory #definition #applied
+- [Y18,Q6b,M1] b) Interpret the following results when correlation coefficient between two variables x and y is: i) r = 0.78 ii) r = -0.93 iii) r = 1.0 iv) r = 0.61 [3.75] #theory #applied
+- [Y16,Q8a,M1] a) What do you mean by regression? Distinguish between correlation analysis and regression analysis. [2.5] #theory #definition
+- [Y18,Q5c,M1] c) The regression line represents the impact of GPA on study period: GPA = 1.70 + (0.35 \times study period), r^2 = 0.84. Explain the above result. [4] #theory #applied
+- [Y16,Q8c,M1] c) c [Note: Question was incomplete in original source] #theory
+
+#### Mathematical & Applied Problems
+- [Y16,Q1c,M1] c) There are 60 students in the class. The data set consists of marks obtained by them in a class test. (i) Does the data set belong to the population or a sample? (ii) What is the variable being measured? (iii) Is the variable quantitative or qualitative? (iv) What is the experimental unit? [2] #math #applied
+- [Y23,Q1b,M1] b) There are 50 (fifty) students in a class. The data set consists of the GPA obtained by them in 4th semester: i) Does the data set belong to population or sample? ii) What is name of the variable here? iii) What type of variable is it? iv) It was found from the record that average GPA of the students is 3.40; would you represent it as parameter or statistic? [2] #math #applied
+- [Y23,Q1c_ii,M1] c) State which of the following statement are true and which are false: ii) Range is defined as the difference between highest and lowest value of observations. [1] #math #theory
+- [Y23,Q1e,M1] e) Multiple choice: i) Data collected from "BARC" is an example of: a) Primary b) Global c) Secondary d) None. ii) Budget allocations in different sectors can be represented graphically by: a) pie diagram b) histogram c) ogive curve d) None. [1] #theory #applied
+- [Y16,Q2b,M1] b) Construct a frequency table taking suitable class interval for the following data (downloaded file in M.B.): 17.0, 10.5, 9.0... [2] #math #applied
+- [Y16,Q3c,M1] c) Give the following frequency distribution: Calculate median, mean, first quartile, 77th percentile, 8th decile and mode of the distribution and comment. [3] #math
+- [Y18,Q1b,M1] b) Following data represent the life time (in hours) of electric fuse: i) Construct a frequency distribution table. ii) Compute Arithmetic mean, Median and Mode from the frequency distribution. [6] #math #applied
+- [Y16,Q4b,M1] b) Find the variance of first n natural numbers. Also show that the coefficient of variation of first n natural number is: C.V. = \sqrt{\frac{n-1}{3(n+1)}} \times 100 [3] #derivation #math
+- [Y16,Q4c,M1] c) The mean of 5 observations is 5 and the variance is 8. If three of the 5 observations are 2, 4, 6; find the other two. [3] #math
+- [Y18,Q4b,M1] b) The ages of the people at a youth camp are summarized... i) Compute mean deviation and standard deviation from mean. ii) Calculate co-efficient of variation and comment on the uniformity of the data set. [5] #math #applied
+- [Y22,Q1c,M1] c) The normal daily high temperatures... for 10 selected cities... The normal monthly precipitation... Which set is more variability? [4] #math #applied
+- [Y21,Q1c,M1] c) The following are some of the particulars of the distribution of weights and heights of 100 boys in a class... Which distribution shows greater variability? [4] #math #applied
+- [Y21,Q2c,M1] c) Total serum proteins (TSP in gm%) of two groups of students are examined... Calculate the coefficient of variation for both groups and tell which group is more consistent regarding TSP. [3.5] #math #applied
+- [Y23,Q2c,M1] c) The following frequency distribution shows the average number of pupils per teacher in the 50 states of the United States. Find the variance and standard deviation for the data. [4] #math #applied
+- [Y24,Q1c,M1] c) Calculate the variance and standard deviation for the following set of examination scores: Scores: 92, 95, 85, 80, 75, 50 [3] #math #applied
+- [Y16,Q7c,M1] c) You are given the following information on age (X) and blood pressure (Y) of 10 offenders... Obtain the correlation coefficient and comment. [2.75] #math #applied
+- [Y16,Q8b,M1] b) A study was made by a retail merchant to determine the relation between monthly advertising expenditure (X) and profit (Y). The following data are recorded... [2.5] #math #applied
+- [Y18,Q6a,M1] a) The following table represents Age and Weight distribution of students in the EEE department in C.U. i) Find the regression line of Weight on Age. ii) Find the regression line of Age on Weight. iii) Show that correlation coefficient is the geometric mean of two regression coefficients. [5] #math #derivation #applied
 
 ---
 
