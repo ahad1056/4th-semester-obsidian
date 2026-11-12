@@ -1,5 +1,5 @@
 ![[JPEG_20261111_103927_1828953819829583125.jpg|150]]
-# Class 1 Notes: Law
+# 11 NOVEMBER CLASS 1 
 
 ## 📌 Contracts & Professional Law
 
