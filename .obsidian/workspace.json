@@ -42,15 +42,14 @@
               "type": "markdown",
               "state": {
                 "file": "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Important Formulas, Data Tables & Z-T-Tables"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -229,10 +228,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f793b1a0e6b3577f",
+  "active": "3ade64437e9898df",
   "lastOpenFiles": [
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
     "Stat Daily Class Note.md",
     "Course Syllabus Statistics and Probability (EEE 481).md",
     "Communication Daily Class Note.md",
