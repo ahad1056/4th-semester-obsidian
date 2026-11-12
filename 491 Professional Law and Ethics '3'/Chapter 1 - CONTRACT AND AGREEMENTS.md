@@ -10,7 +10,6 @@ According to Section 2(e), **an agreement is formed by a promise or a set of pro
 2. formation
 3. performance.
 
-
 - ### On the Basis of Enforceability
      -  Valid Contract
      - Void Contract
