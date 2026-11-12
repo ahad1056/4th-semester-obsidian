@@ -8,3 +8,5 @@
 - [[Electrical Machines/Important Formulas, Equivalent Circuits & Test Methods|Important Formulas, Equivalent Circuits & Test Methods]]
 - [[Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed)|Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed)]]
 - [[Electrical Machines/PREVIOUS YEAR original question|PREVIOUS YEAR original question]]
+- [[Machine Daily Class Notes]]
+-
