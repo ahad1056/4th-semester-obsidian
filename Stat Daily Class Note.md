@@ -134,12 +134,12 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **Note:** Arithmetic mean depends on the scale and origin.
 
 ## 📌 Measures of Dispersion
-- **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
+- **What is Dispersion?** Dispersion[^22]   is the measure of how far an observation is spread out from its central value.
 - **Types of Dispersion:**
   ###  **Absolute Measures:** 
-  1. Range,
-  2. Quartile Deviation (QD), 
-  3. Mean Deviation (MD), 
+  1. Range[^23]
+  2. Quartile Deviation (QD) [^24]
+  3. Mean Deviation (MD) 
   4. Variance, 
   5. Standard Deviation.
 
@@ -619,7 +619,13 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	
 	**উত্তর:** নির্ণেয় গড় ($\bar{x}$) = ৩৭।
 
+
+[^22]: ### Dispersion (বিস্তার) কী?
 	
-
-### Class Notes: Statistics - Central Tendency & Dispersion
-
+	সহজ কথায়, একটি ডেটাসেটের মানগুলো তার কেন্দ্রীয় মান (যেমন: গড় বা Mean) থেকে কতটুকু দূরে ছড়িয়ে-ছিটিয়ে আছে, তার পরিমাপকেই **Dispersion** বলে।
+	
+	- **উদাহরণ:** ধরুন, দুজন ব্যাটসম্যানের ৫টি ম্যাচের গড় রান ৫০। প্রথমজন করেছেন: ৪৮, ৫০, ৫২, ৪৯, ৫১। দ্বিতীয়জন করেছেন: ০, ১০০, ০, ১৫০, ০। দুজনের গড় ৫০ হলেও দ্বিতীয়জনের রানের **Dispersion** অনেক বেশি (খুব অনিয়মিত), আর প্রথমজনের কম (ধারাবাহিক)।
+[^23]: **Range (পরিসর):** ডেটাসেটের সবচেয়ে বড় মান এবং সবচেয়ে ছোট মানের পার্থক্য। (Formula: $R = X_{\max} - X_{\min}$)
+[^24]: **Quartile Deviation / QD (চতুর্থক ব্যবধান):** ডেটার মাঝের ৫০% অংশ কতটুকু ছড়িয়ে আছে তা মাপে। 
+	
+	Formula: $$QD = \frac{Q_3 - Q_1}{2}$$
