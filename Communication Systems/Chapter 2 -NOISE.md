@@ -44,3 +44,53 @@ Where:
 
 > [!tip] Key Takeaway
 > From $V_n = \sqrt{4 k T \Delta f R}$, the square of the RMS noise voltage ($V_n^2$) is directly proportional to **temperature ($T$)**, **bandwidth ($\Delta f$)**, and **resistance ($R$)**.
+
+# 2.4.3 Calculation of Noise Figure
+
+> [!info] Core Concept
+> The **Noise Figure ($F$)** of an amplifier or receiver is calculated in the exact same way by treating either as a whole **four-terminal network** fed by a signal source (such as an antenna).
+
+### Most Important Points
+* **Four-Terminal Network Model:** The amplifier/receiver is represented with an input impedance ($R_t$), an output impedance ($R_L$), and an overall voltage gain ($A$).
+* **Source Impedance:** It is fed from a source (antenna) having an internal impedance ($R_a$), which may or may not be equal to the input impedance ($R_t$).
+* **General Procedure Overview:** To find the noise figure ($F$), we calculate the input signal-to-noise ratio ($\text{S/N}_i$) and divide it by the output signal-to-noise ratio ($\text{S/N}_o$).
+* **Intermediate Result:** The general expression derived for $F$ is an intermediate formula; the final practical formula requires substituting the output noise power ($P_{no}$) using the equivalent noise resistance ($R_{\text{eq}}$) or direct measurement.
+
+---
+
+### Derivation of General Noise Figure ($F$)
+
+![[Chapter 2 -NOISE-1794659840691.webp|385]]
+*(Insert Fig. 2.4: Block diagram for noise figure calculation here)*
+
+1. **Signal Input Voltage ($V_{si}$) & Power ($P_{si}$):**
+   Using the voltage divider rule at the input of the amplifier:
+   $$V_{si} = \frac{V_s R_t}{R_a + R_t}$$
+   Therefore, the signal input power delivered to $R_t$ is:
+   $$P_{si} = \frac{V_{si}^2}{R_t} = \left(\frac{V_s R_t}{R_a + R_t}\right)^2 \frac{1}{R_t} = \frac{V_s^2 R_t}{(R_a + R_t)^2}$$
+
+2. **Noise Input Voltage ($V_{ni}$) & Power ($P_{ni}$):**
+   The effective resistance at the input terminals is the parallel combination of $R_a$ and $R_t$ $\left(\frac{R_a R_t}{R_a + R_t}\right)$. Thus, the mean-square noise input voltage is:
+   $$V_{ni}^2 = 4 k T \Delta f \frac{R_a R_t}{R_a + R_t}$$
+   The corresponding noise input power is:
+   $$P_{ni} = \frac{V_{ni}^2}{R_t} = 4 k T \Delta f \frac{R_a R_t}{R_a + R_t} \frac{1}{R_t} = \frac{4 k T \Delta f R_a}{R_a + R_t}$$
+
+3. **Input Signal-to-Noise Ratio ($\text{S/N}_i$):**
+   Taking the ratio of signal input power to noise input power:
+   $$\frac{\text{S}}{\text{N}_i} = \frac{P_{si}}{P_{ni}} = \frac{V_s^2 R_t}{(R_a + R_t)^2} \div \frac{4 k T \Delta f R_a}{R_a + R_t} = \frac{V_s^2 R_t}{4 k T \Delta f R_a (R_a + R_t)}$$
+
+4. **Signal Output Power ($P_{so}$):**
+   Since the amplifier has a voltage gain $A$, the output signal voltage is $V_{so} = A V_{si}$:
+   $$P_{so} = \frac{V_{so}^2}{R_L} = \frac{(A V_{si})^2}{R_L} = \left(\frac{A V_s R_t}{R_a + R_t}\right)^2 \frac{1}{R_L} = \frac{A^2 V_s^2 R_t^2}{(R_a + R_t)^2 R_L}$$
+
+5. **Noise Output Power ($P_{no}$) & Output Signal-to-Noise Ratio ($\text{S/N}_o$):**
+   Let $P_{no}$ represent the total noise output power. Then the output signal-to-noise ratio is:
+   $$\frac{\text{S}}{\text{N}_o} = \frac{P_{so}}{P_{no}} = \frac{A^2 V_s^2 R_t^2}{(R_a + R_t)^2 R_L P_{no}}$$
+
+6. **General Expression for Noise Figure ($F$):**
+   Dividing $\text{S/N}_i$ by $\text{S/N}_o$:
+   $$F = \frac{\text{S}/\text{N}_i}{\text{S}/\text{N}_o} = \frac{V_s^2 R_t}{4 k T \Delta f R_a (R_a + R_t)} \div \frac{A^2 V_s^2 R_t^2}{(R_a + R_t)^2 R_L P_{no}}$$
+   $$F = \frac{R_L P_{no} (R_a + R_t)}{4 k T \Delta f A^2 R_a R_t}$$
+
+> [!tip] Key Takeaway
+> The equation $F = \frac{R_L P_{no} (R_a + R_t)}{4 k T \Delta f A^2 R_a R_t}$ is an **intermediate general expression**. An actual usable formula for $F$ is obtained by substituting $P_{no}$ in terms of equivalent noise resistance ($R_{\text{eq}}$) or via experimental measurement.
