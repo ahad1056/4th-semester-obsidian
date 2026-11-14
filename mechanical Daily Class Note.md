@@ -35,30 +35,50 @@
 ![[JPEG_20261114_063121_121283097199539596.jpg|100]]
 
 ## Systems and Equilibrium
-- System and Thermodynamic System: There are open, closed, and isolated systems .
-- Thermodynamic Equilibrium: Includes mechanical, chemical, and thermal equilibrium .
+
+- System and Thermodynamic System: There are open, closed, and isolated systems.
+    
+- Thermodynamic Equilibrium: Includes mechanical, chemical, and thermal equilibrium.
+    
 
 ## Laws of Thermodynamics
-- Zeroth Law of Thermodynamics is mentioned .
-- First Law of Thermodynamics: Includes the first form (Joule) and second form (Clausius) .
-- Sign convention of the First Law is mentioned .
+
+- Zeroth Law of Thermodynamics is mentioned.
+    
+- First Law of Thermodynamics: Includes the first form (Joule) and second form (Clausius).
+    
+- Sign convention of the First Law is mentioned.
+    
 
 ## Thermodynamic Processes
-- Different thermodynamic processes are listed: Isotherm, Adiabatic, and Isobaric .
-- Isothermic process: delta $T = 0$, which means delta $Q = \delta W$.
-- Adiabatic process: delta Q = 0, which leads to -delta W = delta U .
-- Isobaric process: delta P = 0, resulting in delta W = P * delta V .
-- Isochoric process: delta V = 0 . 
-  - Because delta W = P * delta V, if delta V = 0, then delta W = 0 . 
-  - Therefore, delta Q = delta U .
+
+- Different thermodynamic processes are listed: Isotherm, Adiabatic, and Isobaric.
+    
+- Isothermic process: $\Delta T = 0$, which means $\Delta Q = \Delta W$.
+    
+- Adiabatic process: $\Delta Q = 0$, which leads to $-\Delta W = \Delta U$.
+    
+- Isobaric process: $\Delta P = 0$, resulting in $\Delta W = P \Delta V$.
+    
+- Isochoric process: $\Delta V = 0$.
+    
+    - Because $\Delta W = P \Delta V$, if $\Delta V = 0$, then $\Delta W = 0$.
+        
+    - Therefore, $\Delta Q = \Delta U$.
+        
 
 ## Work and Heat Capacity
-- Work done by an expanding gas is mentioned .
-- Heat Capacity (C): Defined as Heat (Q) divided by Temp change (delta theta), so C = Q / delta theta .
-- Specific Heat Capacity (S): Defined as Heat (Q) divided by (Temp change (delta theta) * mass (m)) .
-  - S = Q / (delta theta * m) .
-  - Therefore, S = C / m .
-- Molar specific heat: Includes (Cp) and (Cv) .
 
+- Work done by an expanding gas is mentioned.
+    
+- Heat Capacity ($C$): Defined as Heat ($Q$) divided by Temp change ($\Delta \theta$), so $C = \frac{Q}{\Delta \theta}$.
+    
+- Specific Heat Capacity ($S$): Defined as Heat ($Q$) divided by (Temp change ($\Delta \theta$) $\times$ mass ($m$)).
+    
+    - $S = \frac{Q}{m \Delta \theta}$.
+        
+    - Therefore, $S = \frac{C}{m}$.
+        
+- Molar specific heat: Includes $C_p$ and $C_v$.
 ---
 Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mechanical Daily Class Note.md",
-                "mode": "source",
+                "file": "Dashboard.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mechanical Daily Class Note"
+              "title": "Dashboard"
             }
           },
           {
@@ -210,6 +210,7 @@
   },
   "active": "9f6214b7ddfb3ae1",
   "lastOpenFiles": [
+    "mechanical Daily Class Note.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Dashboard.md",
     "Communication Daily Class Note.md",
@@ -246,7 +247,6 @@
     "IMG_20261112_114640.jpg",
     "IMG_20261112_100343.jpg",
     "Communication Systems/Chapter 2 -NOISE.md",
-    "305 Statistics/PREVIOUS YEAR original question.md",
     "Electrical Machines",
     "Communication Systems",
     "305 Statistics",
