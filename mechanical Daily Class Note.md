@@ -68,6 +68,7 @@
 ## Work and Heat Capacity
 
 - Work done by an expanding gas is mentioned.
+ - ![[mechanical Daily Class Note-1794671268457.webp|87x146]] 
     
 - Heat Capacity ($C$): Defined as Heat ($Q$) divided by Temp change ($\Delta \theta$), so $C = \frac{Q}{\Delta \theta}$.
     
