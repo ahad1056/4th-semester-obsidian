@@ -54,6 +54,14 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	- **Cause:** It is caused by the random, thermally induced motion of free electrons inside a conductor.
 	    
 	- **Characteristics:** The intensity of this noise is directly proportional to the absolute temperature. It is present in all passive resistive components and is uniformly distributed across the frequency spectrum (White Noise).
+	
+	### mathemeticaly 
+	
+	$P_n = kT   \delta f$ 
+	where 
+	$P_n$ is the noise power 
+	k is boltz man constant $1.38 \times 10 ^ 23$
+	T is absolute tempr
 [^4]: **B. Shot Noise**
 	
 	- **Cause:** It arises due to the discrete (particle-like) nature of charge carriers (electrons or holes) moving across a junction or potential barrier (e.g., in a P-N junction diode or transistor).
