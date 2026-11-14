@@ -54,7 +54,9 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 # 10 November class 2
-![[JPEG_20261111_055659_8646015617116971960.webp|105]]          ![[JPEG_20261111_055804_3730326127798271696.webp|96]]
+![[JPEG_20261111_055659_8646015617116971960.webp|105]]    ![[JPEG_20261111_055804_3730326127798271696.webp|96]]   
+
+
 ## Topic: 
 ### Today's Class Notes: Basic Statistics
 
