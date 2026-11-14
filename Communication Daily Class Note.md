@@ -2,7 +2,7 @@
 
 # 10 November class 2
 
-![[JPEG_20261111_063619_3092808849562626665.jpg|200]]
+![[JPEG_20261111_063619_3092808849562626665.webp|200]]
 
 Class Notes: Communication
 
