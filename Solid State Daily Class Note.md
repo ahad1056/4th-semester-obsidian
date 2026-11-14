@@ -1,5 +1,5 @@
 # 8 November class 1 
-![[IMG_20261110_112222 1.jpg|200]]
+![[IMG_20261110_112222 1.webp|200]]
 
 Class Notes: Solid State Electronics
 
@@ -32,7 +32,7 @@ Class Notes: Solid State Electronics
 
 Tags: #solid-state-electronics #semiconductor #mosfet #energy-band #class-notes
 # 12 November class 2 
-![[JPEG_20261114_063349_8315901474765513730.jpg|100]]![[IMG_20261112_121943.jpg|100]]
+![[JPEG_20261114_063349_8315901474765513730.webp|100]]![[IMG_20261112_121943.webp|100]]
 ## Class Notes: Research Tools and Methodology (Nov 12)
 
 ### Research Software Tools

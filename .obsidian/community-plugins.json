@@ -1,4 +1,8 @@
 [
   "obsidian-git",
-  "obsidian-footnotes"
+  "obsidian-footnotes",
+  "image-converter",
+  "chrome-pinch-zoom",
+  "html-page-viewer",
+  "html-inline-embed"
 ]

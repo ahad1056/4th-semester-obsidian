@@ -1,0 +1,9 @@
+{
+  "id": "html-inline-embed",
+  "name": "HTML Inline Embed",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Renders embedded .html files inline inside notes.",
+  "author": "You",
+  "isDesktopOnly": false
+}

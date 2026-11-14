@@ -2,7 +2,7 @@
 
 # 10 November class 2
 
-![[JPEG_20261111_063619_3092808849562626665.jpg|200]]
+![[JPEG_20261111_063619_3092808849562626665.webp|200]]
 
 Class Notes: Communication
 
@@ -32,7 +32,7 @@ Noise is categorized into two main types:
 - Shot noise[^4]
 - Flicker noise[^5]
 
-#### 2. External Noise:[^6]
+####  2. External Noise:[^6]
 
 - Atmospheric noise[^7]
 - Cosmic noise[^8]
@@ -54,6 +54,18 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	- **Cause:** It is caused by the random, thermally induced motion of free electrons inside a conductor.
 	    
 	- **Characteristics:** The intensity of this noise is directly proportional to the absolute temperature. It is present in all passive resistive components and is uniformly distributed across the frequency spectrum (White Noise).
+	
+	### mathemeticaly 
+	
+	$P_n = kT   \delta f$ 
+	where 
+	$P_n$ is the noise power 
+	k is boltz man constant $1.38 \times 10 ^ 23$
+	T is absolute temprature 
+	$\delta f$ is the bandwidth . 
+	
+	
+	
 [^4]: **B. Shot Noise**
 	
 	- **Cause:** It arises due to the discrete (particle-like) nature of charge carriers (electrons or holes) moving across a junction or potential barrier (e.g., in a P-N junction diode or transistor).
@@ -122,3 +134,7 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	$$\text{NF (in dB)} = 10 \log_{10} (F)$$
 	
 	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
+
+# nth NOVEMBER CLASS 2 
+
+

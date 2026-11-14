@@ -5,6 +5,7 @@ According to Section 2(h) of the Contract Act, 1872, "**An agreement enforceable
 According to Section 2(e), **an agreement is formed by a promise or a set of promises that form**
 **consideration for each other**
 
+
 #### Contracts can be classified on different bases such as 
 1. enforceability
 2. formation

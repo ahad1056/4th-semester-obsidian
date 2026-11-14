@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Integral Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Kalpurush', Arial, sans-serif;
+            background-color: #f0fdf4;
+            color: #0f172a;
+        }
+        #ui-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 380px;
+            border: 1px solid #dcfce7;
+            z-index: 10;
+        }
+        h2 { margin: 0 0 10px 0; font-size: 20px; color: #166534; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;}
+        p { font-size: 14px; color: #475569; margin-bottom: 15px; }
+        .control-group { margin-bottom: 15px; }
+        label { font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px; }
+        select, input[type=range] { width: 100%; cursor: pointer; padding: 5px; }
+        
+        .math-box {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            border-left: 4px solid #22c55e;
+            margin-bottom: 10px;
+        }
+        .live-calc {
+            background: #1e293b;
+            color: #22c55e;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .legend { margin-top: 15px; font-size: 13px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+        .legend span { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+<div id="ui-panel">
+    <h2>Line Integral Visualizer</h2>
+    <p>A = (3x² + 6y)i - 14yz j + 20xz² k</p>
+    
+    <div class="control-group">
+        <label>Select Path (C):</label>
+        <select id="pathSelector">
+            <option value="a">Path (a): Curve x=t, y=t², z=t³</option>
+            <option value="b">Path (b): Straight Line Segments</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label>Move Particle (t): <span id="tValue">0.00</span></label>
+        <input type="range" id="tSlider" min="0" max="1" step="0.01" value="0">
+    </div>
+
+    <div class="math-box">
+        <div>Current Point: (<span id="ptX">0.0</span>, <span id="ptY">0.0</span>, <span id="ptZ">0.0</span>)</div>
+    </div>
+
+    <div class="live-calc">
+        ∫ A • dr = <span id="integralValue">0.000</span>
+    </div>
+
+    <div class="legend">
+        <div><span style="background: #3b82f6;"></span> Path C</div>
+        <div><span style="background: #fbbf24;"></span> Particle</div>
+        <div><span style="background: #22c55e;"></span> Vector A</div>
+        <div><span style="background: #ef4444;"></span> Tangent dr</div>
+    </div>
+</div>
+
+<script>
+    // --- Scene Setup ---
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#f0fdf4');
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(6, 4, 8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(2.5, 2.5, 2.5); // Center of our scaled 0-1 box
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    dirLight.position.set(10, 20, 10);
+    scene.add(dirLight);
+
+    // Grid and Axes
+    const scaleFactor = 5; // Scale up for better viewing
+    const gridHelper = new THREE.GridHelper(10, 10, 0xcccccc, 0xdddddd);
+    gridHelper.position.set(2.5, 0, 2.5);
+    scene.add(gridHelper);
+    
+    // Custom Axes (Origin at 0,0,0)
+    const axesHelper = new THREE.AxesHelper(6);
+    scene.add(axesHelper);
+
+
+
+    // --- Vector Field Visualization (Ash Color & Low Opacity) ---
+    function createVectorField() {
+        const spacing = 0.25; // গ্রিডের পয়েন্টগুলোর মধ্যবর্তী দূরত্ব
+        const fieldGroup = new THREE.Group();
+        const ashColor = 0x94a3b8; // হালকা অ্যাশ রঙ
+
+        for (let x = 0; x <= 1.1; x += spacing) {
+            for (let y = 0; y <= 1.1; y += spacing) {
+                for (let z = 0; z <= 1.1; z += spacing) {
+                    let A = getVectorA(x, y, z);
+                    let length = A.length();
+
+                    if (length > 0.1) { // অতি ক্ষুদ্র ভেক্টরগুলো স্কিপ করার জন্য
+                        let dir = A.clone().normalize();
+                        let origin = new THREE.Vector3(x * scaleFactor, y * scaleFactor, z * scaleFactor);
+
+                        // ভেক্টরের মান অনুযায়ী অ্যারোর সাইজ নির্ধারণ (যাতে স্ক্রিন হিজিবিজি না হয়)
+                        let arrowLength = Math.max(0.2, Math.min(length * 0.05, 0.8));
+
+                        let arrow = new THREE.ArrowHelper(dir, origin, arrowLength, ashColor, arrowLength * 0.3, arrowLength * 0.2);
+
+                        // Line এবং Cone (মাথা) এর Opacity কমানো
+                        arrow.line.material.transparent = true;
+                        arrow.line.material.opacity = 0.25;
+                        arrow.cone.material.transparent = true;
+                        arrow.cone.material.opacity = 0.25;
+
+                        fieldGroup.add(arrow);
+                    }
+                }
+            }
+        }
+        scene.add(fieldGroup);
+    }
+
+    // ফাংশনটি কল করা হচ্ছে
+    createVectorField();
+
+    // --- Visualization Objects ---
+    let pathLine;
+    let particle = new THREE.Mesh(
+        new THREE.SphereGeometry(0.15, 32, 32),
+        new THREE.MeshPhongMaterial({ color: 0xfbbf24 })
+    );
+    scene.add(particle);
+
+    let vectorA_Arrow = new THREE.ArrowHelper(new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), 1, 0x22c55e, 0.3, 0.2);
+    let vectorDR_Arrow = new THREE.ArrowHelper(new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), 1, 0xef4444, 0.3, 0.2);
+    scene.add(vectorA_Arrow);
+    scene.add(vectorDR_Arrow);
+
+    // Target point marker (1,1,1)
+    const targetMarker = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0x3b82f6 })
+    );
+    targetMarker.position.set(1 * scaleFactor, 1 * scaleFactor, 1 * scaleFactor);
+    scene.add(targetMarker);
+
+    // --- Mathematics ---
+
+    // Vector Field A(x,y,z)
+    function getVectorA(x, y, z) {
+        return new THREE.Vector3(
+            3 * x * x + 6 * y,
+            -14 * y * z,
+            20 * x * z * z
+        );
+    }
+
+    // PATH A: Curve x=t, y=t^2, z=t^3
+    function getPathA_pos(t) { return new THREE.Vector3(t, t*t, t*t*t); }
+    function getPathA_dr(t) { return new THREE.Vector3(1, 2*t, 3*t*t); } // Derivative dr/dt
+    // Integral value up to t for Path A: 3t^3 - 4t^7 + 6t^10
+    function getPathA_integral(t) { return 3*Math.pow(t,3) - 4*Math.pow(t,7) + 6*Math.pow(t,10); }
+
+    // PATH B: Straight lines
+    // Segment 1: t from 0 to 1/3 (represents x from 0 to 1)
+    // Segment 2: t from 1/3 to 2/3 (represents y from 0 to 1)
+    // Segment 3: t from 2/3 to 1 (represents z from 0 to 1)
+    function getPathB_pos(t) {
+        if (t <= 1/3) {
+            let x = t * 3; return new THREE.Vector3(x, 0, 0);
+        } else if (t <= 2/3) {
+            let y = (t - 1/3) * 3; return new THREE.Vector3(1, y, 0);
+        } else {
+            let z = (t - 2/3) * 3; return new THREE.Vector3(1, 1, z);
+        }
+    }
+    
+    function getPathB_dr(t) {
+        if (t <= 1/3) return new THREE.Vector3(1, 0, 0); // dx
+        else if (t <= 2/3) return new THREE.Vector3(0, 1, 0); // dy
+        else return new THREE.Vector3(0, 0, 1); // dz
+    }
+
+    // Exact integral calculations based on the book's parts
+    function getPathB_integral(t) {
+        let val = 0;
+        // Segment 1: int(3x^2 dx) = x^3. x goes from 0 to min(t*3, 1)
+        let x = Math.min(t * 3, 1);
+        val += Math.pow(x, 3);
+        
+        // Segment 2: book shows it evaluates to 0
+        // Segment 3: book doesn't show it but int(20(1)z^2 dz) = 20/3 z^3
+        if (t > 2/3) {
+            let z = (t - 2/3) * 3;
+            val += (20/3) * Math.pow(z, 3);
+        }
+        return val;
+    }
+
+    // --- Rendering functions ---
+
+    function drawPath(pathType) {
+        if (pathLine) scene.remove(pathLine);
+        
+        const points = [];
+        for (let i = 0; i <= 100; i++) {
+            let t = i / 100;
+            let p = pathType === 'a' ? getPathA_pos(t) : getPathB_pos(t);
+            points.push(new THREE.Vector3(p.x * scaleFactor, p.y * scaleFactor, p.z * scaleFactor));
+        }
+        
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const material = new THREE.LineBasicMaterial({ color: 0x3b82f6, linewidth: 3 });
+        pathLine = new THREE.Line(geometry, material);
+        scene.add(pathLine);
+    }
+
+    function updateVisualization() {
+        const pathType = document.getElementById('pathSelector').value;
+        const t = parseFloat(document.getElementById('tSlider').value);
+        
+        // 1. Get Math Position & update particle
+        let pos = pathType === 'a' ? getPathA_pos(t) : getPathB_pos(t);
+        particle.position.set(pos.x * scaleFactor, pos.y * scaleFactor, pos.z * scaleFactor);
+        
+        // Update UI text
+        document.getElementById('tValue').innerText = t.toFixed(2);
+        document.getElementById('ptX').innerText = pos.x.toFixed(2);
+        document.getElementById('ptY').innerText = pos.y.toFixed(2);
+        document.getElementById('ptZ').innerText = pos.z.toFixed(2);
+
+        // 2. Get Vectors
+        let A = getVectorA(pos.x, pos.y, pos.z);
+        let dr = pathType === 'a' ? getPathA_dr(t) : getPathB_dr(t);
+
+        // Update Arrows (scale visual length appropriately)
+        if (A.length() > 0) {
+            vectorA_Arrow.position.copy(particle.position);
+            vectorA_Arrow.setDirection(A.clone().normalize());
+            vectorA_Arrow.setLength(Math.max(0.5, A.length() * 0.2)); 
+            vectorA_Arrow.visible = true;
+        } else {
+            vectorA_Arrow.visible = false;
+        }
+
+        if (dr.length() > 0) {
+            vectorDR_Arrow.position.copy(particle.position);
+            vectorDR_Arrow.setDirection(dr.clone().normalize());
+            vectorDR_Arrow.setLength(1.5); // Fixed visual length for tangent
+            vectorDR_Arrow.visible = true;
+        } else {
+            vectorDR_Arrow.visible = false;
+        }
+
+        // 3. Update Integral Value
+        let intVal = pathType === 'a' ? getPathA_integral(t) : getPathB_integral(t);
+        document.getElementById('integralValue').innerText = intVal.toFixed(3);
+    }
+
+    // --- Event Listeners ---
+    document.getElementById('pathSelector').addEventListener('change', () => {
+        drawPath(document.getElementById('pathSelector').value);
+        updateVisualization();
+    });
+    document.getElementById('tSlider').addEventListener('input', updateVisualization);
+
+    // Initialize
+    drawPath('a');
+    updateVisualization();
+
+    // --- Animation Loop ---
+    function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+</body>
+</html>

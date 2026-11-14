@@ -1,0 +1,9 @@
+{
+  "id": "chrome-pinch-zoom",
+  "name": "Chrome Pinch Zoom",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Enables smooth Chrome-like touchpad pinch-to-zoom.",
+  "author": "You",
+  "isDesktopOnly": true
+}
