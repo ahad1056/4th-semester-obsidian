@@ -139,7 +139,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
   ###  **Absolute Measures:** 
   1. Range[^23]
   2. Quartile Deviation (QD) [^24]
-  3. Mean Deviation (MD) 
+  3. Mean Deviation (MD)[^25]
   4. Variance, 
   5. Standard Deviation.
 
@@ -155,6 +155,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **Mean Deviation (M.D):**
   $$M.D = \frac{\sum |D_i|}{N}$$
   - Where $|D_i| = |x_i - \bar{x}|$ (absolute deviation).
+   - ### Example math [^26]
 - **Important Proof Topic:** The sum of the deviations of all observations from their arithmetic mean is always zero.
   $$\sum (x_i - \bar{x}) = 0$$
 - **Variance:** Variance is the average of the squared deviations of all observations from their arithmetic mean.
@@ -683,5 +684,62 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	    
 	    _(লক্ষ্য করুন, ১০০ থাকা সত্ত্বেও QD মাঝের ডেটাগুলোর প্রকৃত ও স্থিতিশীল বিস্তার ১০ দেখাল)_
 [^25]: **Coefficient of Range (Relative Measure):** $\text{Coefficient of Range} = \frac{X_{\max} - X_{\min}}{X_{\max} + X_{\min}}$
+[^26]: 
 	        
 	
+
+[^25]: ### ১. গাণিতিক সংজ্ঞা (Formal Definition)
+	
+	কোনো ডেটাসেটের প্রতিটি মান তার কেন্দ্রীয় মান (গাণিতিক গড়, মধ্যমা বা প্রচুরক) থেকে গড়ে কতটুকু দূরে অবস্থান করছে, তার পরম দূরত্বের (Absolute Distance) গাণিতিক গড়কে **Mean Deviation (MD)** বলা হয়। এটি বিস্তারের একটি পরিমাপক (Measure of Dispersion), যা ডেটার প্রতিটি পর্যবেক্ষণকে গণনায় অন্তর্ভুক্ত করে।
+	
+	### ২. সাধারণ সূত্রসমূহ (General Formulas)
+	
+	ধরি, একটি ডেটাসেটের চলকগুলো হলো $x_1, x_2, ..., x_n$ এবং $A$ হলো যেকোনো একটি কেন্দ্রীয় মান (সাধারণত Mean বা Median)।
+	
+	**অবিন্যস্ত ডেটার (Ungrouped Data) ক্ষেত্রে:**
+	
+	$$MD_A = \frac{1}{n} \sum_{i=1}^{n} \vert{}x_i - A\vert{}$$
+	
+	যেখানে, $n$ = মোট পর্যবেক্ষণের সংখ্যা।
+	
+	**বিন্যস্ত বা ফ্রিকোয়েন্সি ডেটার (Grouped Data) ক্ষেত্রে:**
+	
+	$$MD_A = \frac{1}{N} \sum_{i=1}^{n} f_i \vert{}x_i - A\vert{}$$
+	
+	যেখানে, $f_i$ = প্রতিটি শ্রেণীর গণসংখ্যা এবং $N = \sum f_i$ (মোট গণসংখ্যা)।
+	
+	**আপেক্ষিক পরিমাপ (Relative Measure):** দুটি ভিন্ন ডেটাসেটের বিস্তারের তুলনার জন্য Coefficient বা সহগ ব্যবহার করা হয়:
+	
+	$$\text{Coefficient of MD} = \frac{MD_A}{A}$$
+	
+	_(যে কেন্দ্রীয় মান $A$ থেকে MD বের করা হয়েছে, তাকে দিয়েই ভাগ করতে হবে।)_
+
+[^26]: **প্রশ্ন:** নিচের ডেটাসেট থেকে গাণিতিক গড় ব্যবহার করে Mean Deviation এবং এর Coefficient নির্ণয় করুন।
+	
+	- শ্রেণী (Class): ০-১০, ১০-২০, ২০-৩০
+	    
+	- ফ্রিকোয়েন্সি ($f_i$): ২, ৩, ৫
+	    
+	
+	**সমাধানের টেবিল:**
+	
+	|**শ্রেণী**|**ফ্রিকোয়েন্সি (fi​)**|**মধ্যবিন্দু (xi​)**|**fi​xi​**|**∣xi​−xˉ∣**|**fi​∣xi​−xˉ∣**|
+	|---|---|---|---|---|---|
+	|০-১০|২|৫|১০|$\vert{}5 - 18\vert{} = 13$|$2 \times 13 = 26$|
+	|১০-২০|৩|১৫|৪৫|$\vert{}15 - 18\vert{} = 3$|$3 \times 3 = 9$|
+	|২০-৩০|৫|২৫|১২৫|$\vert{}25 - 18\vert{} = 7$|$5 \times 7 = 35$|
+	|**মোট**|**$N = 10$**||**$\sum f_i x_i = 180$**||**$\sum f_i \vert{}x_i - \bar{x}\vert{} = 70$**|
+	
+	**ধাপ ১: গাণিতিক গড় ($\bar{x}$) নির্ণয়**
+	
+	$$\bar{x} = \frac{\sum f_i x_i}{N} = \frac{180}{10} = 18$$
+	
+	**ধাপ ২: Mean Deviation ($MD$) নির্ণয়**
+	
+	$$MD = \frac{\sum f_i \vert{}x_i - \bar{x}\vert{}}{N} = \frac{70}{10} = 7$$
+	
+	**ধাপ ৩: Coefficient of MD নির্ণয়**
+	
+	$$\text{Coefficient of MD} = \frac{MD}{\bar{x}} = \frac{7}{18} \approx 0.3889$$
+	
+	**চূড়ান্ত উত্তর:** Mean Deviation হলো $7$ এবং Coefficient of Mean Deviation হলো $0.3889$।
