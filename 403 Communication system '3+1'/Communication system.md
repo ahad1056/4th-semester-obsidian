@@ -7,7 +7,8 @@
 
 ## Supplementary & Exam Prep
 - [[Course Syllabus Communication Systems (0714-403)|Course Syllabus Communication Systems (EEE 401)]]
-- [[Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule|Important Formulas, Modulation Theorems & Carson's Rule and ASSAINGMENT ]]
+- [[Important Maths|Important MATH ]]
+- [[ ASSAINGMENT ]]
 - [[Communication Systems/PREVIOUS YEAR ANALYSED QUESTION|PREVIOUS YEAR ANALYSED QUESTION]]
 - [[Communication Systems/PREVIOUS YEAR original question|PREVIOUS YEAR original question]]
 - [[Communication Daily Class Note ]]

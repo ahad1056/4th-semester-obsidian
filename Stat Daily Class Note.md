@@ -118,6 +118,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
   - $L$ = Lower limit of the modal class.
   - $f_0$ = Frequency of the modal class.
   - $f_1$ = Frequency of the pre-modal class (the class preceding the modal class).
+  - $\Delta_1 = f_1 - f_0$ 
+  - $\Delta_2 = f_2 - f_0$ 
 
 ## 📌 Mean & Symmetric Distribution
 - **Symmetric Distribution:** In this type of distribution, mean = mode = median.
@@ -128,21 +130,21 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
     $$\bar{x} = A + c\bar{u}$$
     where,
     $$\bar{u} = \frac{\sum fu}{\sum f}$$
-  - An example[^21] was solved where the mean, $\bar{x} = 7.8$.
+  - An example[^21] was solved where the mean, $\bar{x} = 37$.
 - **Note:** Arithmetic mean depends on the scale and origin.
 
 ## 📌 Measures of Dispersion
-- **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
+- **What is Dispersion?** Dispersion[^22]   is the measure of how far an observation is spread out from its central value.
 - **Types of Dispersion:**
   ###  **Absolute Measures:** 
-  1. Range,
-  2. Quartile Deviation (QD), 
-  3. Mean Deviation (MD), 
+  1. Range[^23]
+  2. Quartile Deviation (QD) [^24]
+  3. Mean Deviation (MD)[^25]
   4. Variance, 
   5. Standard Deviation.
 
   ###  **Relative Measures:** 
-  6. Coefficient of Range, 
+  6. Coefficient of Range
   7. Coefficient of QD, 
   8. Coefficient of MD, 
   9. Coefficient of Variation.
@@ -153,6 +155,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **Mean Deviation (M.D):**
   $$M.D = \frac{\sum |D_i|}{N}$$
   - Where $|D_i| = |x_i - \bar{x}|$ (absolute deviation).
+   - ### Example math [^26]
 - **Important Proof Topic:** The sum of the deviations of all observations from their arithmetic mean is always zero.
   $$\sum (x_i - \bar{x}) = 0$$
 - **Variance:** Variance is the average of the squared deviations of all observations from their arithmetic mean.
@@ -617,7 +620,126 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	
 	**উত্তর:** নির্ণেয় গড় ($\bar{x}$) = ৩৭।
 
+
+[^22]: ### Dispersion (বিস্তার) কী?
+	
+	সহজ কথায়, একটি ডেটাসেটের মানগুলো তার কেন্দ্রীয় মান (যেমন: গড় বা Mean) থেকে কতটুকু দূরে ছড়িয়ে-ছিটিয়ে আছে, তার পরিমাপকেই **Dispersion** বলে।
+	
+	- **উদাহরণ:** ধরুন, দুজন ব্যাটসম্যানের ৫টি ম্যাচের গড় রান ৫০। প্রথমজন করেছেন: ৪৮, ৫০, ৫২, ৪৯, ৫১। দ্বিতীয়জন করেছেন: ০, ১০০, ০, ১৫০, ০। দুজনের গড় ৫০ হলেও দ্বিতীয়জনের রানের **Dispersion** অনেক বেশি (খুব অনিয়মিত), আর প্রথমজনের কম (ধারাবাহিক)।
+[^23]: ### ১. Range (পরিসর) ও Coefficient of Range
+	
+	বিস্তার মাপার সবচেয়ে সহজ ও প্রাথমিক পদ্ধতি হলো **Range**।
+	
+	- **মূল ধারণা:** একটি ডেটাসেটের একদম সর্বোচ্চ মান ($X_{\max}$) এবং সর্বনিম্ন মান ($X_{\min}$)-এর মধ্যকার পার্থক্যই হলো Range। এটি বলে দেয় ডেটাটি সর্বনিম্ন কত থেকে সর্বোচ্চ কত পর্যন্ত বিস্তৃত।
+	    
+	- **সূত্রসমূহ:**
+	    
+	    - **Range (Absolute Measure):** $R = X_{\max} - X_{\min}$
+	        
+	    - **Coefficient of Range (Relative Measure):** $\text{Coefficient of Range} = \frac{X_{\max} - X_{\min}}{X_{\max} + X_{\min}}$
+	        
+	
+	**সীমাবদ্ধতা (বিজ্ঞানীরা কেন পরের ধাপে গেলেন?):**
+	
+	Range শুধু ডেটার দুই প্রান্তের দুটি সংখ্যাকে দেখে, মাঝের সংখ্যাগুলোর কোনো খবর রাখে না। ধরুন, একটি রুমে ১০ জন সাধারণ চাকরিজীবী আছেন যাদের বেতন ২০ থেকে ৩০ হাজার টাকার মধ্যে। হঠাৎ সেখানে একজন বিলিয়নিয়ার ঢুকলেন। এতে ওই রুমের বেতনের Range আকাশচুম্বী হয়ে যাবে, যা সাধারণ মানুষগুলোর প্রকৃত অবস্থার ভুল চিত্র দেবে। এই চরম মান বা **Outlier**-এর প্রভাব কাটানোর জন্যই বিজ্ঞানীরা নিয়ে এলেন **Quartile Deviation**।
+[^24]: ### ২. Quartile Deviation (QD) ও Coefficient of QD
+	
+	Outlier বা অস্বাভাবিক বড়/ছোট মানগুলোর ঝামেলা এড়াতে পরিসংখ্যানবিদরা চিন্তা করলেন—ডেটাকে ছোট থেকে বড় সাজিয়ে এর **শুরুর ২৫% এবং শেষের ২৫% বাদ দিয়ে শুধু মাঝের ৫০% ডেটার বিস্তার** মাপলে কেমন হয়? এখান থেকেই আসে Quartile Deviation (চতুর্থক ব্যবধান)।
+	
+	- **মূল ধারণা:** কোনো সাজানো ডেটাসেটকে সমান ৪ ভাগে ভাগ করলে তিনটি বিন্দু পাওয়া যায়: $Q_1$ (২৫% বিন্দু), $Q_2$ (৫০% বিন্দু বা Median), এবং $Q_3$ (৭৫% বিন্দু)। তৃতীয় চতুর্থক ($Q_3$) ও প্রথম চতুর্থক ($Q_1$)-এর ব্যবধানের অর্ধেককেই **Quartile Deviation (QD)** বা Semi-Interquartile Range বলে।
+	    
+	- **সূত্রসমূহ:**
+	    
+	    - **Quartile Deviation (Absolute Measure):** $QD = \frac{Q_3 - Q_1}{2}$
+	        
+	    - **Coefficient of QD (Relative Measure):** $\text{Coefficient of QD} = \frac{Q_3 - Q_1}{Q_3 + Q_1}$
+	        
+	
+	### ছোট একটি উদাহরণে পার্থক্যটি দেখুন
+	
+	ধরুন, ৭ জন শিক্ষার্থীর নম্বর হলো (ছোট থেকে বড় সাজানো):
+	
+	`১০, ১৫, ২০, ২৫, ৩০, ৩৫, ১০০` _(এখানে ১০০ একটি অস্বাভাবিক বড় মান বা Outlier)_
+	
+	১. **Range-এর হিসাব:**
+	
+	- $R = 100 - 10 = 90$
+	    
+	- $\text{Coefficient of Range} = \frac{100 - 10}{100 + 10} = \frac{90}{110} \approx 0.82$
+	    
+	    _(দেখুন, শুধু ১০০ থাকার কারণে বিস্তার অনেক বেশি দেখাচ্ছে)_
+	    
+	
+	২. **Quartile Deviation-এর হিসাব:**
+	
+	এখানে মোট সংখ্যা $n = 7$।
+	
+	- $Q_1$ এর অবস্থান $= \frac{n+1}{4} = \frac{7+1}{4} = 2\text{তম পদ} = 15$
+	    
+	- $Q_3$ এর অবস্থান $= \frac{3(n+1)}{4} = \frac{3(7+1)}{4} = 6\text{তম পদ} = 35$
+	    
+	- $QD = \frac{35 - 15}{2} = 10$
+	    
+	- $\text{Coefficient of QD} = \frac{35 - 15}{35 + 15} = \frac{20}{50} = 0.40$
+	    
+	    _(লক্ষ্য করুন, ১০০ থাকা সত্ত্বেও QD মাঝের ডেটাগুলোর প্রকৃত ও স্থিতিশীল বিস্তার ১০ দেখাল)_
+[^25]: **Coefficient of Range (Relative Measure):** $\text{Coefficient of Range} = \frac{X_{\max} - X_{\min}}{X_{\max} + X_{\min}}$
+[^26]: 
+	        
 	
 
-### Class Notes: Statistics - Central Tendency & Dispersion
+[^25]: ### ১. গাণিতিক সংজ্ঞা (Formal Definition)
+	
+	কোনো ডেটাসেটের প্রতিটি মান তার কেন্দ্রীয় মান (গাণিতিক গড়, মধ্যমা বা প্রচুরক) থেকে গড়ে কতটুকু দূরে অবস্থান করছে, তার পরম দূরত্বের (Absolute Distance) গাণিতিক গড়কে **Mean Deviation (MD)** বলা হয়। এটি বিস্তারের একটি পরিমাপক (Measure of Dispersion), যা ডেটার প্রতিটি পর্যবেক্ষণকে গণনায় অন্তর্ভুক্ত করে।
+	
+	### ২. সাধারণ সূত্রসমূহ (General Formulas)
+	
+	ধরি, একটি ডেটাসেটের চলকগুলো হলো $x_1, x_2, ..., x_n$ এবং $A$ হলো যেকোনো একটি কেন্দ্রীয় মান (সাধারণত Mean বা Median)।
+	
+	**অবিন্যস্ত ডেটার (Ungrouped Data) ক্ষেত্রে:**
+	
+	$$MD_A = \frac{1}{n} \sum_{i=1}^{n} \vert{}x_i - A\vert{}$$
+	
+	যেখানে, $n$ = মোট পর্যবেক্ষণের সংখ্যা।
+	
+	**বিন্যস্ত বা ফ্রিকোয়েন্সি ডেটার (Grouped Data) ক্ষেত্রে:**
+	
+	$$MD_A = \frac{1}{N} \sum_{i=1}^{n} f_i \vert{}x_i - A\vert{}$$
+	
+	যেখানে, $f_i$ = প্রতিটি শ্রেণীর গণসংখ্যা এবং $N = \sum f_i$ (মোট গণসংখ্যা)।
+	
+	**আপেক্ষিক পরিমাপ (Relative Measure):** দুটি ভিন্ন ডেটাসেটের বিস্তারের তুলনার জন্য Coefficient বা সহগ ব্যবহার করা হয়:
+	
+	$$\text{Coefficient of MD} = \frac{MD_A}{A}$$
+	
+	_(যে কেন্দ্রীয় মান $A$ থেকে MD বের করা হয়েছে, তাকে দিয়েই ভাগ করতে হবে।)_
 
+[^26]: **প্রশ্ন:** নিচের ডেটাসেট থেকে গাণিতিক গড় ব্যবহার করে Mean Deviation এবং এর Coefficient নির্ণয় করুন।
+	
+	- শ্রেণী (Class): ০-১০, ১০-২০, ২০-৩০
+	    
+	- ফ্রিকোয়েন্সি ($f_i$): ২, ৩, ৫
+	    
+	
+	**সমাধানের টেবিল:**
+	
+	|**শ্রেণী**|**ফ্রিকোয়েন্সি (fi​)**|**মধ্যবিন্দু (xi​)**|**fi​xi​**|**∣xi​−xˉ∣**|**fi​∣xi​−xˉ∣**|
+	|---|---|---|---|---|---|
+	|০-১০|২|৫|১০|$\vert{}5 - 18\vert{} = 13$|$2 \times 13 = 26$|
+	|১০-২০|৩|১৫|৪৫|$\vert{}15 - 18\vert{} = 3$|$3 \times 3 = 9$|
+	|২০-৩০|৫|২৫|১২৫|$\vert{}25 - 18\vert{} = 7$|$5 \times 7 = 35$|
+	|**মোট**|**$N = 10$**||**$\sum f_i x_i = 180$**||**$\sum f_i \vert{}x_i - \bar{x}\vert{} = 70$**|
+	
+	**ধাপ ১: গাণিতিক গড় ($\bar{x}$) নির্ণয়**
+	
+	$$\bar{x} = \frac{\sum f_i x_i}{N} = \frac{180}{10} = 18$$
+	
+	**ধাপ ২: Mean Deviation ($MD$) নির্ণয়**
+	
+	$$MD = \frac{\sum f_i \vert{}x_i - \bar{x}\vert{}}{N} = \frac{70}{10} = 7$$
+	
+	**ধাপ ৩: Coefficient of MD নির্ণয়**
+	
+	$$\text{Coefficient of MD} = \frac{MD}{\bar{x}} = \frac{7}{18} \approx 0.3889$$
+	
+	**চূড়ান্ত উত্তর:** Mean Deviation হলো $7$ এবং Coefficient of Mean Deviation হলো $0.3889$।
