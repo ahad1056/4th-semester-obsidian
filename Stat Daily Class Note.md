@@ -118,6 +118,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
   - $L$ = Lower limit of the modal class.
   - $f_0$ = Frequency of the modal class.
   - $f_1$ = Frequency of the pre-modal class (the class preceding the modal class).
+  - $\Delta_1 = f_1 - f_0$ 
+  - $\Delta_2 = f_2 - f_0$ 
 
 ## 📌 Mean & Symmetric Distribution
 - **Symmetric Distribution:** In this type of distribution, mean = mode = median.
@@ -128,7 +130,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
     $$\bar{x} = A + c\bar{u}$$
     where,
     $$\bar{u} = \frac{\sum fu}{\sum f}$$
-  - An example[^21] was solved where the mean, $\bar{x} = 7.8$.
+  - An example[^21] was solved where the mean, $\bar{x} = 37$.
 - **Note:** Arithmetic mean depends on the scale and origin.
 
 ## 📌 Measures of Dispersion
