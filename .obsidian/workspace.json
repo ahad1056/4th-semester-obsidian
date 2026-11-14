@@ -42,7 +42,7 @@
               "type": "markdown",
               "state": {
                 "file": "Communication Daily Class Note.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -70,8 +70,8 @@
               "type": "markdown",
               "state": {
                 "file": "Course Syllabus Communication Systems (0714-403).md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "Course Syllabus Communication Systems (0714-403)"
@@ -296,11 +296,11 @@
   },
   "active": "6a2cf70893a16e71",
   "lastOpenFiles": [
-    "Communication Systems/Chapter 2 -NOISE.md",
     "403 Communication system '3+1'/Communication system.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
+    "Course Syllabus Communication Systems (0714-403).md",
     "Communication Daily Class Note.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "Course Syllabus Communication Systems (0714-403).md",
     "Dashboard.md",
     "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",

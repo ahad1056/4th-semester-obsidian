@@ -32,7 +32,7 @@ Noise is categorized into two main types:
 - Shot noise[^4]
 - Flicker noise[^5]
 
-#### 2. External Noise:[^6]
+####  2. External Noise:[^6]
 
 - Atmospheric noise[^7]
 - Cosmic noise[^8]
