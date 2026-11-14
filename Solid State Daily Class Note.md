@@ -31,3 +31,5 @@ Class Notes: Solid State Electronics
 ---
 
 Tags: #solid-state-electronics #semiconductor #mosfet #energy-band #class-notes
+# 12 November class 2 
+![[JPEG_20261114_063349_8315901474765513730.jpg|100]]![[IMG_20261112_121943.jpg|100]]

@@ -95,6 +95,20 @@
             "id": "4b4c854c345302ca",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Solid State Daily Class Note.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Solid State Daily Class Note"
+            }
+          },
+          {
+            "id": "e13841c075224647",
+            "type": "leaf",
+            "state": {
               "type": "empty",
               "state": {},
               "icon": "lucide-file",
@@ -102,7 +116,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -262,21 +276,28 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "50b093a265e23c41",
+  "active": "4b4c854c345302ca",
   "lastOpenFiles": [
+    "IMG_20261112_121943.jpg",
+    "Solid State Daily Class Note.md",
+    "JPEG_20261114_063349_8315901474765513730.jpg",
+    "401 Solid state Electronics '3'/solid state electronics.md",
+    "Dashboard.md",
+    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
+    "mechanical Daily Class Note.md",
+    "JPEG_20261114_063121_121283097199539596.jpg",
+    "JPEG_20261114_063016_4981269745741362525.jpg",
+    "JPEG_20261114_062922_9169810200648240814.jpg",
+    "Communication Daily Class Note.md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Systems/Chapter 2 -NOISE.md",
-    "401 Solid state Electronics '3'/solid state electronics.md",
-    "Solid State Daily Class Note.md",
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "LAW daily class notes.md",
-    "Dashboard.md",
     "Stat Daily Class Note.md",
     "IMG_20261112_114653.jpg",
     "IMG_20261112_114650.jpg",
     "IMG_20261112_114645.jpg",
-    "Communication Daily Class Note.md",
     "IMG_20261112_114640.jpg",
     "481 Statistics and Probability '3'/statistics and probability.md",
     "Machine Daily Class Notes.md",
@@ -294,14 +315,7 @@
     "Untitled.base",
     "2026-11-11.md",
     "JPEG_20261111_103927_1828953819829583125.jpg",
-    "IMG_20261110_112222 1.jpg",
-    "JPEG_20261111_063619_3092808849562626665.jpg",
-    "IMG_20261110_112233.jpg",
-    "IMG_20261110_112229.jpg",
     "end_span.md",
-    "start_span.md",
-    "Communication Systems/Chapter 2 - Amplitude Modulation (AM) Systems.md",
-    "mechanical Daily Class Note.md",
     "Communication Systems",
     "305 Statistics",
     "491 Professional Law and Ethics '3'",

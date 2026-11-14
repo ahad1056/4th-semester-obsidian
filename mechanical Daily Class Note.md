@@ -28,3 +28,8 @@
 
 ---
 **Tags:** #thermodynamics #mechanical #physics #class-notes #rskurmi
+
+# 12 November class 2 
+![[JPEG_20261114_062922_9169810200648240814.jpg|100]]
+![[JPEG_20261114_063016_4981269745741362525.jpg|100]]
+![[JPEG_20261114_063121_121283097199539596.jpg|100]]
