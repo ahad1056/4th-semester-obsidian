@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Communication Systems/Important Maths.md",
-                "mode": "preview",
+                "file": "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Important Maths"
+              "title": "Chapter 1 - Introduction to Communication Systems & Signals"
             }
           },
           {
@@ -42,14 +42,15 @@
               "type": "markdown",
               "state": {
                 "file": "Communication Systems/Chapter 2 -NOISE.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Chapter 2 -NOISE"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -111,7 +112,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -226,18 +228,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "88c4dd1229495078",
+  "active": "14921c5ec6ca6dee",
   "lastOpenFiles": [
-    "Important Maths-1794658557254.webp",
+    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Systems/Important Maths.md",
+    "Important Maths-1794658557254.webp",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Dashboard.md",
-    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Chapter 1 - Introduction to Communication Systems & Signals-1794657382978.webp",
     "ANIMATIONS AND HTML/line_integral.html",
     "Course Syllabus Communication Systems (0714-403).md",
-    "Communication Systems/Chapter 2 -NOISE.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "LAW daily class notes.md",
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
@@ -269,7 +271,6 @@
     "IMG_20261112_121943.webp",
     "IMG_20261112_114653.webp",
     "IMG_20261112_114650.webp",
-    "IMG_20261112_114645.webp",
     "Electrical Machines",
     "Communication Systems",
     "305 Statistics",
