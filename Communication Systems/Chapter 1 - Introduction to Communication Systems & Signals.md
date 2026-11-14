@@ -33,4 +33,5 @@ This physical manifestation of the information is termed as messege signal
 
 
 
-![[line_integral.html|200]]
+![[line_integral.html|620x200]]
+
