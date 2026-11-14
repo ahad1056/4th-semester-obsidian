@@ -41,7 +41,7 @@
 
 ## Laws of Thermodynamics
 
-- Zeroth Law of Thermodynamics is mentioned.
+- Zeroth Law[^1] of Thermodynamics is mentioned.
     
 - First Law of Thermodynamics: Includes the first form (Joule) and second form (Clausius).
     
@@ -80,3 +80,5 @@
 - Molar specific heat: Includes $C_p$ and $C_v$.
 ---
 Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
+
+[^1]: "If two thermodynamic systems are each in thermal equilibrium with a third one, then they are in thermal equilibrium with each other." _(যদি দুটি তাপগতীয় সিস্টেম তৃতীয় কোনো সিস্টেমের সাথে আলাদাভাবে তাপীয় সাম্যাবস্থায় থাকে, তবে তারা নিজেরাও একে অপরের সাথে তাপীয় সাম্যাবস্থায় থাকবে।)_ 
