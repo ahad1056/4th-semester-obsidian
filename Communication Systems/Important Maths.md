@@ -57,7 +57,7 @@
 > > To calculate the noise voltage due to several resistors in parallel, find the total resistance by standard methods and substitute it into the formula. The total noise voltage is less than that due to any of the individual resistors, while the noise power remains constant.
 
 ---
-
+![[Important Maths-1794658557254.webp|262]]
 > [!example] Example 2.4: Equivalent Input-Noise Resistance of a Two-Stage Amplifier
 > **Problem:** The first stage of a two-stage amplifier has a voltage gain of $10$, a $600\text{-}\Omega$ input resistor, a $1600\text{-}\Omega$ equivalent noise resistance and a $27\text{-k}\Omega$ output resistor. For the second stage, these values are $25$, $81\text{ k}\Omega$, $10\text{ k}\Omega$ and $1\text{ megaohm}$ ($1\text{ M}\Omega$), respectively. Calculate the equivalent input-noise resistance of this two-stage amplifier.
 >
