@@ -115,8 +115,7 @@
               "title": "New tab"
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -276,7 +275,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8d4c0b154e68dc89",
+  "active": "8b758e4a05059190",
   "lastOpenFiles": [
     "Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule.md",
     "481 Statistics and Probability '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
