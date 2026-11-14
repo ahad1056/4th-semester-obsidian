@@ -61,7 +61,11 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	where 
 	$P_n$ is the noise power 
 	k is boltz man constant $1.38 \times 10 ^ 23$
-	T is absolute tempr
+	T is absolute temprature 
+	$\delta f$ is the bandwidth . 
+	
+	
+	
 [^4]: **B. Shot Noise**
 	
 	- **Cause:** It arises due to the discrete (particle-like) nature of charge carriers (electrons or holes) moving across a junction or potential barrier (e.g., in a P-N junction diode or transistor).
