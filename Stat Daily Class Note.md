@@ -1,7 +1,7 @@
 
 # 8 November class 1 
 
-![[IMG_20261110_112229.webp|200]]![[IMG_20261110_112233.webp|200]]
+![[IMG_20261110_112229.webp|66]]![[IMG_20261110_112233.webp|66]]
 
 Class Notes: Statistics Fundamentals
 
@@ -55,7 +55,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 # 10 November class 2
 ![[JPEG_20261111_055659_8646015617116971960.webp| 200]]
-![[JPEG_20261111_055804_3730326127798271696.webp| 200]]
+![[JPEG_20261111_055804_3730326127798271696.webp|176]]
 ## Topic: 
 ### Today's Class Notes: Basic Statistics
 
@@ -618,8 +618,5 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 
 	
 
-<<<<<<< main
 ### Class Notes: Statistics - Central Tendency & Dispersion
-=======
->>>>>>> origin/main
 
