@@ -15,7 +15,7 @@
 - [ ] Introduction to analog and digital communication systems
 - [ ] Baseband and carrier communication 
 - [x] Definition and sources of noise
-- [ ] Characteristics of various types of noise
+- [x] Characteristics of various types of noise
 
 ---
 
