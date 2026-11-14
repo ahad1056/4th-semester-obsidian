@@ -100,14 +100,67 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 
+# 12 November Class 3
+![[IMG_20261112_114640.jpg|100]]![[IMG_20261112_114645.jpg|100]]![[IMG_20261112_114650.jpg|100]]![[IMG_20261112_114653.jpg|100]]
 
+### Class Notes: Statistics - Central Tendency & Dispersion
 
+## 📌 Frequency Distribution & Mode
+- **FDT (Frequency Distribution Table):** A table is shown to explain how to arrange class intervals, mid-values, and frequencies, where the total frequency (Sum of f) = 15.
+- **Mode:** The value that occurs most frequently in a dataset is called the mode.
+- **Types of Mode:**
+  - Unimodal.
+  - Bimodal (Example: 2, 2, 4, 5, 6, 6).
+  - Multimodal (Example: 2, 2, 4, 5, 6, 6, 7, 7).
+- **Formula for Mode:** For grouped data:
+  $$Mo = L + \left(\frac{\Delta_1}{\Delta_1 + \Delta_2}\right) \times c$$
+  - $L$ = Lower limit of the modal class.
+  - $f_0$ = Frequency of the modal class.
+  - $f_1$ = Frequency of the pre-modal class (the class preceding the modal class).
 
+## 📌 Mean & Symmetric Distribution
+- **Symmetric Distribution:** In this type of distribution, mean = mode = median.
+- **Shortcut / Coded Method[^20] for Mean:**
+  - $A$ = Assumed mean or arbitrary origin.
+  - $C$ = Scale (class interval width).
+  - Formula:
+    $$\bar{x} = A + c\bar{u}$$
+    where,
+    $$\bar{u} = \frac{\sum fu}{\sum f}$$
+  - An example[^21] was solved where the mean, $\bar{x} = 7.8$.
+- **Note:** Arithmetic mean depends on the scale and origin.
 
+## 📌 Measures of Dispersion
+- **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
+- **Types of Dispersion:**
+  ###  **Absolute Measures:** 
+  1. Range,
+  2. Quartile Deviation (QD), 
+  3. Mean Deviation (MD), 
+  4. Variance, 
+  5. Standard Deviation.
 
+  ###  **Relative Measures:** 
+  6. Coefficient of Range, 
+  7. Coefficient of QD, 
+  8. Coefficient of MD, 
+  9. Coefficient of Variation.
 
+- Two additional topics were mentioned: Sampling Fluctuation and Extreme Value.
 
+## 📐 Important Formulas of Dispersion
+- **Mean Deviation (M.D):**
+  $$M.D = \frac{\sum |D_i|}{N}$$
+  - Where $|D_i| = |x_i - \bar{x}|$ (absolute deviation).
+- **Important Proof Topic:** The sum of the deviations of all observations from their arithmetic mean is always zero.
+  $$\sum (x_i - \bar{x}) = 0$$
+- **Variance:** Variance is the average of the squared deviations of all observations from their arithmetic mean.
+  $$\text{Variance} = \frac{\sum (x_i - \bar{x})^2}{N}$$
+- **Standard Deviation (SD):** Standard deviation is the positive square root of the variance.
+  $$SD = \sigma = \sqrt{V(x)}$$
 
+---
+**Tags:** #statistics #mean #mode #dispersion #variance #standard-deviation #class-notes
 
 
 
@@ -329,7 +382,13 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 
-[^13]
+
+
+
+
+
+
+
 
 
 
@@ -514,55 +573,53 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 [^18]: **Quantile (কোয়ান্টাইল)** হলো পরিসংখ্যানের একটি সার্বিক ধারণা, যা সাজানো কোনো ডেটাসেটকে নির্দিষ্ট সংখ্যক **সমান অংশে** ভাগ করার কাট-অফ পয়েন্ট বা সীমানাগুলোকে বোঝায়।
 	
 	সহজ কথায়, আপনি যদি একটি ডেটাসেটকে ছোট থেকে বড় সাজিয়ে সেটিকে কয়েকটি সমান টুকরো করতে চান, তবে যেই পয়েন্টগুলোতে ভাগ করবেন, সেগুলোকে বলা হয় Quantile।
-: 
+[^20]: **Proof of Coded Method for Mean:**
+	
+	ধরি, $u_i = \frac{x_i - A}{c}$$\Rightarrow x_i = A + c u_i$
+	
+	উভয়পাশে ফ্রিকোয়েন্সি $f_i$ দ্বারা গুণ করে সমষ্টি (summation) নিলে:$\sum f_i x_i = \sum f_i (A + c u_i)$$\Rightarrow \sum f_i x_i = A \sum f_i + c \sum f_i u_i$
+	
+	উভয়পক্ষকে মোট ফ্রিকোয়েন্সি $N$ (যেখানে $N = \sum f_i$) দিয়ে ভাগ করে পাই:$\frac{\sum f_i x_i}{N} = A \frac{\sum f_i}{N} + c \frac{\sum f_i u_i}{N}$
+	
+	যেহেতু, $\frac{\sum f_i x_i}{N} = \bar{x}$, $\frac{\sum f_i u_i}{N} = \bar{u}$ এবং $\frac{\sum f_i}{N} = 1$ অতএব, $\bar{x} = A + c\bar{u}$ (প্রমাণিত)
+[^21]: **প্রশ্ন:** নিচের ডেটাসেট থেকে শর্টকাট পদ্ধতিতে গড় (Mean) নির্ণয় করো।
+	
+	- শ্রেণী (Class): ১০-২০, ২০-৩০, ৩০-৪০, ৪০-৫০, ৫০-৬০
+	    
+	- ফ্রিকোয়েন্সি ($f$): ২, ৮, ১৫, ১০, ৫
+	    
+	
+	**সমাধান:** প্রথমে আমাদের শ্রেণীগুলোর মধ্যবিন্দু ($x$) বের করতে হবে। এরপর হিসাবের সুবিধার জন্য মাঝামাঝি একটি মানকে Assumed Mean ($A$) হিসেবে ধরে নেব।
+	
+	ধরি, Assumed Mean, $A = 35$ (কারণ এটি ডেটার মাঝামাঝি আছে) শ্রেণী ব্যবধান, $c = 10$
+	
+	এবার নিচের টেবিলটি তৈরি করি:
+	
+	| **শ্রেণী (Class)** | **ফ্রিকোয়েন্সি (f)** | **মধ্যবিন্দু (x)** | **u=cx−A​**               | **fu**            |
+	| ------------------ | -------------------- | ------------------ | ------------------------- | ----------------- |
+	| ১০-২০              | ২                    | ১৫                 | $\frac{15 - 35}{10} = -2$ | ২ × (-২) = -৪     |
+	| ২০-৩০              | ৮                    | ২৫                 | $\frac{25 - 35}{10} = -1$ | ৮ × (-১) = -৮     |
+	| **৩০-৪০**          | **১৫**               | **৩৫ ($A$)**       | $\frac{35 - 35}{10} = 0$  | ১৫ × ০ = ০        |
+	| ৪০-৫০              | ১০                   | ৪৫                 | $\frac{45 - 35}{10} = 1$  | ১০ × ১ = ১০       |
+	| ৫০-৬০              | ৫                    | ৫৫                 | $\frac{55 - 35}{10} = 2$  | ৫ × ২ = ১০        |
+	| **মোট**            | **$\sum f = 40$**    |                    |                           | **$\sum fu = 8$** |
+	
+	**হিসাব:** আমরা জানি, শর্টকাট পদ্ধতির সূত্র হলো:
+	
+	$$\bar{x} = A + c\bar{u}$$
+	
+	যেখানে, $\bar{u} = \frac{\sum fu}{\sum f}$
+	
+	তাহলে,$\bar{u} = \frac{8}{40} = 0.2$
+	
+	এবার গড়ের মূল সূত্রে মানগুলো বসাই:$\bar{x} = 35 + 10 \times (0.2)$$\bar{x} = 35 + 2$$\bar{x} = 37$
+	
+	**উত্তর:** নির্ণেয় গড় ($\bar{x}$) = ৩৭।
 
-# 12 November Class 3
-![[IMG_20261112_114640.jpg|100]]![[IMG_20261112_114645.jpg|100]]![[IMG_20261112_114650.jpg|100]]![[IMG_20261112_114653.jpg|100]]
+	
 
+<<<<<<< main
 ### Class Notes: Statistics - Central Tendency & Dispersion
+=======
+>>>>>>> origin/main
 
-## 📌 Frequency Distribution & Mode
-- **FDT (Frequency Distribution Table):** A table is shown to explain how to arrange class intervals, mid-values, and frequencies, where the total frequency (Sum of f) = 15.
-- **Mode:** The value that occurs most frequently in a dataset is called the mode.
-- **Types of Mode:**
-  - Unimodal.
-  - Bimodal (Example: 2, 2, 4, 5, 6, 6).
-  - Multimodal (Example: 2, 2, 4, 5, 6, 6, 7, 7).
-- **Formula for Mode:** For grouped data:
-  $$Mo = L + \left(\frac{\Delta_1}{\Delta_1 + \Delta_2}\right) \times c$$
-  - $L$ = Lower limit of the modal class.
-  - $f_0$ = Frequency of the modal class.
-  - $f_1$ = Frequency of the pre-modal class (the class preceding the modal class).
-
-## 📌 Mean & Symmetric Distribution
-- **Symmetric Distribution:** In this type of distribution, mean = mode = median.
-- **Shortcut / Coded Method for Mean:**
-  - $A$ = Assumed mean or arbitrary origin.
-  - $C$ = Scale (class interval width).
-  - Formula:
-    $$\bar{x} = A + c\bar{u}$$
-    where,
-    $$\bar{u} = \frac{\sum fu}{\sum f}$$
-  - An example was solved where the mean, $\bar{x} = 7.8$.
-- **Note:** Arithmetic mean depends on the scale and origin.
-
-## 📌 Measures of Dispersion
-- **What is Dispersion?** Dispersion is the measure of how far an observation is spread out from its central value.
-- **Types of Dispersion:**
-  - **Absolute Measures:** 1. Range, 2. Quartile Deviation (QD), 3. Mean Deviation (MD), 4. Variance, 5. Standard Deviation.
-  - **Relative Measures:** 1. Coefficient of Range, 2. Coefficient of QD, 3. Coefficient of MD, 4. Coefficient of Variation.
-- Two additional topics were mentioned: Sampling Fluctuation and Extreme Value.
-
-## 📐 Important Formulas of Dispersion
-- **Mean Deviation (M.D):**
-  $$M.D = \frac{\sum |D_i|}{N}$$
-  - Where $|D_i| = |x_i - \bar{x}|$ (absolute deviation).
-- **Important Proof Topic:** The sum of the deviations of all observations from their arithmetic mean is always zero.
-  $$\sum (x_i - \bar{x}) = 0$$
-- **Variance:** Variance is the average of the squared deviations of all observations from their arithmetic mean.
-  $$\text{Variance} = \frac{\sum (x_i - \bar{x})^2}{N}$$
-- **Standard Deviation (SD):** Standard deviation is the positive square root of the variance.
-  $$SD = \sigma = \sqrt{V(x)}$$
-
----
-**Tags:** #statistics #mean #mode #dispersion #variance #standard-deviation #class-notes

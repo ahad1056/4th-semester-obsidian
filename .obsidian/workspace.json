@@ -4,81 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "ac7e61c3ed92d575",
+        "id": "638c4e423b6b258d",
         "type": "tabs",
         "children": [
           {
-            "id": "e043536078f0a3cf",
+            "id": "9f6214b7ddfb3ae1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Communication Systems/Chapter 2 -NOISE.md",
+                "file": "Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 2 -NOISE"
+              "title": "Important Formulas, Modulation Theorems & Carson's Rule"
             }
           },
           {
-            "id": "32a96c330feb787e",
+            "id": "7a458fe8dcffd20b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Course Syllabus Communication Systems (0714-403).md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Course Syllabus Communication Systems (0714-403)"
-            }
-          },
-          {
-            "id": "edabd4247abd266c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PREVIOUS YEAR ANALYSED QUESTION"
-            }
-          },
-          {
-            "id": "3ade64437e9898df",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Communication Daily Class Note.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Communication Daily Class Note"
-            }
-          },
-          {
-            "id": "6a6ac5fa93fc0f70",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Communication Systems/PREVIOUS YEAR original question.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "PREVIOUS YEAR original question"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -136,13 +89,11 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -257,46 +208,46 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "32a96c330feb787e",
+  "active": "9f6214b7ddfb3ae1",
   "lastOpenFiles": [
+    "403 Communication system '3+1'/Communication system.md",
+    "Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule.md",
+    "Communication Daily Class Note.md",
+    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "Communication Systems/PREVIOUS YEAR original question.md",
+    "Course Syllabus Communication Systems (0714-403).md",
+    "Dashboard.md",
+    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
+    "481 Statistics and Probability '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "2026-11-11.md",
+    "491 Professional Law and Ethics '3'/Chapter 3 - Intellectual Property Rights & Patents.md",
+    "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
+    "Course Syllabus Statistics and Probability (EEE 481).md",
+    "Stat Daily Class Note.md",
+    "Machine Daily Class Notes.md",
+    "IMG_20261112_114653.jpg",
+    "IMG_20261112_114650.jpg",
+    "IMG_20261112_114645.jpg",
+    "IMG_20261112_114640.jpg",
+    "IMG_20261112_100343.jpg",
     "start_span.md",
     "end_span.md",
     "Untitled.base",
-    "305 Statistics/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "2026-11-11.md",
     "Communication Systems/Chapter 2 -NOISE.md",
-    "Communication Daily Class Note.md",
-    "Communication Systems/PREVIOUS YEAR original question.md",
-    "Course Syllabus Communication Systems (0714-403).md",
-    "403 Communication system '3+1'/Communication system.md",
-    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "Stat Daily Class Note.md",
-    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "305 Statistics/PREVIOUS YEAR original question.md",
-    "Course Syllabus Statistics and Probability (EEE 481).md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Course Syllabus Electrical Machine II (0713-405).md",
     "Electrical Machines",
     "LAW daily class notes.md",
-    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
-    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "JPEG_20261111_103927_1828953819829583125.jpg",
-    "mechanical Daily Class Note.md",
     "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
     "JPEG_20261111_063619_3092808849562626665.jpg",
     "JPEG_20261111_061003_5723788556355093903.jpg",
     "JPEG_20261111_055804_3730326127798271696.jpg",
-    "JPEG_20261111_055659_8646015617116971960.jpg",
-    "IMG_20261110_112233.jpg",
-    "IMG_20261110_112229.jpg",
-    "IMG_20261110_112222.jpg",
-    "IMG_20261110_112222 1.jpg",
     "Communication Systems",
     "305 Statistics",
     "405 electrical machene 2 '3+1'",
