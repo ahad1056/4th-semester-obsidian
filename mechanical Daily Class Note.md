@@ -33,3 +33,32 @@
 ![[JPEG_20261114_062922_9169810200648240814.jpg|100]]
 ![[JPEG_20261114_063016_4981269745741362525.jpg|100]]
 ![[JPEG_20261114_063121_121283097199539596.jpg|100]]
+
+## Systems and Equilibrium
+- System and Thermodynamic System: There are open, closed, and isolated systems .
+- Thermodynamic Equilibrium: Includes mechanical, chemical, and thermal equilibrium .
+
+## Laws of Thermodynamics
+- Zeroth Law of Thermodynamics is mentioned .
+- First Law of Thermodynamics: Includes the first form (Joule) and second form (Clausius) .
+- Sign convention of the First Law is mentioned .
+
+## Thermodynamic Processes
+- Different thermodynamic processes are listed: Isotherm, Adiabatic, and Isobaric .
+- Isothermic process: delta $T = 0$, which means delta $Q = \delta W$.
+- Adiabatic process: delta Q = 0, which leads to -delta W = delta U .
+- Isobaric process: delta P = 0, resulting in delta W = P * delta V .
+- Isochoric process: delta V = 0 . 
+  - Because delta W = P * delta V, if delta V = 0, then delta W = 0 . 
+  - Therefore, delta Q = delta U .
+
+## Work and Heat Capacity
+- Work done by an expanding gas is mentioned .
+- Heat Capacity (C): Defined as Heat (Q) divided by Temp change (delta theta), so C = Q / delta theta .
+- Specific Heat Capacity (S): Defined as Heat (Q) divided by (Temp change (delta theta) * mass (m)) .
+  - S = Q / (delta theta * m) .
+  - Therefore, S = C / m .
+- Molar specific heat: Includes (Cp) and (Cv) .
+
+---
+Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
