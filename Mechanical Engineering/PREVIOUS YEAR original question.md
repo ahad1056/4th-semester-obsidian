@@ -1,17 +1,90 @@
+
+
+
+
+# Engineering Examination 2023
 ---
-university: University of Chittagong
-department: Electrical and Electronic Engineering
-exam: 4th Semester B.Sc. Engineering Examination-2024
-course_code: EEE 415
-course_title: Fundamental of Mechanical Engineering
-marks: 54
-time: 4 Hours
-tags:
-  - EEE-415
-  - Fundamental-of-Mechanical-Engineering
-  - Question-Bank
-  - CU-EEE
+
+<div align="center">
+
+### University of Chittagong
+**Department of Electrical and Electronic Engineering**  
+**4th Semester B.Sc. Engineering Examination 2023**  
+**EEE 415: Fundamental of Mechanical Engineering**
+
+</div>
+
+| **Total Marks:** 54 | **Time:** 4 Hours |
+| :--- | ---: |
+
+> *[Answer **six** questions taking any **three** from each section and use a separate answer script for each section. Figures in the right-hand margin indicate full marks]*
+
 ---
+
+## **Section A**
+
+**1.** `[(2+2.5+3+1.5=9)]`
+a. Define the term "thermodynamic system". Write about different types of thermodynamic systems.
+b. What do you mean by specific heat? Show that $C_P - C_V = R$, where the symbols have their usual meanings.
+c. Derive an expression for the work done during the adiabatic expansion of an ideal gas.
+d. One litre of hydrogen at $0^\circ\text{C}$ is suddenly compressed to one-half of its volume. Find the change in temperature of the gas, if the ratio of two specific heats for hydrogen is $1.4$.
+
+**2.** `[(2+3.5+2+1.5=9)]`
+a. What is a reversible process? Explain that the reversible process is an ideal case only.
+b. Define the Carnot cycle. Show that the efficiency of a Carnot engine using ideal gas as working substance is, $\eta = \left(\frac{T_1 - T_2}{T_1}\right)$, where the symbols have their usual meanings.
+c. Give the statement of second law of thermodynamics in terms of entropy. Show that entropy is a measure of unavailable energy.
+d. Calculate the change in entropy of $1\text{ gram}$ of nitrogen when its temperature rises from $50^\circ\text{C}$ to $100^\circ\text{C}$ while its volume is kept constant. Molar specific heat, $C_v = 0.18$ and molar weight of nitrogen is $28$.
+
+**3.** `[(1.5+2+3+2.5=9)]`
+a. Define the following terms related to a boiler:
+   i) Grate, ii) Mountings, and iii) Economiser
+b. Mention the factors that should be considered while selecting a boiler.
+c. Give a neat sketch of a Cochran boiler with its applications.
+d. A Lancashire boiler generates $2400\text{ kg}$ of dry steam per hour at a pressure of $11\text{ bar}$. The grate area is $3\text{ m}^2$ and $90\text{ kg}$ of coal is burnt per $\text{m}^2$ of grate area per hour. The caloric value of the coal is $33,180\text{ kJ/kg}$ and the temperature of feed water is $17.5^\circ\text{C}$. Determine i) Actual evaporation per kg of coal, ii) Equivalent evaporation from and at $100^\circ\text{C}$ and iii) Efficiency of the boiler.
+
+**4.** `[(2+3+1.5+2.5=9)]`
+a. What is an internal combustion engine? Compare diesel engine and petrol engine.
+b. Sketch and explain the sequence of events in the cylinder of a petrol engine working in the two-stroke cycle.
+c. Explain, why a four-stroke engine runs cooler than a two-stroke engine.
+d. Why cooling of the I.C. engine is required? Briefly describe the air-cooling system.
+
+---
+
+## **Section B**
+
+**5.** `[(1.5+2+4+1.5=9)]`
+a. Briefly describe the types of convection. Mention the applications of convection in technology.
+b. Write about the thermal insulation and critical thickness of insulation. State the purposes of thermal insulation.
+c. What is the critical radius? Derive the equation of heat flow through a sphere with insulation and then show that, $r_c = \frac{2k}{h_0}$, where the symbols have their usual meanings.
+d. A small electric heating application uses wire of $2\text{ mm}$ diameter with $0.8\text{ mm}$ thick insulation ($k = 0.12\text{ W/m }^\circ\text{C}$). The heat transfer coefficient ($h_o$) on the insulated surface is $35\text{ W/m}^2\ ^\circ\text{C}$. Determine the critical thickness of insulation in this case.
+
+**6.** `[(1.5+2.5+2+3=9)]`
+a. Define refrigeration and British thermal unit (Btu).
+b. Mention the methods of refrigeration. Show the schematic diagram of an air cycle refrigeration system.
+c. What is a refrigerant? Write the properties and uses of Freon-12 refrigerant.
+d. $500\text{ kg}$ of fruits are supplied to a cold storage at $20^\circ\text{C}$. The cold storage is maintained at $-5^\circ\text{C}$ and the fruits get cooled to the storage temperature in $10\text{ hours}$. The latent heat of freezing is $105\text{ kJ/kg}$ and the specific heat of fruit is $1.26\text{ units}$. Find the refrigeration capacity of the plant.
+
+**7.** `[(2+2+2+3=9)]`
+a. Write about the factors that affect human comfort.
+b. Briefly discuss different unitary air conditioning systems.
+c. Show the schematic arrangement of a winter air conditioning system.
+d. A packaged air conditioner handles $2,000\text{ cfm}$ of all outside air for a hospital operating room. The outside condition is $100^\circ\text{F}$ dry bulb temperature and $50\%$ relative humidity. The air off the cooling coil is $55^\circ\text{F}$, saturated (wet bulb=dry bulb). Find
+   i. How many gallons of water per hour are condensed and drip of the cooling coil?
+   ii. How much cooling (tons of refrigeration) is the unit doing?
+
+**8.** `[(2+2.5+2.5+2=9)]`
+a. Define the reheat factor. Give the classification of the steam turbine.
+b. Explain the working principle of the impulse turbine using the necessary figure.
+c. Differentiate clearly between a closed-cycle gas turbine and an open-cycle gas turbine.
+d. A Roots blower compressor compresses $0.05\text{ m}^3$ of air from $1\text{ bar}$ to $1.5\text{ bar}$ per revolution. Find the compressor efficiency.
+
+# Engineering Examination-2024
+
+
+
+
+
+
 
 <div align="center">
 
