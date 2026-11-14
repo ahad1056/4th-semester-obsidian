@@ -1,8 +1,7 @@
 [
   "obsidian-git",
   "obsidian-footnotes",
-  "image-converter",
-  "chrome-pinch-zoom",
+  "html-inline-embed",
   "html-page-viewer",
-  "html-inline-embed"
+  "image-converter"
 ]
