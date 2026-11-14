@@ -122,3 +122,7 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	$$\text{NF (in dB)} = 10 \log_{10} (F)$$
 	
 	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
+
+# nth NOVEMBER CLASS 2 
+
+
