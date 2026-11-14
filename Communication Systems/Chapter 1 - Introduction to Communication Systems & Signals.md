@@ -31,3 +31,6 @@ This physical manifestation of the information is termed as messege signal
 
 - **==🔴Conveying Information==:** An unmodulated carrier has constant parameters and cannot carry information. Modulation varies the carrier's parameters (like amplitude or frequency) according to the message signal to transmit data.
 
+![[Amplitude modulation of sine wave .html]]
+
+

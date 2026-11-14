@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Modulation Animation</title>
+  <style>
+    :root {
+      --bg: #18181b;
+      --panel: #202026;
+      --border: #2e2e38;
+      --text: #e4e4e7;
+      --muted: #a1a1aa;
+      --accent: #38bdf8;
+      --carrier: #60a5fa;
+      --message: #34d399;
+      --result: #f472b6;
+      --envelope: #fbbf24;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toolbar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #27272f;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+    }
+
+    button.active {
+      background: var(--accent);
+      color: #09090b;
+      border-color: var(--accent);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    input[type="range"] {
+      width: 95px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    label.chk {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .canvas-container {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 440px;
+    }
+
+    .formula-bar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .formula-bar span strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="btn-group" id="modeButtons">
+      <button class="active" data-mode="AM">AM (Standard)</button>
+      <button data-mode="DSBSC">DSB-SC</button>
+      <button data-mode="FM">FM</button>
+    </div>
+
+    <div class="controls">
+      <div class="slider-wrap">
+        <span id="indexLabel">Mod. Index (&mu;):</span>
+        <input type="range" id="modIndex" min="0" max="1.4" step="0.05" value="0.85" />
+        <strong id="indexVal" style="color: var(--text); min-width: 32px;">0.85</strong>
+      </div>
+
+      <label class="chk" id="envWrap">
+        <input type="checkbox" id="showEnv" checked />
+        <span>Envelope</span>
+      </label>
+
+      <button id="playPauseBtn">Pause</button>
+    </div>
+  </div>
+
+  <div class="canvas-container">
+    <canvas id="waveCanvas"></canvas>
+  </div>
+
+  <div class="formula-bar">
+    <span id="eqText"><strong>Equation:</strong> s(t) = A<sub>c</sub> [1 + &mu; sin(&omega;<sub>m</sub>t)] sin(&omega;<sub>c</sub>t)</span>
+    <span id="statusText">Under-modulation (&mu; &lt; 1): Clear envelope</span>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("waveCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let mode = "AM";
+    let modIndex = 0.85;
+    let showEnvelope = true;
+    let isPlaying = true;
+    let phase = 0;
+
+    const modeButtons = document.querySelectorAll("#modeButtons button");
+    const modSlider = document.getElementById("modIndex");
+    const indexVal = document.getElementById("indexVal");
+    const indexLabel = document.getElementById("indexLabel");
+    const showEnvChk = document.getElementById("showEnv");
+    const envWrap = document.getElementById("envWrap");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const eqText = document.getElementById("eqText");
+    const statusText = document.getElementById("statusText");
+
+    function updateLabels() {
+      indexVal.textContent = modIndex.toFixed(2);
+      if (mode === "AM") {
+        indexLabel.innerHTML = "Mod. Index (&mu;):";
+        envWrap.style.display = "flex";
+        eqText.innerHTML = "<strong>AM Equation:</strong> s(t) = A<sub>c</sub> [1 + &mu; &middot; m(t)] sin(&omega;<sub>c</sub>t)";
+        if (modIndex < 1) {
+          statusText.textContent = "Under-modulation (μ < 1): No phase reversal";
+          statusText.style.color = "#34d399";
+        } else if (modIndex === 1) {
+          statusText.textContent = "Critical modulation (μ = 1): 100% modulation";
+          statusText.style.color = "#fbbf24";
+        } else {
+          statusText.textContent = "Over-modulation (μ > 1): Envelope distortion!";
+          statusText.style.color = "#f87171";
+        }
+      } else if (mode === "DSBSC") {
+        indexLabel.innerHTML = "Scale (A<sub>m</sub>):";
+        envWrap.style.display = "flex";
+        eqText.innerHTML = "<strong>DSB-SC Equation:</strong> s(t) = A<sub>c</sub> &middot; m(t) &middot; sin(&omega;<sub>c</sub>t)";
+        statusText.textContent = "Carrier suppressed: 180° phase reversal at m(t) = 0";
+        statusText.style.color = "#38bdf8";
+      } else if (mode === "FM") {
+        indexLabel.innerHTML = "Deviation (&beta;):";
+        envWrap.style.display = "none";
+        eqText.innerHTML = "<strong>FM Equation:</strong> s(t) = A<sub>c</sub> sin(&omega;<sub>c</sub>t &minus; &beta; cos(&omega;<sub>m</sub>t))";
+        statusText.textContent = "Constant amplitude: Frequency varies with m(t)";
+        statusText.style.color = "#f472b6";
+      }
+    }
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        modeButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        mode = btn.dataset.mode;
+        updateLabels();
+      });
+    });
+
+    modSlider.addEventListener("input", (e) => {
+      modIndex = parseFloat(e.target.value);
+      updateLabels();
+    });
+
+    showEnvChk.addEventListener("change", (e) => {
+      showEnvelope = e.target.checked;
+    });
+
+    playPauseBtn.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      playPauseBtn.textContent = isPlaying ? "Pause" : "Play";
+    });
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    updateLabels();
+
+    function drawAxis(xStart, yCenter, width, title, tag, color) {
+      // Subtle grid lines
+      ctx.strokeStyle = "#272730";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(xStart, yCenter - 44);
+      ctx.lineTo(xStart + width, yCenter - 44);
+      ctx.moveTo(xStart, yCenter + 44);
+      ctx.lineTo(xStart + width, yCenter + 44);
+      ctx.stroke();
+
+      // Main zero axis
+      ctx.strokeStyle = "#52525b";
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(xStart, yCenter);
+      ctx.lineTo(xStart + width, yCenter);
+      ctx.stroke();
+
+      // Labels
+      ctx.fillStyle = color;
+      ctx.font = "600 13px -apple-system, BlinkMacSystemFont, sans-serif";
+      ctx.fillText(title, xStart, yCenter - 52);
+
+      ctx.fillStyle = "#a1a1aa";
+      ctx.font = "600 13px -apple-system, BlinkMacSystemFont, sans-serif";
+      ctx.fillText(tag, xStart + width + 12, yCenter + 4);
+    }
+
+    function render() {
+      const w = canvas.getBoundingClientRect().width;
+      const h = canvas.getBoundingClientRect().height;
+      ctx.clearRect(0, 0, w, h);
+
+      const padLeft = 14;
+      const padRight = 36;
+      const plotW = w - padLeft - padRight;
+      const rowH = h / 3;
+
+      const y1 = rowH * 0.55;
+      const y2 = rowH * 1.55;
+      const y3 = rowH * 2.55;
+      const amp = 42;
+
+      // Draw Axes matching textbook layout (a), (b), (c)
+      drawAxis(padLeft, y1, plotW, "Carrier Signal c(t)", "(a)", "#60a5fa");
+      drawAxis(padLeft, y2, plotW, "Modulating (Baseband) Signal m(t)", "(b)", "#34d399");
+      const resTitle =
+        mode === "AM"
+          ? "Resultant AM Signal s(t)"
+          : mode === "DSBSC"
+          ? "Resultant DSB-SC Signal s(t)"
+          : "Resultant FM Signal s(t)";
+      drawAxis(padLeft, y3, plotW, resTitle, "(c)", "#f472b6");
+
+      const steps = Math.max(800, Math.floor(plotW * 2));
+      const mCycles = 2;   // 2 cycles across screen like the textbook image
+      const cCycles = 24;  // 24 carrier cycles across screen
+
+      // 1. Draw Carrier (a)
+      ctx.strokeStyle = "#60a5fa";
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      for (let i = 0; i <= steps; i++) {
+        const u = i / steps;
+        const phiC = 2 * Math.PI * cCycles * u - 12 * phase;
+        const y = y1 - amp * 0.85 * Math.sin(phiC);
+        const x = padLeft + u * plotW;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // 2. Draw Modulating Signal m(t) (b)
+      ctx.strokeStyle = "#34d399";
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      for (let i = 0; i <= steps; i++) {
+        const u = i / steps;
+        const phiM = 2 * Math.PI * mCycles * u - phase;
+        const y = y2 - amp * 0.85 * Math.sin(phiM);
+        const x = padLeft + u * plotW;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // 3. Draw Resultant Modulated Signal (c)
+      ctx.strokeStyle = "#f472b6";
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+
+      const normScale = mode === "AM" ? 1 / (1 + Math.max(1, modIndex)) : 1;
+
+      for (let i = 0; i <= steps; i++) {
+        const u = i / steps;
+        const phiM = 2 * Math.PI * mCycles * u - phase;
+        const phiC = 2 * Math.PI * cCycles * u - 12 * phase;
+        const m = Math.sin(phiM);
+
+        let val = 0;
+        if (mode === "AM") {
+          val = (1 + modIndex * m) * normScale * Math.sin(phiC);
+        } else if (mode === "DSBSC") {
+          val = Math.min(1, modIndex) * m * Math.sin(phiC);
+        } else if (mode === "FM") {
+          const beta = modIndex * 6;
+          val = 0.88 * Math.sin(phiC - beta * Math.cos(phiM));
+        }
+
+        const y = y3 - amp * 1.15 * val;
+        const x = padLeft + u * plotW;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // 4. Draw Upper & Lower Envelope for AM / DSB-SC
+      if (showEnvelope && (mode === "AM" || mode === "DSBSC")) {
+        ctx.save();
+        ctx.strokeStyle = "#fbbf24";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+
+        // Upper envelope
+        ctx.beginPath();
+        for (let i = 0; i <= steps; i++) {
+          const u = i / steps;
+          const phiM = 2 * Math.PI * mCycles * u - phase;
+          const m = Math.sin(phiM);
+          const env =
+            mode === "AM"
+              ? (1 + modIndex * m) * normScale
+              : Math.min(1, modIndex) * m;
+          const y = y3 - amp * 1.15 * env;
+          const x = padLeft + u * plotW;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Lower envelope
+        ctx.beginPath();
+        for (let i = 0; i <= steps; i++) {
+          const u = i / steps;
+          const phiM = 2 * Math.PI * mCycles * u - phase;
+          const m = Math.sin(phiM);
+          const env =
+            mode === "AM"
+              ? -(1 + modIndex * m) * normScale
+              : -Math.min(1, modIndex) * m;
+          const y = y3 - amp * 1.15 * env;
+          const x = padLeft + u * plotW;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      if (isPlaying) {
+        phase += 0.025;
+      }
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
