@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "403 Communication system '3+1'/Communication system.md",
+                "file": "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Communication system"
+              "title": "Chapter 1 - Introduction to Communication Systems & Signals"
             }
           },
           {
@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -281,11 +281,11 @@
       }
     ]
   },
-  "active": "14921c5ec6ca6dee",
+  "active": "8875e05378ca1113",
   "lastOpenFiles": [
-    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Systems/Chapter 2 -NOISE.md",
+    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Dashboard.md",
     "Communication Daily Class Note.md",
     "Stat Daily Class Note.md",

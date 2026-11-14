@@ -1,4 +1,20 @@
-![[Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png]]
+```mermaid
+flowchart LR
+    IS["Information<br>source"] --> TX["Transmitter"]
+    TX --> CH["Channel"]
+    CH --> RX["Receiver"]
+    RX --> DEST["Destination"]
+    NS["Noise source"] --> CH
+
+    IS ~~~ L1["Encoding<br>modulation<br>(distortion)"]
+    TX ~~~ L2["(distortion)"]
+    CH ~~~ L3["Decoding<br>demodulation<br>(distortion)"]
+
+    style L1 fill:none,stroke:none
+    style L2 fill:none,stroke:none
+    style L3 fill:none,stroke:none
+```
+*Fig. 1.1 Block diagram of a communication system.*
 
 This physical manifestation of the information is termed as messege signal
 
