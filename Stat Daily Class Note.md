@@ -1,7 +1,7 @@
 
 # 8 November class 1 
 
-![[IMG_20261110_112229.jpg|200]]![[IMG_20261110_112233.jpg|200]]
+![[IMG_20261110_112229.webp|200]]![[IMG_20261110_112233.webp|200]]
 
 Class Notes: Statistics Fundamentals
 
@@ -54,8 +54,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 # 10 November class 2
-![[JPEG_20261111_055659_8646015617116971960.jpg| 200]]
-![[JPEG_20261111_055804_3730326127798271696.jpg| 200]]
+![[JPEG_20261111_055659_8646015617116971960.webp| 200]]
+![[JPEG_20261111_055804_3730326127798271696.webp| 200]]
 ## Topic: 
 ### Today's Class Notes: Basic Statistics
 
@@ -101,7 +101,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 # 12 November Class 3
-![[IMG_20261112_114640.jpg|100]]![[IMG_20261112_114645.jpg|100]]![[IMG_20261112_114650.jpg|100]]![[IMG_20261112_114653.jpg|100]]
+![[IMG_20261112_114640.webp|100]]![[IMG_20261112_114645.webp|100]]![[IMG_20261112_114650.webp|100]]![[IMG_20261112_114653.webp|100]]
 
 ### Class Notes: Statistics - Central Tendency & Dispersion
 
