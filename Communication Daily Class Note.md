@@ -135,6 +135,7 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	
 	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
 
-# nth NOVEMBER CLASS 2 
+# 15 th NOVEMBER CLASS 3 
+![[JPEG_20261115_123559_2333545626851866127.webp|340x453]]
 
 
