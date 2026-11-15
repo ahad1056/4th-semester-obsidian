@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Communication Daily Class Note.md",
+                "file": "Machine Daily Class Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Communication Daily Class Note"
+              "title": "Machine Daily Class Notes"
             }
           }
         ]
@@ -183,16 +183,17 @@
   },
   "active": "447008354c625eeb",
   "lastOpenFiles": [
+    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "Dashboard.md",
+    "ANIMATIONS AND HTML/electromagnetism_relativistic_origin_explorer.html",
+    "Communication Daily Class Note.md",
     "JPEG_20261115_123559_2333545626851866127.webp",
     "403 Communication system '3+1'/Communication system.md",
-    "Dashboard.md",
     "Machine Daily Class Notes.md",
-    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "JPEG_20261115_112907_381189162920160358.webp",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Stat Daily Class Note.md",
     "Solid State Daily Class Note.md",
-    "Communication Daily Class Note.md",
     "LAW daily class notes.md",
     "Communication Systems/Important Maths.md",
     "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
@@ -206,7 +207,6 @@
     "JPEG_20261114_063121_121283097199539596.webp",
     "JPEG_20261114_063016_4981269745741362525.webp",
     "JPEG_20261114_062922_9169810200648240814.webp",
-    "JPEG_20261111_103927_1828953819829583125.webp",
     "ANIMATIONS AND HTML",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
@@ -227,7 +227,6 @@
     "Untitled.base",
     "Communication Systems",
     "305 Statistics",
-    "491 Professional Law and Ethics '3'",
-    "481 Statistics and Probability '3'"
+    "491 Professional Law and Ethics '3'"
   ]
 }
