@@ -11,10 +11,14 @@
             "id": "447008354c625eeb",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Dashboard.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Dashboard"
             }
           }
         ]
@@ -179,11 +183,13 @@
   },
   "active": "447008354c625eeb",
   "lastOpenFiles": [
-    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "403 Communication system '3+1'/Communication system.md",
     "Dashboard.md",
-    "Stat Daily Class Note.md",
+    "Machine Daily Class Notes.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "JPEG_20261115_112907_381189162920160358.webp",
+    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
+    "Stat Daily Class Note.md",
     "Solid State Daily Class Note.md",
     "Communication Daily Class Note.md",
     "LAW daily class notes.md",
@@ -200,7 +206,6 @@
     "JPEG_20261114_063016_4981269745741362525.webp",
     "JPEG_20261114_062922_9169810200648240814.webp",
     "JPEG_20261111_103927_1828953819829583125.webp",
-    "JPEG_20261111_063619_3092808849562626665.webp",
     "ANIMATIONS AND HTML",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
@@ -215,11 +220,9 @@
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "481 Statistics and Probability '3'/statistics and probability.md",
-    "Machine Daily Class Notes.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
     "Electrical Machines",
-    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
     "Untitled.base",
     "Communication Systems",
     "305 Statistics",

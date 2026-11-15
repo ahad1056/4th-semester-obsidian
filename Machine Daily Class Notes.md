@@ -29,3 +29,6 @@ Tags: #machine #magnetism #conductor #current #homework #class-notes
 
 
 
+
+# 13 November class 2 
+![[JPEG_20261115_112907_381189162920160358.webp|340x453]]
