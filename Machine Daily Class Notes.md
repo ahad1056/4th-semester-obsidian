@@ -38,6 +38,8 @@ Tags: #machine #magnetism #conductor #current #homework #class-notes
 ## Rotating Magnetic Field
 - The main topic discussed is the rotating magnetic field .
 - Exam/Study Focus: You need to learn the proof that a 3-phase system produces a rotating magnetic field .
+- ANIMATION
+ - ![[rotating_magnetic_field_3_phase_visualizer.html]]
 
 ## Project Work
 - Assigned project: Making a Generator .

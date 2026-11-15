@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Magnetic Field (3-Phase) Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: {
+                            bg: '#161618',
+                            surface: '#1e1e22',
+                            border: '#2e2e34',
+                            accent: '#7c3aed',
+                            accentHover: '#8b5cf6',
+                            text: '#dcddde',
+                            muted: '#8e8e93'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: #111113;
+            color: #dcddde;
+            overflow: hidden;
+            user-select: none;
+        }
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #8b5cf6;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+            transition: transform 0.1s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #2e2e34;
+            border-radius: 2px;
+        }
+        canvas {
+            display: block;
+            touch-action: none;
+        }
+        .glass-panel {
+            background: rgba(24, 24, 28, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid #2e2e34;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161618;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e2e34;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col font-sans antialiased selection:bg-purple-500/30">
+
+    <!-- Compact Top Bar -->
+    <header class="border-b border-obsidian-border bg-obsidian-surface/95 z-30 px-3 py-2 flex items-center justify-between gap-2 shrink-0">
+        <!-- View Switcher Tabs -->
+        <div class="flex bg-obsidian-bg p-1 rounded-lg border border-obsidian-border">
+            <button id="tab-sim" onclick="switchMode('sim')" class="px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-purple-600 text-white shadow-sm">
+                1. Stator & Phasor
+            </button>
+            <button id="tab-proof" onclick="switchMode('proof')" class="px-2.5 py-1 rounded-md text-xs font-medium transition-all text-obsidian-muted hover:text-white">
+                2. Exam Proof (Step-by-Step)
+            </button>
+        </div>
+
+        <!-- Right Controls: Unfold Drawer Button & Copy -->
+        <div class="flex items-center gap-2">
+            <button onclick="toggleDrawer()" id="drawer-toggle-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-xs font-medium text-purple-300 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+                <span id="drawer-btn-label">Controls & Proof</span>
+            </button>
+
+            <button onclick="copyObsidianNote()" title="Copy Exam Proof Callout for Obsidian" class="p-1.5 rounded-lg bg-obsidian-bg hover:bg-obsidian-border border border-obsidian-border text-obsidian-muted hover:text-white transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 z-50 transform translate-y-20 opacity-0 transition-all duration-300 glass-panel px-3.5 py-2.5 rounded-xl shadow-2xl border-purple-500/50 flex items-center gap-2 text-xs text-white">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="toast-msg">Copied Exam Proof to clipboard!</span>
+    </div>
+
+    <!-- Main Full-Bleed Animation Area -->
+    <main class="flex-1 relative w-full h-full overflow-hidden">
+
+        <!-- VIEW 1: FULL-SCREEN ROTATING MAGNETIC FIELD ANIMATION -->
+        <section id="view-sim" class="w-full h-full relative bg-[#111113]">
+            <canvas id="rmf-canvas" class="w-full h-full"></canvas>
+
+            <!-- Minimal Floating Angle Pill (Top Left) -->
+            <div class="absolute top-3 left-3 pointer-events-none flex flex-wrap items-center gap-1.5">
+                <div class="px-2.5 py-1 rounded-lg glass-panel text-purple-300 text-[11px] font-mono font-semibold" id="floating-angle-pill">
+                    ωt = 0°
+                </div>
+                <div class="px-2.5 py-1 rounded-lg glass-panel text-emerald-400 text-[11px] font-mono font-semibold">
+                    |Φ_net| = 1.5 Φm (Constant)
+                </div>
+            </div>
+
+            <!-- Minimal Floating Quick Controls (Bottom Center) -->
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1 glass-panel p-1 rounded-xl shadow-lg whitespace-nowrap">
+                <button onclick="togglePlayPause()" id="play-pause-btn" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-purple-600 text-white transition-all">
+                    ⏸ Pause
+                </button>
+                <button onclick="snapToAngle(0)" class="px-2 py-1 rounded-lg text-[11px] font-mono text-gray-300 hover:bg-white/10 transition-colors">0°</button>
+                <button onclick="snapToAngle(60)" class="px-2 py-1 rounded-lg text-[11px] font-mono text-gray-300 hover:bg-white/10 transition-colors">60°</button>
+                <button onclick="snapToAngle(90)" class="px-2 py-1 rounded-lg text-[11px] font-mono text-gray-300 hover:bg-white/10 transition-colors">90°</button>
+                <button onclick="snapToAngle(120)" class="px-2 py-1 rounded-lg text-[11px] font-mono text-gray-300 hover:bg-white/10 transition-colors">120°</button>
+                <button onclick="togglePhaseSequence()" class="px-2 py-1 rounded-lg text-[11px] font-medium text-amber-300 hover:bg-white/10 transition-colors" title="Swap any two phases to reverse rotation">
+                    ⇄ Reverse
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW 2: FULL EXAM / STUDY PROOF VIEW -->
+        <section id="view-proof" class="hidden w-full h-full overflow-y-auto bg-[#111113] p-4 sm:p-6">
+            <div class="max-w-2xl mx-auto space-y-4 pb-10">
+                <div class="glass-panel p-4 rounded-xl border-purple-500/30">
+                    <div class="text-[11px] font-mono uppercase tracking-wider text-purple-400 mb-1">Exam Study Derivation</div>
+                    <h2 class="text-base sm:text-lg font-bold text-white">Proof: A Balanced 3-Phase System Produces a Rotating Magnetic Field</h2>
+                    <p class="text-xs text-obsidian-muted mt-1 leading-relaxed">
+                        Consider a 3-phase stator having three identical windings (<span class="text-rose-400 font-semibold">R</span>, <span class="text-amber-400 font-semibold">Y</span>, <span class="text-cyan-400 font-semibold">B</span>) displaced in space by <strong>120°</strong>, fed by balanced 3-phase currents displaced in time by <strong>120°</strong>.
+                    </p>
+                </div>
+
+                <!-- Step 1: Instantaneous Flux Equations -->
+                <div class="glass-panel p-4 rounded-xl space-y-2">
+                    <div class="text-xs font-bold text-purple-300">Step 1: Instantaneous Alternating Fluxes</div>
+                    <p class="text-xs text-obsidian-muted">Each phase winding produces a pulsating sinusoidal flux along its own magnetic axis:</p>
+                    <div class="bg-obsidian-bg p-3 rounded-lg border border-obsidian-border font-mono text-xs space-y-1.5">
+                        <div class="text-rose-400">Φ_R = Φm · sin(ωt)           ∠ 0°</div>
+                        <div class="text-amber-400">Φ_Y = Φm · sin(ωt − 120°)   ∠ −120°</div>
+                        <div class="text-cyan-400">Φ_B = Φm · sin(ωt − 240°)   ∠ −240°</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Graphical / Case-by-Case Proof (Standard Exam Method) -->
+                <div class="glass-panel p-4 rounded-xl space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="text-xs font-bold text-purple-300">Step 2: Resultant Flux (Φ_net) at Key Instants</div>
+                        <span class="text-[10px] font-mono text-obsidian-muted">Click an instant to inspect in animation</span>
+                    </div>
+
+                    <!-- Case 1: wt = 0 -->
+                    <div onclick="inspectProofCase(0)" class="cursor-pointer bg-obsidian-bg hover:border-purple-500/50 p-3 rounded-lg border border-obsidian-border transition-colors space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-white">Case I: When ωt = 0°</span>
+                            <span class="text-[11px] font-mono text-purple-400">Inspect ↗</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-gray-300 space-y-0.5">
+                            <div>• Φ_R = Φm · sin(0°) = <span class="text-rose-400">0</span></div>
+                            <div>• Φ_Y = Φm · sin(−120°) = <span class="text-amber-400">−(√3/2) Φm</span></div>
+                            <div>• Φ_B = Φm · sin(−240°) = <span class="text-cyan-400">+(√3/2) Φm</span></div>
+                            <div class="pt-1 text-emerald-400 font-semibold">Resultant: Φ_net = 2 · (√3/2 Φm) · cos(30°) = 1.5 Φm (at 90° / Vertical)</div>
+                        </div>
+                    </div>
+
+                    <!-- Case 2: wt = 60 -->
+                    <div onclick="inspectProofCase(60)" class="cursor-pointer bg-obsidian-bg hover:border-purple-500/50 p-3 rounded-lg border border-obsidian-border transition-colors space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-white">Case II: When ωt = 60°</span>
+                            <span class="text-[11px] font-mono text-purple-400">Inspect ↗</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-gray-300 space-y-0.5">
+                            <div>• Φ_R = Φm · sin(60°) = <span class="text-rose-400">+(√3/2) Φm</span></div>
+                            <div>• Φ_Y = Φm · sin(−60°) = <span class="text-amber-400">−(√3/2) Φm</span></div>
+                            <div>• Φ_B = Φm · sin(−180°) = <span class="text-cyan-400">0</span></div>
+                            <div class="pt-1 text-emerald-400 font-semibold">Resultant: Φ_net = 1.5 Φm (Rotated by 60° clockwise!)</div>
+                        </div>
+                    </div>
+
+                    <!-- Case 3: wt = 120 -->
+                    <div onclick="inspectProofCase(120)" class="cursor-pointer bg-obsidian-bg hover:border-purple-500/50 p-3 rounded-lg border border-obsidian-border transition-colors space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-white">Case III: When ωt = 120°</span>
+                            <span class="text-[11px] font-mono text-purple-400">Inspect ↗</span>
+                        </div>
+                        <div class="font-mono text-[11px] text-gray-300 space-y-0.5">
+                            <div>• Φ_R = Φm · sin(120°) = <span class="text-rose-400">+(√3/2) Φm</span></div>
+                            <div>• Φ_Y = Φm · sin(0°) = <span class="text-amber-400">0</span></div>
+                            <div>• Φ_B = Φm · sin(−120°) = <span class="text-cyan-400">−(√3/2) Φm</span></div>
+                            <div class="pt-1 text-emerald-400 font-semibold">Resultant: Φ_net = 1.5 Φm (Rotated by 120°!)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Analytical Vector Proof -->
+                <div class="glass-panel p-4 rounded-xl space-y-2">
+                    <div class="text-xs font-bold text-purple-300">Step 3: General Analytical Vector Proof (For Any Angle ωt)</div>
+                    <p class="text-xs text-obsidian-muted leading-relaxed">
+                        Resolving all three space phasors into horizontal (x) and vertical (y) components:
+                    </p>
+                    <div class="bg-obsidian-bg p-3 rounded-lg border border-obsidian-border font-mono text-[11px] text-gray-300 space-y-1.5">
+                        <div>Φ_x = Φ_R·cos(0°) + Φ_Y·cos(120°) + Φ_B·cos(240°)</div>
+                        <div>Φ_x = Φm[sin(ωt) − ½sin(ωt−120°) − ½sin(ωt−240°)] = <span class="text-purple-400">1.5 Φm · sin(ωt)</span></div>
+                        <div class="pt-1">Φ_y = Φ_R·sin(0°) + Φ_Y·sin(120°) + Φ_B·sin(240°)</div>
+                        <div>Φ_y = Φm[0 + (√3/2)sin(ωt−120°) − (√3/2)sin(ωt−240°)] = <span class="text-purple-400">−1.5 Φm · cos(ωt)</span></div>
+                        <div class="pt-2 border-t border-obsidian-border text-emerald-400 font-semibold">
+                            Magnitude: |Φ_net| = √(Φ_x² + Φ_y²) = 1.5 Φm (Constant!)<br>
+                            Angle: θ = tan⁻¹(Φ_y / Φ_x) = ωt − 90° (Rotates at synchronous speed Ns = 120f/P!)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNFOLDABLE SLIDE-OVER DRAWER (Hidden by default so ONLY animation shows!) -->
+        <aside id="unfold-drawer" class="hidden absolute top-0 right-0 h-full w-full sm:w-96 glass-panel border-l border-obsidian-border z-20 flex flex-col shadow-2xl">
+            <div class="px-4 py-3 border-b border-obsidian-border flex items-center justify-between shrink-0">
+                <span class="text-xs font-semibold uppercase tracking-wider text-purple-400">Controls & Live Phasors</span>
+                <button onclick="toggleDrawer()" class="p-1 rounded-lg hover:bg-white/10 text-obsidian-muted hover:text-white transition-colors" title="Fold Panel">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Angle & Speed Sliders -->
+                <div class="bg-obsidian-bg p-3.5 rounded-xl border border-obsidian-border space-y-3.5">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5">
+                            <label class="font-medium text-gray-300">Electrical Angle (ωt)</label>
+                            <span id="angle-val-readout" class="font-mono text-purple-400 font-semibold">0°</span>
+                        </div>
+                        <input type="range" id="angle-slider" min="0" max="360" step="1" value="0" class="w-full">
+                        <div class="flex justify-between text-[10px] text-obsidian-muted mt-1">
+                            <span>0°</span>
+                            <span>120°</span>
+                            <span>240°</span>
+                            <span>360°</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs mb-1.5">
+                            <label class="font-medium text-gray-300">Rotation Speed (ω)</label>
+                            <span id="speed-val-readout" class="font-mono text-cyan-400 font-semibold">1.0x</span>
+                        </div>
+                        <input type="range" id="speed-slider" min="0.2" max="3.0" step="0.2" value="1.0" class="w-full">
+                    </div>
+
+                    <div class="pt-2 border-t border-obsidian-border/60 flex items-center justify-between">
+                        <span class="text-xs text-gray-300">Show Component Vectors (Φ_R, Φ_Y, Φ_B)</span>
+                        <input type="checkbox" id="toggle-components" checked class="w-4 h-4 accent-purple-600 rounded cursor-pointer">
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-300">Show 3-Phase Sine Waves</span>
+                        <input type="checkbox" id="toggle-waves" checked class="w-4 h-4 accent-purple-600 rounded cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Live Instantaneous Flux Values -->
+                <div class="bg-obsidian-bg p-3.5 rounded-xl border border-obsidian-border space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-obsidian-muted">Live Flux Values</span>
+                        <span id="seq-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950/60 text-purple-300 border border-purple-500/30">Seq: R-Y-B (CW)</span>
+                    </div>
+
+                    <div class="space-y-1.5 font-mono text-xs">
+                        <div class="flex justify-between p-2 rounded-lg bg-obsidian-surface border border-obsidian-border">
+                            <span class="text-rose-400">Φ_R = Φm·sin(ωt)</span>
+                            <span id="flux-r-val" class="text-white font-semibold">0.00 Φm</span>
+                        </div>
+                        <div class="flex justify-between p-2 rounded-lg bg-obsidian-surface border border-obsidian-border">
+                            <span class="text-amber-400">Φ_Y = Φm·sin(ωt−120°)</span>
+                            <span id="flux-y-val" class="text-white font-semibold">-0.87 Φm</span>
+                        </div>
+                        <div class="flex justify-between p-2 rounded-lg bg-obsidian-surface border border-obsidian-border">
+                            <span class="text-cyan-400">Φ_B = Φm·sin(ωt−240°)</span>
+                            <span id="flux-b-val" class="text-white font-semibold">+0.87 Φm</span>
+                        </div>
+                        <div class="flex justify-between p-2 rounded-lg bg-emerald-950/30 border border-emerald-500/40">
+                            <span class="text-emerald-400 font-bold">Resultant |Φ_net|</span>
+                            <span class="text-emerald-300 font-bold">1.50 Φm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Exam Summary Card -->
+                <div class="bg-obsidian-bg p-3.5 rounded-xl border border-purple-500/30 space-y-1.5">
+                    <h3 class="text-xs font-bold text-purple-300">Key Exam Takeaways</h3>
+                    <ul class="text-xs text-gray-300 space-y-1.5 list-disc pl-4 leading-relaxed">
+                        <li><strong>Constant Magnitude:</strong> The resultant flux always has a constant peak value of <strong>1.5 Φm</strong>.</li>
+                        <li><strong>Synchronous Speed:</strong> It rotates smoothly at <strong>Ns = 120f / P</strong> rpm.</li>
+                        <li><strong>Direction Reversal:</strong> Swapping any two supply phases (e.g., Y and B) reverses the direction of rotation.</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        // ==========================================
+        // 1. UI & DRAWER STATE MANAGEMENT
+        // ==========================================
+        let activeMode = 'sim';
+        let drawerOpen = false;
+        let isPlaying = true;
+        let angleDeg = 0; // Electrical angle wt in degrees (0 to 360)
+        let speedMult = 1.0;
+        let phaseSequence = 'RYB'; // 'RYB' (Clockwise) or 'RBY' (Counter-Clockwise)
+        let showComponents = true;
+        let showWaves = true;
+
+        function toggleDrawer() {
+            drawerOpen = !drawerOpen;
+            const drawer = document.getElementById('unfold-drawer');
+            const label = document.getElementById('drawer-btn-label');
+            const btn = document.getElementById('drawer-toggle-btn');
+
+            if (drawerOpen) {
+                drawer.classList.remove('hidden');
+                label.textContent = 'Fold Panel';
+                btn.classList.add('bg-purple-600', 'text-white');
+                btn.classList.remove('bg-purple-600/20', 'text-purple-300');
+            } else {
+                drawer.classList.add('hidden');
+                label.textContent = 'Controls & Proof';
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-purple-600/20', 'text-purple-300');
+            }
+        }
+
+        function switchMode(mode) {
+            activeMode = mode;
+            const viewSim = document.getElementById('view-sim');
+            const viewProof = document.getElementById('view-proof');
+            const tabSim = document.getElementById('tab-sim');
+            const tabProof = document.getElementById('tab-proof');
+
+            if (mode === 'sim') {
+                viewSim.classList.remove('hidden');
+                viewProof.classList.add('hidden');
+                tabSim.className = "px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-purple-600 text-white shadow-sm";
+                tabProof.className = "px-2.5 py-1 rounded-md text-xs font-medium transition-all text-obsidian-muted hover:text-white";
+                requestAnimationFrame(resizeCanvas);
+            } else {
+                viewSim.classList.add('hidden');
+                viewProof.classList.remove('hidden');
+                tabProof.className = "px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-purple-600 text-white shadow-sm";
+                tabSim.className = "px-2.5 py-1 rounded-md text-xs font-medium transition-all text-obsidian-muted hover:text-white";
+            }
+        }
+
+        function inspectProofCase(deg) {
+            switchMode('sim');
+            snapToAngle(deg);
+        }
+
+        function togglePlayPause() {
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('play-pause-btn');
+            btn.textContent = isPlaying ? '⏸ Pause' : '▶ Play';
+        }
+
+        function snapToAngle(deg) {
+            isPlaying = false;
+            document.getElementById('play-pause-btn').textContent = '▶ Play';
+            angleDeg = deg;
+            document.getElementById('angle-slider').value = deg;
+            updateReadouts();
+        }
+
+        function togglePhaseSequence() {
+            phaseSequence = phaseSequence === 'RYB' ? 'RBY' : 'RYB';
+            const seqBadge = document.getElementById('seq-badge');
+            seqBadge.textContent = phaseSequence === 'RYB' ? 'Seq: R-Y-B (CW)' : 'Seq: R-B-Y (CCW)';
+            showToast(phaseSequence === 'RYB' ? 'Phase Sequence: R-Y-B (Clockwise)' : 'Swapped Y & B → Reversed (CCW)');
+            updateReadouts();
+        }
+
+        function copyObsidianNote() {
+            const markdown = `> [!abstract] Proof: Rotating Magnetic Field in a 3-Phase System
+> - **3-Phase Pulsating Fluxes:**
+>   - $\\Phi_R = \\Phi_m \\sin(\\omega t) \\angle 0^\\circ$
+>   - $\\Phi_Y = \\Phi_m \\sin(\\omega t - 120^\\circ) \\angle -120^\\circ$
+>   - $\\Phi_B = \\Phi_m \\sin(\\omega t - 240^\\circ) \\angle -240^\\circ$
+> - **Key Exam Instants:**
+>   - At $\\omega t = 0^\\circ$: $\\Phi_R = 0,\\ \\Phi_Y = -\\frac{\\sqrt{3}}{2}\\Phi_m,\\ \\Phi_B = +\\frac{\\sqrt{3}}{2}\\Phi_m \\implies \\Phi_{\\text{net}} = 1.5\\Phi_m$
+>   - At $\\omega t = 60^\\circ$: $\\Phi_{\\text{net}} = 1.5\\Phi_m$ (rotated by $60^\\circ$)
+>   - At $\\omega t = 120^\\circ$: $\\Phi_{\\text{net}} = 1.5\\Phi_m$ (rotated by $120^\\circ$)
+> - **Conclusion:** Resultant flux has a constant magnitude of **$1.5\\Phi_m$** and rotates at synchronous speed $N_s = \\frac{120f}{P}$.`;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = markdown;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Exam Proof copied for Obsidian!");
+            } catch (err) {
+                showToast("Failed to copy text.");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2800);
+        }
+
+        // ==========================================
+        // 2. CANVAS SIMULATION (STATOR + PHASORS + WAVES)
+        // ==========================================
+        let canvas, ctx;
+
+        function initCanvas() {
+            canvas = document.getElementById('rmf-canvas');
+            ctx = canvas.getContext('2d');
+
+            document.getElementById('angle-slider').addEventListener('input', (e) => {
+                isPlaying = false;
+                document.getElementById('play-pause-btn').textContent = '▶ Play';
+                angleDeg = parseFloat(e.target.value);
+                updateReadouts();
+            });
+
+            document.getElementById('speed-slider').addEventListener('input', (e) => {
+                speedMult = parseFloat(e.target.value);
+                document.getElementById('speed-val-readout').textContent = `${speedMult.toFixed(1)}x`;
+            });
+
+            document.getElementById('toggle-components').addEventListener('change', (e) => {
+                showComponents = e.target.checked;
+            });
+
+            document.getElementById('toggle-waves').addEventListener('change', (e) => {
+                showWaves = e.target.checked;
+            });
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            updateReadouts();
+            animate();
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width || window.innerWidth;
+            const h = rect.height || (window.innerHeight - 45);
+            if (w === 0 || h === 0) return;
+            canvas.width = w * window.devicePixelRatio;
+            canvas.height = h * window.devicePixelRatio;
+            ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+        }
+
+        function getFluxValues(deg) {
+            const rad = (deg * Math.PI) / 180;
+            const phaseShiftY = phaseSequence === 'RYB' ? -120 : -240;
+            const phaseShiftB = phaseSequence === 'RYB' ? -240 : -120;
+
+            const fR = Math.sin(rad);
+            const fY = Math.sin(rad + (phaseShiftY * Math.PI) / 180);
+            const fB = Math.sin(rad + (phaseShiftB * Math.PI) / 180);
+
+            return { fR, fY, fB };
+        }
+
+        function updateReadouts() {
+            const roundedDeg = Math.round(angleDeg) % 360;
+            document.getElementById('angle-val-readout').textContent = `${roundedDeg}°`;
+            document.getElementById('floating-angle-pill').textContent = `ωt = ${roundedDeg}°`;
+
+            const { fR, fY, fB } = getFluxValues(angleDeg);
+            document.getElementById('flux-r-val').textContent = `${fR >= 0 ? '+' : ''}${fR.toFixed(2)} Φm`;
+            document.getElementById('flux-y-val').textContent = `${fY >= 0 ? '+' : ''}${fY.toFixed(2)} Φm`;
+            document.getElementById('flux-b-val').textContent = `${fB >= 0 ? '+' : ''}${fB.toFixed(2)} Φm`;
+        }
+
+        function drawArrow(ctx, fromX, fromY, toX, toY, color, width = 3, headLen = 10) {
+            const dx = toX - fromX;
+            const dy = toY - fromY;
+            const len = Math.hypot(dx, dy);
+            if (len < 3) return;
+
+            const angle = Math.atan2(dy, dx);
+            ctx.save();
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+            ctx.lineCap = 'round';
+
+            ctx.beginPath();
+            ctx.moveTo(fromX, fromY);
+            ctx.lineTo(toX, toY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(toX, toY);
+            ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawCoilTerminal(ctx, x, y, color, label, currentVal) {
+            // Outer coil ring
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, y, 14, 0, Math.PI * 2);
+            ctx.fillStyle = '#18181c';
+            ctx.fill();
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = color;
+            ctx.stroke();
+
+            // Dot (out of page) or Cross (into page) based on instantaneous current
+            if (Math.abs(currentVal) > 0.08) {
+                ctx.fillStyle = color;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                if (currentVal > 0) {
+                    // Dot
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4.5 * Math.min(1, Math.abs(currentVal) + 0.3), 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    // Cross
+                    const s = 5.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x - s, y - s);
+                    ctx.lineTo(x + s, y + s);
+                    ctx.moveTo(x + s, y - s);
+                    ctx.lineTo(x - s, y + s);
+                    ctx.stroke();
+                }
+            }
+
+            // Label
+            ctx.fillStyle = color;
+            ctx.font = 'bold 11px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label, x, y - 22);
+            ctx.restore();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (activeMode !== 'sim' || !ctx) return;
+
+            if (isPlaying) {
+                angleDeg = (angleDeg + 0.9 * speedMult) % 360;
+                document.getElementById('angle-slider').value = Math.round(angleDeg);
+                updateReadouts();
+            }
+
+            const w = canvas.width / window.devicePixelRatio;
+            const h = canvas.height / window.devicePixelRatio;
+            if (w === 0 || h === 0) return;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Responsive layout: split horizontally on wide screens, vertically on narrow Obsidian panes
+            const isLandscape = w > 640 && showWaves;
+            const statorCenterX = isLandscape ? w * 0.32 : w * 0.5;
+            const statorCenterY = showWaves ? (isLandscape ? h * 0.5 : h * 0.38) : h * 0.5;
+            const maxRadius = showWaves
+                ? (isLandscape ? Math.min(w * 0.22, h * 0.36) : Math.min(w * 0.34, h * 0.24))
+                : Math.min(w * 0.36, h * 0.36);
+            const statorRadius = Math.max(75, maxRadius);
+
+            const { fR, fY, fB } = getFluxValues(angleDeg);
+
+            // ==========================================
+            // PART A: STATOR & ROTATING MAGNETIC VECTOR
+            // ==========================================
+            ctx.save();
+
+            // Stator Core Ring
+            ctx.beginPath();
+            ctx.arc(statorCenterX, statorCenterY, statorRadius + 18, 0, Math.PI * 2);
+            ctx.strokeStyle = '#2e2e34';
+            ctx.lineWidth = 18;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(statorCenterX, statorCenterY, statorRadius + 9, 0, Math.PI * 2);
+            ctx.strokeStyle = '#3f3f46';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Constant 1.5 * Phi_m Reference Circle (Dashed)
+            const unitScale = statorRadius * 0.56;
+            const netRadius = 1.5 * unitScale;
+            ctx.beginPath();
+            ctx.arc(statorCenterX, statorCenterY, netRadius, 0, Math.PI * 2);
+            ctx.setLineDash([4, 4]);
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.35)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 3 Winding Magnetic Axes (0°, 120°, 240° in screen coords)
+            // Note: In standard diagrams, R axis is horizontal (0°), Y is 120° CCW, B is 240° CCW
+            const axes = [
+                { name: 'R', angleDeg: 0, color: '#f43f5e', val: fR },
+                { name: 'Y', angleDeg: -120, color: '#fbbf24', val: fY }, // Canvas Y is down, so -120° is upper-left
+                { name: 'B', angleDeg: -240, color: '#22d3ee', val: fB }  // -240° is lower-left
+            ];
+
+            axes.forEach(ax => {
+                const rad = (ax.angleDeg * Math.PI) / 180;
+                const cosA = Math.cos(rad);
+                const sinA = Math.sin(rad);
+
+                // Dashed Axis Line across stator
+                ctx.beginPath();
+                ctx.moveTo(statorCenterX - cosA * statorRadius, statorCenterY - sinA * statorRadius);
+                ctx.lineTo(statorCenterX + cosA * statorRadius, statorCenterY + sinA * statorRadius);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Stator Coil Terminals (R and R')
+                const coilDist = statorRadius + 18;
+                drawCoilTerminal(
+                    ctx,
+                    statorCenterX + cosA * coilDist,
+                    statorCenterY + sinA * coilDist,
+                    ax.color,
+                    `${ax.name}`,
+                    ax.val
+                );
+                drawCoilTerminal(
+                    ctx,
+                    statorCenterX - cosA * coilDist,
+                    statorCenterY - sinA * coilDist,
+                    ax.color,
+                    `${ax.name}'`,
+                    -ax.val
+                );
+
+                // Pulsating Individual Flux Phasor along its fixed spatial axis
+                if (showComponents && Math.abs(ax.val) > 0.03) {
+                    const vecLen = ax.val * unitScale;
+                    drawArrow(
+                        ctx,
+                        statorCenterX,
+                        statorCenterY,
+                        statorCenterX + cosA * vecLen,
+                        statorCenterY + sinA * vecLen,
+                        ax.color,
+                        2.5,
+                        8
+                    );
+                }
+            });
+
+            // Calculate Resultant Flux Vector (Sum of the 3 space vectors)
+            let netX = 0;
+            let netY = 0;
+            axes.forEach(ax => {
+                const rad = (ax.angleDeg * Math.PI) / 180;
+                netX += ax.val * unitScale * Math.cos(rad);
+                netY += ax.val * unitScale * Math.sin(rad);
+            });
+
+            // Glow trail behind resultant vector
+            const netAngle = Math.atan2(netY, netX);
+            const rotDir = phaseSequence === 'RYB' ? 1 : -1;
+            ctx.beginPath();
+            ctx.arc(
+                statorCenterX,
+                statorCenterY,
+                netRadius,
+                netAngle - rotDir * 0.65,
+                netAngle,
+                rotDir < 0
+            );
+            ctx.strokeStyle = 'rgba(16, 185, 129, 0.45)';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // Resultant Rotating Magnetic Field Vector (Phi_net = 1.5 * Phi_m)
+            drawArrow(
+                ctx,
+                statorCenterX,
+                statorCenterY,
+                statorCenterX + netX,
+                statorCenterY + netY,
+                '#10b981',
+                4,
+                12
+            );
+
+            // Label on Resultant Tip
+            ctx.fillStyle = '#34d399';
+            ctx.font = 'bold 11px JetBrains Mono';
+            ctx.textAlign = 'center';
+            ctx.fillText(
+                'Φ_net (1.5Φm)',
+                statorCenterX + netX * 1.18,
+                statorCenterY + netY * 1.18
+            );
+
+            // Center Pivot Dot
+            ctx.beginPath();
+            ctx.arc(statorCenterX, statorCenterY, 4.5, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+
+            ctx.restore();
+
+            // ==========================================
+            // PART B: 3-PHASE SINUSOIDAL WAVEFORMS
+            // ==========================================
+            if (showWaves) {
+                const waveLeft = isLandscape ? w * 0.62 : w * 0.08;
+                const waveRight = isLandscape ? w * 0.95 : w * 0.92;
+                const waveWidth = waveRight - waveLeft;
+                const waveCenterY = isLandscape ? h * 0.5 : h * 0.77;
+                const waveAmp = isLandscape ? h * 0.24 : h * 0.11;
+
+                ctx.save();
+
+                // Axis Lines
+                ctx.strokeStyle = '#2e2e34';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(waveLeft, waveCenterY);
+                ctx.lineTo(waveRight, waveCenterY);
+                ctx.moveTo(waveLeft, waveCenterY - waveAmp - 10);
+                ctx.lineTo(waveLeft, waveCenterY + waveAmp + 10);
+                ctx.stroke();
+
+                // Key Angle Markers (0°, 60°, 120°, 180°, 240°, 300°, 360°)
+                ctx.fillStyle = '#8e8e93';
+                ctx.font = '10px JetBrains Mono';
+                ctx.textAlign = 'center';
+                [0, 60, 120, 180, 240, 300, 360].forEach(degTick => {
+                    const xTick = waveLeft + (degTick / 360) * waveWidth;
+                    ctx.beginPath();
+                    ctx.moveTo(xTick, waveCenterY - 4);
+                    ctx.lineTo(xTick, waveCenterY + 4);
+                    ctx.stroke();
+                    ctx.fillText(`${degTick}°`, xTick, waveCenterY + waveAmp + 18);
+                });
+
+                // Plot the 3 Sinusoidal Waves
+                const waveConfigs = [
+                    { color: '#f43f5e', shift: 0 },
+                    { color: '#fbbf24', shift: phaseSequence === 'RYB' ? -120 : -240 },
+                    { color: '#22d3ee', shift: phaseSequence === 'RYB' ? -240 : -120 }
+                ];
+
+                waveConfigs.forEach(wc => {
+                    ctx.beginPath();
+                    ctx.strokeStyle = wc.color;
+                    ctx.lineWidth = 2;
+                    for (let px = 0; px <= waveWidth; px += 2) {
+                        const deg = (px / waveWidth) * 360;
+                        const val = Math.sin(((deg + wc.shift) * Math.PI) / 180);
+                        const y = waveCenterY - val * waveAmp;
+                        if (px === 0) ctx.moveTo(waveLeft + px, y);
+                        else ctx.lineTo(waveLeft + px, y);
+                    }
+                    ctx.stroke();
+                });
+
+                // Vertical Time Cursor Line at current wt
+                const cursorX = waveLeft + (angleDeg / 360) * waveWidth;
+                ctx.beginPath();
+                ctx.setLineDash([3, 3]);
+                ctx.strokeStyle = '#a855f7';
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(cursorX, waveCenterY - waveAmp - 8);
+                ctx.lineTo(cursorX, waveCenterY + waveAmp + 8);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Dots on the 3 waves at current wt
+                const dots = [
+                    { val: fR, color: '#f43f5e' },
+                    { val: fY, color: '#fbbf24' },
+                    { val: fB, color: '#22d3ee' }
+                ];
+                dots.forEach(d => {
+                    const dotY = waveCenterY - d.val * waveAmp;
+                    ctx.beginPath();
+                    ctx.arc(cursorX, dotY, 4.5, 0, Math.PI * 2);
+                    ctx.fillStyle = d.color;
+                    ctx.fill();
+                    ctx.strokeStyle = '#111113';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                });
+
+                ctx.restore();
+            }
+        }
+
+        window.onload = initCanvas;
+    </script>
+</body>
+</html>
