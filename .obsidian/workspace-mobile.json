@@ -11,14 +11,10 @@
             "id": "447008354c625eeb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Machine Daily Class Notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Machine Daily Class Notes"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -183,11 +179,11 @@
   },
   "active": "447008354c625eeb",
   "lastOpenFiles": [
+    "Machine Daily Class Notes.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Dashboard.md",
     "Stat Daily Class Note.md",
     "481 Statistics and Probability '3'/statistics and probability.md",
-    "Machine Daily Class Notes.md",
     "ANIMATIONS AND HTML/rotating_magnetic_field_3_phase_visualizer.html",
     "ANIMATIONS AND HTML/electromagnetism_relativistic_origin_explorer.html",
     "Communication Daily Class Note.md",
