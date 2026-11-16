@@ -417,6 +417,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 
+
+
 ---
 
 [^2]: যে উপাত্তগুলোকে বিভিন্ন নাম বা শ্রেণিতে ভাগ করা যায়, কিন্তু তাদের মধ্যে কোনো নির্দিষ্ট ক্রম বা Ranking থাকে না, তাকে Nominal Data বলে।
