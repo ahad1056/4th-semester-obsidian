@@ -168,6 +168,11 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 
 
+# 16 November class 4
+
+
+
+
 
 
 
