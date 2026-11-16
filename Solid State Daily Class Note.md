@@ -61,3 +61,5 @@ The whiteboard lists several top-tier publishers and scientific journals that ar
 
 ---
 Tags: #research #software #citation-manager #vesta #mendeley #zotero #journals #class-notes
+# 16 November class 3
+
