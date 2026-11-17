@@ -129,7 +129,7 @@ tags: [roadmap, 4th-semester, study-plan]
 ---
 
 ## 📈 Course 5: Probability, Statistics & Optimization (Pair C)
-- [x] `[Stat | M1]` Measures of Dispersion: Range, Mean deviation & Quartile deviation #Stat #W01 📅 2026-11-19 ✅ 2026-11-18
+- [ ] `[Stat | M1]` Measures of Dispersion: Range, Mean deviation & Quartile deviation #Stat #W01 📅 2026-11-19
 - [ ] `[Stat | M1]` Measures of Dispersion: Standard deviation & Coefficient of variation #Stat #W01 📅 2026-11-23
 - [ ] `[Stat | M2]` Probability: Basic concepts, conditional probability, independent events & Bayes theorem #Stat #W02 📅 2026-11-26
 - [ ] `[Stat | M2]` Distributions: Binomial distribution and its properties #Stat #W02 📅 2026-11-30
