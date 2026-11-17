@@ -9,4 +9,3 @@
 - [[491 Professional Law and Ethics - Course Index|491 Professional Law & Ethics]]
 
 
-![[Messenger_creation_EDF17EA4-C627-48D3-8183-29BD19C3447C.webp|340x255]]
