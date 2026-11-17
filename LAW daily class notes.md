@@ -32,3 +32,6 @@ _(Note: A reminder at the top indicates a "Next class - activity" is scheduled.)
 ---
 
 **Tags:** #law #contracts #intellectual-property #cyber-security #class-notes
+
+# 17 NOVEMBER CLASS 2
+![[JPEG_20261117_220951_2412896121477586978.webp|340x453]]
