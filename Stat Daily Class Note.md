@@ -223,7 +223,7 @@ The class worked through a full example to calculate these values .
 ---
 
 ## 💡 Exam Tip (Note from Khata)
-- **Probable Question Pattern:** You may be asked to write the definition of all data terms, followed by their formulas, and then list their Advantages and Disadvantages (সবগুলো Data এর সংজ্ঞা লিখতে হবে, তারপর সূত্র, তারপর Advantage, and Disadvantage) .
+- **Probable Question Pattern:** You may be asked to write the definition of all dispersion terms, followed by their formulas, and then list their Advantages and Disadvantages (সবগুলো dispersion এর সংজ্ঞা লিখতে হবে, তারপর সূত্র, তারপর Advantage, and Disadvantage) .
 
 ---
 **Tags:** #statistics #dispersion #mean-deviation #variance #standard-deviation #class-notes
