@@ -56,7 +56,7 @@
               "type": "markdown",
               "state": {
                 "file": "Dashboard.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -140,7 +140,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 630.5538444519043
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -257,12 +257,14 @@
   },
   "active": "c8b7ef99580eac05",
   "lastOpenFiles": [
+    "Daily_Note_Template.md",
+    "Dashboard.md",
+    "4th_Semester_Master_Roadmap.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "LAW daily class notes.md",
-    "Dashboard.md",
     "Stat Daily Class Note.md",
     "481 Statistics and Probability '3'/statistics and probability.md",
     "mechanical Daily Class Note.md",
@@ -299,9 +301,7 @@
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Course Syllabus Fundamentals of Mechanical Engineering (0715-461).md",
     "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "Mechanical Engineering/PREVIOUS YEAR original question.md",
     "Mechanical Engineering",
-    "481 Statistics and Probability '3'/PREVIOUS YEAR ANALYSED QUESTION 1.md",
     "Untitled.base",
     "Electrical Machines"
   ]
