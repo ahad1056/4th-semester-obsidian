@@ -87,4 +87,4 @@ Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
 
 # 17 November class 3
 
-![[JPEG_20261117_222308_6704982406139411476.webp|340x453]]
+![[JPEG_20261117_222806_3759878893920344629.webp|340x453]] ![[JPEG_20261117_222946_6793385384391749417.webp]]

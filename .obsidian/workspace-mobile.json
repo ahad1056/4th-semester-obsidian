@@ -158,9 +158,19 @@
           "icon": "lucide-list",
           "title": "Outline"
         }
+      },
+      {
+        "id": "ba298398de12c938",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {},
+          "icon": "git-pull-request",
+          "title": "Source Control"
+        }
       }
     ],
-    "currentTab": 0
+    "currentTab": 3
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -176,9 +186,13 @@
   },
   "active": "b1dc5f61da163ac7",
   "lastOpenFiles": [
-    "JPEG_20261117_222308_6704982406139411476.webp",
+    "JPEG_20261117_222946_6793385384391749417.webp",
+    "JPEG_20261117_222806_3759878893920344629.webp",
+    "JPEG_20261117_222613_968782934976373007.webp",
+    "JPEG_20261117_221324_1596615549641378074.webp",
     "mechanical Daily Class Note.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
+    "JPEG_20261117_222308_6704982406139411476.webp",
     "Dashboard.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Machine Daily Class Notes.md",
@@ -187,7 +201,6 @@
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Solid State Daily Class Note.md",
     "Messenger_creation_EDF17EA4-C627-48D3-8183-29BD19C3447C.webp",
-    "JPEG_20261117_221324_1596615549641378074.webp",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "LAW daily class notes.md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
@@ -214,8 +227,6 @@
     "Stat Daily Class Note-1794905624858.webp",
     "Stat Daily Class Note-1794905605442.webp",
     "Stat Daily Class Note-1794905586071.webp",
-    "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
-    "JPEG_20261117_071100_2301076191623287475.webp",
     "Mechanical Engineering",
     "Electrical Machines",
     "Communication Systems",
