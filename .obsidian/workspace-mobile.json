@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dashboard.md",
+                "file": "LAW daily class notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dashboard"
+              "title": "LAW daily class notes"
             }
           }
         ]
@@ -117,7 +117,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Dashboard.md",
+            "file": "LAW daily class notes.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -136,7 +136,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
-            "file": "Dashboard.md",
+            "file": "LAW daily class notes.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
@@ -150,7 +150,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "Dashboard.md",
+            "file": "LAW daily class notes.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
@@ -176,10 +176,12 @@
   },
   "active": "b1dc5f61da163ac7",
   "lastOpenFiles": [
-    "Untitled.canvas",
-    "LAW daily class notes.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "Dashboard.md",
+    "Stat Daily Class Note.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "Untitled.canvas",
+    "LAW daily class notes.md",
     "Mechanical Engineering/PREVIOUS YEAR original question.md",
     "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
@@ -196,7 +198,6 @@
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "403 Communication system '3+1'/Communication system.md",

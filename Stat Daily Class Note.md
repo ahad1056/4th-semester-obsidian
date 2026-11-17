@@ -475,7 +475,7 @@ The class worked through a full example to calculate these values .
 
 
 
-
+# footnotes 
 ---
 
 [^2]: যে উপাত্তগুলোকে বিভিন্ন নাম বা শ্রেণিতে ভাগ করা যায়, কিন্তু তাদের মধ্যে কোনো নির্দিষ্ট ক্রম বা Ranking থাকে না, তাকে Nominal Data বলে।
