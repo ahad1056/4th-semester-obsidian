@@ -90,7 +90,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -269,10 +269,10 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "986724fe8087bb0e",
+  "active": "c8b7ef99580eac05",
   "lastOpenFiles": [
-    "Solid State Daily Class Note.md",
     "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
+    "Solid State Daily Class Note.md",
     "Excalidraw",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Dashboard.md",

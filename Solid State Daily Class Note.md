@@ -72,6 +72,7 @@ Tags: #research #software #citation-manager #vesta #mendeley #zotero #journals #
 - Crystalline (which includes Single crystal).
 - Polycrystalline.
 - Amorphous.
+![[Drawing 2026-11-18 00.44.54.excalidraw|293]]
 
 
 ## Crystal Dimensions and Single Crystals
