@@ -86,4 +86,35 @@ Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
 
 # 17 November class 3
 
-![[JPEG_20261117_222806_3759878893920344629.webp|160]]      ![[JPEG_20261117_222946_6793385384391749417.webp|160]]
+![[JPEG_20261117_222806_3759878893920344629.webp|160]]       ![[JPEG_20261117_222946_6793385384391749417.webp|160]]  
+
+## Class Notes: Thermodynamics - Specific Heat Relations
+
+## 📌 Derivation: Relation between $C_p$ & $C_v$
+The primary focus of this note is proving Mayer's relation: **$C_p - C_v = R$**.
+
+### Initial Equations
+- Heat formulas: $Q = ms\Delta\theta$ and $Q = ml_f$.
+- For 1 mole of gas ($m=1$) at constant volume, taking specific heat $s = C_v$ and temperature change $\Delta\theta = dt$, the heat is defined as: $Q_1 = 1 \cdot C_v dt$.
+
+### Side Work (Ideal Gas Law)
+- $PV = nRT$
+- For $n=1$, taking the derivative with respect to temperature: $P dV = R dt$
+- Rearranging gives: $\frac{P dV}{dt} = R$
+
+### Main Proof Steps
+From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $C_p dT = C_v dT + P dV$):
+1. $C_p dT = C_v dT + P dV$
+2. $C_p dT - C_v dT = P dV$
+3. $(C_p - C_v) = P \frac{dV}{dt}$
+4. Substituting $\frac{P dV}{dt} = R$ into the equation gives the final relation:
+   **$C_p - C_v = R$**
+
+---
+
+## 💡 Exam Tip (পরীক্ষার জন্য গুরুত্বপূর্ণ)
+- **Important Proof:** You need to learn the proof for the gas equation at an adiabatic process. 
+- **Equation to prove:** $T^\gamma P^{1-\gamma} = \text{constant}$. *(Note: The handwritten exponent appears to represent the standard $T^\gamma P^{1-\gamma}$ adiabatic relation).*
+
+---
+**Tags:** #thermodynamics #specific-heat #mayers-relation #adiabatic-process #class-notes

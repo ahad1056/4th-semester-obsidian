@@ -58,5 +58,38 @@ Tags: #machine #magnetic-field #3-phase-system #generator-project #motor-improve
 
 
 # 17 November class 3 
-![[IMG_20261117_094535.webp|340x255]]![[IMG_20261117_094839.webp|340x255]]
-![[JPEG_20261117_221324_1596615549641378074.webp|340x453]]
+![[IMG_20261117_094535.webp|243]]![[IMG_20261117_094839.webp|234]]![[JPEG_20261117_221324_1596615549641378074.webp|135]] 
+
+## Class Notes: Machine II (Nov 17)
+
+## 📌 Magnetic Field & Lorentz Force
+- **Key Concept:** Deepmind. "Magnetic field এর দ্বারা নির্ভর করে কত current তৈরি আর কোন বস্তুটা তার উপর।" (The amount of current generated depends on the magnetic field and the object it acts upon.)
+- **Lorentz Force Equation:** 
+  $$F = q(\bar{v} \times \bar{B})$$
+- **Torque Dependency:** The notes ask, "টর্ক কিসের উপর নির্ভর করবে?" (What does torque depend on?) 
+  - The relationships noted are $T \propto \phi$ and $T \propto \text{something else}$ (possibly current, though illegible).
+
+## ⚙️ Motor Design & Construction
+- **Cooling Mechanism:** Metal casting shape is used on the outside (metal casting shape দিয়ে বাইরের shape বানায়). For cooling, a heat sink is used. The notes mention a "cooling fan" and "laminated sheet".
+- **Stator and Rotor:** Diagrams show the cross-section of a stator (with teeth/slots) and a cylindrical rotor.
+
+## 📊 Performance Parameters (Motor Evaluation)
+A list of factors for evaluating or designing a motor:
+1. Speed
+2. Efficiency
+3. Torque
+4. Cost
+5. User
+6. Maintenance
+7. Mechanical Strength
+
+## 🧮 Speed Equation
+The formula for synchronous speed is given as:
+$$N_s = \frac{120f}{P}$$
+- An example calculation is shown: $N = \frac{120 \times 50}{3} = 2000$ (assuming $f=50\text{ Hz}$ and $P=3$). Note: the calculation seems to be $\frac{120 \times 50}{3} = 2000$.
+
+## 📝 Study Topic
+- "Learn about Squirrel cage loop" (from the notebook).
+
+---
+**Tags:** #machine #lorentz-force #motor-design #torque #speed-equation #class-notes
