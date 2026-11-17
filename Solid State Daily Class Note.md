@@ -73,6 +73,7 @@ Tags: #research #software #citation-manager #vesta #mendeley #zotero #journals #
 - Polycrystalline.
 - Amorphous.
 
+
 ## Crystal Dimensions and Single Crystals
 - **1D Structure:** Represented as a single linear arrangement of atoms.
   - It exhibits periodicity.
