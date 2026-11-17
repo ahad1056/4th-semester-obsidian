@@ -198,7 +198,7 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **Alternative Variance Formula:**
 - EXAMPLE MATH[^31]
   $$V(x) = \frac{1}{n} \left[ \sum f_i x_i^2 - \frac{(\sum f_i x_i)^2}{N} \right]$$
-- derivation[^32] 
+- derivation [^32]
 
 ### 3. Standard Deviation (S.D. or $\sigma$)
 - The standard deviation is the square root of the variance:
@@ -987,3 +987,47 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	### উত্তর:
 	বিকল্প সূত্রের সাহায্যে নির্ণেয় ভেদাঙ্ক (Variance, $\sigma^2$) = **$120$**
 [^32]: 
+
+[^32]: ### ভেদাঙ্কের (Variance) বিকল্প সূত্রের প্রতিপাদন (Derivation)
+	
+	আমরা জানি, বিন্যস্ত উপাত্তের ক্ষেত্রে ভেদাঙ্কের মূল সূত্রটি হলো:
+	$$V(x) = \frac{\sum f_i (x_i - \bar{x})^2}{N}$$
+	
+	যেখানে, 
+	$N = \sum f_i$ (মোট গণসংখ্যা)
+	$\bar{x} = \frac{\sum f_i x_i}{N}$ (গাণিতিক গড়) $\implies \sum f_i x_i = N\bar{x}$
+	
+	#### প্রতিপাদনের ধাপসমূহ:
+	
+	**ধাপ ১:** প্রথমে মূল সূত্রের লবের (numerator) অংশটি নিয়ে কাজ করি:
+	$$\sum f_i (x_i - \bar{x})^2$$
+	
+	**ধাপ ২:** বর্গের সূত্র $(a - b)^2 = a^2 - 2ab + b^2$ প্রয়োগ করে পাই:
+	$$= \sum f_i (x_i^2 - 2x_i\bar{x} + \bar{x}^2)$$
+	
+	**ধাপ ৩:** এবার $f_i$ দ্বারা গুণ করে $\sum$ (সামেশন) আলাদা করে দিই:
+	$$= \sum (f_i x_i^2) - \sum (2\bar{x} f_i x_i) + \sum (\bar{x}^2 f_i)$$
+	
+	**ধাপ ৪:** ধ্রুবক পদগুলোকে (যেমন $\bar{x}$ এবং $2$) সামেশন চিহ্নের বাইরে নিয়ে আসি:
+	$$= \sum f_i x_i^2 - 2\bar{x} \sum f_i x_i + \bar{x}^2 \sum f_i$$
+	
+	**ধাপ ৫:** আমরা জানি, $\sum f_i = N$ এবং $\sum f_i x_i = N\bar{x}$। এই মানগুলো সমীকরণে বসিয়ে পাই:
+	$$= \sum f_i x_i^2 - 2\bar{x} (N\bar{x}) + \bar{x}^2 (N)$$
+	$$= \sum f_i x_i^2 - 2N\bar{x}^2 + N\bar{x}^2$$
+	$$= \sum f_i x_i^2 - N\bar{x}^2$$
+	
+	**ধাপ ৬:** এবার লবের এই প্রাপ্ত মানটি ভেদাঙ্কের মূল সূত্রে ($V(x)$) বসাই:
+	$$V(x) = \frac{1}{N} \left( \sum f_i x_i^2 - N\bar{x}^2 \right)$$
+	
+	**ধাপ ৭:** সমীকরণটি ভেঙে লিখলে $N$ কাটা যায়:
+	$$V(x) = \frac{\sum f_i x_i^2}{N} - \frac{N\bar{x}^2}{N}$$
+	$$V(x) = \frac{\sum f_i x_i^2}{N} - \bar{x}^2$$
+	
+	**ধাপ ৮:** এখন গাণিতিক গড় $\bar{x} = \frac{\sum f_i x_i}{N}$ এর মানটি পুনরায় সমীকরণে বসাই:
+	$$V(x) = \frac{\sum f_i x_i^2}{N} - \left( \frac{\sum f_i x_i}{N} \right)^2$$
+	$$V(x) = \frac{\sum f_i x_i^2}{N} - \frac{(\sum f_i x_i)^2}{N^2}$$
+	
+	**ধাপ ৯:** সবশেষে সমীকরণটি থেকে $\frac{1}{N}$ কমন নিলেই আমাদের কাঙ্ক্ষিত বিকল্প সূত্রটি পাওয়া যায়:
+	$$V(x) = \frac{1}{N} \left[ \sum f_i x_i^2 - \frac{(\sum f_i x_i)^2}{N} \right]$$
+	
+	**(প্রমাণিত)**
