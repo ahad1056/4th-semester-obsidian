@@ -1,6 +1,8 @@
-![[JPEG_20261111_103927_1828953819829583125.webp|150]]
+
 # 11 NOVEMBER CLASS 1 
 
+
+![[JPEG_20261111_103927_1828953819829583125.webp|150]]
 ## 📌 Contracts & Professional Law
 
 - The class introduces professional law.
