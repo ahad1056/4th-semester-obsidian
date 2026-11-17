@@ -180,6 +180,8 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **For raw data (ungrouped):** If $x_1, x_2, \dots, x_n$ are observations, the mean deviation about the mean is defined as:
   $$M.D. = \frac{\sum_{i=1}^{n} |x_i - \bar{x}|}{N}$$
   Where $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{N}$ .
+- EXAMPLE MATH[^27]
+
 
 - **For grouped data (with frequency):** If $x_1, x_2, \dots$ have corresponding frequencies $f_1, f_2, \dots$, the mean deviation is:
   $$MD = \frac{\sum_{i=1}^{n} f_i |x_i - \bar{x}|}{N}$$
@@ -800,3 +802,51 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	$$\text{Coefficient of MD} = \frac{MD}{\bar{x}} = \frac{7}{18} \approx 0.3889$$
 	
 	**চূড়ান্ত উত্তর:** Mean Deviation হলো $7$ এবং Coefficient of Mean Deviation হলো $0.3889$।
+[^27]: 
+
+[^27]: ### প্রশ্ন:
+	নিম্নলিখিত অবিন্যস্ত উপাত্তগুলো (Ungrouped Data) থেকে **গাণিতিক গড়ের সাপেক্ষে গড় ব্যবধান (Mean Deviation about Mean)** নির্ণয় করো:
+	
+	**উপাত্ত (Data):** $12, 15, 18, 20, 25$
+	
+	---
+	
+	### সমাধান:
+	
+	এখানে মোট উপাত্ত বা পর্যবেক্ষণের সংখ্যা, $N = 5$
+	
+	#### ধাপ ১: গাণিতিক গড় ($\bar{x}$) নির্ণয়
+	আমরা জানি, গাণিতিক গড়:
+	$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{N}$$
+	
+	$$\implies \bar{x} = \frac{12 + 15 + 18 + 20 + 25}{5}$$
+	
+	$$\implies \bar{x} = \frac{90}{5} = 18$$
+	
+	সুতরাং, গড় মান $\bar{x} = 18$।
+	
+	---
+	
+	#### ধাপ ২: প্রতিটি উপাত্ত থেকে গড়ের পরম ব্যবধান ($|x_i - \bar{x}|$) নির্ণয়
+	
+	| পর্যবেক্ষণ ($x_i$) | গড় ($\bar{x}$) | ব্যবধান ($x_i - \bar{x}$) | পরম ব্যবধান ($|x_i - \bar{x}|$) |
+	| :---: | :---: | :---: | :---: |
+	| $12$ | $18$ | $12 - 18 = -6$ | $6$ |
+	| $15$ | $18$ | $15 - 18 = -3$ | $3$ |
+	| $18$ | $18$ | $18 - 18 = 0$ | $0$ |
+	| $20$ | $18$ | $20 - 18 = +2$ | $2$ |
+	| $25$ | $18$ | $25 - 18 = +7$ | $7$ |
+	| **মোট ($N = 5$)** | | | **$\sum |x_i - \bar{x}| = 18$** |
+	
+	---
+	
+	#### ধাপ ৩: গড় ব্যবধান (M.D.) নির্ণয়
+	সূত্রানুযায়ী, গড়ের সাপেক্ষে গড় ব্যবধান:
+	$$M.D. = \frac{\sum_{i=1}^{n} |x_i - \bar{x}|}{N}$$
+	
+	$$\implies M.D. = \frac{18}{5} = 3.6$$
+	
+	---
+	
+	### উত্তর:
+	নির্ণেয় গড় ব্যবধান (Mean Deviation) = **$3.6$**
