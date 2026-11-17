@@ -1033,4 +1033,50 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	**(প্রমাণিত)**
 
 # 17 November class 5
-![[Stat Daily Class Note-1794905586071.webp|157]] ![[Stat Daily Class Note-1794905605442.webp|157]]  ![[Stat Daily Class Note-1794905624858.webp|158]]
+![[Stat Daily Class Note-1794905586071.webp|157]] ![[Stat Daily Class Note-1794905605442.webp|157]]  ![[Stat Daily Class Note-1794905624858.webp|158]]  
+
+## Class Notes: Statistics - Relative Measures & Variation
+
+## 📌 Relative Measures of Dispersion
+- **Coefficient of Range:** $\frac{L - S}{L + S} \times 100\%$
+- **Mid Range:** The average of the largest observation and the smallest observation.
+- **Coefficient of Quartile Deviation:** $\frac{Q_3 - Q_1}{Q_3 + Q_1} \times 100\%$
+- **Coefficient of Mean Deviation:** $\frac{MD \text{ of } (\bar{x})}{\bar{x}} \times 100$
+- **Coefficient of Variation (C.V.):** $\frac{\sigma}{\bar{x}} \times 100\%$
+  - *Definition:* The percentage ratio of the standard deviation (SD) to the arithmetic mean.
+
+---
+
+## ⚖️ Distinction: Standard Deviation vs. Coefficient of Variation
+
+| Feature | Standard Deviation (S.D.) | Coefficient of Variation (Coff. of Variation) |
+| :--- | :--- | :--- |
+| **Type of Measure** | It is an absolute measure. | It is a relative measure. |
+| **Units** | It has a unit. | It has no unit. |
+| **Ratio/Percentage** | It is not a ratio. It is not a percentage. | It is a ratio. It is a percentage. |
+| **Value Range** | (Not specified in notes) | Since it is a ratio, it lies between 0 - 1. |
+| **Comparability** | It can be compared between 2 sets of data with the same unit. | It can be compared between 2 or more different datasets having different units. |
+
+---
+
+## 📝 Practice Example
+**Problem Statement:**
+Suppose we have the following values for salaries in thousands of dollars, shown in increasing order:
+$30, 36, 47, 50, 52, 52, 56, 60, 63, 70, 70, 110$
+
+**Find the following:**
+- Maximum and minimum value
+- Range
+- Mean
+- Median
+- Mode
+- $Q_1$, $Q_3$
+- IQR (Interquartile Range)
+- MD (Mean Deviation)
+- Variance
+- Coefficient of Variance (Variation)
+- 5-number summary
+- Mid range
+
+---
+**Tags:** #statistics #dispersion #coefficient-of-variation #standard-deviation #class-notes
