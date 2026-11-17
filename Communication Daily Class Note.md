@@ -139,35 +139,35 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 # 15 th NOVEMBER CLASS 3 
 ![[JPEG_20261115_123559_2333545626851866127.webp|340x453]]
 
-# Class Notes: Signals & Transmission Medium
+## Class Notes: Signals & Transmission Medium
 
 ## 📌 Exam Focus & Important Questions
-- **Bandwidth Question:** Between Continuous and Discrete signals, which one requires more bandwidth, and why? (Continuous নাকি Discrete Signal এর ক্ষেত্রে কোনটাতে বেশি Bandwidth লাগে? কেন?)[cite: 24]
+- **Bandwidth Question:** Between Continuous and Discrete signals, which one requires more bandwidth, and why? (Continuous নাকি Discrete Signal এর ক্ষেত্রে কোনটাতে বেশি Bandwidth লাগে? কেন?)
 
 ## 📡 Transmission Medium
-The transmission medium is divided into two main categories[cite: 24]:
+The transmission medium is divided into two main categories:
 
-### 1. Wired (Guided)[cite: 24]
-- Twisted pair (Includes UTP and STP)[cite: 24]
-- Coaxial cable[cite: 24]
-- Fiber optics[cite: 24]
+### 1. Wired (Guided)
+- Twisted pair (Includes UTP and STP)
+- Coaxial cable
+- Fiber optics
 
-### 2. Wireless (Unguided)[cite: 24]
-- RF (Radio Frequency)[cite: 24]
+### 2. Wireless (Unguided)
+- RF (Radio Frequency)
 - Microwave 
-  - **Exam Tip:** You need to study the frequency ranges for these (রেঞ্জ গুলো পড়তে হবে)[cite: 24].
-- Infrared[cite: 24]
+  - **Exam Tip:** You need to study the frequency ranges for these (রেঞ্জ গুলো পড়তে হবে).
+- Infrared
 
 ## 💡 Fiber Optics Key Concept
-- The refractive index of the **core** in fiber optics is higher (Fiber optics এর core এর refractive index বেশি)[cite: 24].
+- The refractive index of the **core** in fiber optics is higher (Fiber optics এর core এর refractive index বেশি).
 
 ## 〰️ Signal & Modulation Techniques
-- **Signal Equation:** $A \sin(\omega t + \theta)$[cite: 24]
-- **Wave Properties (from the graph):** The graph illustrates Amplitude ($A$ and $-A$), Time period ($T$), Phase shift ($\theta$), over time ($t$)[cite: 24].
-- **Modulation Techniques:** You need to cover the following types[cite: 24]:
-  - AM (Amplitude Modulation)[cite: 24]
-  - FM (Frequency Modulation)[cite: 24]
-  - PM (Phase Modulation)[cite: 24]
+- **Signal Equation:** $A \sin(\omega t + \theta)$
+- **Wave Properties (from the graph):** The graph illustrates Amplitude ($A$ and $-A$), Time period ($T$), Phase shift ($\theta$), over time ($t$).
+- **Modulation Techniques:** You need to cover the following types:
+  - AM (Amplitude Modulation)
+  - FM (Frequency Modulation)
+  - PM (Phase Modulation)
 
 ---
 **Tags:** #signals #transmission-medium #fiber-optics #modulation #class-notes
