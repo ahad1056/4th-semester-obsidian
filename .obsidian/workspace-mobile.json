@@ -1,20 +1,24 @@
 {
   "main": {
-    "id": "48c18beb71d53ae8",
+    "id": "c185ed9efde52ed6",
     "type": "split",
     "children": [
       {
-        "id": "00826c9b3920108d",
+        "id": "d05fafce4f5fee21",
         "type": "tabs",
         "children": [
           {
-            "id": "447008354c625eeb",
+            "id": "b1dc5f61da163ac7",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Dashboard.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Dashboard"
             }
           }
         ]
@@ -23,11 +27,11 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a334bc49d9492783",
+    "id": "bb23f1b1177cec98",
     "type": "mobile-drawer",
     "children": [
       {
-        "id": "ea90ef7b0dcb88ef",
+        "id": "1ae50d98a64c56e7",
         "type": "leaf",
         "state": {
           "type": "file-explorer",
@@ -42,7 +46,7 @@
         }
       },
       {
-        "id": "5611e039a4518ca4",
+        "id": "753b633c30fae9d6",
         "type": "leaf",
         "state": {
           "type": "search",
@@ -59,7 +63,7 @@
         }
       },
       {
-        "id": "e6d046ac5e88e39a",
+        "id": "4831527ea4e6f1bb",
         "type": "leaf",
         "state": {
           "type": "tag",
@@ -74,7 +78,7 @@
         }
       },
       {
-        "id": "5316210cb15ca8fa",
+        "id": "aa1425a34a327f7c",
         "type": "leaf",
         "state": {
           "type": "all-properties",
@@ -88,7 +92,7 @@
         }
       },
       {
-        "id": "3bd6ad5a9cd36b1f",
+        "id": "14071ea38e9cbc1c",
         "type": "leaf",
         "state": {
           "type": "bookmarks",
@@ -101,18 +105,19 @@
         }
       }
     ],
-    "currentTab": 1
+    "currentTab": 0
   },
   "right": {
-    "id": "51cb3cf9cc7c653e",
+    "id": "bf5cac742d34af46",
     "type": "mobile-drawer",
     "children": [
       {
-        "id": "935a8866a41670d7",
+        "id": "b3ba8baff07d3e21",
         "type": "leaf",
         "state": {
           "type": "backlink",
           "state": {
+            "file": "Dashboard.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -126,11 +131,12 @@
         }
       },
       {
-        "id": "a05da47d4d97144d",
+        "id": "73d25380f3ee1324",
         "type": "leaf",
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "Dashboard.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
@@ -139,11 +145,12 @@
         }
       },
       {
-        "id": "72750e96e701db47",
+        "id": "b14e29757d3c216d",
         "type": "leaf",
         "state": {
           "type": "outline",
           "state": {
+            "file": "Dashboard.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
@@ -151,19 +158,9 @@
           "icon": "lucide-list",
           "title": "Outline"
         }
-      },
-      {
-        "id": "8d4c0b154e68dc89",
-        "type": "leaf",
-        "state": {
-          "type": "git-view",
-          "state": {},
-          "icon": "git-pull-request",
-          "title": "Source Control"
-        }
       }
     ],
-    "currentTab": 3
+    "currentTab": 0
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -177,52 +174,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "447008354c625eeb",
+  "active": "b1dc5f61da163ac7",
   "lastOpenFiles": [
-    "Machine Daily Class Notes.md",
-    "IMG_20261117_094547.jpg",
-    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
-    "IMG_20261117_094839.webp",
-    "IMG_20261117_094547.webp",
-    "IMG_20261117_094535.webp",
+    "Untitled.canvas",
+    "LAW daily class notes.md",
+    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "Dashboard.md",
-    "Stat Daily Class Note.md",
-    "IMG_20261116_113401.webp",
+    "Mechanical Engineering/PREVIOUS YEAR original question.md",
+    "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
+    "Communication Systems/PREVIOUS YEAR original question.md",
+    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "Communication Systems/Important Maths.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
+    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
+    "ANIMATIONS AND HTML/rotating_magnetic_field_3_phase_visualizer.html",
+    "ANIMATIONS AND HTML/line_integral.html",
+    "ANIMATIONS AND HTML/electromagnetism_relativistic_origin_explorer.html",
+    "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
+    "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
+    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
+    "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
+    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "403 Communication system '3+1'/Communication system.md",
+    "401 Solid state Electronics '3'/solid state electronics.md",
+    "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
+    "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
+    "305 Statistics/PREVIOUS YEAR original question.md",
+    "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
+    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "mechanical Daily Class Note-1794671268457.webp",
+    "Stat Daily Class Note-1794905624858.webp",
+    "Stat Daily Class Note-1794905605442.webp",
+    "Stat Daily Class Note-1794905586071.webp",
+    "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
     "JPEG_20261117_071100_2301076191623287475.webp",
     "JPEG_20261117_071018_2994899854395004895.webp",
-    "481 Statistics and Probability '3'/statistics and probability.md",
-    "Solid State Daily Class Note.md",
-    "401 Solid state Electronics '3'/solid state electronics.md",
     "JPEG_20261116_104438_6538489821599043701.webp",
     "JPEG_20261116_104424_1158694847673099467.webp",
-    "ANIMATIONS AND HTML/rotating_magnetic_field_3_phase_visualizer.html",
-    "ANIMATIONS AND HTML/electromagnetism_relativistic_origin_explorer.html",
-    "Communication Daily Class Note.md",
     "JPEG_20261115_123559_2333545626851866127.webp",
-    "403 Communication system '3+1'/Communication system.md",
-    "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
-    "LAW daily class notes.md",
-    "Communication Systems/Important Maths.md",
-    "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
-    "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "ANIMATIONS AND HTML/line_integral.html",
-    "ANIMATIONS AND HTML",
-    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
-    "491 Professional Law and Ethics '3'/PREVIOUS YEAR original question.md",
-    "Mechanical Engineering/PREVIOUS YEAR original question.md",
     "Mechanical Engineering",
-    "Communication Systems/Important Formulas, Modulation Theorems & Carson's Rule.md",
-    "481 Statistics and Probability '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
-    "mechanical Daily Class Note.md",
-    "Communication Systems/Chapter 2 -NOISE.md",
-    "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
-    "Electrical Machines/Electrical Machine II (0713-405) - Previous Year Question Bank (Analyzed).md",
     "Electrical Machines",
-    "Untitled.base",
     "Communication Systems",
-    "305 Statistics"
+    "ANIMATIONS AND HTML",
+    "491 Professional Law and Ethics '3'",
+    "481 Statistics and Probability '3'"
   ]
 }
