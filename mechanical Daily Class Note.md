@@ -84,7 +84,6 @@ Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
 
 [^1]: "If two thermodynamic systems are each in thermal equilibrium with a third one, then they are in thermal equilibrium with each other." _(যদি দুটি তাপগতীয় সিস্টেম তৃতীয় কোনো সিস্টেমের সাথে আলাদাভাবে তাপীয় সাম্যাবস্থায় থাকে, তবে তারা নিজেরাও একে অপরের সাথে তাপীয় সাম্যাবস্থায় থাকবে।)_ 
 
-
 # 17 November class 3
 
-![[JPEG_20261117_222806_3759878893920344629.webp|340x453]] ![[JPEG_20261117_222946_6793385384391749417.webp]]
+![[JPEG_20261117_222806_3759878893920344629.webp|160]]      ![[JPEG_20261117_222946_6793385384391749417.webp|160]]
