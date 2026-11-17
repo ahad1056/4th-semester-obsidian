@@ -56,3 +56,6 @@ When looking at ways to improve a motor, the following key factors were listed:
 ---
 Tags: #machine #magnetic-field #3-phase-system #generator-project #motor-improvement #class-notes
 
+
+# 17 November class 3 
+![[IMG_20261117_094535.webp|340x255]]![[IMG_20261117_094839.webp|340x255]]![[IMG_20261117_094547.jpg|340x453]]
