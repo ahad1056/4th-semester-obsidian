@@ -170,14 +170,63 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 
 # 16 November class 4
 
-![[JPEG_20261117_071018_2994899854395004895.webp|340x453]]
+![[JPEG_20261117_071018_2994899854395004895.webp|140]] ![[JPEG_20261117_071100_2301076191623287475.webp|139]] ![[IMG_20261116_113401.webp|247]]
 
+## Class Notes: Statistics - Measures of Dispersion
 
-![[JPEG_20261117_071100_2301076191623287475.webp|340x453]]
+## 📌 Main Concepts
 
-![[IMG_20261116_113401.webp|340x255]]
+### 1. Mean Deviation (M.D.)
+- **For raw data (ungrouped):** If $x_1, x_2, \dots, x_n$ are observations, the mean deviation about the mean is defined as:
+  $$M.D. = \frac{\sum_{i=1}^{n} |x_i - \bar{x}|}{N}$$
+  Where $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{N}$ .
 
+- **For grouped data (with frequency):** If $x_1, x_2, \dots$ have corresponding frequencies $f_1, f_2, \dots$, the mean deviation is:
+  $$MD = \frac{\sum_{i=1}^{n} f_i |x_i - \bar{x}|}{N}$$
+  Where $N = \sum f_i$ .
 
+### 2. Variance ($V(x)$ or $\sigma^2$)
+- **For raw data:**
+  $$V(x) = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{N}$$ 
+- **For grouped data:**
+  $$\sigma^2 = \text{Variance} = \frac{\sum_{i=1}^{n} f_i(x_i - \bar{x})^2}{N}$$ 
+- **Alternative Variance Formula:**
+  $$V(x) = \frac{1}{n} \left[ \sum f_i x_i^2 - \frac{(\sum f_i x_i)^2}{N} \right]$$ 
+
+### 3. Standard Deviation (S.D. or $\sigma$)
+- The standard deviation is the square root of the variance:
+  $$\sigma = S.D = \sqrt{V(x)}$$ 
+
+---
+
+## 📊 Example: Frequency Distribution Table (FDT) & Calculations
+The class worked through a full example to calculate these values .
+
+**Given Data Table:**
+- Class intervals: 2-4, 4-6, 6-8, 8-10, 10-12 
+- Mid-values ($x_i$): 3, 5, 7, 9, 11 
+- Frequencies ($f_i$): 1, 2, 5, 4, 3 
+
+**Calculated Totals from the Board:**
+- $n = \sum f_i = 15$ 
+- $\sum f_i x_i = 117$ 
+- $\sum f_i x_i^2 = 991$ 
+- $\sum f_i |x_i - \bar{x}| = 28.8$ 
+- $\sum f_i (x_i - \bar{x})^2 = 78.4$ 
+
+**Final Calculated Results:**
+- **Mean Deviation (M.D.):** $M.D. = \frac{28.8}{15} = 1.92$ 
+- **Variance ($V(x)$):** $V(x) = \sigma^2 = \frac{78.4}{15} = 5.22$ 
+  - *(Using the alternative formula: $\frac{1}{15} [991 - \frac{(117)^2}{15}] = 5.22$)* 
+- **Standard Deviation (S.D.):** $\sigma = \sqrt{5.22} = 2.28$ 
+
+---
+
+## 💡 Exam Tip (Note from Khata)
+- **Probable Question Pattern:** You may be asked to write the definition of all data terms, followed by their formulas, and then list their Advantages and Disadvantages (সবগুলো Data এর সংজ্ঞা লিখতে হবে, তারপর সূত্র, তারপর Advantage, and Disadvantage) .
+
+---
+**Tags:** #statistics #dispersion #mean-deviation #variance #standard-deviation #class-notes
 
 
 
