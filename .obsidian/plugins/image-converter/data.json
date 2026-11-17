@@ -236,7 +236,7 @@
   "resizeCursorLocation": "none",
   "dropPasteCursorLocation": "back",
   "neverProcessFilenames": "",
-  "modalBehavior": "always",
+  "modalBehavior": "never",
   "singleImageModalSettings": {
     "conversionPresetName": "WebP 75 Resize",
     "outputFormat": "WEBP",

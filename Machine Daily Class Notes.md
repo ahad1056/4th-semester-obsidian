@@ -59,3 +59,4 @@ Tags: #machine #magnetic-field #3-phase-system #generator-project #motor-improve
 
 # 17 November class 3 
 ![[IMG_20261117_094535.webp|340x255]]![[IMG_20261117_094839.webp|340x255]]
+![[JPEG_20261117_221324_1596615549641378074.webp|340x453]]
