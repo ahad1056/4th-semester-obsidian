@@ -240,7 +240,7 @@
   "singleImageModalSettings": {
     "conversionPresetName": "WebP 75 Resize",
     "outputFormat": "WEBP",
-    "quality": 70,
+    "quality": 80,
     "colorDepth": 1,
     "resizeMode": "LongestEdge",
     "desiredWidth": 800,
