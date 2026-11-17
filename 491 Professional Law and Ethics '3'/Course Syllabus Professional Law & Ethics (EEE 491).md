@@ -11,7 +11,7 @@
 **Linked Notes:** 
 
 ### Topics:
-- [ ] Principle of law of contract
+- [x] Principle of law of contract
 - [ ] Law of agency
 - [ ] Law of partnership
 - [ ] Sale of goods
