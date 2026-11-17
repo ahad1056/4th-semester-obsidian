@@ -180,13 +180,14 @@ Tags: #statistics #data #variables #central-tendency #measurement-scales #class-
 - **For raw data (ungrouped):** If $x_1, x_2, \dots, x_n$ are observations, the mean deviation about the mean is defined as:
   $$M.D. = \frac{\sum_{i=1}^{n} |x_i - \bar{x}|}{N}$$
   Where $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{N}$ .
-- EXAMPLE MATH[^27]
+     - EXAMPLE MATH[^27]
+
 
 
 - **For grouped data (with frequency):** If $x_1, x_2, \dots$ have corresponding frequencies $f_1, f_2, \dots$, the mean deviation is:
   $$MD = \frac{\sum_{i=1}^{n} f_i |x_i - \bar{x}|}{N}$$
   Where $N = \sum f_i$ .
-
+ -  EXAMPLE MATH  [^28]
 ### 2. Variance ($V(x)$ or $\sigma^2$)
 - **For raw data:**
   $$V(x) = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{N}$$ 
@@ -850,3 +851,52 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	
 	### উত্তর:
 	নির্ণেয় গড় ব্যবধান (Mean Deviation) = **$3.6$**
+
+[^28]: ### প্রশ্ন:
+	নিচের গণসংখ্যা নিবেশন সারণি থেকে গাণিতিক গড়ের সাপেক্ষে গড় ব্যবধান (Mean Deviation about Mean) নির্ণয় করো:
+	
+	| শ্রেণি-ব্যাপ্তি | গণসংখ্যা ($f_i$) |     |
+	| :-------------: | :--------------: | --- |
+	|     20 - 30     |        2         |     |
+	|     30 - 40     |        3         |     |
+	|     40 - 50     |        10        |     |
+	|     50 - 60     |        3         |     |
+	|     60 - 70     |        2         |     |
+	
+	---
+	
+	### সমাধান:
+	
+	শ্রেণি-ব্যাপ্তি দেওয়া থাকলে প্রথমে প্রতিটি শ্রেণির মধ্যবিন্দু ($x_i$) বের করে নিতে হয়। 
+	
+	#### ধাপ ১: ছকের মাধ্যমে প্রয়োজনীয় মানসমূহ গণনা:
+	
+	| শ্রেণি-ব্যাপ্তি | মধ্যবিন্দু ($x_i$) | গণসংখ্যা ($f_i$) | গুণফল ($f_i x_i$) | ব্যবধান ($|x_i - \bar{x}|$) | $f_i \|x_i - \bar{x}\|$ |
+	| :---: | :---: | :---: | :---: | :---: | :---: |
+	| 20 - 30 | 25 | 2 | $2 \times 25 = 50$ | $|25 - 45| = 20$ | $2 \times 20 = 40$ |
+	| 30 - 40 | 35 | 3 | $3 \times 35 = 105$ | $|35 - 45| = 10$ | $3 \times 10 = 30$ |
+	| 40 - 50 | 45 | 10 | $10 \times 45 = 450$ | $|45 - 45| = 0$ | $10 \times 0 = 0$ |
+	| 50 - 60 | 55 | 3 | $3 \times 55 = 165$ | $|55 - 45| = 10$ | $3 \times 10 = 30$ |
+	| 60 - 70 | 65 | 2 | $2 \times 65 = 130$ | $|65 - 45| = 20$ | $2 \times 20 = 40$ |
+	| **মোট** | | **$N = \sum f_i = 20$** | **$\sum f_i x_i = 900$** | | **$\sum f_i \|x_i - \bar{x}\| = 140$** |
+	
+	---
+	
+	#### ধাপ ২: গাণিতিক গড় ($\bar{x}$) নির্ণয়
+	আমরা জানি, গাণিতিক গড়:
+	$$\bar{x} = \frac{\sum f_i x_i}{N}$$
+	
+	$$\implies \bar{x} = \frac{900}{20} = 45$$
+	
+	---
+	
+	#### ধাপ ৩: গড় ব্যবধান ($M.D.$) নির্ণয়
+	সূত্রানুযায়ী:
+	$$M.D. = \frac{\sum f_i |x_i - \bar{x}|}{N}$$
+	
+	$$\implies M.D. = \frac{140}{20} = 7$$
+	
+	---
+	
+	### উত্তর:
+	নির্ণেয় গড় ব্যবধান (Mean Deviation) = **$7$**
