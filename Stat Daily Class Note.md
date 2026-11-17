@@ -1031,3 +1031,6 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 	$$V(x) = \frac{1}{N} \left[ \sum f_i x_i^2 - \frac{(\sum f_i x_i)^2}{N} \right]$$
 	
 	**(প্রমাণিত)**
+
+# 17 November class 5
+![[Stat Daily Class Note-1794905586071.webp|157]] ![[Stat Daily Class Note-1794905605442.webp|157]]  ![[Stat Daily Class Note-1794905624858.webp|158]]
