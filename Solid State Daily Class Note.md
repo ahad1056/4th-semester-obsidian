@@ -64,3 +64,49 @@ Tags: #research #software #citation-manager #vesta #mendeley #zotero #journals #
 # 16 November class 3
 
 ![[JPEG_20261116_104424_1158694847673099467.webp|356x267]]    ![[JPEG_20261116_104438_6538489821599043701.webp|221]] 
+
+## Class Notes: Solid State - Crystal Structure
+
+## Classification of Solid Materials
+- Solid materials are categorized into main types.
+- Crystalline (which includes Single crystal).
+- Polycrystalline.
+- Amorphous.
+
+## Crystal Dimensions and Single Crystals
+- **1D Structure:** Represented as a single linear arrangement of atoms.
+  - It exhibits periodicity.
+  - It extends to infinity.
+  - This continuous periodic structure is also called a Single crystal.
+- **2D Structure:** Represented as a two-dimensional grid.
+
+## Polycrystalline Materials
+- Polycrystalline materials consist of multiple localized crystals.
+- These individual localized crystals are called "grains".
+- The interface or border where these different grains meet is called the "grain boundary" or "junction".
+
+## Crystal Growth
+- A method mentioned for crystal growth is the "Cz process".
+- It has an associated value noted as 60 - 70%.
+
+---
+Tags: #solid-state #crystal-structure #polycrystalline #crystal-growth #class-notes
+
+
+
+
+
+
+
+
+
+
+# n November class 4
+
+# n November class 5
+
+# n November class 6
+
+# n November class 7
+
+
