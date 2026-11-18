@@ -9,7 +9,7 @@
 
 ## 💎 MODULE 1: Crystal Structure & Bonding in Crystal
 - [ ] Concept of solid, Classifications of Solid, Unit cell, Bravais lattice
-- [ ] Symmetry operations, Packing fraction, Crystallographic planes and directions, Miller indices
+- [ ] Symmetry operations, Packing fraction, Crystallographic planes and directions, *Miller indices*
 - [ ] Reciprocal lattice, Bragg's law
 - [ ] Crystal Structure of Semiconductor, Crystalline, Amorphous, Fibrous, Polymers
 - [ ] Binding forces & Types of bonding

@@ -55,3 +55,4 @@
   <text x="62.0" y="288.0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e1e1e">a₂</text>
 </svg>
 
+![[2d_bravais_lattice_crystal_explorer.html]]
