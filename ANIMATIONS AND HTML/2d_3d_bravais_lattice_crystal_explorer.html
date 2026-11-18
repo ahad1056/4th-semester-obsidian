@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>2D & 3D Crystal Structure & Bravais Lattice Explorer</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js for Interactive 3D Bravais Lattices & SC/BCC/FCC -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- Google Fonts: Inter, JetBrains Mono & Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+            bengali: ['Hind Siliguri', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#0b0f19',
+            panel: '#111827',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: 'Inter', 'Hind Siliguri', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.4);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.65);
+    }
+
+    /* Custom Precision Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(51, 65, 85, 0.85);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+      cursor: grab;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
+    }
+
+    input[type="range"].slider-amber::-webkit-slider-thumb {
+      border-color: #fbbf24;
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+    }
+
+    input[type="range"].slider-emerald::-webkit-slider-thumb {
+      border-color: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
+    }
+
+    input[type="range"].slider-purple::-webkit-slider-thumb {
+      border-color: #c084fc;
+      box-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+    }
+
+    /* Glassmorphism utilities */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(148, 163, 184, 0.16);
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.48);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(148, 163, 184, 0.25);
+    }
+
+    /* Canvas container radial laboratory glow */
+    .lab-canvas-bg {
+      background: radial-gradient(circle at 50% 50%, #131c31 0%, #0b0f19 72%, #070a12 100%);
+    }
+
+    /* Collapsible Panel Transitions */
+    .drawer-slide {
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease;
+    }
+
+    /* Clean Details/Summary Accordion Styling */
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] .accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .accordion-chevron {
+      transition: transform 0.2s ease;
+    }
+  </style>
+</head>
+<body class="relative w-screen h-screen overflow-hidden select-none">
+
+  <!-- ===================================================================== -->
+  <!-- FULL-SCREEN PRIMARY VIEWPORT: 2D & 3D CRYSTAL LATTICE CANVAS          -->
+  <!-- ===================================================================== -->
+  <main id="canvasWrapper" class="relative w-full h-full lab-canvas-bg overflow-hidden">
+    
+    <!-- 2D HTML5 Canvas (Active in 2D Mode) -->
+    <canvas id="latticeCanvas" class="block w-full h-full touch-none"></canvas>
+
+    <!-- 3D WebGL Container (Active in 3D Mode) -->
+    <div id="threeContainer" class="hidden absolute inset-0 w-full h-full touch-none"></div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-LEFT: COLLAPSED BY DEFAULT -> LIVE INFO & EXPLANATION PILL      -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 max-w-[calc(100vw-1.5rem)] sm:max-w-md">
+      
+      <!-- Collapsed Trigger Pill (Minimal, zero text clutter) -->
+      <button id="btnExpandHud" title="তথ্য ও ব্যাখ্যা দেখুন"
+        class="glass-panel border hover:border-sky-400/50 text-slate-200 hover:text-sky-300 px-3 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+        <span class="font-bengali">তথ্য ও ব্যাখ্যা</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Uncollapsed Info & Explanation Card (Hidden until clicked) -->
+      <div id="hudCard" class="hidden glass-panel border rounded-2xl p-3.5 sm:p-4 shadow-2xl">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+              <span id="hudSystemTag" class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">2D Bravais System</span>
+            </div>
+            <h1 id="latticeTypeBadge" class="text-lg sm:text-xl font-bold text-white tracking-tight mt-0.5">
+              Oblique Lattice
+            </h1>
+          </div>
+
+          <div class="flex items-start gap-2">
+            <div class="text-right">
+              <span id="symmetryBadge" class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-mono font-semibold bg-sky-500/15 text-sky-300 border border-sky-400/30">
+                Symmetry: C₂
+              </span>
+              <p id="conditionBadge" class="text-[11px] font-mono text-slate-400 mt-1">
+                a₁ ≠ a₂, γ ≠ 90°
+              </p>
+            </div>
+            <button id="btnCollapseHud" title="Collapse Info"
+              class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2D Telemetry Grid -->
+        <div id="hudTelemetry2D" class="grid grid-cols-4 gap-1.5 mt-3 pt-2.5 border-t border-slate-700/60 text-[11px] font-mono">
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">|a₁|</span>
+            <strong id="hudA1" class="text-sky-300">1.30</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">|a₂|</span>
+            <strong id="hudA2" class="text-amber-300">1.10</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">Angle γ</span>
+            <strong id="hudGamma" class="text-purple-300">62.0°</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">Area</span>
+            <strong id="hudArea" class="text-emerald-300">1.26</strong>
+          </div>
+        </div>
+
+        <!-- 3D Telemetry Grid (Shown when 3D Mode is active) -->
+        <div id="hudTelemetry3D" class="hidden space-y-1.5 mt-3 pt-2.5 border-t border-slate-700/60 text-[11px] font-mono">
+          <div class="grid grid-cols-3 gap-1.5">
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Axes (a, b, c)</span>
+              <strong id="hud3DAxes" class="text-sky-300">1.0, 1.0, 1.0</strong>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Angles (α, β, γ)</span>
+              <strong id="hud3DAngles" class="text-purple-300">90°, 90°, 90°</strong>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Atoms/Cell (Z)</span>
+              <strong id="hud3DZ" class="text-emerald-300">1 (P)</strong>
+            </div>
+          </div>
+          <div id="hud3DCubicMetrics" class="grid grid-cols-3 gap-1.5">
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Coord. No (CN)</span>
+              <strong id="hud3DCN" class="text-amber-300">6</strong>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Radius (r)</span>
+              <strong id="hud3DRadius" class="text-sky-300">a / 2</strong>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+              <span class="text-slate-400 block text-[9px]">Packing (APF)</span>
+              <strong id="hud3DAPF" class="text-emerald-300">52.4%</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-collapsible Bengali Explanation inside HUD -->
+        <details class="mt-2.5 pt-2 border-t border-slate-700/60 group">
+          <summary class="flex items-center justify-between text-xs font-bengali font-medium text-sky-300 cursor-pointer select-none">
+            <span>বিস্তারিত ব্যাখ্যা পড়ুন</span>
+            <svg class="w-3.5 h-3.5 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p id="latticeBengaliNote" class="text-xs font-bengali text-slate-300 mt-1.5 leading-relaxed">
+            সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়।
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-CENTER: MINIMAL 2D / 3D DIMENSION SWITCHER PILL                 -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 left-1/2 -translate-x-1/2 sm:top-4 z-20">
+      <div class="glass-panel border rounded-full p-1 flex items-center gap-1 shadow-xl">
+        <button id="btnMode2D" class="px-3.5 py-1 rounded-full text-xs font-mono font-semibold bg-sky-500/25 text-sky-300 border border-sky-400/40 transition">
+          2D
+        </button>
+        <button id="btnMode3D" class="px-3.5 py-1 rounded-full text-xs font-mono font-semibold text-slate-400 hover:text-slate-200 transition">
+          3D
+        </button>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-RIGHT: COMPACT CAMERA ICONS + COLLAPSED DRAWER TRIGGER          -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-2">
+      
+      <!-- Minimal Icon-Only Camera Controls -->
+      <div class="hidden sm:flex glass-panel border rounded-full p-1 items-center gap-0.5 shadow-xl">
+        <button id="btnZoomOut" title="Zoom Out" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-200 flex items-center justify-center font-mono text-sm transition">−</button>
+        <span id="zoomReadout" class="text-[11px] font-mono text-slate-400 px-1.5 min-w-[40px] text-center">100%</span>
+        <button id="btnZoomIn" title="Zoom In" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-200 flex items-center justify-center font-mono text-sm transition">+</button>
+        <button id="btnResetView" title="Reset View" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-300 flex items-center justify-center transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Collapsed Drawer Trigger Button -->
+      <button id="btnOpenDrawer" title="কন্ট্রোল ও সিলেবাস পাঠ খুলুন"
+        class="glass-panel border hover:border-indigo-400/60 text-slate-100 hover:text-indigo-300 px-3.5 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        <span class="font-bengali">কন্ট্রোল ও পাঠ</span>
+      </button>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- BOTTOM-RIGHT: TINY COLLAPSED HINT BUTTON (?)                        -->
+    <!-- =================================================================== -->
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-2">
+      <div id="hintPill" class="hidden glass-panel border rounded-full px-3.5 py-1.5 text-[11px] text-slate-300 shadow-xl flex items-center gap-2">
+        <span class="text-sky-400">✦</span>
+        <span id="hintText">Drag <strong class="text-sky-300">a₁</strong> / <strong class="text-amber-300">a₂</strong> tips • Click node for <strong class="text-emerald-300">R</strong> • Drag canvas to pan</span>
+      </div>
+      <button id="btnToggleHint" title="ব্যবহার নির্দেশিকা"
+        class="glass-panel border hover:border-sky-400/50 w-8 h-8 rounded-full text-xs font-mono font-bold text-slate-300 hover:text-sky-300 shadow-xl flex items-center justify-center transition active:scale-95">
+        ?
+      </button>
+    </div>
+
+    <!-- Hover Tooltip for 2D Lattice Nodes -->
+    <div id="nodeTooltip" class="hidden fixed z-30 pointer-events-none glass-panel border border-emerald-400/40 rounded-lg px-2.5 py-1.5 text-xs font-mono shadow-xl">
+      <div id="tooltipCoords" class="text-emerald-300 font-semibold">R = 2a₁ + 1a₂</div>
+      <div id="tooltipDist" class="text-[10px] text-slate-400">|R| = 3.12 a</div>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- COLLAPSIBLE RIGHT DRAWER: CONTROLS & SYLLABUS STUDY GUIDE             -->
+  <!-- (Completely hidden off-screen until user clicks "কন্ট্রোল ও পাঠ")       -->
+  <!-- ===================================================================== -->
+  <aside id="sidebarDrawer"
+    class="fixed top-0 right-0 h-full w-full sm:w-[420px] xl:w-[440px] glass-panel border-l flex flex-col z-40 shadow-2xl drawer-slide translate-x-full opacity-0 pointer-events-none">
+    
+    <!-- Drawer Header -->
+    <div class="p-3.5 border-b border-slate-800/90 flex-shrink-0 flex items-center justify-between gap-2">
+      <!-- Tab Switcher: Controls vs Study Guide -->
+      <div class="flex bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
+        <button id="tabBtnControls" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition">
+          Controls
+        </button>
+        <button id="tabBtnGuide" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition flex items-center gap-1">
+          <span class="font-bengali">সহজ পাঠ</span>
+          <span class="text-[10px] text-slate-400">(৫ অধ্যায়)</span>
+        </button>
+      </div>
+
+      <!-- Shift Origin / Auto-Rotate + Collapse Drawer Button -->
+      <div class="flex items-center gap-1.5">
+        <button id="btnShiftOrigin" title="Test Translational Invariance by shifting Origin O"
+          class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/30 text-amber-300 text-xs font-medium flex items-center gap-1 transition active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+          </svg>
+          <span id="btnShiftLabel" class="font-bengali text-[11px]">মূলবিন্দু সরান</span>
+        </button>
+
+        <button id="btnCloseDrawer" title="প্যানেল লুকান"
+          class="w-8 h-8 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: INTERACTIVE CONTROLS (2D & 3D CONTEXT-AWARE)                 -->
+    <!-- =================================================================== -->
+    <div id="panelControls" class="p-4 space-y-3.5 overflow-y-auto flex-1">
+      
+      <!-- ================= 2D CONTROLS SECTION ================= -->
+      <div id="controls2DGroup" class="space-y-3.5">
+
+        <!-- 1. Solid Order: Crystalline vs Amorphous -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              1. Solid Order (কঠিন পদার্থের গঠন)
+            </h3>
+            <span class="text-[10px] font-mono text-slate-400">Topic 1</span>
+          </div>
+          <div class="grid grid-cols-2 gap-1.5 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+            <button data-order="crystalline" class="order-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 transition">
+              Crystalline (সুশৃঙ্খল)
+            </button>
+            <button data-order="amorphous" class="order-btn py-1.5 px-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition">
+              Amorphous (অনিয়তাকার)
+            </button>
+          </div>
+        </section>
+
+        <!-- 2. Five 2D Bravais Lattice Presets -->
+        <section class="glass-card rounded-2xl p-3.5">
+          <div class="flex items-center justify-between mb-2.5">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              2. 5 Bravais Lattice Presets (2D)
+            </h3>
+            <span class="text-[11px] font-bengali text-slate-400">৫টি ২ডি ল্যাটিস</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button data-preset="oblique" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition">
+              <div class="font-semibold">Oblique</div>
+              <div class="text-[10px] text-slate-400 font-mono">a₁≠a₂, γ=62°</div>
+            </button>
+            <button data-preset="square" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition">
+              <div class="font-semibold">Square</div>
+              <div class="text-[10px] text-slate-400 font-mono">a₁=a₂, γ=90°</div>
+            </button>
+            <button data-preset="rectangular" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition">
+              <div class="font-semibold">Rectangular</div>
+              <div class="text-[10px] text-slate-400 font-mono">a₁≠a₂, γ=90°</div>
+            </button>
+            <button data-preset="centered_rect" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition col-span-2">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-pink-300">Centered Rectangular</span>
+                <span class="text-[10px] px-1.5 rounded bg-pink-500/15 text-pink-300 border border-pink-400/30">Conv.</span>
+              </div>
+              <div class="text-[10px] text-slate-400 font-mono">a₁=a₂, γ=64° (Rhombic)</div>
+            </button>
+            <button data-preset="hexagonal" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition col-span-2 sm:col-span-1">
+              <div class="font-semibold text-emerald-300">Hexagonal</div>
+              <div class="text-[10px] text-slate-400 font-mono">a₁=a₂, γ=120°</div>
+            </button>
+          </div>
+        </section>
+
+        <!-- 3. Primitive Translation Vectors (a1, a2, gamma) -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              3. Primitive Vectors (a₁, a₂)
+            </h3>
+            <label class="inline-flex items-center gap-1.5 text-[11px] text-slate-400 cursor-pointer">
+              <input id="chkMagneticSnap" type="checkbox" checked class="rounded bg-slate-800 border-slate-600 text-sky-400 focus:ring-0">
+              <span>Snap 90°/120°</span>
+            </label>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-sky-300">Vector |a₁|</span>
+              <span id="valA1" class="font-mono text-slate-200">1.30 a</span>
+            </div>
+            <input id="sliderA1" type="range" min="0.6" max="2.2" step="0.05" value="1.30" />
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-amber-300">Vector |a₂|</span>
+              <span id="valA2" class="font-mono text-slate-200">1.10 a</span>
+            </div>
+            <input id="sliderA2" type="range" min="0.6" max="2.2" step="0.05" value="1.10" class="slider-amber" />
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-medium text-purple-300">Angle (γ)</span>
+              <span id="valGamma" class="font-mono text-slate-200">62.0°</span>
+            </div>
+            <input id="sliderGamma" type="range" min="25" max="155" step="0.5" value="62" class="slider-purple" />
+          </div>
+        </section>
+
+        <!-- 4. Lattice Translation Vector R = m a1 + n a2 -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              4. Translation Vector R
+            </h3>
+            <span class="text-[11px] font-mono text-emerald-300 bg-emerald-500/10 border border-emerald-400/25 px-2 py-0.5 rounded-md">
+              R = m a₁ + n a₂
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5">
+            <div class="bg-slate-900/70 rounded-xl p-2 border border-slate-700/60 flex items-center justify-between">
+              <span class="text-xs font-mono text-sky-300 pl-1">m = <strong id="valM" class="text-white text-sm">2</strong></span>
+              <div class="flex gap-1">
+                <button id="btnMDec" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-sm transition">−</button>
+                <button id="btnMInc" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-sm transition">+</button>
+              </div>
+            </div>
+
+            <div class="bg-slate-900/70 rounded-xl p-2 border border-slate-700/60 flex items-center justify-between">
+              <span class="text-xs font-mono text-amber-300 pl-1">n = <strong id="valN" class="text-white text-sm">1</strong></span>
+              <div class="flex gap-1">
+                <button id="btnNDec" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-sm transition">−</button>
+                <button id="btnNInc" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-sm transition">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs bg-emerald-950/30 border border-emerald-500/20 rounded-xl px-3 py-2">
+            <span id="rFormulaText" class="font-mono text-emerald-300 font-semibold">R = 2a₁ + 1a₂</span>
+            <span id="rMagText" class="font-mono text-slate-300">|R| = 3.21 a</span>
+          </div>
+        </section>
+
+        <!-- 5. Unit Cells: Primitive, Wigner-Seitz, Double & Triple Cells -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              5. Unit Cells (Primitive & Non-Primitive)
+            </h3>
+            <span class="text-[11px] font-bengali text-slate-400">একক কোষ</span>
+          </div>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-indigo-300">Primitive Unit Cell (1 pt/cell)</span>
+            <input id="chkPrimitiveCell" type="checkbox" checked class="w-4 h-4 rounded accent-indigo-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-purple-300">Wigner-Seitz Primitive Cell</span>
+            <input id="chkWignerSeitz" type="checkbox" class="w-4 h-4 rounded accent-purple-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-cyan-300">Double Cell (Non-Primitive, 2 pts)</span>
+            <input id="chkDoubleCell" type="checkbox" class="w-4 h-4 rounded accent-cyan-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-orange-300">Triple Cell (Non-Primitive, 3 pts)</span>
+            <input id="chkTripleCell" type="checkbox" class="w-4 h-4 rounded accent-orange-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-pink-300">Conventional Centered Cell</span>
+            <input id="chkConventionalCell" type="checkbox" checked class="w-4 h-4 rounded accent-pink-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-slate-200">Grid & Extension Lines</span>
+            <input id="chkGridLines" type="checkbox" checked class="w-4 h-4 rounded accent-sky-400 cursor-pointer">
+          </label>
+        </section>
+
+        <!-- 6. Crystal = Lattice + Basis Mode -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              6. Crystal = Lattice + Basis
+            </h3>
+            <span class="text-[11px] font-bengali text-amber-300">ক্রিস্টাল গঠন</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-1.5 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+            <button data-basis="lattice" class="basis-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-sky-500/20 text-sky-300 border border-sky-400/30 transition">
+              Pure Lattice
+            </button>
+            <button data-basis="monatomic" class="basis-btn py-1.5 px-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition">
+              1-Atom Basis
+            </button>
+            <button data-basis="diatomic" class="basis-btn py-1.5 px-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition">
+              2-Atom Basis
+            </button>
+          </div>
+        </section>
+
+        <!-- 7. Crystal Rotational Symmetry & 5-Fold Impossibility Tester -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              7. Rotational Symmetry & 5-Fold Test
+            </h3>
+            <span class="text-[10px] font-mono text-rose-300">Topic 5</span>
+          </div>
+
+          <div class="grid grid-cols-6 gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+            <button data-sym="0" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition">Off</button>
+            <button data-sym="2" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold text-slate-400 hover:text-slate-200 transition">C₂</button>
+            <button data-sym="3" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold text-slate-400 hover:text-slate-200 transition">C₃</button>
+            <button data-sym="4" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold text-slate-400 hover:text-slate-200 transition">C₄</button>
+            <button data-sym="5" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold text-rose-300 hover:bg-rose-500/15 transition">C₅!</button>
+            <button data-sym="6" class="sym-btn py-1.5 rounded-lg text-xs font-mono font-semibold text-slate-400 hover:text-slate-200 transition">C₆</button>
+          </div>
+
+          <div id="symStatusBox" class="text-[11px] font-bengali text-slate-300 bg-slate-900/60 border border-slate-800 rounded-xl px-3 py-2 leading-relaxed">
+            যেকোনো রোটেশন অর্ডার (C₂, C₃, C₄, C₅, C₆) সিলেক্ট করে দেখুন কেন ক্রিস্টালে <strong>৫-ফোল্ড প্রতিসাম্য (72°)</strong> অসম্ভব!
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ================= 3D CONTROLS SECTION ================= -->
+      <div id="controls3DGroup" class="hidden space-y-3.5">
+
+        <!-- 1. Cubic Structures Quick Selector (SC, BCC, FCC) -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              1. Cubic Lattice Structures
+            </h3>
+            <span class="text-[10px] font-mono text-emerald-300">Topic 4</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <button data-bravais3d="cubic_P" class="b3d-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-sky-500/20 border border-sky-400/40 text-sky-200 text-center transition">
+              <div class="font-bold font-mono text-sm">SC (P)</div>
+              <div class="text-[10px] text-slate-300">Z = 1 • 52%</div>
+            </button>
+            <button data-bravais3d="cubic_I" class="b3d-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-center transition">
+              <div class="font-bold font-mono text-sm text-amber-300">BCC (I)</div>
+              <div class="text-[10px] text-slate-400">Z = 2 • 68%</div>
+            </button>
+            <button data-bravais3d="cubic_F" class="b3d-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-center transition">
+              <div class="font-bold font-mono text-sm text-emerald-300">FCC (F)</div>
+              <div class="text-[10px] text-slate-400">Z = 4 • 74%</div>
+            </button>
+          </div>
+        </section>
+
+        <!-- 2. All 14 3D Bravais Lattices (7 Crystal Systems) -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              2. 7 Crystal Systems (14 Bravais)
+            </h3>
+            <span class="text-[11px] font-bengali text-slate-400">১৪টি ৩ডি ল্যাটিস</span>
+          </div>
+
+          <select id="selectBravais3D" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium text-slate-100 focus:outline-none focus:border-sky-400">
+            <optgroup label="1. Cubic (a = b = c, α = β = γ = 90°)">
+              <option value="cubic_P" selected>Simple Cubic (SC / P)</option>
+              <option value="cubic_I">Body-Centered Cubic (BCC / I)</option>
+              <option value="cubic_F">Face-Centered Cubic (FCC / F)</option>
+            </optgroup>
+            <optgroup label="2. Tetragonal (a = b ≠ c, α = β = γ = 90°)">
+              <option value="tetragonal_P">Simple Tetragonal (P)</option>
+              <option value="tetragonal_I">Body-Centered Tetragonal (I)</option>
+            </optgroup>
+            <optgroup label="3. Orthorhombic (a ≠ b ≠ c, α = β = γ = 90°)">
+              <option value="orthorhombic_P">Simple Orthorhombic (P)</option>
+              <option value="orthorhombic_C">Base-Centered Orthorhombic (C)</option>
+              <option value="orthorhombic_I">Body-Centered Orthorhombic (I)</option>
+              <option value="orthorhombic_F">Face-Centered Orthorhombic (F)</option>
+            </optgroup>
+            <optgroup label="4. Monoclinic (a ≠ b ≠ c, α = γ = 90° ≠ β)">
+              <option value="monoclinic_P">Simple Monoclinic (P)</option>
+              <option value="monoclinic_C">Base-Centered Monoclinic (C)</option>
+            </optgroup>
+            <optgroup label="5. Triclinic (a ≠ b ≠ c, α ≠ β ≠ γ ≠ 90°)">
+              <option value="triclinic_P">Simple Triclinic (P) — Least Symmetric</option>
+            </optgroup>
+            <optgroup label="6. Rhombohedral / Trigonal (a = b = c, α = β = γ ≠ 90°)">
+              <option value="rhombohedral_R">Rhombohedral (R)</option>
+            </optgroup>
+            <optgroup label="7. Hexagonal (a = b ≠ c, α = β = 90°, γ = 120°)">
+              <option value="hexagonal_P">Simple Hexagonal (P)</option>
+            </optgroup>
+          </select>
+
+          <!-- Custom 3D Lattice Parameters (a, b, c, alpha, beta, gamma) -->
+          <div class="grid grid-cols-3 gap-2 pt-1">
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>a</span><span id="val3DA" class="text-sky-300">1.0</span>
+              </div>
+              <input id="slider3DA" type="range" min="0.7" max="1.6" step="0.05" value="1.0" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>b</span><span id="val3DB" class="text-amber-300">1.0</span>
+              </div>
+              <input id="slider3DB" type="range" min="0.7" max="1.6" step="0.05" value="1.0" class="slider-amber" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>c</span><span id="val3DC" class="text-emerald-300">1.0</span>
+              </div>
+              <input id="slider3DC" type="range" min="0.7" max="1.7" step="0.05" value="1.0" class="slider-emerald" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 pt-1">
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>α</span><span id="val3DAlpha" class="text-purple-300">90°</span>
+              </div>
+              <input id="slider3DAlpha" type="range" min="60" max="120" step="1" value="90" class="slider-purple" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>β</span><span id="val3DBeta" class="text-purple-300">90°</span>
+              </div>
+              <input id="slider3DBeta" type="range" min="60" max="125" step="1" value="90" class="slider-purple" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[10px] font-mono text-slate-400 mb-0.5">
+                <span>γ</span><span id="val3DGamma" class="text-purple-300">90°</span>
+              </div>
+              <input id="slider3DGamma" type="range" min="60" max="125" step="1" value="90" class="slider-purple" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. 3D Visual Style & Supercell Options -->
+        <section class="glass-card rounded-2xl p-3.5 space-y-2">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">
+            3. 3D Packing & Supercell View
+          </h3>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-sky-300">Touching Hard-Sphere Packing (APF)</span>
+            <input id="chk3DHardSpheres" type="checkbox" class="w-4 h-4 rounded accent-sky-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-amber-300">2×2×2 Crystal Supercell</span>
+            <input id="chk3DSupercell" type="checkbox" class="w-4 h-4 rounded accent-amber-400 cursor-pointer">
+          </label>
+
+          <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+            <span class="text-xs font-medium text-emerald-300">Show Internal Centering Guides</span>
+            <input id="chk3DGuides" type="checkbox" checked class="w-4 h-4 rounded accent-emerald-400 cursor-pointer">
+          </label>
+
+          <!-- Color Legend for 3D Sites -->
+          <div class="grid grid-cols-2 gap-1.5 pt-1 text-[10px] font-mono text-slate-300">
+            <div class="flex items-center gap-1.5 bg-slate-900/60 px-2 py-1 rounded-lg">
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span> Corner (1/8)
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-900/60 px-2 py-1 rounded-lg">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Body-Center (1)
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-900/60 px-2 py-1 rounded-lg">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Face-Center (1/2)
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-900/60 px-2 py-1 rounded-lg">
+              <span class="w-2.5 h-2.5 rounded-full bg-pink-400"></span> Base-Center (1/2)
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: COMPLETE SYLLABUS STUDY GUIDE (5 MODULES, ALL COLLAPSIBLE)   -->
+    <!-- =================================================================== -->
+    <div id="panelGuide" class="hidden p-4 space-y-2.5 overflow-y-auto flex-1 font-bengali">
+      
+      <p class="text-[11px] text-slate-400 px-1">আপনার সিলেবাসের ৫টি অধ্যায়ের প্রতিটি টপিক নিচে সাজানো আছে। ক্লিক করে বিস্তারিত পড়ুন:</p>
+
+      <!-- MODULE 1: BASIC CRYSTAL CONCEPTS -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-sky-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-sky-300 font-sans">1. Basic Crystal Concepts (মৌলিক ধারণা)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-2 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>• Crystalline vs. Amorphous Solids:</strong> Crystalline কঠিন পদার্থে পরমাণুগুলো দীর্ঘ-পাল্লার পর্যাবৃত্ত (Long-range periodic) শৃঙ্খলায় সাজানো থাকে (যেমন: NaCl, কোয়ার্টজ, তামা)। পক্ষান্তরে Amorphous পদার্থে (যেমন: কাঁচ, প্লাস্টিক) কেবল স্বল্প-পাল্লার (Short-range) বিন্যাস থাকে, কোনো দীর্ঘ-পাল্লার ল্যাটিস থাকে না। <em>(2D কন্ট্রোলে "Amorphous" বাটনে ক্লিক করে পার্থক্য দেখুন)</em>।
+          </p>
+          <p>
+            <strong>• Ideal Crystal & Crystal Structure:</strong> একটি আদর্শ ক্রিস্টাল অসীম স্থান জুড়ে একই মৌলিক পরমাণু গুচ্ছের (Fundamental Group) পুনরাবৃত্তির মাধ্যমে গঠিত হয়।
+          </p>
+          <p class="bg-slate-900/70 p-2 rounded-xl border border-slate-800 font-mono text-emerald-300 text-center">
+            Crystal Structure = Space Lattice + Basis
+          </p>
+          <p>
+            <strong>• Lattice & Basis:</strong> <strong>Lattice</strong> হলো স্থানের গাণিতিক বিন্দুর বিন্যাস, যেখানে প্রতিটি বিন্দুর চারপাশের পরিবেশ অভিন্ন (<span class="font-mono">R = n₁a₁ + n₂a₂ + n₃a₃</span>)। আর প্রতিটি ল্যাটিস বিন্দুতে যে এক বা একাধিক পরমাণু বসানো হয়, তাকে <strong>Basis</strong> বলে।
+          </p>
+        </div>
+      </details>
+
+      <!-- MODULE 2: UNIT CELLS -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-indigo-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-indigo-300 font-sans">2. Unit Cells (Primitive, Double, Triple, Wigner-Seitz)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-2 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>• Unit Cell:</strong> ক্ষুদ্রতম জ্যামিতিক একক, যাকে বারবার ট্রান্সলেশন করলে পুরো ক্রিস্টাল ল্যাটিসটি তৈরি হয়।
+          </p>
+          <p>
+            <strong>• Primitive vs. Non-Primitive Cell:</strong> যে একক কোষের আয়তন/ক্ষেত্রফল সর্বনিম্ন এবং যার ভেতরে কার্যকর ল্যাটিস বিন্দুর সংখ্যা ঠিক <strong>১টি</strong> (যেমন: ৪ কোণায় $4 \times \frac{1}{4} = 1$), তাকে <strong>Primitive Cell</strong> বলে। আর যে কোষে ১টির বেশি ল্যাটিস বিন্দু থাকে (যেমন: BCC-তে ২টি, FCC-তে ৪টি), তাকে <strong>Non-Primitive Cell</strong> বলে।
+          </p>
+          <p>
+            <strong>• Double & Triple Cells:</strong> Primitive কোষের ক্ষেত্রফলের দ্বিগুণ ক্ষেত্রফল ও <strong>২টি</strong> বিন্দুবিশিষ্ট কোষকে <strong>Double Cell</strong> এবং তিনগুণ ক্ষেত্রফল ও <strong>৩টি</strong> বিন্দুবিশিষ্ট কোষকে <strong>Triple Cell</strong> বলে। <em>(2D কন্ট্রোলের ৫ নম্বর সেকশনে টগল অন করে দেখুন)</em>।
+          </p>
+          <p>
+            <strong>• Wigner-Seitz Primitive Cell:</strong> একটি ল্যাটিস বিন্দুকে কেন্দ্রে রেখে নিকটতম প্রতিবেশী বিন্দুগুলোর সংযোগকারী রেখার <strong>লম্ব-সমদ্বিখণ্ডক (Perpendicular Bisectors)</strong> টানলে মাঝখানে যে ক্ষুদ্রতম আবদ্ধ অঞ্চল তৈরি হয়, সেটিই Wigner-Seitz Cell। এটি সর্বদা একটি Primitive Cell।
+          </p>
+        </div>
+      </details>
+
+      <!-- MODULE 3: CRYSTAL SYSTEMS & BRAVAIS LATTICES (2D & 3D) -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-emerald-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-emerald-300 font-sans">3. 2D & 3D Bravais Lattices (৭টি সিস্টেম ও ১৪টি ল্যাটিস)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-2 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>• Crystal System vs. Crystal Structure:</strong> একক কোষের অক্ষীয় দৈর্ঘ্য ($a, b, c$) ও মধ্যবর্তী কোণের ($\alpha, \beta, \gamma$) জ্যামিতিক প্রতিসাম্যের ভিত্তিতে শ্রেণিবিন্যাসকে <strong>Crystal System</strong> বলে। আর ল্যাটিসের সাথে নির্দিষ্ট পরমাণু বা Basis যুক্ত হলে তাকে <strong>Crystal Structure</strong> বলে।
+          </p>
+          <p>
+            <strong>• 2D Bravais Lattices (৫টি):</strong> Oblique ($a_1 \neq a_2, \gamma \neq 90^\circ$), Square ($a_1 = a_2, \gamma = 90^\circ$), Rectangular ($a_1 \neq a_2, \gamma = 90^\circ$), Centered Rectangular ($a_1 = a_2, \gamma \neq 90^\circ$ রম্বস), এবং Hexagonal ($a_1 = a_2, \gamma = 120^\circ$)।
+          </p>
+          <div class="bg-slate-900/75 p-2.5 rounded-xl border border-slate-800 space-y-1 text-[11px] font-mono">
+            <div class="text-sky-300">1. Cubic (3: P, I, F): a=b=c, α=β=γ=90°</div>
+            <div class="text-indigo-300">2. Tetragonal (2: P, I): a=b≠c, α=β=γ=90°</div>
+            <div class="text-emerald-300">3. Orthorhombic (4: P, C, I, F): a≠b≠c, α=β=γ=90°</div>
+            <div class="text-amber-300">4. Monoclinic (2: P, C): a≠b≠c, α=γ=90°≠β</div>
+            <div class="text-rose-300 font-bold">5. Triclinic (1: P): a≠b≠c, α≠β≠γ≠90° (সবচেয়ে কম প্রতিসাম্য!)</div>
+            <div class="text-purple-300">6. Rhombohedral (1: R): a=b=c, α=β=γ≠90°</div>
+            <div class="text-cyan-300">7. Hexagonal (1: P): a=b≠c, α=β=90°, γ=120°</div>
+          </div>
+          <p class="text-[11px] text-slate-400">
+            💡 উপরে <strong>3D</strong> বাটনে ক্লিক করে এই ১৪টি ল্যাটিস ঘুরিয়ে দেখুন!
+          </p>
+        </div>
+      </details>
+
+      <!-- MODULE 4: CUBIC LATTICE STRUCTURES (SC, BCC, FCC) -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-amber-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-amber-300 font-sans">4. Cubic Structures: SC, BCC & FCC তুলনা</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-2 leading-relaxed border-t border-slate-800/70">
+          <div class="pt-2 overflow-x-auto">
+            <table class="w-full text-[11px] font-mono text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400">
+                  <th class="py-1">বৈশিষ্ট্য</th>
+                  <th class="py-1 text-sky-300">SC</th>
+                  <th class="py-1 text-amber-300">BCC</th>
+                  <th class="py-1 text-emerald-300">FCC</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800">
+                <tr>
+                  <td class="py-1.5 font-bengali">মোট পরমাণু (Z)</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 font-bengali">সমন্বয় সংখ্যা (CN)</td>
+                  <td>6</td>
+                  <td>8</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 font-bengali">ব্যাসার্ধ (r)</td>
+                  <td>a/2</td>
+                  <td>√3a/4</td>
+                  <td>√2a/4</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 font-bengali">প্যাকিং দক্ষতা (APF)</td>
+                  <td>52.4%</td>
+                  <td>68.0%</td>
+                  <td>74.0%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-slate-300">
+            • <strong>SC (Simple Cubic):</strong> ৮ কোণায় ৮টি পরমাণু ($8 \times \frac{1}{8} = 1$)। উদাহরণ: পোলোনিয়াম (Po)।<br/>
+            • <strong>BCC (Body-Centered Cubic):</strong> ৮ কোণা + কেন্দ্রে ১টি পূর্ণ পরমাণু ($1 + 1 = 2$)। পরমাণুগুলো কর্ণ (Body Diagonal) বরাবর স্পর্শ করে। উদাহরণ: Fe, Cr, W, Na।<br/>
+            • <strong>FCC (Face-Centered Cubic):</strong> ৮ কোণা + ৬ তলের কেন্দ্রে ৬টি পরমাণু ($1 + 6 \times \frac{1}{2} = 4$)। তলের কর্ণ (Face Diagonal) বরাবর স্পর্শ করে। উদাহরণ: Cu, Al, Au, Ag।
+          </p>
+        </div>
+      </details>
+
+      <!-- MODULE 5: CRYSTAL SYMMETRY & 5-FOLD IMPOSSIBILITY -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-rose-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-rose-300 font-sans">5. Crystal Symmetry & 5-Fold প্রতিসাম্য অসম্ভব কেন?</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-2 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>• Symmetry Operations:</strong> যে জ্যামিতিক ক্রিয়ার পর ক্রিস্টালটি হুবহু আগের মতো দেখায়: Translation, Rotation ($C_n$, $\theta = \frac{360^\circ}{n}$), Reflection (Mirror plane $\sigma$), এবং Inversion ($i$)।
+          </p>
+          <p>
+            <strong>• কেন 5-Fold Rotational Symmetry ($C_5$) অসম্ভব?</strong><br/>
+            পর্যাবৃত্ত ট্রান্সলেশন প্রতিসাম্য বজায় রাখতে হলে যেকোনো অনুমোদিত ঘূর্ণন কোণ $\theta$-কে নিচের শর্তটি মানতে হয় (Crystallographic Restriction Theorem):
+          </p>
+          <div class="bg-slate-900/75 p-2 rounded-xl border border-slate-800 font-mono text-center text-rose-300">
+            2 cos(θ) = m &nbsp;(যেখানে m একটি পূর্ণসংখ্যা: -2, -1, 0, 1, 2)
+          </div>
+          <p>
+            অর্থাৎ $\cos\theta \in \{-1, -\frac{1}{2}, 0, \frac{1}{2}, 1\}$, যা কেবল <strong>$n = 1, 2, 3, 4, 6$</strong> ফোল্ড রোটেশনের জন্য সত্য। $n = 5$ হলে $\theta = 72^\circ$ এবং $2\cos 72^\circ = 0.618$ (পূর্ণসংখ্যা নয়!)। জ্যামিতিকভাবেও সুষম পঞ্চভুজ দিয়ে কোনো ফাঁক না রেখে সমতল পূরণ করা যায় না।
+          </p>
+        </div>
+      </details>
+
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC: 2D PHYSICS ENGINE + 3D THREE.JS CRYSTAL ENGINE     -->
+  <!-- ===================================================================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      // -------------------------------------------------------------------
+      // 1. UNIFIED APPLICATION STATE
+      // -------------------------------------------------------------------
+      const state = {
+        mode: '2d',                 // '2d' | '3d'
+
+        // 2D Lattice State
+        solidOrder: 'crystalline',  // 'crystalline' | 'amorphous'
+        a1Len: 1.30,
+        a2Len: 1.10,
+        theta1: 0,
+        gammaDeg: 62.0,
+        m: 2,
+        n: 1,
+
+        // 2D Viewport
+        pixelsPerUnit: 92,
+        zoom: 1.0,
+        panX: -45,
+        panY: 40,
+
+        // Origin Shift Animation
+        animatingShift: false,
+        shiftStartTime: 0,
+        shiftDuration: 600,
+        shiftFromPan: { x: 0, y: 0 },
+        shiftToPan: { x: 0, y: 0 },
+        originPulse: 0,
+
+        // 2D Layer Toggles
+        magneticSnap: true,
+        showPrimitiveCell: true,
+        showWignerSeitz: false,
+        showDoubleCell: false,
+        showTripleCell: false,
+        showConventionalCell: true,
+        showGridLines: true,
+        basisMode: 'lattice',       // 'lattice' | 'monatomic' | 'diatomic'
+        symTestOrder: 0,            // 0 (off), 2, 3, 4, 5, 6
+
+        // 3D Bravais & Cubic State
+        bravais3DKey: 'cubic_P',
+        a3D: 1.0,
+        b3D: 1.0,
+        c3D: 1.0,
+        alpha3D: 90,
+        beta3D: 90,
+        gamma3D: 90,
+        hardSpheres3D: false,
+        supercell3D: false,
+        guides3D: true,
+        autoRotate3D: true,
+
+        // Collapsible UI State (All collapsed by default!)
+        hudExpanded: false,
+        drawerExpanded: false,
+        hintExpanded: false,
+
+        // Pointer Interaction
+        draggingTarget: null,
+        dragStartMouse: { x: 0, y: 0 },
+        dragStartPan: { x: 0, y: 0 },
+        hoveredNode: null,
+      };
+
+      // Precomputed deterministic amorphous offsets for Crystalline vs Amorphous comparison
+      const amorphousOffsets = new Map();
+      function getAmorphousJitter(i, j) {
+        const key = `${i},${j}`;
+        if (!amorphousOffsets.has(key)) {
+          const s1 = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453;
+          const s2 = Math.sin(i * 39.346 + j * 11.135) * 24634.6345;
+          const r1 = (s1 - Math.floor(s1)) - 0.5;
+          const r2 = (s2 - Math.floor(s2)) - 0.5;
+          amorphousOffsets.set(key, { dx: r1 * 0.62, dy: r2 * 0.62 });
+        }
+        return amorphousOffsets.get(key);
+      }
+
+      // -------------------------------------------------------------------
+      // 2. DOM REFERENCES
+      // -------------------------------------------------------------------
+      const canvas = document.getElementById('latticeCanvas');
+      const ctx = canvas.getContext('2d');
+      const canvasWrapper = document.getElementById('canvasWrapper');
+      const threeContainer = document.getElementById('threeContainer');
+
+      // Mode Switchers
+      const btnMode2D = document.getElementById('btnMode2D');
+      const btnMode3D = document.getElementById('btnMode3D');
+      const controls2DGroup = document.getElementById('controls2DGroup');
+      const controls3DGroup = document.getElementById('controls3DGroup');
+
+      // Collapsible UI Controls
+      const btnExpandHud = document.getElementById('btnExpandHud');
+      const btnCollapseHud = document.getElementById('btnCollapseHud');
+      const hudCard = document.getElementById('hudCard');
+
+      const btnOpenDrawer = document.getElementById('btnOpenDrawer');
+      const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+      const sidebarDrawer = document.getElementById('sidebarDrawer');
+
+      const btnToggleHint = document.getElementById('btnToggleHint');
+      const hintPill = document.getElementById('hintPill');
+      const hintText = document.getElementById('hintText');
+
+      // HUD Elements
+      const hudSystemTag = document.getElementById('hudSystemTag');
+      const latticeTypeBadge = document.getElementById('latticeTypeBadge');
+      const symmetryBadge = document.getElementById('symmetryBadge');
+      const conditionBadge = document.getElementById('conditionBadge');
+      const latticeBengaliNote = document.getElementById('latticeBengaliNote');
+      const hudTelemetry2D = document.getElementById('hudTelemetry2D');
+      const hudTelemetry3D = document.getElementById('hudTelemetry3D');
+      const hudA1 = document.getElementById('hudA1');
+      const hudA2 = document.getElementById('hudA2');
+      const hudGamma = document.getElementById('hudGamma');
+      const hudArea = document.getElementById('hudArea');
+      const hud3DAxes = document.getElementById('hud3DAxes');
+      const hud3DAngles = document.getElementById('hud3DAngles');
+      const hud3DZ = document.getElementById('hud3DZ');
+      const hud3DCubicMetrics = document.getElementById('hud3DCubicMetrics');
+      const hud3DCN = document.getElementById('hud3DCN');
+      const hud3DRadius = document.getElementById('hud3DRadius');
+      const hud3DAPF = document.getElementById('hud3DAPF');
+      const zoomReadout = document.getElementById('zoomReadout');
+
+      // 2D Controls
+      const sliderA1 = document.getElementById('sliderA1');
+      const sliderA2 = document.getElementById('sliderA2');
+      const sliderGamma = document.getElementById('sliderGamma');
+      const valA1 = document.getElementById('valA1');
+      const valA2 = document.getElementById('valA2');
+      const valGamma = document.getElementById('valGamma');
+      const valM = document.getElementById('valM');
+      const valN = document.getElementById('valN');
+      const rFormulaText = document.getElementById('rFormulaText');
+      const rMagText = document.getElementById('rMagText');
+      const symStatusBox = document.getElementById('symStatusBox');
+
+      // 3D Controls
+      const selectBravais3D = document.getElementById('selectBravais3D');
+      const slider3DA = document.getElementById('slider3DA');
+      const slider3DB = document.getElementById('slider3DB');
+      const slider3DC = document.getElementById('slider3DC');
+      const slider3DAlpha = document.getElementById('slider3DAlpha');
+      const slider3DBeta = document.getElementById('slider3DBeta');
+      const slider3DGamma = document.getElementById('slider3DGamma');
+
+      // Tabs & Tooltip
+      const tabBtnControls = document.getElementById('tabBtnControls');
+      const tabBtnGuide = document.getElementById('tabBtnGuide');
+      const panelControls = document.getElementById('panelControls');
+      const panelGuide = document.getElementById('panelGuide');
+      const btnShiftLabel = document.getElementById('btnShiftLabel');
+
+      const nodeTooltip = document.getElementById('nodeTooltip');
+      const tooltipCoords = document.getElementById('tooltipCoords');
+      const tooltipDist = document.getElementById('tooltipDist');
+
+      // -------------------------------------------------------------------
+      // 3. COLLAPSIBLE UI & DIMENSION MODE SWITCHING
+      // -------------------------------------------------------------------
+      function setHudExpanded(expanded) {
+        state.hudExpanded = expanded;
+        btnExpandHud.classList.toggle('hidden', expanded);
+        hudCard.classList.toggle('hidden', !expanded);
+      }
+
+      function setDrawerExpanded(expanded) {
+        state.drawerExpanded = expanded;
+        if (expanded) {
+          sidebarDrawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+          sidebarDrawer.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        } else {
+          sidebarDrawer.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          sidebarDrawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+        }
+      }
+
+      btnExpandHud.addEventListener('click', () => setHudExpanded(true));
+      btnCollapseHud.addEventListener('click', () => setHudExpanded(false));
+      btnOpenDrawer.addEventListener('click', () => setDrawerExpanded(true));
+      btnCloseDrawer.addEventListener('click', () => setDrawerExpanded(false));
+
+      btnToggleHint.addEventListener('click', () => {
+        state.hintExpanded = !state.hintExpanded;
+        hintPill.classList.toggle('hidden', !state.hintExpanded);
+      });
+
+      function setDimensionMode(mode) {
+        state.mode = mode;
+        const is3D = mode === '3d';
+
+        canvas.classList.toggle('hidden', is3D);
+        threeContainer.classList.toggle('hidden', !is3D);
+        controls2DGroup.classList.toggle('hidden', is3D);
+        controls3DGroup.classList.toggle('hidden', !is3D);
+        hudTelemetry2D.classList.toggle('hidden', is3D);
+        hudTelemetry3D.classList.toggle('hidden', !is3D);
+        nodeTooltip.classList.add('hidden');
+
+        if (is3D) {
+          btnMode3D.classList.add('bg-sky-500/25', 'text-sky-300', 'border', 'border-sky-400/40');
+          btnMode3D.classList.remove('text-slate-400');
+          btnMode2D.classList.remove('bg-sky-500/25', 'text-sky-300', 'border', 'border-sky-400/40');
+          btnMode2D.classList.add('text-slate-400');
+          btnShiftLabel.textContent = 'Auto-Rotate';
+          hintText.innerHTML = 'Drag to rotate 3D crystal • Scroll to zoom • Use <strong class="text-sky-300">কন্ট্রোল ও পাঠ</strong> for SC/BCC/FCC & 14 Bravais';
+          initThreeIfNeeded();
+          resizeThree();
+          rebuild3DLattice();
+        } else {
+          btnMode2D.classList.add('bg-sky-500/25', 'text-sky-300', 'border', 'border-sky-400/40');
+          btnMode2D.classList.remove('text-slate-400');
+          btnMode3D.classList.remove('bg-sky-500/25', 'text-sky-300', 'border', 'border-sky-400/40');
+          btnMode3D.classList.add('text-slate-400');
+          btnShiftLabel.textContent = 'মূলবিন্দু সরান';
+          hintText.innerHTML = 'Drag <strong class="text-sky-300">a₁</strong> / <strong class="text-amber-300">a₂</strong> tips • Click node for <strong class="text-emerald-300">R</strong> • Drag canvas to pan';
+          resizeCanvas();
+        }
+        updateUI();
+      }
+
+      btnMode2D.addEventListener('click', () => setDimensionMode('2d'));
+      btnMode3D.addEventListener('click', () => setDimensionMode('3d'));
+
+      // -------------------------------------------------------------------
+      // 4. 2D MATHEMATICAL HELPERS & CLASSIFICATION
+      // -------------------------------------------------------------------
+      function degToRad(deg) { return (deg * Math.PI) / 180; }
+      function radToDeg(rad) { return (rad * 180) / Math.PI; }
+
+      function getPrimitiveVectors() {
+        const gammaRad = degToRad(state.gammaDeg);
+        const theta2 = state.theta1 + gammaRad;
+        return {
+          a1: { x: state.a1Len * Math.cos(state.theta1), y: state.a1Len * Math.sin(state.theta1) },
+          a2: { x: state.a2Len * Math.cos(theta2), y: state.a2Len * Math.sin(theta2) },
+        };
+      }
+
+      function getScale() { return state.pixelsPerUnit * state.zoom; }
+
+      function worldToScreen(wx, wy) {
+        const rect = canvas.getBoundingClientRect();
+        const scale = getScale();
+        const cx = rect.width * 0.5 + state.panX;
+        const cy = rect.height * 0.5 + state.panY;
+        return { x: cx + wx * scale, y: cy - wy * scale };
+      }
+
+      function screenToWorld(sx, sy) {
+        const rect = canvas.getBoundingClientRect();
+        const scale = getScale();
+        const cx = rect.width * 0.5 + state.panX;
+        const cy = rect.height * 0.5 + state.panY;
+        return { x: (sx - cx) / scale, y: (cy - sy) / scale };
+      }
+
+      function classifyLattice2D() {
+        if (state.solidOrder === 'amorphous') {
+          return {
+            name: 'Amorphous Solid (Glass)',
+            symmetry: 'No Long-Range Order',
+            condition: 'Random Network (No Lattice)',
+            note: 'অনিয়তাকার কঠিন (Amorphous): স্বল্প-পাল্লার বন্ধন থাকলেও কোনো দীর্ঘ-পাল্লার পর্যাবৃত্ত ব্র্যাভে ল্যাটিস বা একক কোষ নেই।',
+            isCenteredRect: false,
+          };
+        }
+
+        const epsLen = 0.035;
+        const epsAng = 1.2;
+        const eqLen = Math.abs(state.a1Len - state.a2Len) <= epsLen;
+        const is90 = Math.abs(state.gammaDeg - 90) <= epsAng;
+        const is120or60 = Math.abs(state.gammaDeg - 120) <= epsAng || Math.abs(state.gammaDeg - 60) <= epsAng;
+
+        if (eqLen && is90) {
+          return {
+            name: 'Square Lattice',
+            symmetry: 'Symmetry: C₄',
+            condition: 'a₁ = a₂, γ = 90°',
+            note: 'বর্গাকার ল্যাটিস: দুটি আদিম ভেক্টরের দৈর্ঘ্য সমান এবং মধ্যবর্তী কোণ ঠিক ৯০°।',
+            isCenteredRect: false,
+          };
+        }
+        if (eqLen && is120or60) {
+          return {
+            name: 'Hexagonal Lattice',
+            symmetry: 'Symmetry: C₆',
+            condition: `a₁ = a₂, γ = ${state.gammaDeg.toFixed(0)}°`,
+            note: 'ষড়ভুজাকার ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য সমান এবং কোণ ১২০° (বা ৬০°); এর Wigner-Seitz কোষ একটি সুষম ষড়ভুজ।',
+            isCenteredRect: false,
+          };
+        }
+        if (!eqLen && is90) {
+          return {
+            name: 'Rectangular Lattice',
+            symmetry: 'Symmetry: C₂ + mirror',
+            condition: 'a₁ ≠ a₂, γ = 90°',
+            note: 'আয়তাকার ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান কিন্তু মধ্যবর্তী কোণ ৯০°।',
+            isCenteredRect: false,
+          };
+        }
+        if (eqLen && !is90) {
+          return {
+            name: 'Centered Rectangular',
+            symmetry: 'Symmetry: C₂ + mirror',
+            condition: 'a₁ = a₂, γ ≠ 90° (Rhombic)',
+            note: 'কেন্দ্রিক আয়তাকার ল্যাটিস: সমবাহু রম্বস আদিম কোষের মাধ্যমে একটি কেন্দ্রিক আয়তক্ষেত্র (গোলাপি ড্যাশড) গঠন করে।',
+            isCenteredRect: true,
+          };
+        }
+        return {
+          name: 'Oblique Lattice',
+          symmetry: 'Symmetry: C₂',
+          condition: 'a₁ ≠ a₂, γ ≠ 90°',
+          note: 'সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়।',
+          isCenteredRect: false,
+        };
+      }
+
+      function computeWignerSeitzPolygon(a1, a2) {
+        let poly = [
+          { x: -8, y: -8 }, { x: 8, y: -8 }, { x: 8, y: 8 }, { x: -8, y: 8 },
+        ];
+        for (let i = -3; i <= 3; i++) {
+          for (let j = -3; j <= 3; j++) {
+            if (i === 0 && j === 0) continue;
+            const rx = i * a1.x + j * a2.x;
+            const ry = i * a1.y + j * a2.y;
+            const limit = 0.5 * (rx * rx + ry * ry);
+            const nextPoly = [];
+            for (let k = 0; k < poly.length; k++) {
+              const curr = poly[k];
+              const prev = poly[(k + poly.length - 1) % poly.length];
+              const dCurr = curr.x * rx + curr.y * ry - limit;
+              const dPrev = prev.x * rx + prev.y * ry - limit;
+              if (dCurr <= 0) {
+                if (dPrev > 0) {
+                  const t = dPrev / (dPrev - dCurr);
+                  nextPoly.push({ x: prev.x + t * (curr.x - prev.x), y: prev.y + t * (curr.y - prev.y) });
+                }
+                nextPoly.push(curr);
+              } else if (dPrev <= 0) {
+                const t = dPrev / (dPrev - dCurr);
+                nextPoly.push({ x: prev.x + t * (curr.x - prev.x), y: prev.y + t * (curr.y - prev.y) });
+              }
+            }
+            poly = nextPoly;
+            if (poly.length === 0) break;
+          }
+        }
+        return poly;
+      }
+
+      // -------------------------------------------------------------------
+      // 5. 3D BRAVAIS LATTICES METADATA (14 BRAVAIS + SC/BCC/FCC)
+      // -------------------------------------------------------------------
+      const bravais3DDefinitions = {
+        cubic_P: {
+          name: 'Simple Cubic (SC / P)',
+          system: 'Cubic System',
+          sym: 'Oh (48 ops)',
+          cond: 'a = b = c, α = β = γ = 90°',
+          a: 1.0, b: 1.0, c: 1.0, alpha: 90, beta: 90, gamma: 90,
+          centering: 'P', Z: 1, cn: '6', radius: 'a / 2', apf: '52.4%',
+          note: 'Simple Cubic (SC): ঘনকের ৮ কোণায় ৮টি ল্যাটিস বিন্দু থাকে (8 × 1/8 = 1টি কার্যকর পরমাণু)। পরমাণুগুলো ঘনকের ধার (edge) বরাবর পরস্পরকে স্পর্শ করে।'
+        },
+        cubic_I: {
+          name: 'Body-Centered Cubic (BCC / I)',
+          system: 'Cubic System',
+          sym: 'Oh (48 ops)',
+          cond: 'a = b = c, α = β = γ = 90°',
+          a: 1.0, b: 1.0, c: 1.0, alpha: 90, beta: 90, gamma: 90,
+          centering: 'I', Z: 2, cn: '8', radius: '√3a / 4', apf: '68.0%',
+          note: 'Body-Centered Cubic (BCC): ৮ কোণায় (8×1/8 = 1) এবং ঘনকের ঠিক কেন্দ্রে ১টি পূর্ণ পরমাণু মিলিয়ে মোট Z = 2টি পরমাণু থাকে। পরমাণুগুলো দেহ-কর্ণ (Body Diagonal) বরাবর স্পর্শ করে।'
+        },
+        cubic_F: {
+          name: 'Face-Centered Cubic (FCC / F)',
+          system: 'Cubic System',
+          sym: 'Oh (48 ops)',
+          cond: 'a = b = c, α = β = γ = 90°',
+          a: 1.0, b: 1.0, c: 1.0, alpha: 90, beta: 90, gamma: 90,
+          centering: 'F', Z: 4, cn: '12', radius: '√2a / 4', apf: '74.0%',
+          note: 'Face-Centered Cubic (FCC): ৮ কোণায় (1) এবং ৬টি তলের কেন্দ্রে (6×1/2 = 3) মিলিয়ে মোট Z = 4টি পরমাণু থাকে। এটি সর্বোচ্চ প্যাকিং দক্ষতাসম্পন্ন (74%) ঘনকাকার গঠন।'
+        },
+        tetragonal_P: {
+          name: 'Simple Tetragonal (P)',
+          system: 'Tetragonal System',
+          sym: 'D4h (C₄ axis)',
+          cond: 'a = b ≠ c, α = β = γ = 90°',
+          a: 0.95, b: 0.95, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'P', Z: 1,
+          note: 'Simple Tetragonal: ঘনককে একটি অক্ষ (c) বরাবর টেনে লম্বা বা চ্যাপ্টা করলে এটি পাওয়া যায়; ভূমি বর্গাকার (a = b) কিন্তু উচ্চতা c আলাদা।'
+        },
+        tetragonal_I: {
+          name: 'Body-Centered Tetragonal (I)',
+          system: 'Tetragonal System',
+          sym: 'D4h (C₄ axis)',
+          cond: 'a = b ≠ c, α = β = γ = 90°',
+          a: 0.95, b: 0.95, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'I', Z: 2,
+          note: 'Body-Centered Tetragonal: টেট্রাগোনাল প্রিজমের ৮ কোণা ছাড়াও ঠিক দেহকেন্দ্রে একটি অতিরিক্ত ল্যাটিস বিন্দু থাকে (Z = 2)।'
+        },
+        orthorhombic_P: {
+          name: 'Simple Orthorhombic (P)',
+          system: 'Orthorhombic System',
+          sym: 'D2h (3 C₂ axes)',
+          cond: 'a ≠ b ≠ c, α = β = γ = 90°',
+          a: 0.85, b: 1.15, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'P', Z: 1,
+          note: 'Simple Orthorhombic: তিনটি অক্ষের দৈর্ঘ্যই অসমান (a ≠ b ≠ c), কিন্তু প্রতিটি অক্ষ পরস্পরের সাথে ঠিক ৯০° কোণে অবস্থিত।'
+        },
+        orthorhombic_C: {
+          name: 'Base-Centered Orthorhombic (C)',
+          system: 'Orthorhombic System',
+          sym: 'D2h',
+          cond: 'a ≠ b ≠ c, α = β = γ = 90°',
+          a: 0.85, b: 1.15, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'C', Z: 2,
+          note: 'Base-Centered Orthorhombic (C): ৮ কোণা ছাড়াও ওপর ও নিচের বিপরীত দুটি তলের কেন্দ্রে ১টি করে ল্যাটিস বিন্দু থাকে (1 + 2×1/2 = 2)।'
+        },
+        orthorhombic_I: {
+          name: 'Body-Centered Orthorhombic (I)',
+          system: 'Orthorhombic System',
+          sym: 'D2h',
+          cond: 'a ≠ b ≠ c, α = β = γ = 90°',
+          a: 0.85, b: 1.15, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'I', Z: 2,
+          note: 'Body-Centered Orthorhombic (I): অসমান বাহুবিশিষ্ট আয়তাকার ঘনবস্তুর ৮ কোণা ও দেহকেন্দ্রে ল্যাটিস বিন্দু থাকে (Z = 2)।'
+        },
+        orthorhombic_F: {
+          name: 'Face-Centered Orthorhombic (F)',
+          system: 'Orthorhombic System',
+          sym: 'D2h',
+          cond: 'a ≠ b ≠ c, α = β = γ = 90°',
+          a: 0.85, b: 1.15, c: 1.45, alpha: 90, beta: 90, gamma: 90,
+          centering: 'F', Z: 4,
+          note: 'Face-Centered Orthorhombic (F): ৮ কোণা এবং ৬টি তলের প্রতিটির কেন্দ্রে ল্যাটিস বিন্দু থাকে (Z = 4)।'
+        },
+        monoclinic_P: {
+          name: 'Simple Monoclinic (P)',
+          system: 'Monoclinic System',
+          sym: 'C2h (1 C₂ axis)',
+          cond: 'a ≠ b ≠ c, α = γ = 90° ≠ β',
+          a: 0.90, b: 1.15, c: 1.35, alpha: 90, beta: 112, gamma: 90,
+          centering: 'P', Z: 1,
+          note: 'Simple Monoclinic: তিনটি অক্ষ অসমান (a ≠ b ≠ c) এবং দুটি কোণ ৯০° হলেও একটি কোণ (β ≠ 90°) হেলানো থাকে।'
+        },
+        monoclinic_C: {
+          name: 'Base-Centered Monoclinic (C)',
+          system: 'Monoclinic System',
+          sym: 'C2h',
+          cond: 'a ≠ b ≠ c, α = γ = 90° ≠ β',
+          a: 0.90, b: 1.15, c: 1.35, alpha: 90, beta: 112, gamma: 90,
+          centering: 'C', Z: 2,
+          note: 'Base-Centered Monoclinic (C): হেলানো মনোক্লিনিক কোষের ৮ কোণা ছাড়াও বিপরীত দুটি তলের কেন্দ্রে বিন্দু থাকে (Z = 2)।'
+        },
+        triclinic_P: {
+          name: 'Simple Triclinic (P)',
+          system: 'Triclinic System',
+          sym: 'Ci (Inversion only)',
+          cond: 'a ≠ b ≠ c, α ≠ β ≠ γ ≠ 90°',
+          a: 0.85, b: 1.10, c: 1.35, alpha: 74, beta: 108, gamma: 116,
+          centering: 'P', Z: 1,
+          note: 'Triclinic System (সবচেয়ে কম প্রতিসাম্য): তিনটি বাহুই অসমান (a ≠ b ≠ c) এবং তিনটি কোণই অসমান ও ৯০° নয় (α ≠ β ≠ γ ≠ 90°)। এতে কোনো ঘূর্ণন প্রতিসাম্য নেই।'
+        },
+        rhombohedral_R: {
+          name: 'Rhombohedral / Trigonal (R)',
+          system: 'Rhombohedral System',
+          sym: 'D3d (C₃ axis)',
+          cond: 'a = b = c, α = β = γ ≠ 90°',
+          a: 1.10, b: 1.10, c: 1.10, alpha: 72, beta: 72, gamma: 72,
+          centering: 'P', Z: 1,
+          note: 'Rhombohedral (R): একটি ঘনককে কর্ণ বরাবর টানলে বা চাপলে যে সুষম রম্বোহেড্রন তৈরি হয়—তিনটি বাহু সমান (a=b=c) এবং তিনটি কোণ সমান কিন্তু ৯০° নয়।'
+        },
+        hexagonal_P: {
+          name: 'Simple Hexagonal (P)',
+          system: 'Hexagonal System',
+          sym: 'D6h (C₆ axis)',
+          cond: 'a = b ≠ c, α = β = 90°, γ = 120°',
+          a: 1.05, b: 1.05, c: 1.45, alpha: 90, beta: 90, gamma: 120,
+          centering: 'P', Z: 1,
+          note: 'Hexagonal Primitive Cell (P): ভূমির দুটি বাহু সমান (a = b) ও মধ্যবর্তী কোণ γ = 120°, এবং উচ্চতা c উভয়ের সাথে লম্ব (α = β = 90°)। তিনটি প্রিমিটিভ কোষ মিলে একটি ষড়ভুজাকার প্রিজম গঠন করে।'
+        },
+      };
+
+      // -------------------------------------------------------------------
+      // 6. UI SYNCHRONIZATION
+      // -------------------------------------------------------------------
+      function updateUI() {
+        if (state.mode === '2d') {
+          const { a1, a2 } = getPrimitiveVectors();
+          const info = classifyLattice2D();
+
+          hudSystemTag.textContent = '2D Bravais System';
+          latticeTypeBadge.textContent = info.name;
+          symmetryBadge.textContent = info.symmetry;
+          conditionBadge.textContent = info.condition;
+          latticeBengaliNote.textContent = info.note;
+
+          const area = Math.abs(a1.x * a2.y - a1.y * a2.x);
+          hudA1.textContent = state.a1Len.toFixed(2);
+          hudA2.textContent = state.a2Len.toFixed(2);
+          hudGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
+          hudArea.textContent = area.toFixed(2);
+
+          sliderA1.value = state.a1Len;
+          sliderA2.value = state.a2Len;
+          sliderGamma.value = state.gammaDeg;
+          valA1.textContent = `${state.a1Len.toFixed(2)} a`;
+          valA2.textContent = `${state.a2Len.toFixed(2)} a`;
+          valGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
+          zoomReadout.textContent = `${Math.round(state.zoom * 100)}%`;
+
+          valM.textContent = state.m;
+          valN.textContent = state.n;
+          const signN = state.n >= 0 ? '+' : '−';
+          rFormulaText.textContent = `R = ${state.m}a₁ ${signN} ${Math.abs(state.n)}a₂`;
+          const rx = state.m * a1.x + state.n * a2.x;
+          const ry = state.m * a1.y + state.n * a2.y;
+          rMagText.textContent = `|R| = ${Math.hypot(rx, ry).toFixed(2)} a`;
+        } else {
+          const def = bravais3DDefinitions[state.bravais3DKey];
+          hudSystemTag.textContent = def.system;
+          latticeTypeBadge.textContent = def.name;
+          symmetryBadge.textContent = def.sym;
+          conditionBadge.textContent = def.cond;
+          latticeBengaliNote.textContent = def.note;
+
+          hud3DAxes.textContent = `${state.a3D.toFixed(2)}, ${state.b3D.toFixed(2)}, ${state.c3D.toFixed(2)}`;
+          hud3DAngles.textContent = `${state.alpha3D}°, ${state.beta3D}°, ${state.gamma3D}°`;
+          hud3DZ.textContent = `${def.Z} (${def.centering})`;
+
+          if (def.cn) {
+            hud3DCubicMetrics.classList.remove('hidden');
+            hud3DCN.textContent = def.cn;
+            hud3DRadius.textContent = def.radius;
+            hud3DAPF.textContent = def.apf;
+          } else {
+            hud3DCubicMetrics.classList.add('hidden');
+          }
+
+          document.getElementById('val3DA').textContent = state.a3D.toFixed(2);
+          document.getElementById('val3DB').textContent = state.b3D.toFixed(2);
+          document.getElementById('val3DC').textContent = state.c3D.toFixed(2);
+          document.getElementById('val3DAlpha').textContent = `${state.alpha3D}°`;
+          document.getElementById('val3DBeta').textContent = `${state.beta3D}°`;
+          document.getElementById('val3DGamma').textContent = `${state.gamma3D}°`;
+        }
+      }
+
+      // -------------------------------------------------------------------
+      // 7. 2D CANVAS RENDERING ENGINE
+      // -------------------------------------------------------------------
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvasWrapper.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function drawArrow(from, to, color, lineWidth = 2.6, headSize = 11, dashed = false) {
+        const dx = to.x - from.x;
+        const dy = to.y - from.y;
+        const len = Math.hypot(dx, dy);
+        if (len < 2) return;
+
+        const angle = Math.atan2(dy, dx);
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = 'round';
+        if (dashed) ctx.setLineDash([6, 5]);
+
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(
+          to.x - Math.cos(angle) * (headSize * 0.65),
+          to.y - Math.sin(angle) * (headSize * 0.65)
+        );
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(to.x, to.y);
+        ctx.lineTo(
+          to.x - headSize * Math.cos(angle - Math.PI / 6),
+          to.y - headSize * Math.sin(angle - Math.PI / 6)
+        );
+        ctx.lineTo(
+          to.x - headSize * Math.cos(angle + Math.PI / 6),
+          to.y - headSize * Math.sin(angle + Math.PI / 6)
+        );
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawVectorLabel(text, pos, color, offsetX = 0, offsetY = -12) {
+        ctx.save();
+        ctx.font = '600 13px "JetBrains Mono", monospace';
+        const metrics = ctx.measureText(text);
+        const padX = 6;
+        const boxW = metrics.width + padX * 2;
+        const boxH = 20;
+        const bx = pos.x + offsetX - boxW * 0.5;
+        const by = pos.y + offsetY - boxH * 0.5;
+
+        ctx.fillStyle = 'rgba(11, 15, 25, 0.82)';
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(bx, by, boxW, boxH, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, pos.x + offsetX, pos.y + offsetY + 0.5);
+        ctx.restore();
+      }
+
+      function render2D(now) {
+        if (state.mode !== '2d') {
+          requestAnimationFrame(render2D);
+          return;
+        }
+
+        if (state.animatingShift) {
+          const elapsed = now - state.shiftStartTime;
+          const t = Math.min(elapsed / state.shiftDuration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          state.panX = state.shiftFromPan.x + (state.shiftToPan.x - state.shiftFromPan.x) * ease;
+          state.panY = state.shiftFromPan.y + (state.shiftToPan.y - state.shiftFromPan.y) * ease;
+          state.originPulse = Math.sin(t * Math.PI);
+          if (t >= 1) {
+            state.animatingShift = false;
+            state.originPulse = 0;
+          }
+        }
+
+        const rect = canvasWrapper.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        ctx.clearRect(0, 0, width, height);
+
+        const { a1, a2 } = getPrimitiveVectors();
+        const originScreen = worldToScreen(0, 0);
+        const info = classifyLattice2D();
+
+        // AMORPHOUS SOLID VISUALIZATION (Short-range order, no periodic lattice)
+        if (state.solidOrder === 'amorphous') {
+          const scale = getScale();
+          const atomR = Math.max(7, Math.min(16, scale * 0.14));
+          const pts = [];
+          for (let i = -8; i <= 8; i++) {
+            for (let j = -6; j <= 6; j++) {
+              const jit = getAmorphousJitter(i, j);
+              const wx = (i + jit.dx) * 1.15;
+              const wy = (j + jit.dy) * 1.15;
+              pts.push({ wx, wy, s: worldToScreen(wx, wy) });
+            }
+          }
+
+          // Random network covalent bonds (short-range neighbors only)
+          ctx.save();
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.28)';
+          ctx.lineWidth = 2;
+          for (let idx1 = 0; idx1 < pts.length; idx1++) {
+            for (let idx2 = idx1 + 1; idx2 < pts.length; idx2++) {
+              const d = Math.hypot(pts[idx1].wx - pts[idx2].wx, pts[idx1].wy - pts[idx2].wy);
+              if (d < 1.38) {
+                ctx.beginPath();
+                ctx.moveTo(pts[idx1].s.x, pts[idx1].s.y);
+                ctx.lineTo(pts[idx2].s.x, pts[idx2].s.y);
+                ctx.stroke();
+              }
+            }
+          }
+          ctx.restore();
+
+          // Disordered atoms
+          for (const p of pts) {
+            const grad = ctx.createRadialGradient(
+              p.s.x - atomR * 0.3, p.s.y - atomR * 0.3, atomR * 0.1,
+              p.s.x, p.s.y, atomR
+            );
+            grad.addColorStop(0, '#f472b6');
+            grad.addColorStop(1, 'rgba(190, 24, 93, 0.45)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(p.s.x, p.s.y, atomR, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          requestAnimationFrame(render2D);
+          return;
+        }
+
+        // CRYSTALLINE PERIODIC LATTICE RENDERING
+        const det = a1.x * a2.y - a1.y * a2.x;
+        const corners = [
+          screenToWorld(0, 0),
+          screenToWorld(width, 0),
+          screenToWorld(width, height),
+          screenToWorld(0, height),
+        ];
+
+        let minI = Infinity, maxI = -Infinity, minJ = Infinity, maxJ = -Infinity;
+        if (Math.abs(det) > 1e-4) {
+          for (const c of corners) {
+            const ci = (c.x * a2.y - c.y * a2.x) / det;
+            const cj = (a1.x * c.y - a1.y * c.x) / det;
+            minI = Math.min(minI, Math.floor(ci) - 2);
+            maxI = Math.max(maxI, Math.ceil(ci) + 2);
+            minJ = Math.min(minJ, Math.floor(cj) - 2);
+            maxJ = Math.max(maxJ, Math.ceil(cj) + 2);
+          }
+        } else {
+          minI = -10; maxI = 10; minJ = -10; maxJ = 10;
+        }
+        minI = Math.max(minI, -35); maxI = Math.min(maxI, 35);
+        minJ = Math.max(minJ, -35); maxJ = Math.min(maxJ, 35);
+
+        // 1. Infinite Grid Lines
+        if (state.showGridLines) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.11)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 6]);
+          for (let i = minI; i <= maxI; i++) {
+            const pStart = worldToScreen(i * a1.x + minJ * a2.x, i * a1.y + minJ * a2.y);
+            const pEnd = worldToScreen(i * a1.x + maxJ * a2.x, i * a1.y + maxJ * a2.y);
+            ctx.beginPath(); ctx.moveTo(pStart.x, pStart.y); ctx.lineTo(pEnd.x, pEnd.y); ctx.stroke();
+          }
+          for (let j = minJ; j <= maxJ; j++) {
+            const pStart = worldToScreen(minI * a1.x + j * a2.x, minI * a1.y + j * a2.y);
+            const pEnd = worldToScreen(maxI * a1.x + j * a2.x, maxI * a1.y + j * a2.y);
+            ctx.beginPath(); ctx.moveTo(pStart.x, pStart.y); ctx.lineTo(pEnd.x, pEnd.y); ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        // 2. Primitive Unit Cell (1 point/cell)
+        if (state.showPrimitiveCell) {
+          const p0 = originScreen;
+          const p1 = worldToScreen(a1.x, a1.y);
+          const p12 = worldToScreen(a1.x + a2.x, a1.y + a2.y);
+          const p2 = worldToScreen(a2.x, a2.y);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(99, 102, 241, 0.14)';
+          ctx.strokeStyle = 'rgba(129, 140, 248, 0.65)';
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y);
+          ctx.lineTo(p12.x, p12.y); ctx.lineTo(p2.x, p2.y);
+          ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+
+        // 3. Double Cell (Non-primitive: 2a1 x a2 -> 2 lattice points/cell)
+        if (state.showDoubleCell) {
+          const d0 = originScreen;
+          const d1 = worldToScreen(2 * a1.x, 2 * a1.y);
+          const d12 = worldToScreen(2 * a1.x + a2.x, 2 * a1.y + a2.y);
+          const d2 = worldToScreen(a2.x, a2.y);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(34, 211, 238, 0.08)';
+          ctx.strokeStyle = '#22d3ee';
+          ctx.lineWidth = 1.8;
+          ctx.setLineDash([6, 4]);
+          ctx.beginPath();
+          ctx.moveTo(d0.x, d0.y); ctx.lineTo(d1.x, d1.y);
+          ctx.lineTo(d12.x, d12.y); ctx.lineTo(d2.x, d2.y);
+          ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+
+        // 4. Triple Cell (Non-primitive: 3a1 x a2 -> 3 lattice points/cell)
+        if (state.showTripleCell) {
+          const t0 = originScreen;
+          const t1 = worldToScreen(3 * a1.x, 3 * a1.y);
+          const t12 = worldToScreen(3 * a1.x + a2.x, 3 * a1.y + a2.y);
+          const t2 = worldToScreen(a2.x, a2.y);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(251, 146, 60, 0.07)';
+          ctx.strokeStyle = '#fb923c';
+          ctx.lineWidth = 1.8;
+          ctx.setLineDash([3, 4]);
+          ctx.beginPath();
+          ctx.moveTo(t0.x, t0.y); ctx.lineTo(t1.x, t1.y);
+          ctx.lineTo(t12.x, t12.y); ctx.lineTo(t2.x, t2.y);
+          ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+
+        // 5. Conventional Centered Rectangular Cell
+        if (state.showConventionalCell && info.isCenteredRect) {
+          const c0 = originScreen;
+          const c1 = worldToScreen(a1.x + a2.x, a1.y + a2.y);
+          const c2 = worldToScreen(2 * a2.x, 2 * a2.y);
+          const c3 = worldToScreen(a2.x - a1.x, a2.y - a1.y);
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(244, 114, 182, 0.08)';
+          ctx.strokeStyle = '#f472b6';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([7, 5]);
+          ctx.beginPath();
+          ctx.moveTo(c0.x, c0.y); ctx.lineTo(c1.x, c1.y);
+          ctx.lineTo(c2.x, c2.y); ctx.lineTo(c3.x, c3.y);
+          ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+
+        // 6. Wigner-Seitz Primitive Cell
+        if (state.showWignerSeitz) {
+          const wsPoly = computeWignerSeitzPolygon(a1, a2);
+          if (wsPoly.length >= 3) {
+            ctx.save();
+            ctx.fillStyle = 'rgba(192, 132, 252, 0.16)';
+            ctx.strokeStyle = '#c084fc';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            wsPoly.forEach((pt, idx) => {
+              const s = worldToScreen(pt.x, pt.y);
+              if (idx === 0) ctx.moveTo(s.x, s.y);
+              else ctx.lineTo(s.x, s.y);
+            });
+            ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        // 7. Rotational Symmetry & 5-Fold Impossibility Overlay
+        if (state.symTestOrder > 0) {
+          const nFold = state.symTestOrder;
+          const rotRad = (2 * Math.PI) / nFold;
+          const cosR = Math.cos(rotRad);
+          const sinR = Math.sin(rotRad);
+
+          // Draw central n-gon guide around origin
+          const polyR = getScale() * 0.72;
+          ctx.save();
+          ctx.strokeStyle = nFold === 5 ? 'rgba(244, 63, 94, 0.75)' : 'rgba(52, 211, 153, 0.65)';
+          ctx.fillStyle = nFold === 5 ? 'rgba(244, 63, 94, 0.09)' : 'rgba(52, 211, 153, 0.07)';
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          for (let k = 0; k < nFold; k++) {
+            const ang = state.theta1 + k * rotRad;
+            const px = originScreen.x + polyR * Math.cos(ang);
+            const py = originScreen.y - polyR * Math.sin(ang);
+            if (k === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          // Project rotated lattice nodes and check if they match original lattice points
+          for (let i = -4; i <= 4; i++) {
+            for (let j = -4; j <= 4; j++) {
+              if (i === 0 && j === 0) continue;
+              const wx = i * a1.x + j * a2.x;
+              const wy = i * a1.y + j * a2.y;
+              const rx = wx * cosR - wy * sinR;
+              const ry = wx * sinR + wy * cosR;
+              const sr = worldToScreen(rx, ry);
+
+              // Check distance to nearest original lattice node
+              let matched = false;
+              if (Math.abs(det) > 1e-4) {
+                const fi = (rx * a2.y - ry * a2.x) / det;
+                const fj = (a1.x * ry - a1.y * rx) / det;
+                const distToNode = Math.hypot(
+                  (fi - Math.round(fi)) * a1.x + (fj - Math.round(fj)) * a2.x,
+                  (fi - Math.round(fi)) * a1.y + (fj - Math.round(fj)) * a2.y
+                );
+                matched = distToNode < 0.06;
+              }
+
+              ctx.strokeStyle = matched ? '#34d399' : '#fb7185';
+              ctx.lineWidth = 1.8;
+              ctx.beginPath();
+              ctx.arc(sr.x, sr.y, 7.5, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+          }
+          ctx.restore();
+        }
+
+        // 8. Angle Gamma Arc
+        const arcRadius = Math.min(36, getScale() * 0.42);
+        const startAng = -state.theta1;
+        const endAng = -(state.theta1 + degToRad(state.gammaDeg));
+        ctx.save();
+        ctx.strokeStyle = 'rgba(192, 132, 252, 0.75)';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.arc(originScreen.x, originScreen.y, arcRadius, endAng, startAng);
+        ctx.stroke();
+        ctx.restore();
+
+        // 9. Basis Atoms & Covalent Bonds
+        if (state.basisMode !== 'lattice') {
+          const scale = getScale();
+          const atomRadius = Math.max(6, Math.min(18, scale * 0.16));
+
+          if (state.basisMode === 'diatomic') {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.lineWidth = 2;
+            for (let i = minI; i <= maxI; i++) {
+              for (let j = minJ; j <= maxJ; j++) {
+                const wx = i * a1.x + j * a2.x;
+                const wy = i * a1.y + j * a2.y;
+                const sB = worldToScreen(wx + (a1.x + a2.x) / 3, wy + (a1.y + a2.y) / 3);
+                const neighbors = [
+                  worldToScreen(wx, wy),
+                  worldToScreen(wx + a1.x, wy + a1.y),
+                  worldToScreen(wx + a2.x, wy + a2.y),
+                ];
+                for (const nb of neighbors) {
+                  ctx.beginPath(); ctx.moveTo(sB.x, sB.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
+                }
+              }
+            }
+            ctx.restore();
+          }
+
+          for (let i = minI; i <= maxI; i++) {
+            for (let j = minJ; j <= maxJ; j++) {
+              const wx = i * a1.x + j * a2.x;
+              const wy = i * a1.y + j * a2.y;
+              const sA = worldToScreen(wx, wy);
+
+              const gradA = ctx.createRadialGradient(
+                sA.x - atomRadius * 0.3, sA.y - atomRadius * 0.3, atomRadius * 0.1,
+                sA.x, sA.y, atomRadius
+              );
+              gradA.addColorStop(0, '#7dd3fc');
+              gradA.addColorStop(1, 'rgba(2, 132, 199, 0.45)');
+              ctx.fillStyle = gradA;
+              ctx.beginPath(); ctx.arc(sA.x, sA.y, atomRadius, 0, Math.PI * 2); ctx.fill();
+
+              if (state.basisMode === 'diatomic') {
+                const sB = worldToScreen(wx + (a1.x + a2.x) / 3, wy + (a1.y + a2.y) / 3);
+                const rB = atomRadius * 0.85;
+                const gradB = ctx.createRadialGradient(
+                  sB.x - rB * 0.3, sB.y - rB * 0.3, rB * 0.1,
+                  sB.x, sB.y, rB
+                );
+                gradB.addColorStop(0, '#fcd34d');
+                gradB.addColorStop(1, 'rgba(217, 119, 6, 0.48)');
+                ctx.fillStyle = gradB;
+                ctx.beginPath(); ctx.arc(sB.x, sB.y, rB, 0, Math.PI * 2); ctx.fill();
+              }
+            }
+          }
+        }
+
+        // 10. Lattice Points
+        for (let i = minI; i <= maxI; i++) {
+          for (let j = minJ; j <= maxJ; j++) {
+            const wx = i * a1.x + j * a2.x;
+            const wy = i * a1.y + j * a2.y;
+            const s = worldToScreen(wx, wy);
+
+            const isOrigin = i === 0 && j === 0;
+            const isTargetR = i === state.m && j === state.n;
+            const isHovered = state.hoveredNode && state.hoveredNode.i === i && state.hoveredNode.j === j;
+
+            ctx.save();
+            if (isOrigin) {
+              const pulseR = 13 + state.originPulse * 14;
+              ctx.fillStyle = `rgba(251, 191, 36, ${0.22 + state.originPulse * 0.35})`;
+              ctx.beginPath(); ctx.arc(s.x, s.y, pulseR, 0, Math.PI * 2); ctx.fill();
+              ctx.fillStyle = '#fbbf24';
+              ctx.beginPath(); ctx.arc(s.x, s.y, 5.5, 0, Math.PI * 2); ctx.fill();
+            } else if (isTargetR) {
+              ctx.fillStyle = 'rgba(52, 211, 153, 0.28)';
+              ctx.beginPath(); ctx.arc(s.x, s.y, 11, 0, Math.PI * 2); ctx.fill();
+              ctx.fillStyle = '#34d399';
+              ctx.beginPath(); ctx.arc(s.x, s.y, 5, 0, Math.PI * 2); ctx.fill();
+            } else {
+              ctx.fillStyle = isHovered ? '#38bdf8' : '#e2e8f0';
+              ctx.beginPath(); ctx.arc(s.x, s.y, isHovered ? 5.2 : 3.6, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+
+        // 11. Translation Vector R = m a1 + n a2
+        if (state.m !== 0 || state.n !== 0) {
+          const pM = worldToScreen(state.m * a1.x, state.m * a1.y);
+          const pR = worldToScreen(state.m * a1.x + state.n * a2.x, state.m * a1.y + state.n * a2.y);
+
+          ctx.save();
+          ctx.strokeStyle = 'rgba(52, 211, 153, 0.38)';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(originScreen.x, originScreen.y);
+          ctx.lineTo(pM.x, pM.y);
+          ctx.lineTo(pR.x, pR.y);
+          ctx.stroke();
+          ctx.restore();
+
+          drawArrow(originScreen, pR, '#34d399', 2.4, 11);
+          drawVectorLabel('R', { x: (originScreen.x + pR.x) * 0.5, y: (originScreen.y + pR.y) * 0.5 }, '#6ee7b7', 0, -14);
+        }
+
+        // 12. Primitive Basis Vectors a1 & a2
+        const tipA1 = worldToScreen(a1.x, a1.y);
+        const tipA2 = worldToScreen(a2.x, a2.y);
+
+        drawArrow(originScreen, tipA1, '#38bdf8', 3.2, 13);
+        drawArrow(originScreen, tipA2, '#fbbf24', 3.2, 13);
+
+        for (const [tip, col, active] of [
+          [tipA1, '#38bdf8', state.draggingTarget === 'a1'],
+          [tipA2, '#fbbf24', state.draggingTarget === 'a2'],
+        ]) {
+          ctx.save();
+          ctx.strokeStyle = col;
+          ctx.lineWidth = active ? 2.5 : 1.5;
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.65)';
+          ctx.beginPath(); ctx.arc(tip.x, tip.y, active ? 10 : 7.5, 0, Math.PI * 2);
+          ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+
+        drawVectorLabel('O', originScreen, '#fde68a', -16, 16);
+        drawVectorLabel('a₁', { x: (originScreen.x + tipA1.x) * 0.5, y: (originScreen.y + tipA1.y) * 0.5 }, '#7dd3fc', 0, 16);
+        drawVectorLabel('a₂', { x: (originScreen.x + tipA2.x) * 0.5, y: (originScreen.y + tipA2.y) * 0.5 }, '#fcd34d', -16, -6);
+
+        requestAnimationFrame(render2D);
+      }
+
+      // -------------------------------------------------------------------
+      // 8. 3D THREE.JS CRYSTAL ENGINE (ALL 14 BRAVAIS + SC/BCC/FCC)
+      // -------------------------------------------------------------------
+      let threeScene, threeCamera, threeRenderer, crystalGroup;
+      let threeInitialized = false;
+      let rotX3D = 0.45, rotY3D = -0.62, camDist3D = 4.4;
+      let isDragging3D = false, prevMouse3D = { x: 0, y: 0 };
+
+      function initThreeIfNeeded() {
+        if (threeInitialized || typeof THREE === 'undefined') return;
+        threeInitialized = true;
+
+        threeScene = new THREE.Scene();
+        const rect = threeContainer.getBoundingClientRect();
+        threeCamera = new THREE.PerspectiveCamera(42, rect.width / Math.max(1, rect.height), 0.1, 100);
+
+        threeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        threeRenderer.setSize(rect.width, rect.height);
+        threeContainer.appendChild(threeRenderer.domElement);
+
+        // Studio Lighting
+        const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+        threeScene.add(ambient);
+
+        const dirLight1 = new THREE.DirectionalLight(0x7dd3fc, 0.9);
+        dirLight1.position.set(5, 8, 6);
+        threeScene.add(dirLight1);
+
+        const dirLight2 = new THREE.DirectionalLight(0xfbbf24, 0.45);
+        dirLight2.position.set(-6, -4, -5);
+        threeScene.add(dirLight2);
+
+        crystalGroup = new THREE.Group();
+        threeScene.add(crystalGroup);
+
+        // Orbit & Zoom listeners for 3D container
+        threeContainer.addEventListener('pointerdown', (e) => {
+          isDragging3D = true;
+          prevMouse3D = { x: e.clientX, y: e.clientY };
+          threeContainer.setPointerCapture(e.pointerId);
+        });
+
+        threeContainer.addEventListener('pointermove', (e) => {
+          if (!isDragging3D) return;
+          const dx = e.clientX - prevMouse3D.x;
+          const dy = e.clientY - prevMouse3D.y;
+          rotY3D += dx * 0.008;
+          rotX3D = Math.max(-1.45, Math.min(1.45, rotX3D + dy * 0.008));
+          prevMouse3D = { x: e.clientX, y: e.clientY };
+        });
+
+        threeContainer.addEventListener('pointerup', () => { isDragging3D = false; });
+
+        threeContainer.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          camDist3D = Math.max(2.2, Math.min(9.5, camDist3D + e.deltaY * 0.003));
+        }, { passive: false });
+
+        requestAnimationFrame(render3D);
+      }
+
+      function resizeThree() {
+        if (!threeInitialized) return;
+        const rect = threeContainer.getBoundingClientRect();
+        threeCamera.aspect = rect.width / Math.max(1, rect.height);
+        threeCamera.updateProjectionMatrix();
+        threeRenderer.setSize(rect.width, rect.height);
+      }
+
+      // Compute 3D basis vectors vA, vB, vC from (a, b, c, alpha, beta, gamma)
+      function get3DBasisVectors() {
+        const a = state.a3D;
+        const b = state.b3D;
+        const c = state.c3D;
+        const alpha = degToRad(state.alpha3D);
+        const beta = degToRad(state.beta3D);
+        const gamma = degToRad(state.gamma3D);
+
+        const vA = new THREE.Vector3(a, 0, 0);
+        const vB = new THREE.Vector3(b * Math.cos(gamma), 0, b * Math.sin(gamma));
+
+        const cx = c * Math.cos(beta);
+        const sinGamma = Math.max(0.05, Math.sin(gamma));
+        const cz = c * (Math.cos(alpha) - Math.cos(beta) * Math.cos(gamma)) / sinGamma;
+        const cySq = Math.max(0.05, c * c - cx * cx - cz * cz);
+        const cy = Math.sqrt(cySq);
+        const vC = new THREE.Vector3(cx, cy, cz);
+
+        return { vA, vB, vC };
+      }
+
+      function rebuild3DLattice() {
+        if (!threeInitialized) return;
+        while (crystalGroup.children.length > 0) {
+          crystalGroup.remove(crystalGroup.children[0]);
+        }
+
+        const def = bravais3DDefinitions[state.bravais3DKey];
+        const { vA, vB, vC } = get3DBasisVectors();
+
+        const cellsCount = state.supercell3D ? 2 : 1;
+        const centerOffset = new THREE.Vector3()
+          .addScaledVector(vA, cellsCount * 0.5)
+          .addScaledVector(vB, cellsCount * 0.5)
+          .addScaledVector(vC, cellsCount * 0.5);
+
+        const toWorld3D = (u, v, w) => {
+          return new THREE.Vector3()
+            .addScaledVector(vA, u)
+            .addScaledVector(vB, v)
+            .addScaledVector(vC, w)
+            .sub(centerOffset);
+        };
+
+        // Determine touching sphere radius when hardSpheres3D is active
+        const minAxis = Math.min(state.a3D, state.b3D, state.c3D);
+        let sphereRadius = 0.085;
+        if (state.hardSpheres3D) {
+          if (def.centering === 'I') sphereRadius = (Math.sqrt(3) / 4) * minAxis;
+          else if (def.centering === 'F') sphereRadius = (Math.sqrt(2) / 4) * minAxis;
+          else sphereRadius = 0.5 * minAxis;
+        }
+
+        const sphereGeo = new THREE.SphereGeometry(sphereRadius, 28, 28);
+        const matCorner = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.25, metalness: 0.2 });
+        const matBody = new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: 0.25, metalness: 0.2 });
+        const matFace = new THREE.MeshStandardMaterial({ color: 0x34d399, roughness: 0.25, metalness: 0.2 });
+        const matBase = new THREE.MeshStandardMaterial({ color: 0xf472b6, roughness: 0.25, metalness: 0.2 });
+
+        const addedKeys = new Set();
+        function addAtomAt(u, v, w, mat) {
+          const key = `${u.toFixed(2)},${v.toFixed(2)},${w.toFixed(2)}`;
+          if (addedKeys.has(key)) return;
+          addedKeys.add(key);
+          const mesh = new THREE.Mesh(sphereGeo, mat);
+          mesh.position.copy(toWorld3D(u, v, w));
+          crystalGroup.add(mesh);
+        }
+
+        const edgeMatPrimary = new THREE.LineBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.85 });
+        const edgeMatSecondary = new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.45 });
+        const guideMat = new THREE.LineDashedMaterial({ color: 0xfbbf24, dashSize: 0.06, gapSize: 0.04, transparent: true, opacity: 0.55 });
+
+        for (let ix = 0; ix < cellsCount; ix++) {
+          for (let iy = 0; iy < cellsCount; iy++) {
+            for (let iz = 0; iz < cellsCount; iz++) {
+              const isPrimaryCell = ix === 0 && iy === 0 && iz === 0;
+
+              // 8 Corner sites
+              const corners = [
+                [0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0],
+                [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1],
+              ];
+              for (const [cu, cv, cw] of corners) {
+                addAtomAt(ix + cu, iy + cv, iz + cw, matCorner);
+              }
+
+              // 12 Unit Cell Edges
+              const edges = [
+                [0, 1], [1, 2], [2, 3], [3, 0],
+                [4, 5], [5, 6], [6, 7], [7, 4],
+                [0, 4], [1, 5], [2, 6], [3, 7],
+              ];
+              const edgePoints = [];
+              for (const [e1, e2] of edges) {
+                edgePoints.push(toWorld3D(ix + corners[e1][0], iy + corners[e1][1], iz + corners[e1][2]));
+                edgePoints.push(toWorld3D(ix + corners[e2][0], iy + corners[e2][1], iz + corners[e2][2]));
+              }
+              const edgeGeo = new THREE.BufferGeometry().setFromPoints(edgePoints);
+              crystalGroup.add(new THREE.LineSegments(edgeGeo, isPrimaryCell ? edgeMatPrimary : edgeMatSecondary));
+
+              // Body-Centered (I)
+              if (def.centering === 'I') {
+                addAtomAt(ix + 0.5, iy + 0.5, iz + 0.5, matBody);
+                if (state.guides3D && isPrimaryCell) {
+                  const diagPts = [
+                    toWorld3D(0, 0, 0), toWorld3D(1, 1, 1),
+                    toWorld3D(1, 0, 0), toWorld3D(0, 1, 1),
+                  ];
+                  const diagGeo = new THREE.BufferGeometry().setFromPoints(diagPts);
+                  const diagLine = new THREE.LineSegments(diagGeo, guideMat);
+                  diagLine.computeLineDistances();
+                  crystalGroup.add(diagLine);
+                }
+              }
+
+              // Face-Centered (F)
+              if (def.centering === 'F') {
+                const faces = [
+                  [0.5, 0.5, 0], [0.5, 0.5, 1],
+                  [0.5, 0, 0.5], [0.5, 1, 0.5],
+                  [0, 0.5, 0.5], [1, 0.5, 0.5],
+                ];
+                for (const [fu, fv, fw] of faces) {
+                  addAtomAt(ix + fu, iy + fv, iz + fw, matFace);
+                }
+                if (state.guides3D && isPrimaryCell) {
+                  const fPts = [
+                    toWorld3D(0, 0, 0), toWorld3D(1, 1, 0),
+                    toWorld3D(1, 0, 0), toWorld3D(0, 1, 0),
+                  ];
+                  const fGeo = new THREE.BufferGeometry().setFromPoints(fPts);
+                  const fLine = new THREE.LineSegments(fGeo, guideMat);
+                  fLine.computeLineDistances();
+                  crystalGroup.add(fLine);
+                }
+              }
+
+              // Base-Centered (C)
+              if (def.centering === 'C') {
+                addAtomAt(ix + 0.5, iy + 0.5, iz + 0, matBase);
+                addAtomAt(ix + 0.5, iy + 0.5, iz + 1, matBase);
+              }
+            }
+          }
+        }
+      }
+
+      function render3D() {
+        if (state.mode === '3d' && threeInitialized) {
+          if (state.autoRotate3D && !isDragging3D) {
+            rotY3D += 0.004;
+          }
+          threeCamera.position.x = camDist3D * Math.sin(rotY3D) * Math.cos(rotX3D);
+          threeCamera.position.y = camDist3D * Math.sin(rotX3D);
+          threeCamera.position.z = camDist3D * Math.cos(rotY3D) * Math.cos(rotX3D);
+          threeCamera.lookAt(0, 0, 0);
+          threeRenderer.render(threeScene, threeCamera);
+        }
+        requestAnimationFrame(render3D);
+      }
+
+      // -------------------------------------------------------------------
+      // 9. 2D POINTER INTERACTIONS
+      // -------------------------------------------------------------------
+      function getPointerPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top, clientX, clientY };
+      }
+
+      function findNearestNode(screenX, screenY, maxDistPx = 16) {
+        if (state.solidOrder === 'amorphous') return null;
+        const { a1, a2 } = getPrimitiveVectors();
+        const det = a1.x * a2.y - a1.y * a2.x;
+        if (Math.abs(det) < 1e-4) return null;
+
+        const w = screenToWorld(screenX, screenY);
+        const estI = Math.round((w.x * a2.y - w.y * a2.x) / det);
+        const estJ = Math.round((a1.x * w.y - a1.y * w.x) / det);
+
+        const nodeW = { x: estI * a1.x + estJ * a2.x, y: estI * a1.y + estJ * a2.y };
+        const nodeS = worldToScreen(nodeW.x, nodeW.y);
+        if (Math.hypot(screenX - nodeS.x, screenY - nodeS.y) <= maxDistPx) {
+          return { i: estI, j: estJ, screenX: nodeS.x, screenY: nodeS.y, world: nodeW };
+        }
+        return null;
+      }
+
+      canvas.addEventListener('pointerdown', (e) => {
+        const pos = getPointerPos(e);
+        state.dragStartMouse = { x: pos.x, y: pos.y };
+        state.dragStartPan = { x: state.panX, y: state.panY };
+
+        if (state.solidOrder === 'crystalline') {
+          const { a1, a2 } = getPrimitiveVectors();
+          const tipA1 = worldToScreen(a1.x, a1.y);
+          const tipA2 = worldToScreen(a2.x, a2.y);
+
+          if (Math.hypot(pos.x - tipA1.x, pos.y - tipA1.y) < 18) {
+            state.draggingTarget = 'a1';
+            canvas.setPointerCapture(e.pointerId);
+            return;
+          }
+          if (Math.hypot(pos.x - tipA2.x, pos.y - tipA2.y) < 18) {
+            state.draggingTarget = 'a2';
+            canvas.setPointerCapture(e.pointerId);
+            return;
+          }
+        }
+
+        state.draggingTarget = 'pan';
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener('pointermove', (e) => {
+        const pos = getPointerPos(e);
+
+        if (state.draggingTarget === 'a1') {
+          const w = screenToWorld(pos.x, pos.y);
+          let len = Math.max(0.5, Math.min(2.4, Math.hypot(w.x, w.y)));
+          let ang = Math.atan2(w.y, w.x);
+          if (state.magneticSnap && Math.abs(radToDeg(ang)) < 4) ang = 0;
+          if (state.magneticSnap && Math.abs(len - state.a2Len) < 0.04) len = state.a2Len;
+          state.a1Len = Number(len.toFixed(2));
+          state.theta1 = ang;
+          updateUI();
+          return;
+        }
+
+        if (state.draggingTarget === 'a2') {
+          const w = screenToWorld(pos.x, pos.y);
+          let len = Math.max(0.5, Math.min(2.4, Math.hypot(w.x, w.y)));
+          const ang2 = Math.atan2(w.y, w.x);
+          let gamma = radToDeg(ang2 - state.theta1);
+          while (gamma <= -180) gamma += 360;
+          while (gamma > 180) gamma -= 360;
+          gamma = Math.max(25, Math.min(155, gamma));
+
+          if (state.magneticSnap) {
+            for (const snapDeg of [60, 90, 120]) {
+              if (Math.abs(gamma - snapDeg) < 2.2) gamma = snapDeg;
+            }
+            if (Math.abs(len - state.a1Len) < 0.04) len = state.a1Len;
+          }
+
+          state.a2Len = Number(len.toFixed(2));
+          state.gammaDeg = Number(gamma.toFixed(1));
+          updateUI();
+          return;
+        }
+
+        if (state.draggingTarget === 'pan') {
+          state.panX = state.dragStartPan.x + (pos.x - state.dragStartMouse.x);
+          state.panY = state.dragStartPan.y + (pos.y - state.dragStartMouse.y);
+          return;
+        }
+
+        const hit = findNearestNode(pos.x, pos.y);
+        state.hoveredNode = hit;
+        if (hit) {
+          canvas.style.cursor = 'pointer';
+          const signJ = hit.j >= 0 ? '+' : '−';
+          tooltipCoords.textContent = `R = ${hit.i}a₁ ${signJ} ${Math.abs(hit.j)}a₂`;
+          tooltipDist.textContent = `|R| = ${Math.hypot(hit.world.x, hit.world.y).toFixed(2)} a`;
+          nodeTooltip.style.left = `${pos.clientX + 14}px`;
+          nodeTooltip.style.top = `${pos.clientY - 14}px`;
+          nodeTooltip.classList.remove('hidden');
+        } else {
+          canvas.style.cursor = 'default';
+          nodeTooltip.classList.add('hidden');
+        }
+      });
+
+      canvas.addEventListener('pointerup', (e) => {
+        const pos = getPointerPos(e);
+        const moved = Math.hypot(pos.x - state.dragStartMouse.x, pos.y - state.dragStartMouse.y);
+        if (state.draggingTarget === 'pan' && moved < 5) {
+          const hit = findNearestNode(pos.x, pos.y);
+          if (hit) {
+            state.m = hit.i;
+            state.n = hit.j;
+            updateUI();
+          }
+        }
+        state.draggingTarget = null;
+      });
+
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const factor = e.deltaY < 0 ? 1.1 : 0.9;
+        state.zoom = Math.max(0.45, Math.min(2.6, state.zoom * factor));
+        updateUI();
+      }, { passive: false });
+
+      // -------------------------------------------------------------------
+      // 10. CONTROL PANEL EVENT LISTENERS
+      // -------------------------------------------------------------------
+      // Crystalline vs Amorphous
+      document.querySelectorAll('.order-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.solidOrder = btn.dataset.order;
+          document.querySelectorAll('.order-btn').forEach((b) => {
+            b.classList.remove('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-400/30');
+            b.classList.add('text-slate-400');
+          });
+          btn.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-400/30');
+          btn.classList.remove('text-slate-400');
+          updateUI();
+        });
+      });
+
+      // 2D Presets
+      const presets2D = {
+        oblique: { a1Len: 1.30, a2Len: 1.10, gammaDeg: 62.0, theta1: 0 },
+        square: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 90.0, theta1: 0 },
+        rectangular: { a1Len: 1.50, a2Len: 1.05, gammaDeg: 90.0, theta1: 0 },
+        centered_rect: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 64.0, theta1: 0 },
+        hexagonal: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 120.0, theta1: 0 },
+      };
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const p = presets2D[btn.dataset.preset];
+          if (!p) return;
+          state.solidOrder = 'crystalline';
+          state.a1Len = p.a1Len;
+          state.a2Len = p.a2Len;
+          state.gammaDeg = p.gammaDeg;
+          state.theta1 = p.theta1;
+          updateUI();
+        });
+      });
+
+      sliderA1.addEventListener('input', () => { state.a1Len = parseFloat(sliderA1.value); updateUI(); });
+      sliderA2.addEventListener('input', () => { state.a2Len = parseFloat(sliderA2.value); updateUI(); });
+      sliderGamma.addEventListener('input', () => { state.gammaDeg = parseFloat(sliderGamma.value); updateUI(); });
+
+      document.getElementById('btnMInc').addEventListener('click', () => { state.m++; updateUI(); });
+      document.getElementById('btnMDec').addEventListener('click', () => { state.m--; updateUI(); });
+      document.getElementById('btnNInc').addEventListener('click', () => { state.n++; updateUI(); });
+      document.getElementById('btnNDec').addEventListener('click', () => { state.n--; updateUI(); });
+
+      document.getElementById('chkMagneticSnap').addEventListener('change', (e) => { state.magneticSnap = e.target.checked; });
+      document.getElementById('chkPrimitiveCell').addEventListener('change', (e) => { state.showPrimitiveCell = e.target.checked; });
+      document.getElementById('chkWignerSeitz').addEventListener('change', (e) => { state.showWignerSeitz = e.target.checked; });
+      document.getElementById('chkDoubleCell').addEventListener('change', (e) => { state.showDoubleCell = e.target.checked; });
+      document.getElementById('chkTripleCell').addEventListener('change', (e) => { state.showTripleCell = e.target.checked; });
+      document.getElementById('chkConventionalCell').addEventListener('change', (e) => { state.showConventionalCell = e.target.checked; });
+      document.getElementById('chkGridLines').addEventListener('change', (e) => { state.showGridLines = e.target.checked; });
+
+      // Basis Mode Selector
+      document.querySelectorAll('.basis-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.basisMode = btn.dataset.basis;
+          document.querySelectorAll('.basis-btn').forEach((b) => {
+            b.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+            b.classList.add('text-slate-400');
+          });
+          btn.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+          btn.classList.remove('text-slate-400');
+        });
+      });
+
+      // Rotational Symmetry & 5-Fold Tester
+      const symMessages = {
+        0: 'যেকোনো রোটেশন অর্ডার (C₂, C₃, C₄, C₅, C₆) সিলেক্ট করে দেখুন কেন ক্রিস্টালে <strong>৫-ফোল্ড প্রতিসাম্য (72°)</strong> অসম্ভব!',
+        2: '<strong>C₂ (180° রোটেশন):</strong> সব ২ডি ব্র্যাভে ল্যাটিসেই ১৮০° ঘূর্ণন প্রতিসাম্য বিদ্যমান (সব বিন্দু হুবহু মিলে যায়)।',
+        3: '<strong>C₃ (120° রোটেশন):</strong> কেবল <strong>Hexagonal</strong> ল্যাটিসে ১২০° ঘূর্ণন প্রতিসাম্য কাজ করে।',
+        4: '<strong>C₄ (90° রোটেশন):</strong> কেবল <strong>Square</strong> ল্যাটিসে ৯০° ঘূর্ণন প্রতিসাম্য সম্পূর্ণরূপে মিলে যায়।',
+        5: '<span class="text-rose-300 font-semibold">⚠️ C₅ (72° রোটেশন — অসম্ভব!):</span> লাল বৃত্তগুলো দেখুন! ঘূর্ণিত বিন্দুগুলো মূল ল্যাটিস বিন্দুর সাথে মিলছে না, কারণ 2cos(72°) = 0.618 যা পূর্ণসংখ্যা নয়।',
+        6: '<strong>C₆ (60° রোটেশন):</strong> কেবল <strong>Hexagonal</strong> ল্যাটিসে ৬০° ঘূর্ণন প্রতিসাম্য বিদ্যমান।',
+      };
+
+      document.querySelectorAll('.sym-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.symTestOrder = parseInt(btn.dataset.sym, 10);
+          document.querySelectorAll('.sym-btn').forEach((b) => {
+            b.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30', 'bg-rose-500/20');
+          });
+          if (state.symTestOrder === 5) {
+            btn.classList.add('bg-rose-500/20', 'border', 'border-rose-400/40');
+          } else {
+            btn.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+          }
+          symStatusBox.innerHTML = symMessages[state.symTestOrder];
+        });
+      });
+
+      // 3D Bravais Selection & Parameter Sliders
+      function applyBravais3D(key) {
+        const def = bravais3DDefinitions[key];
+        if (!def) return;
+        state.bravais3DKey = key;
+        state.a3D = def.a;
+        state.b3D = def.b;
+        state.c3D = def.c;
+        state.alpha3D = def.alpha;
+        state.beta3D = def.beta;
+        state.gamma3D = def.gamma;
+
+        selectBravais3D.value = key;
+        slider3DA.value = def.a;
+        slider3DB.value = def.b;
+        slider3DC.value = def.c;
+        slider3DAlpha.value = def.alpha;
+        slider3DBeta.value = def.beta;
+        slider3DGamma.value = def.gamma;
+
+        document.querySelectorAll('.b3d-btn').forEach((b) => {
+          const active = b.dataset.bravais3d === key;
+          b.classList.toggle('bg-sky-500/20', active);
+          b.classList.toggle('border-sky-400/40', active);
+        });
+
+        updateUI();
+        rebuild3DLattice();
+      }
+
+      document.querySelectorAll('.b3d-btn').forEach((btn) => {
+        btn.addEventListener('click', () => applyBravais3D(btn.dataset.bravais3d));
+      });
+
+      selectBravais3D.addEventListener('change', () => applyBravais3D(selectBravais3D.value));
+
+      slider3DA.addEventListener('input', () => { state.a3D = parseFloat(slider3DA.value); updateUI(); rebuild3DLattice(); });
+      slider3DB.addEventListener('input', () => { state.b3D = parseFloat(slider3DB.value); updateUI(); rebuild3DLattice(); });
+      slider3DC.addEventListener('input', () => { state.c3D = parseFloat(slider3DC.value); updateUI(); rebuild3DLattice(); });
+      slider3DAlpha.addEventListener('input', () => { state.alpha3D = parseInt(slider3DAlpha.value, 10); updateUI(); rebuild3DLattice(); });
+      slider3DBeta.addEventListener('input', () => { state.beta3D = parseInt(slider3DBeta.value, 10); updateUI(); rebuild3DLattice(); });
+      slider3DGamma.addEventListener('input', () => { state.gamma3D = parseInt(slider3DGamma.value, 10); updateUI(); rebuild3DLattice(); });
+
+      document.getElementById('chk3DHardSpheres').addEventListener('change', (e) => { state.hardSpheres3D = e.target.checked; rebuild3DLattice(); });
+      document.getElementById('chk3DSupercell').addEventListener('change', (e) => { state.supercell3D = e.target.checked; rebuild3DLattice(); });
+      document.getElementById('chk3DGuides').addEventListener('change', (e) => { state.guides3D = e.target.checked; rebuild3DLattice(); });
+
+      // Drawer Tabs
+      tabBtnControls.addEventListener('click', () => {
+        panelControls.classList.remove('hidden');
+        panelGuide.classList.add('hidden');
+        tabBtnControls.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.remove('text-slate-400');
+        tabBtnGuide.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnGuide.classList.add('text-slate-400');
+      });
+
+      tabBtnGuide.addEventListener('click', () => {
+        panelGuide.classList.remove('hidden');
+        panelControls.classList.add('hidden');
+        tabBtnGuide.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnGuide.classList.remove('text-slate-400');
+        tabBtnControls.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.add('text-slate-400');
+      });
+
+      // Camera & Shift Origin / Auto-Rotate
+      document.getElementById('btnZoomIn').addEventListener('click', () => {
+        if (state.mode === '2d') {
+          state.zoom = Math.min(2.6, state.zoom * 1.18);
+          updateUI();
+        } else {
+          camDist3D = Math.max(2.2, camDist3D - 0.5);
+        }
+      });
+
+      document.getElementById('btnZoomOut').addEventListener('click', () => {
+        if (state.mode === '2d') {
+          state.zoom = Math.max(0.45, state.zoom / 1.18);
+          updateUI();
+        } else {
+          camDist3D = Math.min(9.5, camDist3D + 0.5);
+        }
+      });
+
+      document.getElementById('btnResetView').addEventListener('click', () => {
+        if (state.mode === '2d') {
+          state.zoom = 1.0;
+          state.panX = -45;
+          state.panY = 40;
+          updateUI();
+        } else {
+          rotX3D = 0.45;
+          rotY3D = -0.62;
+          camDist3D = 4.4;
+        }
+      });
+
+      document.getElementById('btnShiftOrigin').addEventListener('click', () => {
+        if (state.mode === '3d') {
+          state.autoRotate3D = !state.autoRotate3D;
+          return;
+        }
+        if (state.animatingShift) return;
+        const { a1 } = getPrimitiveVectors();
+        const scale = getScale();
+        state.shiftFromPan = { x: state.panX, y: state.panY };
+        state.shiftToPan = { x: state.panX + a1.x * scale, y: state.panY - a1.y * scale };
+        state.shiftStartTime = performance.now();
+        state.animatingShift = true;
+      });
+
+      // Initialize
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        resizeThree();
+      });
+      resizeCanvas();
+      updateUI();
+      requestAnimationFrame(render2D);
+    })();
+  </script>
+</body>
+</html>
