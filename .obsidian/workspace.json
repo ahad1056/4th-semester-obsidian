@@ -36,6 +36,18 @@
             }
           },
           {
+            "id": "e6510d3eae5921de",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-11-18 19.29.31.excalidraw"
+            }
+          },
+          {
             "id": "33615a6d7eec7e72",
             "type": "leaf",
             "state": {
@@ -64,7 +76,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -243,12 +255,13 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "3f1a0460b61d030b",
+  "active": "e6510d3eae5921de",
   "lastOpenFiles": [
+    "Solid State Daily Class Note.md",
+    "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Dashboard.md",
-    "Solid State Daily Class Note.md",
     "Solid State ANALYSED QUESTION.md",
     "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw/Libraries/local-library.excalidrawlib",
@@ -287,7 +300,6 @@
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
-    "Communication Systems/Chapter 2 -NOISE.md",
     "ANIMATIONS AND HTML/line_integral.html",
     "ANIMATIONS AND HTML",
     "ANIMARIONS AND HTML",
