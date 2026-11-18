@@ -53,12 +53,14 @@
             "id": "c8b7ef99580eac05",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md"
+                "file": "Solid State Daily Class Note.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-11-18 00.44.54.excalidraw"
+              "icon": "lucide-file",
+              "title": "Solid State Daily Class Note"
             }
           },
           {
@@ -269,6 +271,7 @@
   },
   "active": "c8b7ef99580eac05",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw/Libraries/local-library.excalidrawlib",
     "Excalidraw/Libraries",
     "Solid State Daily Class Note.md",
@@ -276,7 +279,6 @@
     "Dashboard.md",
     "Untitled.canvas",
     "2026-11-18.md",
-    "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw",
     "Daily_Note_Template.md",
     "4th_Semester_Master_Roadmap.md",
@@ -314,7 +316,6 @@
     "ANIMATIONS AND HTML/line_integral.html",
     "ANIMATIONS AND HTML",
     "ANIMARIONS AND HTML",
-    "New folder",
-    "Mechanical Engineering"
+    "New folder"
   ]
 }
