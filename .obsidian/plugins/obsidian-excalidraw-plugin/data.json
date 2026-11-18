@@ -1,15 +1,15 @@
 {
   "addDummyTextElement": false,
-  "aiDefaultImageGenerationModel": "gpt-image-1",
+  "aiDefaultImageGenerationModel": "gemini-2.5-flash-image",
   "aiDefaultMaxOutgoingTokens": 0,
   "aiDefaultMaxResponseTokens": 0,
-  "aiDefaultMultimodalModel": "gpt-5-mini",
-  "aiDefaultTextModel": "gpt-5-mini",
+  "aiDefaultMultimodalModel": "gemini-2.5-pro",
+  "aiDefaultTextModel": "gemini-2.5-pro",
   "aiEnabled": true,
   "aiImageModelConfigs": {
     "dall-e-2": {
       "model": "dall-e-2",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "256x256",
         "512x512",
@@ -20,7 +20,7 @@
     },
     "dall-e-3": {
       "model": "dall-e-3",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024",
         "1792x1024",
@@ -151,7 +151,7 @@
     },
     "gpt-image-1": {
       "model": "gpt-image-1",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024",
         "1536x1024",
@@ -162,7 +162,7 @@
     },
     "gpt-image-1-mini": {
       "model": "gpt-image-1-mini",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024",
         "1536x1024",
@@ -173,7 +173,7 @@
     },
     "gpt-image-1.5": {
       "model": "gpt-image-1.5",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024",
         "1536x1024",
@@ -184,7 +184,7 @@
     },
     "gpt-image-2": {
       "model": "gpt-image-2",
-      "providerId": "OpenAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024",
         "1536x1024",
@@ -196,7 +196,7 @@
     },
     "grok-imagine-image-pro": {
       "model": "grok-imagine-image-pro",
-      "providerId": "xAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024"
       ],
@@ -205,7 +205,7 @@
     },
     "grok-imagine-image-quality": {
       "model": "grok-imagine-image-quality",
-      "providerId": "xAI",
+      "providerId": "Google Gemini",
       "supportedSizes": [
         "1024x1024"
       ],
@@ -214,30 +214,10 @@
     }
   },
   "aiProviderProfiles": {
-    "Anthropic": {
-      "apiKey": "",
-      "baseURL": "https://api.anthropic.com/v1",
-      "provider": "anthropic"
-    },
     "Google Gemini": {
-      "apiKey": "",
-      "baseURL": "https://generativelanguage.googleapis.com/v1beta",
+      "apiKey": "ex-obf:v1:AKMmqSyvMrU4uwCpJ4sBkhyEa4sm9HroEv91lHvAa9xm4Wa/B5Nv71X/JCWEPKJLmD7oCbItkhimL5Q3miK1dphFzW/yQPJc",
+      "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
       "provider": "google"
-    },
-    "OpenAI": {
-      "apiKey": "",
-      "baseURL": "https://api.openai.com/v1",
-      "provider": "openai"
-    },
-    "OpenAI-compatible": {
-      "apiKey": "",
-      "baseURL": "https://api.openai.com/v1",
-      "provider": "openai-compatible"
-    },
-    "xAI": {
-      "apiKey": "",
-      "baseURL": "https://api.x.ai/v1",
-      "provider": "xai"
     }
   },
   "aiTextModelConfigs": {
@@ -245,7 +225,7 @@
       "endpoint": "",
       "model": "claude-sonnet-4-5",
       "multimodalSupport": true,
-      "providerId": "Anthropic"
+      "providerId": "Google Gemini"
     },
     "gemini-2.5-pro": {
       "endpoint": "",
@@ -257,13 +237,13 @@
       "endpoint": "",
       "model": "gpt-5-mini",
       "multimodalSupport": true,
-      "providerId": "OpenAI"
+      "providerId": "Google Gemini"
     },
     "grok-4-fast": {
       "endpoint": "",
       "model": "grok-4-fast",
       "multimodalSupport": true,
-      "providerId": "xAI"
+      "providerId": "Google Gemini"
     }
   },
   "aiVerboseLogging": false,
