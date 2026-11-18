@@ -8,7 +8,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Inter, JetBrains Mono & Hind Siliguri (for crisp Bengali rendering) -->
+  <!-- Google Fonts: Inter, JetBrains Mono & Hind Siliguri -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,13 +44,15 @@
       background-color: #0b0f19;
       color: #f1f5f9;
       font-family: 'Inter', 'Hind Siliguri', sans-serif;
-      overflow-x: hidden;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
     }
 
-    /* Custom Sleek Scrollbar for Control Sidebar */
+    /* Custom Sleek Scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: rgba(15, 23, 42, 0.5);
@@ -105,10 +107,10 @@
 
     /* Glassmorphism utilities */
     .glass-panel {
-      background: rgba(15, 23, 42, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-color: rgba(148, 163, 184, 0.15);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(148, 163, 184, 0.16);
     }
 
     .glass-card {
@@ -126,102 +128,165 @@
       background: radial-gradient(circle at 50% 50%, #131c31 0%, #0b0f19 72%, #070a12 100%);
     }
 
-    /* Subtle pulse animation for origin highlight */
-    @keyframes softPulse {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 0.45; }
+    /* Collapsible Panel Transitions */
+    .collapsible-panel {
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .animate-soft-pulse {
-      animation: softPulse 2.5s infinite ease-in-out;
+
+    .drawer-slide {
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease;
+    }
+
+    /* Clean Details/Summary Accordion Styling */
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] .accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .accordion-chevron {
+      transition: transform 0.2s ease;
     }
   </style>
 </head>
-<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col lg:flex-row select-none">
+<body class="relative w-screen h-screen overflow-hidden select-none">
 
   <!-- ===================================================================== -->
-  <!-- LEFT / TOP: INTERACTIVE HIGH-DPI PHYSICS LABORATORY CANVAS            -->
+  <!-- FULL-SCREEN PRIMARY VIEW: 2D BRAVAIS LATTICE CANVAS                   -->
   <!-- ===================================================================== -->
-  <main id="canvasWrapper" class="relative w-full h-[56vh] sm:h-[60vh] lg:h-full lg:flex-1 lab-canvas-bg overflow-hidden flex-shrink-0">
+  <main id="canvasWrapper" class="relative w-full h-full lab-canvas-bg overflow-hidden">
     
-    <!-- HTML5 Canvas (sized dynamically via JS) -->
+    <!-- HTML5 Canvas (Always unobstructed front-and-center) -->
     <canvas id="latticeCanvas" class="block w-full h-full touch-none"></canvas>
 
-    <!-- Top-Left: Live Lattice Classification & Symmetry HUD -->
-    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 pointer-events-none max-w-[calc(100%-1.5rem)] sm:max-w-md">
-      <div class="glass-panel border rounded-2xl p-3 sm:p-3.5 shadow-2xl pointer-events-auto">
-        <div class="flex items-center justify-between gap-3">
+    <!-- =================================================================== -->
+    <!-- TOP-LEFT: COLLAPSED BY DEFAULT -> LATTICE INFO & EXPLANATION        -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 max-w-[calc(100vw-1.5rem)] sm:max-w-md">
+      
+      <!-- Collapsed Trigger Pill (Minimal, no text clutter) -->
+      <button id="btnExpandHud" title="ব্যাখ্যা ও ল্যাটিস তথ্য দেখুন"
+        class="glass-panel border hover:border-sky-400/50 text-slate-200 hover:text-sky-300 px-3 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+        <span class="font-bengali">তথ্য ও ব্যাখ্যা</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Uncollapsed Info & Explanation Card (Hidden until clicked) -->
+      <div id="hudCard" class="hidden collapsible-panel glass-panel border rounded-2xl p-3.5 sm:p-4 shadow-2xl mt-0">
+        <div class="flex items-start justify-between gap-3">
           <div>
             <div class="flex items-center gap-2">
               <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
-              <span class="text-[11px] uppercase tracking-wider font-semibold text-slate-400">2D Bravais System</span>
+              <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-400">2D Bravais System</span>
             </div>
             <h1 id="latticeTypeBadge" class="text-lg sm:text-xl font-bold text-white tracking-tight mt-0.5">
               Oblique Lattice
             </h1>
           </div>
-          <div class="text-right">
-            <span id="symmetryBadge" class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-sky-500/15 text-sky-300 border border-sky-400/30">
-              Symmetry: C₂
-            </span>
-            <p id="conditionBadge" class="text-[11px] font-mono text-slate-400 mt-1">
-              a₁ ≠ a₂, γ ≠ 90°
-            </p>
+
+          <div class="flex items-start gap-2">
+            <div class="text-right">
+              <span id="symmetryBadge" class="inline-flex items-center px-2 py-0.5 rounded-lg text-[11px] font-mono font-semibold bg-sky-500/15 text-sky-300 border border-sky-400/30">
+                Symmetry: C₂
+              </span>
+              <p id="conditionBadge" class="text-[11px] font-mono text-slate-400 mt-1">
+                a₁ ≠ a₂, γ ≠ 90°
+              </p>
+            </div>
+            <button id="btnCollapseHud" title="Collapse Info"
+              class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
-        <p id="latticeBengaliNote" class="text-xs font-bengali text-slate-300 mt-2 pt-2 border-t border-slate-700/60 leading-relaxed">
-          সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়।
-        </p>
+
+        <!-- Live Telemetry inside uncollapsed HUD -->
+        <div class="grid grid-cols-4 gap-1.5 mt-3 pt-2.5 border-t border-slate-700/60 text-[11px] font-mono">
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">|a₁|</span>
+            <strong id="hudA1" class="text-sky-300">1.30</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">|a₂|</span>
+            <strong id="hudA2" class="text-amber-300">1.10</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">Angle γ</span>
+            <strong id="hudGamma" class="text-purple-300">62.0°</strong>
+          </div>
+          <div class="bg-slate-900/60 rounded-lg px-2 py-1 text-center">
+            <span class="text-slate-400 block text-[9px]">Area</span>
+            <strong id="hudArea" class="text-emerald-300">1.26</strong>
+          </div>
+        </div>
+
+        <!-- Sub-collapsible Bengali Explanation inside HUD -->
+        <details class="mt-2.5 pt-2 border-t border-slate-700/60 group">
+          <summary class="flex items-center justify-between text-xs font-bengali font-medium text-sky-300 cursor-pointer select-none">
+            <span>বিস্তারিত ব্যাখ্যা পড়ুন</span>
+            <svg class="w-3.5 h-3.5 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p id="latticeBengaliNote" class="text-xs font-bengali text-slate-300 mt-1.5 leading-relaxed">
+            সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়।
+          </p>
+        </details>
       </div>
     </div>
 
-    <!-- Top-Right: Viewport Camera Controls & Origin Shift -->
-    <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 flex flex-col sm:flex-row items-end sm:items-center gap-2">
-      <button id="btnShiftOrigin" title="Test Translational Invariance by shifting Origin O to a neighboring point"
-        class="glass-panel border hover:border-amber-400/60 text-slate-200 hover:text-amber-300 px-3 py-2 rounded-xl text-xs font-medium shadow-lg flex items-center gap-1.5 transition active:scale-95">
-        <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+    <!-- =================================================================== -->
+    <!-- TOP-RIGHT: COMPACT CAMERA ICON BAR + DRAWER TOGGLE                  -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-2">
+      
+      <!-- Minimal Icon-Only Camera Controls -->
+      <div class="glass-panel border rounded-full p-1 flex items-center gap-0.5 shadow-xl">
+        <button id="btnZoomOut" title="Zoom Out" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-200 flex items-center justify-center font-mono text-sm transition">−</button>
+        <span id="zoomReadout" class="text-[11px] font-mono text-slate-400 px-1.5 min-w-[40px] text-center">100%</span>
+        <button id="btnZoomIn" title="Zoom In" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-200 flex items-center justify-center font-mono text-sm transition">+</button>
+        <button id="btnResetView" title="Reset View" class="w-7 h-7 rounded-full hover:bg-slate-700/70 text-slate-300 flex items-center justify-center transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Collapsed Drawer Trigger Button -->
+      <button id="btnOpenDrawer" title="কন্ট্রোল ও সহজ পাঠ খুলুন"
+        class="glass-panel border hover:border-indigo-400/60 text-slate-100 hover:text-indigo-300 px-3.5 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
         </svg>
-        <span>Shift Origin <span class="font-bengali text-slate-400">(মূলবিন্দু সরান)</span></span>
+        <span class="font-bengali">কন্ট্রোল ও পাঠ</span>
       </button>
-
-      <div class="glass-panel border rounded-xl p-1 flex items-center gap-1 shadow-lg">
-        <button id="btnZoomOut" title="Zoom Out" class="w-8 h-8 rounded-lg hover:bg-slate-700/60 text-slate-200 flex items-center justify-center font-mono text-base transition">−</button>
-        <span id="zoomReadout" class="text-xs font-mono text-slate-400 px-1.5 min-w-[44px] text-center">100%</span>
-        <button id="btnZoomIn" title="Zoom In" class="w-8 h-8 rounded-lg hover:bg-slate-700/60 text-slate-200 flex items-center justify-center font-mono text-base transition">+</button>
-        <div class="w-px h-4 bg-slate-700 mx-0.5"></div>
-        <button id="btnResetView" title="Reset Camera & Vectors" class="px-2.5 h-8 rounded-lg hover:bg-slate-700/60 text-xs text-slate-300 font-medium transition">Reset</button>
-      </div>
     </div>
 
-    <!-- Bottom-Left: Live Vector & Cell Telemetry Bar -->
-    <div class="hidden sm:flex absolute bottom-4 left-4 z-10 glass-panel border rounded-2xl px-4 py-2.5 items-center gap-5 shadow-xl text-xs">
-      <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
-        <span class="font-mono text-slate-300">|a₁| = <strong id="hudA1" class="text-sky-300">1.30</strong> a</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-        <span class="font-mono text-slate-300">|a₂| = <strong id="hudA2" class="text-amber-300">1.10</strong> a</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
-        <span class="font-mono text-slate-300">γ = <strong id="hudGamma" class="text-purple-300">62.0°</strong></span>
-      </div>
-      <div class="h-4 w-px bg-slate-700"></div>
-      <div class="font-mono text-slate-300">
-        Cell Area = <strong id="hudArea" class="text-emerald-300">1.26</strong> a²
-      </div>
-    </div>
-
-    <!-- Bottom-Right: Interactive Canvas Hint Pill -->
-    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 pointer-events-none">
-      <div class="glass-panel border rounded-xl px-3 py-1.5 text-[11px] text-slate-300 shadow-lg flex items-center gap-2">
+    <!-- =================================================================== -->
+    <!-- BOTTOM-RIGHT: TINY COLLAPSED HINT BUTTON (?)                        -->
+    <!-- =================================================================== -->
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-2">
+      <div id="hintPill" class="hidden glass-panel border rounded-full px-3.5 py-1.5 text-[11px] text-slate-300 shadow-xl flex items-center gap-2">
         <span class="text-sky-400">✦</span>
-        <span>Drag <strong class="text-sky-300">a₁</strong> / <strong class="text-amber-300">a₂</strong> tips • Click any node for <strong class="text-emerald-300">R</strong> • Drag empty space to pan</span>
+        <span>Drag <strong class="text-sky-300">a₁</strong> / <strong class="text-amber-300">a₂</strong> tips • Click node for <strong class="text-emerald-300">R</strong> • Drag canvas to pan</span>
       </div>
+      <button id="btnToggleHint" title="ব্যবহার নির্দেশিকা"
+        class="glass-panel border hover:border-sky-400/50 w-8 h-8 rounded-full text-xs font-mono font-bold text-slate-300 hover:text-sky-300 shadow-xl flex items-center justify-center transition active:scale-95">
+        ?
+      </button>
     </div>
 
-    <!-- Hover Tooltip for Lattice Nodes -->
+    <!-- Hover Tooltip for Lattice Nodes (Only appears on node hover) -->
     <div id="nodeTooltip" class="hidden fixed z-30 pointer-events-none glass-panel border border-emerald-400/40 rounded-lg px-2.5 py-1.5 text-xs font-mono shadow-xl">
       <div id="tooltipCoords" class="text-emerald-300 font-semibold">R = 2a₁ + 1a₂</div>
       <div id="tooltipDist" class="text-[10px] text-slate-400">|R| = 3.12 a</div>
@@ -229,38 +294,48 @@
   </main>
 
   <!-- ===================================================================== -->
-  <!-- RIGHT / BOTTOM: INTERACTIVE CONTROLS & BENGALI INTUITION SIDEBAR      -->
+  <!-- COLLAPSIBLE RIGHT DRAWER: CONTROLS & BENGALI INTUITION GUIDE          -->
+  <!-- (Completely hidden off-screen until user clicks "কন্ট্রোল ও পাঠ")       -->
   <!-- ===================================================================== -->
-  <aside class="w-full lg:w-[420px] xl:w-[440px] lg:h-full glass-panel border-t lg:border-t-0 lg:border-l flex flex-col z-20 shadow-2xl">
+  <aside id="sidebarDrawer"
+    class="fixed top-0 right-0 h-full w-full sm:w-[410px] xl:w-[430px] glass-panel border-l flex flex-col z-40 shadow-2xl drawer-slide translate-x-full opacity-0 pointer-events-none">
     
-    <!-- Sidebar Header & Mode Tabs -->
-    <div class="p-4 border-b border-slate-800/90 flex-shrink-0">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-base font-bold text-white flex items-center gap-2">
-            <span>Solid State Lab</span>
-            <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">Interactive</span>
-          </h2>
-          <p class="text-xs font-bengali text-slate-400 mt-0.5">২ডি ব্র্যাভে ল্যাটিস ও ক্রিস্টাল স্ট্রাকচার ভিজ্যুয়ালাইজার</p>
-        </div>
+    <!-- Drawer Header -->
+    <div class="p-3.5 border-b border-slate-800/90 flex-shrink-0 flex items-center justify-between gap-2">
+      <!-- Tab Switcher: Controls vs Intuition Guide -->
+      <div class="flex bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
+        <button id="tabBtnControls" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition">
+          Controls
+        </button>
+        <button id="tabBtnGuide" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition flex items-center gap-1">
+          <span>সহজ পাঠ</span>
+          <span class="text-[10px] text-slate-400">(ব্যাখ্যা)</span>
+        </button>
+      </div>
 
-        <!-- Tab Switcher: Controls vs Intuition Guide -->
-        <div class="flex bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
-          <button id="tabBtnControls" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition">
-            Controls
-          </button>
-          <button id="tabBtnGuide" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition flex items-center gap-1">
-            <span>Intuition</span>
-            <span class="font-bengali text-[11px]">(সহজ পাঠ)</span>
-          </button>
-        </div>
+      <!-- Shift Origin + Collapse Drawer Button -->
+      <div class="flex items-center gap-1.5">
+        <button id="btnShiftOrigin" title="Test Translational Invariance by shifting Origin O"
+          class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/30 text-amber-300 text-xs font-medium flex items-center gap-1 transition active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+          </svg>
+          <span class="font-bengali text-[11px]">মূলবিন্দু সরান</span>
+        </button>
+
+        <button id="btnCloseDrawer" title="প্যানেল লুকান"
+          class="w-8 h-8 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
 
     <!-- =================================================================== -->
     <!-- TAB 1: INTERACTIVE CONTROLS                                         -->
     <!-- =================================================================== -->
-    <div id="panelControls" class="p-4 space-y-4 overflow-y-auto flex-1">
+    <div id="panelControls" class="p-4 space-y-3.5 overflow-y-auto flex-1">
       
       <!-- 1. Five 2D Bravais Lattice Presets -->
       <section class="glass-card rounded-2xl p-3.5">
@@ -283,12 +358,12 @@
             <div class="font-semibold">Rectangular</div>
             <div class="text-[10px] text-slate-400 font-mono">a₁≠a₂, γ=90°</div>
           </button>
-          <button data-preset="centered_rect" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition col-span-2 sm:col-span-2">
+          <button data-preset="centered_rect" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition col-span-2">
             <div class="flex items-center justify-between">
               <span class="font-semibold text-pink-300">Centered Rectangular</span>
-              <span class="text-[10px] px-1.5 py-0.2 rounded bg-pink-500/15 text-pink-300 border border-pink-400/30">Conventional</span>
+              <span class="text-[10px] px-1.5 rounded bg-pink-500/15 text-pink-300 border border-pink-400/30">Conv.</span>
             </div>
-            <div class="text-[10px] text-slate-400 font-mono">a₁=a₂, γ=64° (Rhombic primitive)</div>
+            <div class="text-[10px] text-slate-400 font-mono">a₁=a₂, γ=64° (Rhombic)</div>
           </button>
           <button data-preset="hexagonal" class="preset-btn px-2.5 py-2 rounded-xl text-xs font-medium bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 text-left transition col-span-2 sm:col-span-1">
             <div class="font-semibold text-emerald-300">Hexagonal</div>
@@ -309,28 +384,25 @@
           </label>
         </div>
 
-        <!-- |a1| Slider -->
         <div>
           <div class="flex justify-between text-xs mb-1">
-            <span class="font-medium text-sky-300">Vector |a₁| length</span>
+            <span class="font-medium text-sky-300">Vector |a₁|</span>
             <span id="valA1" class="font-mono text-slate-200">1.30 a</span>
           </div>
           <input id="sliderA1" type="range" min="0.6" max="2.2" step="0.05" value="1.30" />
         </div>
 
-        <!-- |a2| Slider -->
         <div>
           <div class="flex justify-between text-xs mb-1">
-            <span class="font-medium text-amber-300">Vector |a₂| length</span>
+            <span class="font-medium text-amber-300">Vector |a₂|</span>
             <span id="valA2" class="font-mono text-slate-200">1.10 a</span>
           </div>
           <input id="sliderA2" type="range" min="0.6" max="2.2" step="0.05" value="1.10" class="slider-amber" />
         </div>
 
-        <!-- Angle Gamma Slider -->
         <div>
           <div class="flex justify-between text-xs mb-1">
-            <span class="font-medium text-purple-300">Inter-axial Angle (γ)</span>
+            <span class="font-medium text-purple-300">Angle (γ)</span>
             <span id="valGamma" class="font-mono text-slate-200">62.0°</span>
           </div>
           <input id="sliderGamma" type="range" min="25" max="155" step="0.5" value="62" class="slider-purple" />
@@ -338,7 +410,7 @@
       </section>
 
       <!-- 3. Lattice Translation Vector R = m a1 + n a2 -->
-      <section class="glass-card rounded-2xl p-3.5 space-y-3">
+      <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
         <div class="flex items-center justify-between">
           <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
             3. Translation Vector R
@@ -348,8 +420,7 @@
           </span>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <!-- Integer m stepper -->
+        <div class="grid grid-cols-2 gap-2.5">
           <div class="bg-slate-900/70 rounded-xl p-2 border border-slate-700/60 flex items-center justify-between">
             <span class="text-xs font-mono text-sky-300 pl-1">m = <strong id="valM" class="text-white text-sm">2</strong></span>
             <div class="flex gap-1">
@@ -358,7 +429,6 @@
             </div>
           </div>
 
-          <!-- Integer n stepper -->
           <div class="bg-slate-900/70 rounded-xl p-2 border border-slate-700/60 flex items-center justify-between">
             <span class="text-xs font-mono text-amber-300 pl-1">n = <strong id="valN" class="text-white text-sm">1</strong></span>
             <div class="flex gap-1">
@@ -375,52 +445,36 @@
       </section>
 
       <!-- 4. Physics Intuition Layers & Unit Cells -->
-      <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+      <section class="glass-card rounded-2xl p-3.5 space-y-2">
         <div class="flex items-center justify-between mb-1">
           <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
-            4. Unit Cells & Geometry Layers
+            4. Unit Cells & Layers
           </h3>
           <span class="text-[11px] font-bengali text-slate-400">একক কোষ</span>
         </div>
 
-        <!-- Toggle: Primitive Unit Cell -->
         <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
-          <div>
-            <div class="text-xs font-medium text-indigo-300">Primitive Unit Cell (আদিম কোষ)</div>
-            <div class="text-[11px] text-slate-400">Area = |a₁ × a₂| • 4 × ¼ = 1 lattice point</div>
-          </div>
+          <span class="text-xs font-medium text-indigo-300">Primitive Unit Cell (আদিম কোষ)</span>
           <input id="chkPrimitiveCell" type="checkbox" checked class="w-4 h-4 rounded accent-indigo-400 cursor-pointer">
         </label>
 
-        <!-- Toggle: Wigner-Seitz Cell -->
         <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
-          <div>
-            <div class="text-xs font-medium text-purple-300">Wigner-Seitz Cell (উইগনার-সাইটজ কোষ)</div>
-            <div class="text-[11px] text-slate-400">Exact Voronoi cell via perpendicular bisectors</div>
-          </div>
+          <span class="text-xs font-medium text-purple-300">Wigner-Seitz Cell (উইগনার-সাইটজ)</span>
           <input id="chkWignerSeitz" type="checkbox" class="w-4 h-4 rounded accent-purple-400 cursor-pointer">
         </label>
 
-        <!-- Toggle: Conventional Cell (Centered Rectangular) -->
         <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
-          <div>
-            <div class="text-xs font-medium text-pink-300">Conventional Centered Cell</div>
-            <div class="text-[11px] text-slate-400">Auto-shows dashed rectangle (2 points/cell)</div>
-          </div>
+          <span class="text-xs font-medium text-pink-300">Conventional Centered Cell</span>
           <input id="chkConventionalCell" type="checkbox" checked class="w-4 h-4 rounded accent-pink-400 cursor-pointer">
         </label>
 
-        <!-- Toggle: Infinite Extension Lines -->
         <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
-          <div>
-            <div class="text-xs font-medium text-slate-200">Grid & Infinite Dashed Lines</div>
-            <div class="text-[11px] text-slate-400">Classic Kittel textbook grid visualization</div>
-          </div>
+          <span class="text-xs font-medium text-slate-200">Grid & Extension Lines</span>
           <input id="chkGridLines" type="checkbox" checked class="w-4 h-4 rounded accent-sky-400 cursor-pointer">
         </label>
       </section>
 
-      <!-- 5. Crystal = Lattice + Basis Mode -->
+      <!-- 5. Crystal = Lattice + Basis Mode (Explanatory text collapsed by default) -->
       <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
         <div class="flex items-center justify-between">
           <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300">
@@ -441,64 +495,115 @@
           </button>
         </div>
 
-        <div id="basisCallout" class="text-xs font-bengali text-slate-300 bg-slate-900/60 border border-slate-800 rounded-xl p-2.5 leading-relaxed">
-          বর্তমানে কেবল গাণিতিক <strong>Lattice Points</strong> দেখা যাচ্ছে। প্রতিটি বিন্দুতে এক বা একাধিক পরমাণু (Basis) বসালে বাস্তব <strong>Crystal</strong> তৈরি হয়।
-        </div>
+        <!-- Collapsible explanation for Basis -->
+        <details class="bg-slate-900/60 border border-slate-800 rounded-xl px-3 py-2">
+          <summary class="flex items-center justify-between text-xs font-bengali text-slate-300 cursor-pointer">
+            <span>ব্যাখ্যা দেখুন (Basis কী?)</span>
+            <svg class="w-3.5 h-3.5 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div id="basisCallout" class="text-xs font-bengali text-slate-300 mt-2 pt-2 border-t border-slate-800 leading-relaxed">
+            বর্তমানে কেবল গাণিতিক <strong>Lattice Points</strong> দেখা যাচ্ছে। প্রতিটি বিন্দুতে এক বা একাধিক পরমাণু (Basis) বসালে বাস্তব <strong>Crystal</strong> তৈরি হয়।
+          </div>
+        </details>
       </section>
 
     </div>
 
     <!-- =================================================================== -->
-    <!-- TAB 2: BENGALI + ENGLISH INTUITION GUIDE                            -->
+    <!-- TAB 2: COLLAPSIBLE ACCORDION INTUITION GUIDE (সহজ পাঠ)              -->
     <!-- =================================================================== -->
-    <div id="panelGuide" class="hidden p-4 space-y-3 overflow-y-auto flex-1 font-bengali">
+    <div id="panelGuide" class="hidden p-4 space-y-2.5 overflow-y-auto flex-1 font-bengali">
       
-      <div class="glass-card rounded-2xl p-3.5 border-l-4 border-l-sky-400">
-        <h3 class="text-sm font-bold text-sky-300 font-sans">1. Bravais Lattice কী? (What is a Bravais Lattice?)</h3>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          মহাকাশে বা সমতলে বিন্দুসমূহের এমন একটি অসীম বিন্যাস, যার <strong>যেকোনো বিন্দুতে দাঁড়িয়ে চারপাশে তাকালে পরিবেশটি হুবহু একই রকম (identical) দেখায়</strong>।
-        </p>
-        <p class="text-[11px] text-slate-400 mt-1">
-          💡 <em>পরীক্ষা করুন:</em> উপরের <strong>"Shift Origin"</strong> বাটনে ক্লিক করে মূলবিন্দু O-কে পাশের বিন্দুতে সরিয়ে দেখুন—পুরো জালিকাটি একদম অপরিবর্তিত থাকে!
-        </p>
-      </div>
+      <p class="text-[11px] text-slate-400 px-1">যেকোনো টপিকে ক্লিক করে বিস্তারিত ব্যাখ্যা খুলুন:</p>
 
-      <div class="glass-card rounded-2xl p-3.5 border-l-4 border-l-emerald-400">
-        <h3 class="text-sm font-bold text-emerald-300 font-sans">2. ট্রান্সলেশন ভেক্টর: R = m a₁ + n a₂</h3>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          মূলবিন্দু <strong>O</strong> থেকে ল্যাটিসের যেকোনো বিন্দুতে পৌঁছাতে হলে আদিম ভেক্টর <span class="text-sky-300 font-mono">a₁</span> বরাবর <strong>m</strong> ধাপ এবং <span class="text-amber-300 font-mono">a₂</span> বরাবর <strong>n</strong> ধাপ হাঁটতে হয় (যেখানে <em>m, n</em> পূর্ণসংখ্যা)।
-        </p>
-        <p class="text-[11px] text-slate-400 mt-1">
-          💡 <em>পরীক্ষা করুন:</em> ক্যানভাসের যেকোনো সাদা বিন্দুতে ক্লিক করলে সবুজ ভেক্টর <strong>R</strong>-এর ধাপগুলো দেখতে পাবেন।
-        </p>
-      </div>
+      <!-- Accordion 1 -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-sky-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-sky-300 font-sans">1. Bravais Lattice কী?</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            মহাকাশে বা সমতলে বিন্দুসমূহের এমন একটি অসীম বিন্যাস, যার <strong>যেকোনো বিন্দুতে দাঁড়িয়ে চারপাশে তাকালে পরিবেশটি হুবহু একই রকম (identical) দেখায়</strong>।
+          </p>
+          <p class="text-[11px] text-slate-400">
+            💡 <em>পরীক্ষা করুন:</em> উপরের <strong>"মূলবিন্দু সরান"</strong> বাটনে ক্লিক করে মূলবিন্দু O-কে পাশের বিন্দুতে সরিয়ে দেখুন—পুরো জালিকাটি একদম অপরিবর্তিত থাকে!
+          </p>
+        </div>
+      </details>
 
-      <div class="glass-card rounded-2xl p-3.5 border-l-4 border-l-pink-400">
-        <h3 class="text-sm font-bold text-pink-300 font-sans">3. Primitive vs Conventional Cell (Centered Rectangular)</h3>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          <strong>Primitive Cell:</strong> যে একক কোষের ক্ষেত্রফল সর্বনিম্ন এবং যার ভেতরে মোট <strong>১টি</strong> ল্যাটিস বিন্দু থাকে (৪ কোণায় ৪ × ¼ = ১)।
-        </p>
-        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-          <strong>Centered Rectangular:</strong> সমবাহু রম্বস (<span class="font-mono">a₁=a₂, γ=64°</span>) দিয়ে একে প্রকাশ করা গেলেও, এর প্রতিসাম্য (Symmetry) সহজে বোঝার জন্য গোলাপি ড্যাশড রেখায় দেখানো বড় আয়তক্ষেত্রটি ব্যবহার করা হয়, যার কেন্দ্রে ১টি অতিরিক্ত বিন্দু থাকে (মোট ২টি বিন্দু)।
-        </p>
-      </div>
+      <!-- Accordion 2 -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-emerald-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-emerald-300 font-sans">2. ট্রান্সলেশন ভেক্টর: R = m a₁ + n a₂</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            মূলবিন্দু <strong>O</strong> থেকে ল্যাটিসের যেকোনো বিন্দুতে পৌঁছাতে হলে আদিম ভেক্টর <span class="text-sky-300 font-mono">a₁</span> বরাবর <strong>m</strong> ধাপ এবং <span class="text-amber-300 font-mono">a₂</span> বরাবর <strong>n</strong> ধাপ হাঁটতে হয় (যেখানে <em>m, n</em> পূর্ণসংখ্যা)।
+          </p>
+          <p class="text-[11px] text-slate-400">
+            💡 <em>পরীক্ষা করুন:</em> ক্যানভাসের যেকোনো সাদা বিন্দুতে ক্লিক করলে সবুজ ভেক্টর <strong>R</strong>-এর ধাপগুলো দেখতে পাবেন।
+          </p>
+        </div>
+      </details>
 
-      <div class="glass-card rounded-2xl p-3.5 border-l-4 border-l-purple-400">
-        <h3 class="text-sm font-bold text-purple-300 font-sans">4. Wigner-Seitz Cell কী?</h3>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          এটি এমন একটি বিশেষ <strong>Primitive Cell</strong>, যা কোনো কোণার বদলে একটি ল্যাটিস বিন্দুকে <strong>কেন্দ্রে</strong> রেখে তৈরি হয়। মূলবিন্দু থেকে নিকটতম প্রতিবেশী বিন্দুগুলোর সংযোগকারী রেখার <strong>লম্ব-সমদ্বিখণ্ডক (Perpendicular Bisectors)</strong> টানলে মাঝখানে যে ক্ষুদ্রতম আবদ্ধ ক্ষেত্র তৈরি হয়, সেটিই Wigner-Seitz Cell (Hexagonal ল্যাটিসে এটি একটি নিখুঁত ষড়ভুজ!)।
-        </p>
-      </div>
+      <!-- Accordion 3 -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-pink-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-pink-300 font-sans">3. Primitive vs Conventional Cell</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>Primitive Cell:</strong> যে একক কোষের ক্ষেত্রফল সর্বনিম্ন এবং যার ভেতরে মোট <strong>১টি</strong> ল্যাটিস বিন্দু থাকে (৪ কোণায় ৪ × ¼ = ১)।
+          </p>
+          <p>
+            <strong>Centered Rectangular:</strong> সমবাহু রম্বস (<span class="font-mono">a₁=a₂, γ=64°</span>) দিয়ে একে প্রকাশ করা গেলেও, এর প্রতিসাম্য (Symmetry) সহজে বোঝার জন্য গোলাপি ড্যাশড রেখায় দেখানো বড় আয়তক্ষেত্রটি ব্যবহার করা হয়, যার কেন্দ্রে ১টি অতিরিক্ত বিন্দু থাকে (মোট ২টি বিন্দু)।
+          </p>
+        </div>
+      </details>
 
-      <div class="glass-card rounded-2xl p-3.5 border-l-4 border-l-amber-400">
-        <h3 class="text-sm font-bold text-amber-300 font-sans">5. Crystal = Lattice + Basis (Graphene রহস্য!)</h3>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          <strong>Lattice</strong> হলো শুধুই গাণিতিক বিন্দুর কাঠামো, আর <strong>Basis</strong> হলো প্রতিটি বিন্দুতে বসানো পরমাণু বা অণুর গুচ্ছ।
-        </p>
-        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-          🔥 <strong>দারুণ ইনটুইশন:</strong> গ্রাফিনের (Graphene) মৌচাক বা Honeycomb গঠনটি নিজে কোনো Bravais Lattice নয় (কারণ পরপর দুটি পরমাণুর চারপাশের বন্ধনের দিক উল্টো)। কিন্তু <strong>Hexagonal Preset</strong> সিলেক্ট করে <strong>"2-Atom Basis"</strong> অন করলেই দেখবেন এটি হুবহু গ্রাফিনের মৌচাক গঠন তৈরি করছে!
-        </p>
-      </div>
+      <!-- Accordion 4 -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-purple-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-purple-300 font-sans">4. Wigner-Seitz Cell কী?</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            এটি এমন একটি বিশেষ <strong>Primitive Cell</strong>, যা কোনো কোণার বদলে একটি ল্যাটিস বিন্দুকে <strong>কেন্দ্রে</strong> রেখে তৈরি হয়। মূলবিন্দু থেকে নিকটতম প্রতিবেশী বিন্দুগুলোর সংযোগকারী রেখার <strong>লম্ব-সমদ্বিখণ্ডক (Perpendicular Bisectors)</strong> টানলে মাঝখানে যে ক্ষুদ্রতম আবদ্ধ ক্ষেত্র তৈরি হয়, সেটিই Wigner-Seitz Cell (Hexagonal ল্যাটিসে এটি একটি নিখুঁত ষড়ভুজ!)।
+          </p>
+        </div>
+      </details>
+
+      <!-- Accordion 5 -->
+      <details class="glass-card rounded-2xl border-l-4 border-l-amber-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-amber-300 font-sans">5. Crystal = Lattice + Basis (Graphene!)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 pt-0 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70">
+          <p class="pt-2">
+            <strong>Lattice</strong> হলো শুধুই গাণিতিক বিন্দুর কাঠামো, আর <strong>Basis</strong> হলো প্রতিটি বিন্দুতে বসানো পরমাণু বা অণুর গুচ্ছ।
+          </p>
+          <p>
+            🔥 <strong>দারুণ ইনটুইশন:</strong> গ্রাফিনের (Graphene) মৌচাক বা Honeycomb গঠনটি নিজে কোনো Bravais Lattice নয়। কিন্তু <strong>Hexagonal Preset</strong> সিলেক্ট করে <strong>"2-Atom Basis"</strong> অন করলেই দেখবেন এটি হুবহু গ্রাফিনের মৌচাক গঠন তৈরি করছে!
+          </p>
+        </div>
+      </details>
 
     </div>
   </aside>
@@ -514,29 +619,26 @@
       // 1. STATE MANAGEMENT
       // -------------------------------------------------------------------
       const state = {
-        // Primitive vectors in lattice units (a1 along angle theta1, a2 along theta2)
         a1Len: 1.30,
         a2Len: 1.10,
-        theta1: 0,                  // radians (0 = horizontal right, like Kittel Fig 2.1)
-        gammaDeg: 62.0,             // angle between a1 and a2 in degrees
+        theta1: 0,
+        gammaDeg: 62.0,
         
-        // Translation vector R = m*a1 + n*a2
         m: 2,
         n: 1,
 
-        // Camera & Viewport
-        pixelsPerUnit: 88,
+        pixelsPerUnit: 92,
         zoom: 1.0,
-        panX: -40,                  // screen offset from center in px
+        panX: -50,
         panY: 45,
 
-        // Origin shift animation state (for Translational Invariance test)
-        originShiftWorld: { x: 0, y: 0 },
+        // Origin shift animation state
         animatingShift: false,
         shiftStartTime: 0,
-        shiftDuration: 650,
+        shiftDuration: 600,
         shiftFromPan: { x: 0, y: 0 },
         shiftToPan: { x: 0, y: 0 },
+        originPulse: 0,
 
         // Display Toggles
         magneticSnap: true,
@@ -544,13 +646,18 @@
         showWignerSeitz: false,
         showConventionalCell: true,
         showGridLines: true,
-        basisMode: 'lattice',       // 'lattice' | 'monatomic' | 'diatomic'
+        basisMode: 'lattice',
+
+        // Collapsible UI State (All collapsed by default!)
+        hudExpanded: false,
+        drawerExpanded: false,
+        hintExpanded: false,
 
         // Interaction state
-        draggingTarget: null,       // 'a1' | 'a2' | 'pan' | null
+        draggingTarget: null,
         dragStartMouse: { x: 0, y: 0 },
         dragStartPan: { x: 0, y: 0 },
-        hoveredNode: null,          // { i, j, screenX, screenY }
+        hoveredNode: null,
       };
 
       // -------------------------------------------------------------------
@@ -559,6 +666,18 @@
       const canvas = document.getElementById('latticeCanvas');
       const ctx = canvas.getContext('2d');
       const canvasWrapper = document.getElementById('canvasWrapper');
+
+      // Collapsible UI Controls
+      const btnExpandHud = document.getElementById('btnExpandHud');
+      const btnCollapseHud = document.getElementById('btnCollapseHud');
+      const hudCard = document.getElementById('hudCard');
+
+      const btnOpenDrawer = document.getElementById('btnOpenDrawer');
+      const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+      const sidebarDrawer = document.getElementById('sidebarDrawer');
+
+      const btnToggleHint = document.getElementById('btnToggleHint');
+      const hintPill = document.getElementById('hintPill');
 
       // HUD Elements
       const latticeTypeBadge = document.getElementById('latticeTypeBadge');
@@ -605,7 +724,43 @@
       const tooltipDist = document.getElementById('tooltipDist');
 
       // -------------------------------------------------------------------
-      // 3. MATHEMATICAL HELPERS (VECTORS, COORDINATES, CLASSIFICATION)
+      // 3. COLLAPSIBLE UI INTERACTION LOGIC
+      // -------------------------------------------------------------------
+      function setHudExpanded(expanded) {
+        state.hudExpanded = expanded;
+        if (expanded) {
+          btnExpandHud.classList.add('hidden');
+          hudCard.classList.remove('hidden');
+        } else {
+          hudCard.classList.add('hidden');
+          btnExpandHud.classList.remove('hidden');
+        }
+      }
+
+      function setDrawerExpanded(expanded) {
+        state.drawerExpanded = expanded;
+        if (expanded) {
+          sidebarDrawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+          sidebarDrawer.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        } else {
+          sidebarDrawer.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+          sidebarDrawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+        }
+      }
+
+      btnExpandHud.addEventListener('click', () => setHudExpanded(true));
+      btnCollapseHud.addEventListener('click', () => setHudExpanded(false));
+
+      btnOpenDrawer.addEventListener('click', () => setDrawerExpanded(true));
+      btnCloseDrawer.addEventListener('click', () => setDrawerExpanded(false));
+
+      btnToggleHint.addEventListener('click', () => {
+        state.hintExpanded = !state.hintExpanded;
+        hintPill.classList.toggle('hidden', !state.hintExpanded);
+      });
+
+      // -------------------------------------------------------------------
+      // 4. MATHEMATICAL HELPERS (VECTORS, COORDINATES, CLASSIFICATION)
       // -------------------------------------------------------------------
       function degToRad(deg) {
         return (deg * Math.PI) / 180;
@@ -615,7 +770,6 @@
         return (rad * 180) / Math.PI;
       }
 
-      // Returns primitive vectors a1 and a2 in world coordinates (+x right, +y up)
       function getPrimitiveVectors() {
         const gammaRad = degToRad(state.gammaDeg);
         const theta2 = state.theta1 + gammaRad;
@@ -630,200 +784,184 @@
         return { a1, a2 };
       }
 
-      // Convert World Coordinates (+x right, +y up) to Canvas Screen Pixels
+      function getScale() {
+        return state.pixelsPerUnit * state.zoom;
+      }
+
       function worldToScreen(wx, wy) {
         const rect = canvas.getBoundingClientRect();
-        const cx = rect.width / 2 + state.panX;
-        const cy = rect.height / 2 + state.panY;
-        const scale = state.pixelsPerUnit * state.zoom;
+        const scale = getScale();
+        const cx = rect.width * 0.5 + state.panX;
+        const cy = rect.height * 0.5 + state.panY;
         return {
           x: cx + wx * scale,
-          y: cy - wy * scale, // invert Y for standard Cartesian orientation
+          y: cy - wy * scale,
         };
       }
 
-      // Convert Canvas Screen Pixels to World Coordinates
       function screenToWorld(sx, sy) {
         const rect = canvas.getBoundingClientRect();
-        const cx = rect.width / 2 + state.panX;
-        const cy = rect.height / 2 + state.panY;
-        const scale = state.pixelsPerUnit * state.zoom;
+        const scale = getScale();
+        const cx = rect.width * 0.5 + state.panX;
+        const cy = rect.height * 0.5 + state.panY;
         return {
           x: (sx - cx) / scale,
           y: (cy - sy) / scale,
         };
       }
 
-      // Classify which of the 5 2D Bravais Lattices the current geometry forms
       function classifyLattice() {
-        const a1 = state.a1Len;
-        const a2 = state.a2Len;
-        const g = state.gammaDeg;
         const epsLen = 0.035;
-        const epsAng = 1.3;
+        const epsAng = 1.2;
+        const eqLen = Math.abs(state.a1Len - state.a2Len) <= epsLen;
+        const is90 = Math.abs(state.gammaDeg - 90) <= epsAng;
+        const is120or60 = Math.abs(state.gammaDeg - 120) <= epsAng || Math.abs(state.gammaDeg - 60) <= epsAng;
 
-        const equalLen = Math.abs(a1 - a2) <= epsLen;
-        const is90 = Math.abs(g - 90) <= epsAng;
-        const is60 = Math.abs(g - 60) <= epsAng;
-        const is120 = Math.abs(g - 120) <= epsAng;
-
-        // Check centered rectangular condition:
-        // Either rhombic primitive cell (a1 == a2, gamma != 60, 90, 120)
-        // OR projection condition: 2 * a1 * a2 * cos(gamma) == ±a1^2 or ±a2^2
-        const cosG = Math.cos(degToRad(g));
-        const dot = a1 * a2 * cosG;
-        const projCond1 = Math.abs(2 * Math.abs(dot) - a1 * a1) <= 0.06;
-        const projCond2 = Math.abs(2 * Math.abs(dot) - a2 * a2) <= 0.06;
-
-        if (equalLen && is90) {
+        if (eqLen && is90) {
           return {
-            id: 'square',
             name: 'Square Lattice',
-            symmetry: 'C₄ (4-fold)',
+            symmetry: 'Symmetry: C₄',
             condition: 'a₁ = a₂, γ = 90°',
-            bengali: 'বর্গাকার ল্যাটিস: দুটি ভেক্টর সমান ও পরস্পর লম্ব। প্রতি ৯০° ঘূর্ণনে এটি একই রকম দেখায় (C₄ প্রতিসাম্য)।',
-            conventionalRect: null,
+            note: 'বর্গাকার ল্যাটিস: দুটি আদিম ভেক্টরের দৈর্ঘ্য সমান এবং মধ্যবর্তী কোণ ঠিক ৯০°।',
+            isCenteredRect: false,
           };
         }
-
-        if (equalLen && (is60 || is120)) {
+        if (eqLen && is120or60) {
           return {
-            id: 'hexagonal',
             name: 'Hexagonal Lattice',
-            symmetry: 'C₆ (6-fold)',
-            condition: `a₁ = a₂, γ = ${is120 ? '120°' : '60°'}`,
-            bengali: 'ষড়ভুজাকার ল্যাটিস: ভেক্টরদ্বয় সমান এবং কোণ ১২০° (বা ৬০°)। এটি প্রকৃতির সবচেয়ে ঘন সন্নিবেশিত ২ডি ল্যাটিস (C₆ প্রতিসাম্য)।',
-            conventionalRect: null,
+            symmetry: 'Symmetry: C₆',
+            condition: `a₁ = a₂, γ = ${state.gammaDeg.toFixed(0)}°`,
+            note: 'ষড়ভুজাকার ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য সমান এবং কোণ ১২০° (বা ৬০°); এর Wigner-Seitz কোষ একটি সুষম ষড়ভুজ।',
+            isCenteredRect: false,
           };
         }
-
-        if (!equalLen && is90) {
+        if (!eqLen && is90) {
           return {
-            id: 'rectangular',
             name: 'Rectangular Lattice',
-            symmetry: 'C₂ + Mirrors',
+            symmetry: 'Symmetry: C₂ + mirror',
             condition: 'a₁ ≠ a₂, γ = 90°',
-            bengali: 'আয়তাকার ল্যাটিস: ভেক্টর দুটির দৈর্ঘ্য অসমান কিন্তু মধ্যবর্তী কোণ ঠিক ৯০°।',
-            conventionalRect: null,
+            note: 'আয়তাকার ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান কিন্তু মধ্যবর্তী কোণ ৯০°।',
+            isCenteredRect: false,
           };
         }
-
-        if ((equalLen && !is90 && !is60 && !is120) || projCond1 || projCond2) {
-          // Compute conventional centered rectangle vectors A and B
-          const { a1: v1, a2: v2 } = getPrimitiveVectors();
-          let rectA, rectB, centerOffset;
-
-          if (equalLen) {
-            // Diagonals of the rhombus are strictly orthogonal!
-            rectA = { x: v1.x + v2.x, y: v1.y + v2.y };
-            rectB = { x: v2.x - v1.x, y: v2.y - v1.y };
-            centerOffset = { x: v2.x, y: v2.y };
-          } else if (projCond1) {
-            // v1 is one side of rectangle; 2*v2 ± v1 is perpendicular side
-            const sign = dot > 0 ? -1 : 1;
-            rectA = { x: v1.x, y: v1.y };
-            rectB = { x: 2 * v2.x + sign * v1.x, y: 2 * v2.y + sign * v1.y };
-            centerOffset = { x: v2.x, y: v2.y };
-          } else {
-            const sign = dot > 0 ? -1 : 1;
-            rectA = { x: v2.x, y: v2.y };
-            rectB = { x: 2 * v1.x + sign * v2.x, y: 2 * v1.y + sign * v2.y };
-            centerOffset = { x: v1.x, y: v1.y };
-          }
-
+        if (eqLen && !is90) {
           return {
-            id: 'centered_rect',
             name: 'Centered Rectangular',
-            symmetry: 'C₂ + Mirrors',
-            condition: equalLen ? 'a₁ = a₂, γ ≠ 60°,90°,120°' : '2(a₁·a₂) = ±a₁²',
-            bengali: 'কেন্দ্রিক আয়তাকার ল্যাটিস: রম্বস আকৃতির আদিম কোষের কর্ণ দুটি পরস্পর লম্ব হওয়ায় এটি একটি কেন্দ্রিক আয়তক্ষেত্র (গোলাপি রেখা) গঠন করে।',
-            conventionalRect: { rectA, rectB, centerOffset },
+            symmetry: 'Symmetry: C₂ + mirror',
+            condition: 'a₁ = a₂, γ ≠ 90° (Rhombic)',
+            note: 'কেন্দ্রিক আয়তাকার ল্যাটিস: সমবাহু রম্বস আদিম কোষের মাধ্যমে একটি কেন্দ্রিক আয়তক্ষেত্র (গোলাপি ড্যাশড) গঠন করে।',
+            isCenteredRect: true,
           };
         }
-
         return {
-          id: 'oblique',
           name: 'Oblique Lattice',
-          symmetry: 'C₂ (2-fold)',
+          symmetry: 'Symmetry: C₂',
           condition: 'a₁ ≠ a₂, γ ≠ 90°',
-          bengali: 'সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়। কেবল ১৮০° ঘূর্ণনে এটি অপরিবর্তিত থাকে।',
-          conventionalRect: null,
+          note: 'সাধারণ তির্যক ল্যাটিস: দুটি ভেক্টরের দৈর্ঘ্য অসমান এবং মধ্যবর্তী কোণ ৯০° নয়।',
+          isCenteredRect: false,
         };
       }
 
-      // -------------------------------------------------------------------
-      // 4. EXACT WIGNER-SEITZ CELL COMPUTATION (HALF-PLANE CLIPPING)
-      // -------------------------------------------------------------------
+      // Compute exact 2D Wigner-Seitz cell via Sutherland-Hodgman half-plane clipping
       function computeWignerSeitzPolygon(a1, a2) {
-        // Start with a generous bounding box in world space
         let poly = [
-          { x: -6, y: -6 },
-          { x: 6, y: -6 },
-          { x: 6, y: 6 },
-          { x: -6, y: 6 },
+          { x: -8, y: -8 },
+          { x: 8, y: -8 },
+          { x: 8, y: 8 },
+          { x: -8, y: 8 },
         ];
 
-        const bisectors = [];
-
-        // Clip against perpendicular bisectors of all nearby lattice neighbors
         for (let i = -3; i <= 3; i++) {
           for (let j = -3; j <= 3; j++) {
             if (i === 0 && j === 0) continue;
             const rx = i * a1.x + j * a2.x;
             const ry = i * a1.y + j * a2.y;
-            const rSq = rx * rx + ry * ry;
-            if (rSq < 1e-6) continue;
+            const limit = 0.5 * (rx * rx + ry * ry);
 
-            // Half-plane condition: x * rx + y * ry <= 0.5 * rSq
-            const limit = 0.5 * rSq;
-            poly = clipPolygonWithHalfPlane(poly, rx, ry, limit);
+            const nextPoly = [];
+            for (let k = 0; k < poly.length; k++) {
+              const curr = poly[k];
+              const prev = poly[(k + poly.length - 1) % poly.length];
+              const dCurr = curr.x * rx + curr.y * ry - limit;
+              const dPrev = prev.x * rx + prev.y * ry - limit;
 
-            // Store nearest neighbor vectors for optional visual construction lines
-            if (Math.abs(i) <= 1 && Math.abs(j) <= 1) {
-              bisectors.push({ rx, ry });
+              if (dCurr <= 0) {
+                if (dPrev > 0) {
+                  const t = dPrev / (dPrev - dCurr);
+                  nextPoly.push({
+                    x: prev.x + t * (curr.x - prev.x),
+                    y: prev.y + t * (curr.y - prev.y),
+                  });
+                }
+                nextPoly.push(curr);
+              } else if (dPrev <= 0) {
+                const t = dPrev / (dPrev - dCurr);
+                nextPoly.push({
+                  x: prev.x + t * (curr.x - prev.x),
+                  y: prev.y + t * (curr.y - prev.y),
+                });
+              }
             }
+            poly = nextPoly;
+            if (poly.length === 0) break;
           }
         }
-
-        return { poly, bisectors };
-      }
-
-      // Sutherland-Hodgman half-plane clipper: keeps points where nx*x + ny*y <= d
-      function clipPolygonWithHalfPlane(poly, nx, ny, d) {
-        if (poly.length === 0) return [];
-        const out = [];
-        for (let idx = 0; idx < poly.length; idx++) {
-          const curr = poly[idx];
-          const next = poly[(idx + 1) % poly.length];
-          const valCurr = nx * curr.x + ny * curr.y - d;
-          const valNext = nx * next.x + ny * next.y - d;
-
-          if (valCurr <= 0) {
-            out.push(curr);
-            if (valNext > 0) {
-              const t = valCurr / (valCurr - valNext);
-              out.push({
-                x: curr.x + t * (next.x - curr.x),
-                y: curr.y + t * (next.y - curr.y),
-              });
-            }
-          } else if (valNext <= 0) {
-            const t = valCurr / (valCurr - valNext);
-            out.push({
-              x: curr.x + t * (next.x - curr.x),
-              y: curr.y + t * (next.y - curr.y),
-            });
-          }
-        }
-        return out;
+        return poly;
       }
 
       // -------------------------------------------------------------------
-      // 5. CANVAS DRAWING PRIMITIVES (REALISTIC 3D SPHERES, ARROWS, CELLS)
+      // 5. UI SYNCHRONIZATION
       // -------------------------------------------------------------------
-      function drawArrow(ctx, x1, y1, x2, y2, color, lineWidth = 2.6, headLen = 12, dashed = false) {
-        const dx = x2 - x1;
-        const dy = y2 - y1;
+      function updateUI() {
+        const { a1, a2 } = getPrimitiveVectors();
+        const info = classifyLattice();
+
+        // Update HUD
+        latticeTypeBadge.textContent = info.name;
+        symmetryBadge.textContent = info.symmetry;
+        conditionBadge.textContent = info.condition;
+        latticeBengaliNote.textContent = info.note;
+
+        const area = Math.abs(a1.x * a2.y - a1.y * a2.x);
+        hudA1.textContent = state.a1Len.toFixed(2);
+        hudA2.textContent = state.a2Len.toFixed(2);
+        hudGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
+        hudArea.textContent = area.toFixed(2);
+
+        // Update Sliders & Labels
+        sliderA1.value = state.a1Len;
+        sliderA2.value = state.a2Len;
+        sliderGamma.value = state.gammaDeg;
+        valA1.textContent = `${state.a1Len.toFixed(2)} a`;
+        valA2.textContent = `${state.a2Len.toFixed(2)} a`;
+        valGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
+        zoomReadout.textContent = `${Math.round(state.zoom * 100)}%`;
+
+        // Update Translation Vector R
+        valM.textContent = state.m;
+        valN.textContent = state.n;
+        const signN = state.n >= 0 ? '+' : '−';
+        rFormulaText.textContent = `R = ${state.m}a₁ ${signN} ${Math.abs(state.n)}a₂`;
+        const rx = state.m * a1.x + state.n * a2.x;
+        const ry = state.m * a1.y + state.n * a2.y;
+        const rMag = Math.hypot(rx, ry);
+        rMagText.textContent = `|R| = ${rMag.toFixed(2)} a`;
+      }
+
+      // -------------------------------------------------------------------
+      // 6. HIGH-DPI CANVAS RENDERING ENGINE
+      // -------------------------------------------------------------------
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvasWrapper.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function drawArrow(from, to, color, lineWidth = 2.6, headSize = 11, dashed = false) {
+        const dx = to.x - from.x;
+        const dy = to.y - from.y;
         const len = Math.hypot(dx, dy);
         if (len < 2) return;
 
@@ -833,212 +971,146 @@
         ctx.fillStyle = color;
         ctx.lineWidth = lineWidth;
         ctx.lineCap = 'round';
-        if (dashed) ctx.setLineDash([5, 5]);
-
-        // Shorten shaft slightly so arrowhead tip lands cleanly at (x2, y2)
-        const shaftEndX = x2 - Math.cos(angle) * (headLen * 0.65);
-        const shaftEndY = y2 - Math.sin(angle) * (headLen * 0.65);
+        if (dashed) ctx.setLineDash([6, 5]);
 
         ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(shaftEndX, shaftEndY);
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(
+          to.x - Math.cos(angle) * (headSize * 0.65),
+          to.y - Math.sin(angle) * (headSize * 0.65)
+        );
         ctx.stroke();
 
-        // Solid arrowhead
         ctx.setLineDash([]);
         ctx.beginPath();
-        ctx.moveTo(x2, y2);
+        ctx.moveTo(to.x, to.y);
         ctx.lineTo(
-          x2 - headLen * Math.cos(angle - Math.PI / 7),
-          y2 - headLen * Math.sin(angle - Math.PI / 7)
+          to.x - headSize * Math.cos(angle - Math.PI / 6),
+          to.y - headSize * Math.sin(angle - Math.PI / 6)
         );
         ctx.lineTo(
-          x2 - headLen * Math.cos(angle + Math.PI / 7),
-          y2 - headLen * Math.sin(angle + Math.PI / 7)
+          to.x - headSize * Math.cos(angle + Math.PI / 6),
+          to.y - headSize * Math.sin(angle + Math.PI / 6)
         );
         ctx.closePath();
         ctx.fill();
         ctx.restore();
       }
 
-      // Render a realistic 3D-shaded sphere with specular highlight & soft shadow
-      function drawRealisticSphere(ctx, sx, sy, radius, theme = 'lattice', isOrigin = false, isTarget = false) {
+      function drawVectorLabel(text, pos, color, offsetX = 0, offsetY = -12) {
         ctx.save();
+        ctx.font = '600 13px "JetBrains Mono", monospace';
+        const metrics = ctx.measureText(text);
+        const padX = 6;
+        const boxW = metrics.width + padX * 2;
+        const boxH = 20;
+        const bx = pos.x + offsetX - boxW * 0.5;
+        const by = pos.y + offsetY - boxH * 0.5;
 
-        // Outer halo for Origin O or Target R
-        if (isOrigin) {
-          ctx.beginPath();
-          ctx.arc(sx, sy, radius + 7, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(251, 191, 36, 0.65)';
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        } else if (isTarget) {
-          ctx.beginPath();
-          ctx.arc(sx, sy, radius + 6, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(52, 211, 153, 0.75)';
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        }
-
-        // Ambient drop shadow
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
-        ctx.shadowBlur = 8;
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 4;
-
-        // 3D Spherical Radial Gradient
-        const grad = ctx.createRadialGradient(
-          sx - radius * 0.34,
-          sy - radius * 0.34,
-          radius * 0.1,
-          sx,
-          sy,
-          radius
-        );
-
-        if (theme === 'lattice') {
-          grad.addColorStop(0, '#ffffff');
-          grad.addColorStop(0.35, '#e2e8f0');
-          grad.addColorStop(0.8, '#64748b');
-          grad.addColorStop(1, '#1e293b');
-        } else if (theme === 'atomA') {
-          // Metallic Cyan-Sapphire Atom
-          grad.addColorStop(0, '#e0f2fe');
-          grad.addColorStop(0.3, '#38bdf8');
-          grad.addColorStop(0.75, '#0284c7');
-          grad.addColorStop(1, '#082f49');
-        } else if (theme === 'atomB') {
-          // Warm Coral-Amber Atom
-          grad.addColorStop(0, '#ffedd5');
-          grad.addColorStop(0.3, '#fb923c');
-          grad.addColorStop(0.75, '#ea580c');
-          grad.addColorStop(1, '#431407');
-        }
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(sx, sy, radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Crisp rim highlight
-        ctx.shadowColor = 'transparent';
+        ctx.fillStyle = 'rgba(11, 15, 25, 0.82)';
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
         ctx.lineWidth = 1;
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+        ctx.beginPath();
+        ctx.roundRect(bx, by, boxW, boxH, 6);
+        ctx.fill();
         ctx.stroke();
 
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, pos.x + offsetX, pos.y + offsetY + 0.5);
         ctx.restore();
       }
 
-      // -------------------------------------------------------------------
-      // 6. MAIN RENDER LOOP
-      // -------------------------------------------------------------------
-      function render(timestamp = 0) {
-        // Handle smooth Origin Shift animation if active
+      function render(now) {
+        // Handle smooth Origin Shift animation
         if (state.animatingShift) {
-          const elapsed = timestamp - state.shiftStartTime;
-          const t = Math.min(1, elapsed / state.shiftDuration);
-          // Smooth cubic ease-in-out
-          const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          const elapsed = now - state.shiftStartTime;
+          const t = Math.min(elapsed / state.shiftDuration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
           state.panX = state.shiftFromPan.x + (state.shiftToPan.x - state.shiftFromPan.x) * ease;
           state.panY = state.shiftFromPan.y + (state.shiftToPan.y - state.shiftFromPan.y) * ease;
-
+          state.originPulse = Math.sin(t * Math.PI);
           if (t >= 1) {
             state.animatingShift = false;
-            // Reset pan back to centered origin seamlessly because the infinite lattice is identical!
-            state.panX = state.shiftFromPan.x;
-            state.panY = state.shiftFromPan.y;
+            state.originPulse = 0;
           }
         }
 
-        const rect = canvas.getBoundingClientRect();
+        const rect = canvasWrapper.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
-
         ctx.clearRect(0, 0, width, height);
 
         const { a1, a2 } = getPrimitiveVectors();
-        const classification = classifyLattice();
         const originScreen = worldToScreen(0, 0);
+        const info = classifyLattice();
 
-        // Determine visible lattice index bounds dynamically
-        const N = 8;
+        // Determine visible lattice index range (i, j)
+        const det = a1.x * a2.y - a1.y * a2.x;
+        const corners = [
+          screenToWorld(0, 0),
+          screenToWorld(width, 0),
+          screenToWorld(width, height),
+          screenToWorld(0, height),
+        ];
 
-        // -----------------------------------------------------------------
-        // LAYER A: Kittel-Style Lattice Grid & Infinite Dashed Extensions
-        // -----------------------------------------------------------------
+        let minI = Infinity, maxI = -Infinity, minJ = Infinity, maxJ = -Infinity;
+        if (Math.abs(det) > 1e-4) {
+          for (const c of corners) {
+            const ci = (c.x * a2.y - c.y * a2.x) / det;
+            const cj = (a1.x * c.y - a1.y * c.x) / det;
+            minI = Math.min(minI, Math.floor(ci) - 2);
+            maxI = Math.max(maxI, Math.ceil(ci) + 2);
+            minJ = Math.min(minJ, Math.floor(cj) - 2);
+            maxJ = Math.max(maxJ, Math.ceil(cj) + 2);
+          }
+        } else {
+          minI = -10; maxI = 10; minJ = -10; maxJ = 10;
+        }
+        minI = Math.max(minI, -35);
+        maxI = Math.min(maxI, 35);
+        minJ = Math.max(minJ, -35);
+        maxJ = Math.min(maxJ, 35);
+
+        // 1. Infinite Grid Lines (Kittel style)
         if (state.showGridLines) {
           ctx.save();
-          // Draw solid grid lines inside [-3, 3] and dashed extension tails beyond
-          const coreMin = -3;
-          const coreMax = 3;
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.11)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 6]);
 
-          // Lines parallel to a1 (constant j)
-          for (let j = coreMin; j <= coreMax; j++) {
-            const pStart = worldToScreen(coreMin * a1.x + j * a2.x, coreMin * a1.y + j * a2.y);
-            const pEnd = worldToScreen(coreMax * a1.x + j * a2.x, coreMax * a1.y + j * a2.y);
-
-            // Solid interior segment
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
-            ctx.lineWidth = 1.25;
-            ctx.setLineDash([]);
+          for (let i = minI; i <= maxI; i++) {
+            const pStart = worldToScreen(i * a1.x + minJ * a2.x, i * a1.y + minJ * a2.y);
+            const pEnd = worldToScreen(i * a1.x + maxJ * a2.x, i * a1.y + maxJ * a2.y);
             ctx.beginPath();
             ctx.moveTo(pStart.x, pStart.y);
             ctx.lineTo(pEnd.x, pEnd.y);
-            ctx.stroke();
-
-            // Dashed infinite extension tails
-            const extLeft = worldToScreen((coreMin - 0.55) * a1.x + j * a2.x, (coreMin - 0.55) * a1.y + j * a2.y);
-            const extRight = worldToScreen((coreMax + 0.55) * a1.x + j * a2.x, (coreMax + 0.55) * a1.y + j * a2.y);
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.32)';
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(extLeft.x, extLeft.y);
-            ctx.lineTo(pStart.x, pStart.y);
-            ctx.moveTo(pEnd.x, pEnd.y);
-            ctx.lineTo(extRight.x, extRight.y);
             ctx.stroke();
           }
 
-          // Lines parallel to a2 (constant i)
-          for (let i = coreMin; i <= coreMax; i++) {
-            const pStart = worldToScreen(i * a1.x + coreMin * a2.x, i * a1.y + coreMin * a2.y);
-            const pEnd = worldToScreen(i * a1.x + coreMax * a2.x, i * a1.y + coreMax * a2.y);
-
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
-            ctx.lineWidth = 1.25;
-            ctx.setLineDash([]);
+          for (let j = minJ; j <= maxJ; j++) {
+            const pStart = worldToScreen(minI * a1.x + j * a2.x, minI * a1.y + j * a2.y);
+            const pEnd = worldToScreen(maxI * a1.x + j * a2.x, maxI * a1.y + j * a2.y);
             ctx.beginPath();
             ctx.moveTo(pStart.x, pStart.y);
             ctx.lineTo(pEnd.x, pEnd.y);
-            ctx.stroke();
-
-            const extBot = worldToScreen(i * a1.x + (coreMin - 0.55) * a2.x, i * a1.y + (coreMin - 0.55) * a2.y);
-            const extTop = worldToScreen(i * a1.x + (coreMax + 0.55) * a2.x, i * a1.y + (coreMax + 0.55) * a2.y);
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.32)';
-            ctx.setLineDash([4, 4]);
-            ctx.beginPath();
-            ctx.moveTo(extBot.x, extBot.y);
-            ctx.lineTo(pStart.x, pStart.y);
-            ctx.moveTo(pEnd.x, pEnd.y);
-            ctx.lineTo(extTop.x, extTop.y);
             ctx.stroke();
           }
           ctx.restore();
         }
 
-        // -----------------------------------------------------------------
-        // LAYER B: Primitive Unit Cell (Parallelogram spanned by a1 & a2)
-        // -----------------------------------------------------------------
+        // 2. Primitive Unit Cell (Parallelogram: 0, a1, a1+a2, a2)
         if (state.showPrimitiveCell) {
-          const p0 = worldToScreen(0, 0);
+          const p0 = originScreen;
           const p1 = worldToScreen(a1.x, a1.y);
           const p12 = worldToScreen(a1.x + a2.x, a1.y + a2.y);
           const p2 = worldToScreen(a2.x, a2.y);
 
           ctx.save();
-          ctx.fillStyle = 'rgba(99, 102, 241, 0.16)';
-          ctx.strokeStyle = 'rgba(129, 140, 248, 0.75)';
-          ctx.lineWidth = 1.8;
+          ctx.fillStyle = 'rgba(99, 102, 241, 0.14)';
+          ctx.strokeStyle = 'rgba(129, 140, 248, 0.65)';
+          ctx.lineWidth = 1.6;
           ctx.beginPath();
           ctx.moveTo(p0.x, p0.y);
           ctx.lineTo(p1.x, p1.y);
@@ -1047,32 +1119,20 @@
           ctx.closePath();
           ctx.fill();
           ctx.stroke();
-
-          // Subtle label inside primitive cell
-          const center = worldToScreen(0.5 * (a1.x + a2.x), 0.5 * (a1.y + a2.y));
-          ctx.fillStyle = 'rgba(199, 210, 254, 0.75)';
-          ctx.font = '600 11px Inter, sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText('Primitive Cell', center.x, center.y + 4);
           ctx.restore();
         }
 
-        // -----------------------------------------------------------------
-        // LAYER C: Conventional Centered Rectangular Cell (when applicable)
-        // -----------------------------------------------------------------
-        if (state.showConventionalCell && classification.conventionalRect) {
-          const { rectA, rectB } = classification.conventionalRect;
-          // Center the conventional rectangle nicely around the origin or (a2)
-          const base = { x: -0.5 * rectB.x, y: -0.5 * rectB.y };
-          const c0 = worldToScreen(base.x, base.y);
-          const c1 = worldToScreen(base.x + rectA.x, base.y + rectA.y);
-          const c2 = worldToScreen(base.x + rectA.x + rectB.x, base.y + rectA.y + rectB.y);
-          const c3 = worldToScreen(base.x + rectB.x, base.y + rectB.y);
+        // 3. Conventional Centered Rectangular Cell (when applicable)
+        if (state.showConventionalCell && info.isCenteredRect) {
+          const c0 = originScreen;
+          const c1 = worldToScreen(a1.x + a2.x, a1.y + a2.y);
+          const c2 = worldToScreen(2 * a2.x, 2 * a2.y);
+          const c3 = worldToScreen(a2.x - a1.x, a2.y - a1.y);
 
           ctx.save();
           ctx.fillStyle = 'rgba(244, 114, 182, 0.08)';
           ctx.strokeStyle = '#f472b6';
-          ctx.lineWidth = 2.2;
+          ctx.lineWidth = 2;
           ctx.setLineDash([7, 5]);
           ctx.beginPath();
           ctx.moveTo(c0.x, c0.y);
@@ -1082,43 +1142,19 @@
           ctx.closePath();
           ctx.fill();
           ctx.stroke();
-
-          // Label for Conventional Cell
-          const labelPos = worldToScreen(base.x + rectA.x + 0.5 * rectB.x, base.y + rectA.y + 0.5 * rectB.y);
-          ctx.setLineDash([]);
-          ctx.fillStyle = '#f9a8d4';
-          ctx.font = '600 11px Inter, sans-serif';
-          ctx.textAlign = 'left';
-          ctx.fillText('Conventional Centered Cell (2 pts)', labelPos.x + 10, labelPos.y);
           ctx.restore();
         }
 
-        // -----------------------------------------------------------------
-        // LAYER D: Wigner-Seitz Cell (Exact Voronoi Polygon around Origin)
-        // -----------------------------------------------------------------
+        // 4. Wigner-Seitz Cell (Voronoi region around Origin)
         if (state.showWignerSeitz) {
-          const { poly, bisectors } = computeWignerSeitzPolygon(a1, a2);
-          if (poly.length >= 3) {
+          const wsPoly = computeWignerSeitzPolygon(a1, a2);
+          if (wsPoly.length >= 3) {
             ctx.save();
-            // Draw faint construction lines to nearest neighbors
-            ctx.strokeStyle = 'rgba(192, 132, 252, 0.22)';
-            ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
-            bisectors.forEach((b) => {
-              const pEnd = worldToScreen(b.rx, b.ry);
-              ctx.beginPath();
-              ctx.moveTo(originScreen.x, originScreen.y);
-              ctx.lineTo(pEnd.x, pEnd.y);
-              ctx.stroke();
-            });
-
-            // Draw Wigner-Seitz polygon
-            ctx.setLineDash([]);
-            ctx.fillStyle = 'rgba(168, 85, 247, 0.20)';
+            ctx.fillStyle = 'rgba(192, 132, 252, 0.16)';
             ctx.strokeStyle = '#c084fc';
-            ctx.lineWidth = 2.4;
+            ctx.lineWidth = 2;
             ctx.beginPath();
-            poly.forEach((pt, idx) => {
+            wsPoly.forEach((pt, idx) => {
               const s = worldToScreen(pt.x, pt.y);
               if (idx === 0) ctx.moveTo(s.x, s.y);
               else ctx.lineTo(s.x, s.y);
@@ -1126,281 +1162,193 @@
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
-
-            // Label
-            const wsTop = poly.reduce((best, p) => (p.y > best.y ? p : best), poly[0]);
-            const wsLabelPos = worldToScreen(wsTop.x, wsTop.y);
-            ctx.fillStyle = '#d8b4fe';
-            ctx.font = '600 11px Inter, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('Wigner-Seitz Cell', wsLabelPos.x, wsLabelPos.y - 8);
             ctx.restore();
           }
         }
 
-        // -----------------------------------------------------------------
-        // LAYER E: Crystal = Lattice + Basis (Atoms & Bonds)
-        // -----------------------------------------------------------------
-        const scale = state.pixelsPerUnit * state.zoom;
-        const latticeRadius = Math.max(4.5, Math.min(8.5, 6.2 * Math.sqrt(state.zoom)));
-        const atomRadiusA = Math.max(8, Math.min(20, 14 * Math.sqrt(state.zoom)));
-        const atomRadiusB = Math.max(6.5, Math.min(16, 11.5 * Math.sqrt(state.zoom)));
+        // 5. Angle Gamma Arc between a1 and a2
+        const arcRadius = Math.min(36, getScale() * 0.42);
+        const startAng = -state.theta1;
+        const endAng = -(state.theta1 + degToRad(state.gammaDeg));
+        ctx.save();
+        ctx.strokeStyle = 'rgba(192, 132, 252, 0.75)';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.arc(originScreen.x, originScreen.y, arcRadius, endAng, startAng);
+        ctx.stroke();
+        ctx.restore();
 
-        // Fractional basis coordinates for Diatomic mode (1/3, 1/3 gives Graphene honeycomb on Hexagonal lattice!)
-        const basisBFrac = { u: 1 / 3, v: 1 / 3 };
+        // 6. Basis Atoms & Covalent Bonds (if monatomic or diatomic mode active)
+        if (state.basisMode !== 'lattice') {
+          const scale = getScale();
+          const atomRadius = Math.max(6, Math.min(18, scale * 0.16));
 
-        // If diatomic mode is active, draw covalent-style bonds first
-        if (state.basisMode === 'diatomic') {
-          ctx.save();
-          ctx.strokeStyle = 'rgba(148, 163, 184, 0.45)';
-          ctx.lineWidth = 2.2;
-          for (let i = -4; i <= 4; i++) {
-            for (let j = -4; j <= 4; j++) {
-              const lx = i * a1.x + j * a2.x;
-              const ly = i * a1.y + j * a2.y;
-              const bx = lx + basisBFrac.u * a1.x + basisBFrac.v * a2.x;
-              const by = ly + basisBFrac.u * a1.y + basisBFrac.v * a2.y;
+          // Draw bonds first in diatomic mode (reveals Honeycomb for Hexagonal!)
+          if (state.basisMode === 'diatomic') {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.lineWidth = 2;
+            for (let i = minI; i <= maxI; i++) {
+              for (let j = minJ; j <= maxJ; j++) {
+                const wx = i * a1.x + j * a2.x;
+                const wy = i * a1.y + j * a2.y;
+                const bOffset = {
+                  x: (a1.x + a2.x) / 3,
+                  y: (a1.y + a2.y) / 3,
+                };
+                const sB = worldToScreen(wx + bOffset.x, wy + bOffset.y);
+                const neighbors = [
+                  worldToScreen(wx, wy),
+                  worldToScreen(wx + a1.x, wy + a1.y),
+                  worldToScreen(wx + a2.x, wy + a2.y),
+                ];
+                for (const nb of neighbors) {
+                  ctx.beginPath();
+                  ctx.moveTo(sB.x, sB.y);
+                  ctx.lineTo(nb.x, nb.y);
+                  ctx.stroke();
+                }
+              }
+            }
+            ctx.restore();
+          }
 
-              const sB = worldToScreen(bx, by);
-              // Connect Atom B to its 3 surrounding Atom A neighbors: (i,j), (i+1,j), (i,j+1)
-              const neighborsA = [
-                { x: lx, y: ly },
-                { x: lx + a1.x, y: ly + a1.y },
-                { x: lx + a2.x, y: ly + a2.y },
-              ];
-              neighborsA.forEach((na) => {
-                const sA = worldToScreen(na.x, na.y);
+          // Draw Basis Atoms
+          for (let i = minI; i <= maxI; i++) {
+            for (let j = minJ; j <= maxJ; j++) {
+              const wx = i * a1.x + j * a2.x;
+              const wy = i * a1.y + j * a2.y;
+              const sA = worldToScreen(wx, wy);
+
+              // Atom A
+              const gradA = ctx.createRadialGradient(
+                sA.x - atomRadius * 0.3, sA.y - atomRadius * 0.3, atomRadius * 0.1,
+                sA.x, sA.y, atomRadius
+              );
+              gradA.addColorStop(0, '#7dd3fc');
+              gradA.addColorStop(1, 'rgba(2, 132, 199, 0.45)');
+              ctx.fillStyle = gradA;
+              ctx.beginPath();
+              ctx.arc(sA.x, sA.y, atomRadius, 0, Math.PI * 2);
+              ctx.fill();
+
+              // Atom B (in 2-atom basis)
+              if (state.basisMode === 'diatomic') {
+                const sB = worldToScreen(wx + (a1.x + a2.x) / 3, wy + (a1.y + a2.y) / 3);
+                const rB = atomRadius * 0.85;
+                const gradB = ctx.createRadialGradient(
+                  sB.x - rB * 0.3, sB.y - rB * 0.3, rB * 0.1,
+                  sB.x, sB.y, rB
+                );
+                gradB.addColorStop(0, '#fcd34d');
+                gradB.addColorStop(1, 'rgba(217, 119, 6, 0.48)');
+                ctx.fillStyle = gradB;
                 ctx.beginPath();
-                ctx.moveTo(sB.x, sB.y);
-                ctx.lineTo(sA.x, sA.y);
-                ctx.stroke();
-              });
+                ctx.arc(sB.x, sB.y, rB, 0, Math.PI * 2);
+                ctx.fill();
+              }
             }
           }
-          ctx.restore();
         }
 
-        // Render Lattice Points / Basis Atoms
-        for (let i = -4; i <= 4; i++) {
-          for (let j = -4; j <= 4; j++) {
+        // 7. Lattice Points (Nodes)
+        for (let i = minI; i <= maxI; i++) {
+          for (let j = minJ; j <= maxJ; j++) {
             const wx = i * a1.x + j * a2.x;
             const wy = i * a1.y + j * a2.y;
             const s = worldToScreen(wx, wy);
 
-            // Skip offscreen nodes for performance
-            if (s.x < -50 || s.x > width + 50 || s.y < -50 || s.y > height + 50) continue;
-
             const isOrigin = i === 0 && j === 0;
-            const isTarget = i === state.m && j === state.n;
+            const isTargetR = i === state.m && j === state.n;
+            const isHovered = state.hoveredNode && state.hoveredNode.i === i && state.hoveredNode.j === j;
 
-            if (state.basisMode === 'lattice') {
-              drawRealisticSphere(ctx, s.x, s.y, latticeRadius, 'lattice', isOrigin, isTarget);
-            } else if (state.basisMode === 'monatomic') {
-              drawRealisticSphere(ctx, s.x, s.y, atomRadiusA, 'atomA', isOrigin, isTarget);
-              // Tiny center dot showing underlying mathematical lattice point
-              ctx.fillStyle = '#ffffff';
+            ctx.save();
+            if (isOrigin) {
+              // Glowing Origin O
+              const pulseR = 13 + state.originPulse * 14;
+              ctx.fillStyle = `rgba(251, 191, 36, ${0.22 + state.originPulse * 0.35})`;
               ctx.beginPath();
-              ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+              ctx.arc(s.x, s.y, pulseR, 0, Math.PI * 2);
               ctx.fill();
-            } else if (state.basisMode === 'diatomic') {
-              // Atom A at lattice point
-              drawRealisticSphere(ctx, s.x, s.y, atomRadiusA * 0.85, 'atomA', isOrigin, isTarget);
-              // Atom B shifted by basis vector
-              const bx = wx + basisBFrac.u * a1.x + basisBFrac.v * a2.x;
-              const by = wy + basisBFrac.u * a1.y + basisBFrac.v * a2.y;
-              const sb = worldToScreen(bx, by);
-              drawRealisticSphere(ctx, sb.x, sb.y, atomRadiusB * 0.85, 'atomB', false, false);
+
+              ctx.fillStyle = '#fbbf24';
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, 5.5, 0, Math.PI * 2);
+              ctx.fill();
+            } else if (isTargetR) {
+              ctx.fillStyle = 'rgba(52, 211, 153, 0.28)';
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, 11, 0, Math.PI * 2);
+              ctx.fill();
+
+              ctx.fillStyle = '#34d399';
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, 5, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              ctx.fillStyle = isHovered ? '#38bdf8' : '#e2e8f0';
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, isHovered ? 5.2 : 3.6, 0, Math.PI * 2);
+              ctx.fill();
             }
+            ctx.restore();
           }
         }
 
-        // -----------------------------------------------------------------
-        // LAYER F: Translation Vector R = m a1 + n a2 Step-by-Step Path
-        // -----------------------------------------------------------------
+        // 8. Translation Vector R = m a1 + n a2 (with dashed component guide)
         if (state.m !== 0 || state.n !== 0) {
+          const pM = worldToScreen(state.m * a1.x, state.m * a1.y);
+          const pR = worldToScreen(state.m * a1.x + state.n * a2.x, state.m * a1.y + state.n * a2.y);
+
+          // Dashed component path m*a1 -> m*a1 + n*a2
           ctx.save();
-          // Step along m * a1 (Cyan dashed hops)
-          const stepM = state.m >= 0 ? 1 : -1;
-          for (let k = 0; k !== state.m; k += stepM) {
-            const pFrom = worldToScreen(k * a1.x, k * a1.y);
-            const pTo = worldToScreen((k + stepM) * a1.x, (k + stepM) * a1.y);
-            drawArrow(ctx, pFrom.x, pFrom.y, pTo.x, pTo.y, 'rgba(56, 189, 248, 0.65)', 2, 8, true);
-          }
-
-          // Step along n * a2 starting from m * a1 (Amber dashed hops)
-          const baseMx = state.m * a1.x;
-          const baseMy = state.m * a1.y;
-          const stepN = state.n >= 0 ? 1 : -1;
-          for (let k = 0; k !== state.n; k += stepN) {
-            const pFrom = worldToScreen(baseMx + k * a2.x, baseMy + k * a2.y);
-            const pTo = worldToScreen(baseMx + (k + stepN) * a2.x, baseMy + (k + stepN) * a2.y);
-            drawArrow(ctx, pFrom.x, pFrom.y, pTo.x, pTo.y, 'rgba(251, 191, 36, 0.65)', 2, 8, true);
-          }
-
-          // Resultant Glowing Vector R from Origin O to (m, n)
-          const targetScreen = worldToScreen(
-            state.m * a1.x + state.n * a2.x,
-            state.m * a1.y + state.n * a2.y
-          );
-          ctx.shadowColor = 'rgba(52, 211, 153, 0.65)';
-          ctx.shadowBlur = 12;
-          drawArrow(ctx, originScreen.x, originScreen.y, targetScreen.x, targetScreen.y, '#34d399', 3.2, 13, false);
-
-          // Label for R
-          const midR = {
-            x: (originScreen.x + targetScreen.x) / 2,
-            y: (originScreen.y + targetScreen.y) / 2,
-          };
-          ctx.shadowBlur = 0;
-          ctx.fillStyle = '#6ee7b7';
-          ctx.font = 'bold 13px "JetBrains Mono", monospace';
-          ctx.fillText(`R (${state.m},${state.n})`, midR.x + 8, midR.y - 8);
+          ctx.strokeStyle = 'rgba(52, 211, 153, 0.38)';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(originScreen.x, originScreen.y);
+          ctx.lineTo(pM.x, pM.y);
+          ctx.lineTo(pR.x, pR.y);
+          ctx.stroke();
           ctx.restore();
+
+          drawArrow(originScreen, pR, '#34d399', 2.4, 11);
+          drawVectorLabel('R', { x: (originScreen.x + pR.x) * 0.5, y: (originScreen.y + pR.y) * 0.5 }, '#6ee7b7', 0, -14);
         }
 
-        // -----------------------------------------------------------------
-        // LAYER G: Primitive Basis Vectors a1, a2, Angle Arc gamma & Origin O
-        // -----------------------------------------------------------------
+        // 9. Primitive Basis Vectors a1 & a2 (Interactive draggable tips)
         const tipA1 = worldToScreen(a1.x, a1.y);
         const tipA2 = worldToScreen(a2.x, a2.y);
 
-        // Angle arc between a1 and a2
-        const arcRadius = Math.min(36, scale * 0.42);
-        const startAngleCanvas = -state.theta1;
-        const endAngleCanvas = -(state.theta1 + degToRad(state.gammaDeg));
-        ctx.save();
-        ctx.strokeStyle = 'rgba(192, 132, 252, 0.8)';
-        ctx.lineWidth = 1.8;
-        ctx.beginPath();
-        ctx.arc(originScreen.x, originScreen.y, arcRadius, endAngleCanvas, startAngleCanvas);
-        ctx.stroke();
+        drawArrow(originScreen, tipA1, '#38bdf8', 3.2, 13);
+        drawArrow(originScreen, tipA2, '#fbbf24', 3.2, 13);
 
-        // Gamma label near arc bisector
-        const midAng = state.theta1 + degToRad(state.gammaDeg) / 2;
-        const gLabel = worldToScreen(
-          (arcRadius / scale + 0.18) * Math.cos(midAng),
-          (arcRadius / scale + 0.18) * Math.sin(midAng)
-        );
-        ctx.fillStyle = '#d8b4fe';
-        ctx.font = '600 12px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(`γ=${state.gammaDeg.toFixed(0)}°`, gLabel.x, gLabel.y + 4);
-        ctx.restore();
-
-        // Draw Primary Primitive Vectors a1 (Cyan) and a2 (Amber)
-        drawArrow(ctx, originScreen.x, originScreen.y, tipA1.x, tipA1.y, '#38bdf8', 3.6, 14, false);
-        drawArrow(ctx, originScreen.x, originScreen.y, tipA2.x, tipA2.y, '#fbbf24', 3.6, 14, false);
-
-        // Interactive draggable handle rings on a1 and a2 tips
-        ctx.save();
-        ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(tipA1.x, tipA1.y, state.draggingTarget === 'a1' ? 12 : 9, 0, Math.PI * 2);
-        ctx.stroke();
-
-        ctx.strokeStyle = 'rgba(251, 191, 36, 0.5)';
-        ctx.beginPath();
-        ctx.arc(tipA2.x, tipA2.y, state.draggingTarget === 'a2' ? 12 : 9, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Vector labels a1, a2, and Origin O
-        ctx.font = 'bold 15px Inter, sans-serif';
-        ctx.fillStyle = '#38bdf8';
-        ctx.fillText('a₁', tipA1.x + 12, tipA1.y + 5);
-
-        ctx.fillStyle = '#fbbf24';
-        ctx.fillText('a₂', tipA2.x - 16, tipA2.y - 10);
-
-        ctx.fillStyle = '#fde68a';
-        ctx.font = 'bold 13px "JetBrains Mono", monospace';
-        ctx.fillText('O', originScreen.x - 16, originScreen.y + 18);
-        ctx.restore();
-
-        if (state.animatingShift) {
-          requestAnimationFrame(render);
-        }
-      }
-
-      // -------------------------------------------------------------------
-      // 7. UI SYNCHRONIZATION
-      // -------------------------------------------------------------------
-      function updateUI() {
-        const classification = classifyLattice();
-        const area = state.a1Len * state.a2Len * Math.sin(degToRad(state.gammaDeg));
-
-        // Classification Badge & Bengali note
-        latticeTypeBadge.textContent = classification.name;
-        symmetryBadge.textContent = `Symmetry: ${classification.symmetry}`;
-        conditionBadge.textContent = classification.condition;
-        latticeBengaliNote.textContent = classification.bengali;
-
-        // Sliders & HUD Readouts
-        sliderA1.value = state.a1Len;
-        sliderA2.value = state.a2Len;
-        sliderGamma.value = state.gammaDeg;
-
-        valA1.textContent = `${state.a1Len.toFixed(2)} a`;
-        valA2.textContent = `${state.a2Len.toFixed(2)} a`;
-        valGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
-
-        hudA1.textContent = state.a1Len.toFixed(2);
-        hudA2.textContent = state.a2Len.toFixed(2);
-        hudGamma.textContent = `${state.gammaDeg.toFixed(1)}°`;
-        hudArea.textContent = area.toFixed(2);
-        zoomReadout.textContent = `${Math.round(state.zoom * 100)}%`;
-
-        // Translation vector R readouts
-        valM.textContent = state.m;
-        valN.textContent = state.n;
-        const { a1, a2 } = getPrimitiveVectors();
-        const rx = state.m * a1.x + state.n * a2.x;
-        const ry = state.m * a1.y + state.n * a2.y;
-        const rMag = Math.hypot(rx, ry);
-        const signN = state.n >= 0 ? '+' : '−';
-        rFormulaText.textContent = `R = ${state.m}a₁ ${signN} ${Math.abs(state.n)}a₂`;
-        rMagText.textContent = `|R| = ${rMag.toFixed(2)} a`;
-
-        // Highlight active preset button if matching
-        document.querySelectorAll('.preset-btn').forEach((btn) => {
-          const isActive = btn.dataset.preset === classification.id;
-          btn.classList.toggle('border-sky-400', isActive);
-          btn.classList.toggle('bg-sky-500/15', isActive);
-        });
-
-        // Update basis callout text dynamically
-        if (state.basisMode === 'lattice') {
-          basisCallout.innerHTML = 'বর্তমানে কেবল গাণিতিক <strong>Lattice Points</strong> দেখা যাচ্ছে। প্রতিটি বিন্দুতে এক বা একাধিক পরমাণু (Basis) বসালে বাস্তব <strong>Crystal</strong> তৈরি হয়।';
-        } else if (state.basisMode === 'monatomic') {
-          basisCallout.innerHTML = '<strong>Monatomic Crystal:</strong> প্রতিটি ল্যাটিস বিন্দুতে ঠিক ১টি করে পরমাণু বসানো হয়েছে (যেমন: তামা বা সোনার ক্রিস্টাল)।';
-        } else {
-          if (classification.id === 'hexagonal') {
-            basisCallout.innerHTML = '🎉 <strong>Graphene Honeycomb তৈরি হয়েছে!</strong> Hexagonal ল্যাটিসের প্রতিটি বিন্দুতে ২টি পরমাণু (নীল + কমলা) বসালে মৌচাক গঠন তৈরি হয়।';
-          } else {
-            basisCallout.innerHTML = '<strong>Diatomic Basis (2 Atoms/Point):</strong> প্রতিটি ল্যাটিস বিন্দুতে ২টি ভিন্ন পরমাণু যুক্ত হয়েছে। <em>Hexagonal</em> প্রিসেটে ক্লিক করলে এটি গ্রাফিন গঠন দেখাবে!';
-          }
+        // Interactive draggable handles on a1 and a2 tips
+        for (const [tip, col, active] of [
+          [tipA1, '#38bdf8', state.draggingTarget === 'a1'],
+          [tipA2, '#fbbf24', state.draggingTarget === 'a2'],
+        ]) {
+          ctx.save();
+          ctx.strokeStyle = col;
+          ctx.lineWidth = active ? 2.5 : 1.5;
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.65)';
+          ctx.beginPath();
+          ctx.arc(tip.x, tip.y, active ? 10 : 7.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
         }
 
-        render();
+        // Vector & Origin Labels
+        drawVectorLabel('O', originScreen, '#fde68a', -16, 16);
+        drawVectorLabel('a₁', { x: (originScreen.x + tipA1.x) * 0.5, y: (originScreen.y + tipA1.y) * 0.5 }, '#7dd3fc', 0, 16);
+        drawVectorLabel('a₂', { x: (originScreen.x + tipA2.x) * 0.5, y: (originScreen.y + tipA2.y) * 0.5 }, '#fcd34d', -16, -6);
+
+        requestAnimationFrame(render);
       }
 
       // -------------------------------------------------------------------
-      // 8. CANVAS RESIZING (HIGH-DPI SUPPORT)
-      // -------------------------------------------------------------------
-      function resizeCanvas() {
-        const rect = canvasWrapper.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        render();
-      }
-
-      const resizeObserver = new ResizeObserver(() => resizeCanvas());
-      resizeObserver.observe(canvasWrapper);
-
-      // -------------------------------------------------------------------
-      // 9. MOUSE & TOUCH INTERACTIONS (DRAG VECTORS, CLICK NODES, PAN/ZOOM)
+      // 7. POINTER INTERACTIONS (DRAG VECTORS, CLICK NODES, PAN & ZOOM)
       // -------------------------------------------------------------------
       function getPointerPos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -1414,90 +1362,85 @@
         };
       }
 
-      function handlePointerDown(e) {
-        if (e.touches && e.touches.length > 1) return;
+      function findNearestNode(screenX, screenY, maxDistPx = 16) {
+        const { a1, a2 } = getPrimitiveVectors();
+        const det = a1.x * a2.y - a1.y * a2.x;
+        if (Math.abs(det) < 1e-4) return null;
+
+        const w = screenToWorld(screenX, screenY);
+        const estI = Math.round((w.x * a2.y - w.y * a2.x) / det);
+        const estJ = Math.round((a1.x * w.y - a1.y * w.x) / det);
+
+        const nodeW = {
+          x: estI * a1.x + estJ * a2.x,
+          y: estI * a1.y + estJ * a2.y,
+        };
+        const nodeS = worldToScreen(nodeW.x, nodeW.y);
+        const d = Math.hypot(screenX - nodeS.x, screenY - nodeS.y);
+
+        if (d <= maxDistPx) {
+          return { i: estI, j: estJ, screenX: nodeS.x, screenY: nodeS.y, world: nodeW };
+        }
+        return null;
+      }
+
+      canvas.addEventListener('pointerdown', (e) => {
         const pos = getPointerPos(e);
         const { a1, a2 } = getPrimitiveVectors();
         const tipA1 = worldToScreen(a1.x, a1.y);
         const tipA2 = worldToScreen(a2.x, a2.y);
 
-        const hitRadius = 22;
-
-        // 1. Check if grabbing a1 arrowhead
-        if (Math.hypot(pos.x - tipA1.x, pos.y - tipA1.y) <= hitRadius) {
-          state.draggingTarget = 'a1';
-          canvas.style.cursor = 'grabbing';
-          return;
-        }
-
-        // 2. Check if grabbing a2 arrowhead
-        if (Math.hypot(pos.x - tipA2.x, pos.y - tipA2.y) <= hitRadius) {
-          state.draggingTarget = 'a2';
-          canvas.style.cursor = 'grabbing';
-          return;
-        }
-
-        // 3. Check if clicking a lattice point to set R = m a1 + n a2
-        for (let i = -4; i <= 4; i++) {
-          for (let j = -4; j <= 4; j++) {
-            const s = worldToScreen(i * a1.x + j * a2.x, i * a1.y + j * a2.y);
-            if (Math.hypot(pos.x - s.x, pos.y - s.y) <= 14) {
-              state.m = i;
-              state.n = j;
-              updateUI();
-              return;
-            }
-          }
-        }
-
-        // 4. Otherwise start panning the viewport
-        state.draggingTarget = 'pan';
         state.dragStartMouse = { x: pos.x, y: pos.y };
         state.dragStartPan = { x: state.panX, y: state.panY };
-        canvas.style.cursor = 'grabbing';
-      }
 
-      function handlePointerMove(e) {
+        if (Math.hypot(pos.x - tipA1.x, pos.y - tipA1.y) < 18) {
+          state.draggingTarget = 'a1';
+          canvas.setPointerCapture(e.pointerId);
+          return;
+        }
+        if (Math.hypot(pos.x - tipA2.x, pos.y - tipA2.y) < 18) {
+          state.draggingTarget = 'a2';
+          canvas.setPointerCapture(e.pointerId);
+          return;
+        }
+
+        state.draggingTarget = 'pan';
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener('pointermove', (e) => {
         const pos = getPointerPos(e);
-        const { a1, a2 } = getPrimitiveVectors();
 
         if (state.draggingTarget === 'a1') {
           const w = screenToWorld(pos.x, pos.y);
-          let len = Math.hypot(w.x, w.y);
-          len = Math.max(0.55, Math.min(2.3, len));
-          if (state.magneticSnap && Math.abs(len - state.a2Len) < 0.04) {
-            len = state.a2Len; // Snap to equal length a1 = a2!
-          }
+          let len = Math.max(0.5, Math.min(2.4, Math.hypot(w.x, w.y)));
+          let ang = Math.atan2(w.y, w.x);
+          if (state.magneticSnap && Math.abs(radToDeg(ang)) < 4) ang = 0;
+          if (state.magneticSnap && Math.abs(len - state.a2Len) < 0.04) len = state.a2Len;
           state.a1Len = Number(len.toFixed(2));
+          state.theta1 = ang;
           updateUI();
           return;
         }
 
         if (state.draggingTarget === 'a2') {
           const w = screenToWorld(pos.x, pos.y);
-          let len = Math.hypot(w.x, w.y);
-          len = Math.max(0.55, Math.min(2.3, len));
-          if (state.magneticSnap && Math.abs(len - state.a1Len) < 0.04) {
-            len = state.a1Len; // Snap to equal length a2 = a1!
-          }
+          let len = Math.max(0.5, Math.min(2.4, Math.hypot(w.x, w.y)));
+          const ang2 = Math.atan2(w.y, w.x);
+          let gamma = radToDeg(ang2 - state.theta1);
+          while (gamma <= -180) gamma += 360;
+          while (gamma > 180) gamma -= 360;
+          gamma = Math.max(25, Math.min(155, gamma));
 
-          let angleRad = Math.atan2(w.y, w.x) - state.theta1;
-          let deg = radToDeg(angleRad);
-          if (deg < 0) deg += 360;
-          deg = Math.max(25, Math.min(155, deg));
-
-          // Magnetic snap to high-symmetry angles (60°, 90°, 120°)
           if (state.magneticSnap) {
-            for (const targetDeg of [60, 90, 120]) {
-              if (Math.abs(deg - targetDeg) < 2.2) {
-                deg = targetDeg;
-                break;
-              }
+            for (const snapDeg of [60, 90, 120]) {
+              if (Math.abs(gamma - snapDeg) < 2.2) gamma = snapDeg;
             }
+            if (Math.abs(len - state.a1Len) < 0.04) len = state.a1Len;
           }
 
           state.a2Len = Number(len.toFixed(2));
-          state.gammaDeg = Number(deg.toFixed(1));
+          state.gammaDeg = Number(gamma.toFixed(1));
           updateUI();
           return;
         }
@@ -1505,232 +1448,188 @@
         if (state.draggingTarget === 'pan') {
           state.panX = state.dragStartPan.x + (pos.x - state.dragStartMouse.x);
           state.panY = state.dragStartPan.y + (pos.y - state.dragStartMouse.y);
-          render();
           return;
         }
 
-        // Hover detection for cursor & node tooltip
+        // Hover node detection & cursor feedback
+        const { a1, a2 } = getPrimitiveVectors();
         const tipA1 = worldToScreen(a1.x, a1.y);
         const tipA2 = worldToScreen(a2.x, a2.y);
 
         if (
-          Math.hypot(pos.x - tipA1.x, pos.y - tipA1.y) <= 18 ||
-          Math.hypot(pos.x - tipA2.x, pos.y - tipA2.y) <= 18
+          Math.hypot(pos.x - tipA1.x, pos.y - tipA1.y) < 18 ||
+          Math.hypot(pos.x - tipA2.x, pos.y - tipA2.y) < 18
         ) {
           canvas.style.cursor = 'grab';
           nodeTooltip.classList.add('hidden');
+          state.hoveredNode = null;
           return;
         }
 
-        let foundNode = null;
-        for (let i = -4; i <= 4; i++) {
-          for (let j = -4; j <= 4; j++) {
-            const wx = i * a1.x + j * a2.x;
-            const wy = i * a1.y + j * a2.y;
-            const s = worldToScreen(wx, wy);
-            if (Math.hypot(pos.x - s.x, pos.y - s.y) <= 13) {
-              foundNode = { i, j, wx, wy };
-              break;
-            }
-          }
-          if (foundNode) break;
-        }
-
-        if (foundNode) {
+        const hit = findNearestNode(pos.x, pos.y);
+        state.hoveredNode = hit;
+        if (hit) {
           canvas.style.cursor = 'pointer';
-          const dist = Math.hypot(foundNode.wx, foundNode.wy);
-          const sign = foundNode.j >= 0 ? '+' : '−';
-          tooltipCoords.textContent = `R = ${foundNode.i}a₁ ${sign} ${Math.abs(foundNode.j)}a₂`;
-          tooltipDist.textContent = `|R| = ${dist.toFixed(2)} a • Click to select`;
+          const signJ = hit.j >= 0 ? '+' : '−';
+          tooltipCoords.textContent = `R = ${hit.i}a₁ ${signJ} ${Math.abs(hit.j)}a₂`;
+          tooltipDist.textContent = `|R| = ${Math.hypot(hit.world.x, hit.world.y).toFixed(2)} a`;
           nodeTooltip.style.left = `${pos.clientX + 14}px`;
-          nodeTooltip.style.top = `${pos.clientY - 12}px`;
+          nodeTooltip.style.top = `${pos.clientY - 14}px`;
           nodeTooltip.classList.remove('hidden');
         } else {
           canvas.style.cursor = 'default';
           nodeTooltip.classList.add('hidden');
         }
-      }
+      });
 
-      function handlePointerUp() {
+      canvas.addEventListener('pointerup', (e) => {
+        const pos = getPointerPos(e);
+        const moved = Math.hypot(pos.x - state.dragStartMouse.x, pos.y - state.dragStartMouse.y);
+
+        // If user clicked (didn't drag) on a lattice node, snap vector R to that node
+        if (state.draggingTarget === 'pan' && moved < 5) {
+          const hit = findNearestNode(pos.x, pos.y);
+          if (hit) {
+            state.m = hit.i;
+            state.n = hit.j;
+            updateUI();
+          }
+        }
         state.draggingTarget = null;
-        canvas.style.cursor = 'default';
-      }
+      });
 
-      // Mouse Wheel Zoom
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
-        const factor = e.deltaY < 0 ? 1.08 : 0.92;
-        state.zoom = Math.max(0.55, Math.min(2.2, state.zoom * factor));
+        const factor = e.deltaY < 0 ? 1.1 : 0.9;
+        state.zoom = Math.max(0.45, Math.min(2.6, state.zoom * factor));
         updateUI();
       }, { passive: false });
 
-      canvas.addEventListener('mousedown', handlePointerDown);
-      window.addEventListener('mousemove', handlePointerMove);
-      window.addEventListener('mouseup', handlePointerUp);
-
-      canvas.addEventListener('touchstart', handlePointerDown, { passive: true });
-      window.addEventListener('touchmove', handlePointerMove, { passive: true });
-      window.addEventListener('touchend', handlePointerUp);
-
       // -------------------------------------------------------------------
-      // 10. CONTROL PANEL EVENT LISTENERS
+      // 8. CONTROL PANEL EVENT LISTENERS
       // -------------------------------------------------------------------
-      // Presets
+      const presets = {
+        oblique: { a1Len: 1.30, a2Len: 1.10, gammaDeg: 62.0, theta1: 0 },
+        square: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 90.0, theta1: 0 },
+        rectangular: { a1Len: 1.50, a2Len: 1.05, gammaDeg: 90.0, theta1: 0 },
+        centered_rect: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 64.0, theta1: 0 },
+        hexagonal: { a1Len: 1.25, a2Len: 1.25, gammaDeg: 120.0, theta1: 0 },
+      };
+
       document.querySelectorAll('.preset-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
-          const p = btn.dataset.preset;
-          if (p === 'oblique') {
-            state.a1Len = 1.30;
-            state.a2Len = 1.10;
-            state.gammaDeg = 62.0;
-          } else if (p === 'square') {
-            state.a1Len = 1.20;
-            state.a2Len = 1.20;
-            state.gammaDeg = 90.0;
-          } else if (p === 'rectangular') {
-            state.a1Len = 1.45;
-            state.a2Len = 0.95;
-            state.gammaDeg = 90.0;
-          } else if (p === 'centered_rect') {
-            state.a1Len = 1.25;
-            state.a2Len = 1.25;
-            state.gammaDeg = 64.0;
-            state.showConventionalCell = true;
-            chkConventionalCell.checked = true;
-          } else if (p === 'hexagonal') {
-            state.a1Len = 1.20;
-            state.a2Len = 1.20;
-            state.gammaDeg = 120.0;
-          }
+          const p = presets[btn.dataset.preset];
+          if (!p) return;
+          state.a1Len = p.a1Len;
+          state.a2Len = p.a2Len;
+          state.gammaDeg = p.gammaDeg;
+          state.theta1 = p.theta1;
           updateUI();
         });
       });
 
-      // Sliders
-      sliderA1.addEventListener('input', (e) => {
-        state.a1Len = parseFloat(e.target.value);
+      sliderA1.addEventListener('input', () => {
+        state.a1Len = parseFloat(sliderA1.value);
         updateUI();
       });
 
-      sliderA2.addEventListener('input', (e) => {
-        state.a2Len = parseFloat(e.target.value);
+      sliderA2.addEventListener('input', () => {
+        state.a2Len = parseFloat(sliderA2.value);
         updateUI();
       });
 
-      sliderGamma.addEventListener('input', (e) => {
-        state.gammaDeg = parseFloat(e.target.value);
+      sliderGamma.addEventListener('input', () => {
+        state.gammaDeg = parseFloat(sliderGamma.value);
         updateUI();
       });
 
-      // Translation vector R steppers
-      document.getElementById('btnMDec').addEventListener('click', () => {
-        state.m = Math.max(-4, state.m - 1);
-        updateUI();
-      });
-      document.getElementById('btnMInc').addEventListener('click', () => {
-        state.m = Math.min(4, state.m + 1);
-        updateUI();
-      });
-      document.getElementById('btnNDec').addEventListener('click', () => {
-        state.n = Math.max(-4, state.n - 1);
-        updateUI();
-      });
-      document.getElementById('btnNInc').addEventListener('click', () => {
-        state.n = Math.min(4, state.n + 1);
-        updateUI();
-      });
+      document.getElementById('btnMInc').addEventListener('click', () => { state.m++; updateUI(); });
+      document.getElementById('btnMDec').addEventListener('click', () => { state.m--; updateUI(); });
+      document.getElementById('btnNInc').addEventListener('click', () => { state.n++; updateUI(); });
+      document.getElementById('btnNDec').addEventListener('click', () => { state.n--; updateUI(); });
 
-      // Checkboxes
-      chkMagneticSnap.addEventListener('change', (e) => {
-        state.magneticSnap = e.target.checked;
-      });
-      chkPrimitiveCell.addEventListener('change', (e) => {
-        state.showPrimitiveCell = e.target.checked;
-        render();
-      });
-      chkWignerSeitz.addEventListener('change', (e) => {
-        state.showWignerSeitz = e.target.checked;
-        render();
-      });
-      chkConventionalCell.addEventListener('change', (e) => {
-        state.showConventionalCell = e.target.checked;
-        render();
-      });
-      chkGridLines.addEventListener('change', (e) => {
-        state.showGridLines = e.target.checked;
-        render();
-      });
+      chkMagneticSnap.addEventListener('change', () => { state.magneticSnap = chkMagneticSnap.checked; });
+      chkPrimitiveCell.addEventListener('change', () => { state.showPrimitiveCell = chkPrimitiveCell.checked; });
+      chkWignerSeitz.addEventListener('change', () => { state.showWignerSeitz = chkWignerSeitz.checked; });
+      chkConventionalCell.addEventListener('change', () => { state.showConventionalCell = chkConventionalCell.checked; });
+      chkGridLines.addEventListener('change', () => { state.showGridLines = chkGridLines.checked; });
 
-      // Basis Mode Buttons
+      // Basis Mode Selector
+      const basisDescriptions = {
+        lattice: 'বর্তমানে কেবল গাণিতিক <strong>Lattice Points</strong> দেখা যাচ্ছে। প্রতিটি বিন্দুতে এক বা একাধিক পরমাণু (Basis) বসালে বাস্তব <strong>Crystal</strong> তৈরি হয়।',
+        monatomic: '<strong>1-Atom Basis:</strong> প্রতিটি ল্যাটিস বিন্দুতে একটি করে পরমাণু বসানো হয়েছে। প্রকৃতিতে তামা (Cu), সোনা (Au) বা আর্গন ক্রিস্টাল এভাবেই গঠিত হয়।',
+        diatomic: '<strong>2-Atom Basis:</strong> প্রতিটি ল্যাটিস বিন্দুতে দুটি পরমাণুর জোড়া বসানো হয়েছে। <strong>Hexagonal</strong> ল্যাটিসে এটিই বিখ্যাত <strong>Graphene</strong>-এর মৌচাক (Honeycomb) গঠন তৈরি করে!',
+      };
+
       document.querySelectorAll('.basis-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
           state.basisMode = btn.dataset.basis;
           document.querySelectorAll('.basis-btn').forEach((b) => {
-            const active = b.dataset.basis === state.basisMode;
-            b.className = active
-              ? 'basis-btn py-1.5 px-2 rounded-lg text-xs font-medium bg-sky-500/20 text-sky-300 border border-sky-400/30 transition'
-              : 'basis-btn py-1.5 px-2 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-200 transition';
+            b.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+            b.classList.add('text-slate-400');
           });
-          updateUI();
+          btn.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+          btn.classList.remove('text-slate-400');
+          basisCallout.innerHTML = basisDescriptions[state.basisMode];
         });
       });
 
-      // Camera Zoom & Reset
-      document.getElementById('btnZoomIn').addEventListener('click', () => {
-        state.zoom = Math.min(2.2, state.zoom * 1.15);
-        updateUI();
-      });
-      document.getElementById('btnZoomOut').addEventListener('click', () => {
-        state.zoom = Math.max(0.55, state.zoom / 1.15);
-        updateUI();
-      });
-      document.getElementById('btnResetView').addEventListener('click', () => {
-        state.a1Len = 1.30;
-        state.a2Len = 1.10;
-        state.gammaDeg = 62.0;
-        state.m = 2;
-        state.n = 1;
-        state.zoom = 1.0;
-        state.panX = -40;
-        state.panY = 45;
-        updateUI();
-      });
-
-      // Shift Origin Animation (Translational Invariance Demo)
-      document.getElementById('btnShiftOrigin').addEventListener('click', () => {
-        if (state.animatingShift) return;
-        const { a1 } = getPrimitiveVectors();
-        const scale = state.pixelsPerUnit * state.zoom;
-        state.animatingShift = true;
-        state.shiftStartTime = performance.now();
-        state.shiftFromPan = { x: state.panX, y: state.panY };
-        state.shiftToPan = {
-          x: state.panX - a1.x * scale,
-          y: state.panY + a1.y * scale,
-        };
-        requestAnimationFrame(render);
-      });
-
-      // Sidebar Tabs (Controls vs Intuition Guide)
+      // Tabs inside Drawer
       tabBtnControls.addEventListener('click', () => {
         panelControls.classList.remove('hidden');
         panelGuide.classList.add('hidden');
-        tabBtnControls.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition';
-        tabBtnGuide.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition flex items-center gap-1';
+        tabBtnControls.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.remove('text-slate-400');
+        tabBtnGuide.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnGuide.classList.add('text-slate-400');
       });
 
       tabBtnGuide.addEventListener('click', () => {
         panelGuide.classList.remove('hidden');
         panelControls.classList.add('hidden');
-        tabBtnGuide.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30 transition flex items-center gap-1';
-        tabBtnControls.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition';
+        tabBtnGuide.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnGuide.classList.remove('text-slate-400');
+        tabBtnControls.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.add('text-slate-400');
       });
 
-      // Initialize Application on Window Load
-      window.addEventListener('load', () => {
-        resizeCanvas();
+      // Camera & Shift Origin Buttons
+      document.getElementById('btnZoomIn').addEventListener('click', () => {
+        state.zoom = Math.min(2.6, state.zoom * 1.18);
         updateUI();
       });
+
+      document.getElementById('btnZoomOut').addEventListener('click', () => {
+        state.zoom = Math.max(0.45, state.zoom / 1.18);
+        updateUI();
+      });
+
+      document.getElementById('btnResetView').addEventListener('click', () => {
+        state.zoom = 1.0;
+        state.panX = -50;
+        state.panY = 45;
+        updateUI();
+      });
+
+      document.getElementById('btnShiftOrigin').addEventListener('click', () => {
+        if (state.animatingShift) return;
+        const { a1 } = getPrimitiveVectors();
+        const scale = getScale();
+        state.shiftFromPan = { x: state.panX, y: state.panY };
+        // Shift origin O to neighboring lattice site a1, showing translational invariance
+        state.shiftToPan = {
+          x: state.panX + a1.x * scale,
+          y: state.panY - a1.y * scale,
+        };
+        state.shiftStartTime = performance.now();
+        state.animatingShift = true;
+      });
+
+      // Initialize
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      updateUI();
+      requestAnimationFrame(render);
     })();
   </script>
 </body>
