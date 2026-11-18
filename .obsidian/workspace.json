@@ -53,14 +53,12 @@
             "id": "c8b7ef99580eac05",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "2026-11-18.md",
-                "mode": "preview",
-                "source": false
+                "file": "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "2026-11-18"
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-11-18 00.44.54.excalidraw"
             }
           },
           {
@@ -271,12 +269,15 @@
   },
   "active": "c8b7ef99580eac05",
   "lastOpenFiles": [
-    "2026-11-18.md",
+    "Excalidraw/Libraries/local-library.excalidrawlib",
+    "Excalidraw/Libraries",
     "Solid State Daily Class Note.md",
-    "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
-    "Excalidraw",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Dashboard.md",
+    "Untitled.canvas",
+    "2026-11-18.md",
+    "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
+    "Excalidraw",
     "Daily_Note_Template.md",
     "4th_Semester_Master_Roadmap.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
@@ -297,7 +298,6 @@
     "Messenger_creation_EDF17EA4-C627-48D3-8183-29BD19C3447C.webp",
     "JPEG_20261117_221324_1596615549641378074.webp",
     "JPEG_20261117_220951_2412896121477586978.webp",
-    "Untitled.canvas",
     "Stat Daily Class Note-1794905624858.webp",
     "Stat Daily Class Note-1794905605442.webp",
     "Stat Daily Class Note-1794905586071.webp",
@@ -312,11 +312,9 @@
     "Communication Systems/Chapter 2 -NOISE.md",
     "Communication Systems/Important Maths.md",
     "ANIMATIONS AND HTML/line_integral.html",
-    "Course Syllabus Communication Systems (0714-403).md",
     "ANIMATIONS AND HTML",
     "ANIMARIONS AND HTML",
     "New folder",
-    "Mechanical Engineering",
-    "Untitled.base"
+    "Mechanical Engineering"
   ]
 }
