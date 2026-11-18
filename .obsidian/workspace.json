@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "401 Solid state Electronics '3'/solid state electronics.md",
-                "mode": "preview",
+                "file": "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "solid state electronics"
+              "title": "Chapter 1 - Lattes Structure"
             }
           },
           {
@@ -33,18 +33,6 @@
               },
               "icon": "lucide-file",
               "title": "Solid State Daily Class Note"
-            }
-          },
-          {
-            "id": "e6510d3eae5921de",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-11-18 19.29.31.excalidraw"
             }
           },
           {
@@ -75,8 +63,7 @@
               "title": "Course Syllabus Solid State Electronics (0714-401)"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -138,7 +125,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 630.5538444519043
+    "width": 630.5538444519043,
+    "collapsed": true
   },
   "right": {
     "id": "6f01bfb913ba84a3",
@@ -254,14 +242,15 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "e6510d3eae5921de",
+  "active": "c8b7ef99580eac05",
   "lastOpenFiles": [
+    "401 Solid state Electronics '3'/solid state electronics.md",
+    "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Solid State Daily Class Note.md",
+    "Solid State ANALYSED QUESTION.md",
     "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-    "401 Solid state Electronics '3'/solid state electronics.md",
     "Dashboard.md",
-    "Solid State ANALYSED QUESTION.md",
     "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw/Libraries/local-library.excalidrawlib",
     "Excalidraw/Libraries",
@@ -297,7 +286,6 @@
     "403 Communication system '3+1'/Communication system.md",
     "Course Syllabus Electrical Machine II (0713-405).md",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
-    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
     "ANIMATIONS AND HTML/line_integral.html",
     "ANIMATIONS AND HTML",
