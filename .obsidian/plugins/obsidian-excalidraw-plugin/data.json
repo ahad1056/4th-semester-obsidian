@@ -3,8 +3,8 @@
   "aiDefaultImageGenerationModel": "gemini-2.5-flash-image",
   "aiDefaultMaxOutgoingTokens": 0,
   "aiDefaultMaxResponseTokens": 0,
-  "aiDefaultMultimodalModel": "gemini-2.5-pro",
-  "aiDefaultTextModel": "gemini-2.5-pro",
+  "aiDefaultMultimodalModel": "gemini-3-flash-preview",
+  "aiDefaultTextModel": "gemini-3-flash-preview",
   "aiEnabled": true,
   "aiImageModelConfigs": {
     "dall-e-2": {
@@ -215,8 +215,8 @@
   },
   "aiProviderProfiles": {
     "Google Gemini": {
-      "apiKey": "ex-obf:v1:AKMmqSyvMrU4uwCpJ4sBkhyEa4sm9HroEv91lHvAa9xm4Wa/B5Nv71X/JCWEPKJLmD7oCbItkhimL5Q3miK1dphFzW/yQPJc",
-      "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+      "apiKey": "ex-obf:v1:AKMmqSyvMrU4uwCpJ4sBkhyEa4sm9HroEv91lH3Dd4Bb2iWuP7Jex2zccCWKGKdDswOxGYkSpyKnCKI9ryjvMM0I8Ev1atVM",
+      "baseURL": "",
       "provider": "google"
     }
   },
@@ -233,6 +233,18 @@
       "multimodalSupport": true,
       "providerId": "Google Gemini"
     },
+    "gemini-3-flash-preview": {
+      "endpoint": "",
+      "model": "gemini-3-flash-preview",
+      "multimodalSupport": true,
+      "providerId": "Google Gemini"
+    },
+    "gemini-3.1-pro-preview": {
+      "endpoint": "",
+      "model": "gemini-3.1-pro-preview",
+      "multimodalSupport": true,
+      "providerId": "Google Gemini"
+    },
     "gpt-5-mini": {
       "endpoint": "",
       "model": "gpt-5-mini",
@@ -246,7 +258,7 @@
       "providerId": "Google Gemini"
     }
   },
-  "aiVerboseLogging": false,
+  "aiVerboseLogging": true,
   "allowCtrlClick": true,
   "allowImageCache": true,
   "allowImageCacheInScene": true,
