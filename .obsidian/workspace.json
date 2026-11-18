@@ -63,7 +63,8 @@
               "title": "Course Syllabus Solid State Electronics (0714-401)"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -242,11 +243,11 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "c8b7ef99580eac05",
+  "active": "33615a6d7eec7e72",
   "lastOpenFiles": [
+    "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "Solid State Daily Class Note.md",
-    "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
     "Solid State ANALYSED QUESTION.md",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer.html",
