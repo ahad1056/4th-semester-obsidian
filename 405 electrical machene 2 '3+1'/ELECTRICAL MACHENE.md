@@ -1,5 +1,5 @@
 ## Course Chapters
-- [[Electrical Machines/Chapter 1 - Principles of Electromechanical Energy Conversion|Chapter 1: Principles of Electromechanical Energy Conversion]]
+- [[Chapter 1 - Induction Motor|Chapter 1: Principles of Electromechanical Energy Conversion]]
 
 ---
 
