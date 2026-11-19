@@ -96,3 +96,36 @@ $$N_s = \frac{120f}{P}$$
 # 19 November class 4
 ![[IMG_20261119_112801.webp|164]]  ![[IMG_20261119_112808.webp|162]]
 
+## Class Notes: Machine - Motor Principles & Torque
+
+## ⚙️ Synchronous Speed & Magnetic Field
+- **Synchronous Speed Equation:** $N_s = \frac{120 f}{p}$ (in RPM).
+- **Concept Question:** Where does this equation come from?
+- **Pole Definition:** In this context, "pole" refers to the number of poles of the rotating magnetic field.
+
+## 🔄 Torque Equations & Dependencies
+Torque ($T$) is directly proportional to several factors:
+- $T \propto \phi$ (Magnetic flux)
+- $T \propto I_r$ (Rotor current)
+- $T \propto \cos(\theta)$ (Power factor)
+- **Final Torque Equation:** $T = k \phi I_r \cos(\theta)$
+
+- **Starting Torque ($T_{ST}$):** $T_{ST} = k \frac{E_2^2 R_2}{R_2^2 + X_2^2}$.
+- **Condition for Maximum Torque:** Maximum starting torque occurs when $R_2 = X_2$.
+
+## 🌀 Slip & Rotor Frequency
+- **Rotor Frequency Definition:** The frequency of the rotor current is the difference between the source frequency and the rotation frequency of the rotor.
+  - Equation: $f = f_{source} - f_{rotor}$.
+  - It is also expressed using slip: $f_r = s \cdot f_s$.
+- **Slip ($S$) Equation:** 
+  - *Correction applied:* The notebook incorrectly writes the denominator as $N$. The correct formula for Slip is relative to synchronous speed ($N_s$).
+  - **Corrected Formula:** $S = \text{Slip} = \frac{N_s - N}{N_s} \times 100\%$.
+
+## 📌 Exam & Viva Focus
+- **Viva Question:** Why does Torque vary due to the power factor? (পাওয়ার ফ্যাক্টর এর জন্য কেন Torque vary করে?)
+- **Homework:** How does controlling $X_2$ affect the Torque? ($X_2$ কিভাবে controll করে Torque নির্ভর করে?)
+- **Key Concept to Study:** Skin effect.
+- **Diagram Analysis:** Understand what happens when the rotor and magnetic field are at a specific angle (কি হবে যখন এই অবস্থায় থাকে!).
+
+---
+**Tags:** #machine #torque #slip #synchronous-speed #skin-effect #class-notes
