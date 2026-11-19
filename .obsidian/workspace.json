@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Solid State Daily Class Note.md",
+                "file": "02_Daily_Notes/2026-11-19.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Solid State Daily Class Note"
+              "title": "2026-11-19"
             }
           },
           {
@@ -245,21 +245,24 @@
   },
   "active": "3f1a0460b61d030b",
   "lastOpenFiles": [
+    "Dashboard.md",
+    "02_Daily_Notes",
+    "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
+    "02_Daily_Notes/2026-11-19.md",
+    "Solid State Daily Class Note.md",
     "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Solid State ANALYSED QUESTION.md",
     "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-    "Solid State Daily Class Note.md",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer.html",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md",
-    "Dashboard.md",
     "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw/Libraries/local-library.excalidrawlib",
     "Excalidraw/Libraries",
     "Untitled.canvas",
-    "2026-11-18.md",
+    "02_Daily_Notes/2026-11-18.md",
     "Excalidraw",
     "Daily_Note_Template.md",
     "4th_Semester_Master_Roadmap.md",
@@ -287,9 +290,6 @@
     "IMG_20261117_094839.webp",
     "IMG_20261117_094547.webp",
     "ANIMATIONS AND HTML/rotating_magnetic_field_3_phase_visualizer.html",
-    "403 Communication system '3+1'/Communication system.md",
-    "Course Syllabus Electrical Machine II (0713-405).md",
-    "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
-    "ANIMATIONS AND HTML/line_integral.html"
+    "403 Communication system '3+1'/Communication system.md"
   ]
 }

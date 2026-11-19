@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Classification of Solid Materials — Interactive Visualizer</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter, JetBrains Mono & Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+            bengali: ['Hind Siliguri', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: 'Inter', 'Hind Siliguri', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Sleek Custom Scrollbar for Collapsible Drawers */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.4);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.65);
+    }
+
+    /* Precision Range Sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(51, 65, 85, 0.85);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #f8fafc;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.55);
+      cursor: grab;
+      transition: transform 0.15s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+    }
+    input[type="range"].slider-fuchsia::-webkit-slider-thumb {
+      border-color: #e879f9;
+      box-shadow: 0 0 10px rgba(232, 121, 249, 0.55);
+    }
+
+    /* Glassmorphism Panels */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(148, 163, 184, 0.16);
+    }
+
+    .glass-card {
+      background: rgba(30, 41, 59, 0.48);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      transition: border-color 0.2s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(148, 163, 184, 0.25);
+    }
+
+    /* Obsidian Lab Background */
+    .lab-canvas-bg {
+      background: radial-gradient(circle at 50% 50%, #131c31 0%, #0b0f19 72%, #070a12 100%);
+    }
+
+    /* Drawer Slide Transition */
+    .drawer-slide {
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease;
+    }
+
+    /* Clean Accordion Arrows */
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] .accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .accordion-chevron {
+      transition: transform 0.2s ease;
+    }
+  </style>
+</head>
+<body class="relative w-screen h-screen overflow-hidden select-none">
+
+  <!-- ===================================================================== -->
+  <!-- FULL-SCREEN PRIMARY VIEWPORT: ATOMIC STRUCTURE VISUALIZATION          -->
+  <!-- ===================================================================== -->
+  <main id="viewportRoot" class="relative w-full h-full lab-canvas-bg overflow-hidden">
+
+    <!-- 3-IN-1 COMPARE MODE: Pure Picture Panels (Zero Clutter) -->
+    <div id="compareGrid" class="w-full h-full grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-800/80">
+      
+      <!-- Panel 1: Single Crystal -->
+      <div class="relative w-full h-full overflow-hidden group">
+        <canvas id="canvasSingle" class="block w-full h-full"></canvas>
+        <button onclick="setViewMode('single')" title="Inspect Single Crystal"
+          class="absolute bottom-3 left-3 glass-panel border border-sky-400/30 hover:border-sky-400/70 px-3 py-1 rounded-full text-[11px] font-semibold text-sky-300 flex items-center gap-1.5 shadow-lg transition">
+          <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+          <span data-i18n="pillSingle">Single Crystal</span>
+        </button>
+      </div>
+
+      <!-- Panel 2: Polycrystalline -->
+      <div class="relative w-full h-full overflow-hidden group">
+        <canvas id="canvasPoly" class="block w-full h-full"></canvas>
+        <button onclick="setViewMode('poly')" title="Inspect Polycrystalline"
+          class="absolute bottom-3 left-3 glass-panel border border-emerald-400/30 hover:border-emerald-400/70 px-3 py-1 rounded-full text-[11px] font-semibold text-emerald-300 flex items-center gap-1.5 shadow-lg transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span data-i18n="pillPoly">Polycrystalline</span>
+        </button>
+      </div>
+
+      <!-- Panel 3: Amorphous -->
+      <div class="relative w-full h-full overflow-hidden group">
+        <canvas id="canvasAmorphous" class="block w-full h-full"></canvas>
+        <button onclick="setViewMode('amorphous')" title="Inspect Amorphous"
+          class="absolute bottom-3 left-3 glass-panel border border-amber-400/30 hover:border-amber-400/70 px-3 py-1 rounded-full text-[11px] font-semibold text-amber-300 flex items-center gap-1.5 shadow-lg transition">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span data-i18n="pillAmorphous">Amorphous</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SINGLE FOCUS MODE: Full-Screen Canvas -->
+    <div id="focusWrapper" class="hidden relative w-full h-full overflow-hidden">
+      <canvas id="canvasFocus" class="block w-full h-full"></canvas>
+
+      <!-- Minimal Floating Structure Tag (Bottom-Left) -->
+      <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 glass-panel border rounded-full px-3.5 py-1.5 text-xs font-semibold flex items-center gap-2 shadow-xl">
+        <span id="focusDot" class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+        <span id="focusTitleTag" class="text-slate-100">Single Crystal</span>
+        <span class="text-slate-600">•</span>
+        <span id="focusTempTag" class="font-mono text-[11px] text-emerald-300">300 K</span>
+      </div>
+
+      <!-- Live Probe Readout (Only appears when Directional Probe is explicitly enabled) -->
+      <div id="probeReadout" class="hidden absolute bottom-14 left-3 sm:bottom-16 sm:left-4 z-10 glass-panel border border-fuchsia-500/40 rounded-2xl p-3 text-xs text-white min-w-[205px] shadow-2xl">
+        <div class="text-[10px] uppercase tracking-wider text-fuchsia-300 font-semibold mb-1" data-i18n="probeTitle">Directional Conductivity</div>
+        <div class="flex items-baseline justify-between gap-3">
+          <span class="text-slate-400"><span data-i18n="angleLbl">Angle</span>: <strong id="probeAngleVal" class="text-white font-mono">0°</strong></span>
+          <span class="text-base font-bold font-mono text-fuchsia-400"><span id="probeMetricVal">100</span>%</span>
+        </div>
+        <div class="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+          <div id="probeBar" class="bg-fuchsia-500 h-full transition-all duration-75" style="width: 100%"></div>
+        </div>
+        <p id="probeVerdict" class="mt-1.5 text-[11px] text-slate-300">Anisotropic (varies with direction)</p>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-LEFT: COLLAPSED BY DEFAULT -> INFO & EXPLANATION PILL           -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 max-w-[calc(100vw-1.5rem)] sm:max-w-md">
+      
+      <!-- Collapsed Trigger Button (Zero explanatory text on screen!) -->
+      <button id="btnExpandHud" title="তথ্য ও ব্যাখ্যা দেখুন"
+        class="glass-panel border hover:border-sky-400/50 text-slate-200 hover:text-sky-300 px-3 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <span class="w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_8px_#818cf8]"></span>
+        <span data-i18n="btnInfoPill">তথ্য ও ব্যাখ্যা</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Uncollapsed Info Card (Hidden until clicked) -->
+      <div id="hudCard" class="hidden glass-panel border rounded-2xl p-4 shadow-2xl max-h-[82vh] overflow-y-auto space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <span id="hudBadge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+              Structural Hierarchy
+            </span>
+            <h1 id="hudTitle" class="text-base sm:text-lg font-bold text-white mt-1 leading-snug">
+              Classification of Solid Materials
+            </h1>
+          </div>
+          <button id="btnCollapseHud" title="Collapse"
+            class="w-7 h-7 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <p id="hudDesc" class="text-xs text-slate-300 leading-relaxed">
+          Solid materials are classified based on how regularly their atoms, ions, or molecules are arranged in 3D space.
+        </p>
+
+        <!-- Sub-collapsible Key Characteristics & Examples -->
+        <details class="pt-2 border-t border-slate-800/80">
+          <summary class="flex items-center justify-between text-xs font-semibold text-sky-300 cursor-pointer select-none">
+            <span data-i18n="hudFeaturesHdr">বৈশিষ্ট্য ও উদাহরণ (Features &amp; Examples)</span>
+            <svg class="w-3.5 h-3.5 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="pt-2 space-y-2 text-xs text-slate-300">
+            <ul id="hudBullets" class="space-y-1.5 list-disc pl-4 text-slate-300"></ul>
+            <div class="bg-slate-900/70 rounded-xl p-2.5 border border-slate-800">
+              <span class="text-[10px] uppercase tracking-wider text-slate-400 block mb-0.5" data-i18n="examplesLbl">Examples</span>
+              <span id="hudExamples" class="text-slate-200 font-medium"></span>
+            </div>
+          </div>
+        </details>
+
+        <!-- Sub-collapsible Comparison Matrix Table -->
+        <details class="pt-2 border-t border-slate-800/80">
+          <summary class="flex items-center justify-between text-xs font-semibold text-emerald-300 cursor-pointer select-none">
+            <span data-i18n="hudTableHdr">তুলনামূলক ছক (Comparison Matrix)</span>
+            <svg class="w-3.5 h-3.5 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="pt-2 overflow-x-auto">
+            <table class="w-full text-left border-collapse text-[11px]">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400">
+                  <th class="py-1.5 pr-2" data-i18n="thFeature">Feature</th>
+                  <th class="py-1.5 px-1.5 text-sky-300">Single</th>
+                  <th class="py-1.5 px-1.5 text-emerald-300">Poly</th>
+                  <th class="py-1.5 pl-1.5 text-amber-300">Amorphous</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 text-slate-300">
+                <tr>
+                  <td class="py-1.5 pr-2 font-semibold text-slate-200" data-i18n="rowOrder">Order</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdOrderS">Long-range</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdOrderP">Grain-wise</td>
+                  <td class="py-1.5 pl-1.5" data-i18n="tdOrderA">Short-range</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 pr-2 font-semibold text-slate-200" data-i18n="rowBound">Boundaries</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdBoundS">None</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdBoundP">Present</td>
+                  <td class="py-1.5 pl-1.5" data-i18n="tdBoundA">None</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 pr-2 font-semibold text-slate-200" data-i18n="rowIso">Property</td>
+                  <td class="py-1.5 px-1.5 text-sky-300" data-i18n="tdIsoS">Anisotropic</td>
+                  <td class="py-1.5 px-1.5 text-emerald-300" data-i18n="tdIsoP">Isotropic</td>
+                  <td class="py-1.5 pl-1.5 text-amber-300" data-i18n="tdIsoA">Isotropic</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5 pr-2 font-semibold text-slate-200" data-i18n="rowMelt">Melting</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdMeltS">Sharp</td>
+                  <td class="py-1.5 px-1.5" data-i18n="tdMeltP">Sharp</td>
+                  <td class="py-1.5 pl-1.5" data-i18n="tdMeltA">Gradual</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-CENTER: MINIMAL VIEW MODE PILL (3-in-1 | Single | Poly | Amorph) -->
+    <!-- =================================================================== -->
+    <div class="hidden sm:flex absolute top-3 left-1/2 -translate-x-1/2 sm:top-4 z-20">
+      <div class="glass-panel border rounded-full p-1 flex items-center gap-1 shadow-xl">
+        <button onclick="setViewMode('compare')" id="modePill-compare" class="mode-pill px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/25 text-indigo-300 border border-indigo-400/40 transition">
+          3-in-1
+        </button>
+        <button onclick="setViewMode('single')" id="modePill-single" class="mode-pill px-3 py-1 rounded-full text-xs font-semibold text-slate-400 hover:text-slate-200 transition">
+          Single
+        </button>
+        <button onclick="setViewMode('poly')" id="modePill-poly" class="mode-pill px-3 py-1 rounded-full text-xs font-semibold text-slate-400 hover:text-slate-200 transition">
+          Poly
+        </button>
+        <button onclick="setViewMode('amorphous')" id="modePill-amorphous" class="mode-pill px-3 py-1 rounded-full text-xs font-semibold text-slate-400 hover:text-slate-200 transition">
+          Amorphous
+        </button>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TOP-RIGHT: LANGUAGE PILL + COLLAPSED LAB CONTROLS TRIGGER           -->
+    <!-- =================================================================== -->
+    <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-2">
+      
+      <!-- Compact EN / বাংলা Switcher -->
+      <div class="glass-panel border rounded-full p-0.5 flex items-center shadow-xl">
+        <button id="btnLangEn" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-sky-500/25 text-sky-300 border border-sky-400/30 transition">
+          EN
+        </button>
+        <button id="btnLangBn" onclick="setLanguage('bn')" class="px-2.5 py-1 rounded-full text-[11px] font-bengali font-semibold text-slate-400 hover:text-slate-200 transition">
+          বাংলা
+        </button>
+      </div>
+
+      <!-- Collapsed Drawer Trigger -->
+      <button id="btnOpenDrawer" title="কন্ট্রোল ও ল্যাব খুলুন"
+        class="glass-panel border hover:border-indigo-400/60 text-slate-100 hover:text-indigo-300 px-3.5 py-2 rounded-full text-xs font-medium shadow-xl flex items-center gap-2 transition active:scale-95">
+        <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        <span data-i18n="btnControlsPill">কন্ট্রোল ও ল্যাব</span>
+      </button>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- BOTTOM-RIGHT: TINY COLLAPSED HINT BUTTON (?)                        -->
+    <!-- =================================================================== -->
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20 flex items-center gap-2">
+      <div id="hintPill" class="hidden glass-panel border rounded-full px-3.5 py-1.5 text-[11px] text-slate-300 shadow-xl">
+        <span data-i18n="hintText">যেকোনো চিত্রে ক্লিক করে বড় করে দেখুন • উপরে "কন্ট্রোল ও ল্যাব" থেকে তাপমাত্রা ও প্রোব পরিবর্তন করুন</span>
+      </div>
+      <button id="btnToggleHint" title="নির্দেশিকা"
+        class="glass-panel border hover:border-sky-400/50 w-8 h-8 rounded-full text-xs font-mono font-bold text-slate-300 hover:text-sky-300 shadow-xl flex items-center justify-center transition active:scale-95">
+        ?
+      </button>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- COLLAPSIBLE RIGHT DRAWER: LAB CONTROLS & STUDY NOTES                  -->
+  <!-- (Hidden off-screen until user clicks "কন্ট্রোল ও ল্যাব")                -->
+  <!-- ===================================================================== -->
+  <aside id="sidebarDrawer"
+    class="fixed top-0 right-0 h-full w-full sm:w-[400px] glass-panel border-l flex flex-col z-40 shadow-2xl drawer-slide translate-x-full opacity-0 pointer-events-none">
+    
+    <!-- Drawer Header -->
+    <div class="p-3.5 border-b border-slate-800/90 flex items-center justify-between gap-2 shrink-0">
+      <div class="flex bg-slate-900/90 p-1 rounded-xl border border-slate-700/60">
+        <button id="tabBtnControls" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/30 transition" data-i18n="tabControls">
+          Lab Controls
+        </button>
+        <button id="tabBtnNotes" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 transition" data-i18n="tabNotes">
+          সহজ পাঠ (Notes)
+        </button>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <button onclick="regenerateStructure()" title="Regenerate Atoms"
+          class="px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-medium transition">
+          ↻
+        </button>
+        <button id="btnCloseDrawer" title="Close Panel"
+          class="w-8 h-8 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 1: INTERACTIVE LAB CONTROLS -->
+    <div id="panelControls" class="p-4 space-y-3.5 overflow-y-auto flex-1">
+
+      <!-- 1. View Mode Selector -->
+      <section class="glass-card rounded-2xl p-3.5 space-y-2">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300" data-i18n="secViewMode">
+          1. Structure View Mode
+        </h3>
+        <div class="grid grid-cols-2 gap-1.5">
+          <button onclick="setViewMode('compare')" class="drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-indigo-500/20 border border-indigo-400/40 text-indigo-300 transition" data-mode="compare">
+            3-in-1 Compare
+          </button>
+          <button onclick="setViewMode('single')" class="drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/70 border border-slate-800 text-slate-300 hover:border-slate-700 transition" data-mode="single">
+            Single Crystal
+          </button>
+          <button onclick="setViewMode('poly')" class="drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/70 border border-slate-800 text-slate-300 hover:border-slate-700 transition" data-mode="poly">
+            Polycrystalline
+          </button>
+          <button onclick="setViewMode('amorphous')" class="drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/70 border border-slate-800 text-slate-300 hover:border-slate-700 transition" data-mode="amorphous">
+            Amorphous
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. Temperature / Heating Experiment -->
+      <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300" data-i18n="secTemp">
+            2. Temperature (Thermal Energy)
+          </h3>
+          <span id="tempDisplay" class="px-2 py-0.5 rounded-md bg-sky-500/20 border border-sky-400/30 text-sky-300 font-mono text-xs font-bold">
+            300 K
+          </span>
+        </div>
+        <input id="tempSlider" type="range" min="50" max="1100" step="10" value="300" oninput="updateTemperature(this.value)" />
+        <div class="flex justify-between text-[10px] font-mono text-slate-400">
+          <span>50 K (Solid)</span>
+          <span>500 K (Glass Tg)</span>
+          <span>850 K+ (Melt)</span>
+        </div>
+        <div id="thermalStateBanner" class="text-[11px] font-bengali text-emerald-300 bg-emerald-950/35 border border-emerald-500/25 rounded-xl px-3 py-1.5">
+          কক্ষ তাপমাত্রা (300 K): ক্রিস্টাল ও অ্যামরফাস উভয়ই কঠিন অবস্থায় আছে।
+        </div>
+      </section>
+
+      <!-- 3. Directional Anisotropy / Isotropy Probe -->
+      <section class="glass-card rounded-2xl p-3.5 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300" data-i18n="secProbe">
+            3. Anisotropy / Isotropy Probe
+          </h3>
+          <button id="btnToggleProbe" onclick="toggleProbe()" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-fuchsia-500/20 border border-fuchsia-400/40 text-fuchsia-300 hover:bg-fuchsia-500/30 transition">
+            Enable Probe
+          </button>
+        </div>
+        <div>
+          <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+            <span>Measurement Angle (θ)</span>
+            <span id="angleSliderVal" class="font-mono text-fuchsia-300">0°</span>
+          </div>
+          <input id="angleSlider" type="range" min="0" max="180" step="1" value="0" class="slider-fuchsia" oninput="updateProbeAngle(this.value)" />
+        </div>
+      </section>
+
+      <!-- 4. Visual Overlays -->
+      <section class="glass-card rounded-2xl p-3.5 space-y-2">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="secOverlays">
+          4. Structural Overlays
+        </h3>
+
+        <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+          <span class="text-xs font-medium text-sky-300" data-i18n="chkBonds">Atomic Bonds &amp; Unit Cell</span>
+          <input id="chkBonds" type="checkbox" checked onchange="toggleFeature('bonds', this.checked)" class="w-4 h-4 rounded accent-sky-400 cursor-pointer" />
+        </label>
+
+        <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+          <span class="text-xs font-medium text-rose-300" data-i18n="chkBoundaries">Highlight Grain Boundaries</span>
+          <input id="chkBoundaries" type="checkbox" checked onchange="toggleFeature('boundaries', this.checked)" class="w-4 h-4 rounded accent-rose-400 cursor-pointer" />
+        </label>
+
+        <label class="flex items-center justify-between p-2 rounded-xl bg-slate-900/55 hover:bg-slate-900/80 border border-slate-800 cursor-pointer transition">
+          <span class="text-xs font-medium text-emerald-300" data-i18n="chkTint">Color-Code Crystal Grains</span>
+          <input id="chkTint" type="checkbox" checked onchange="toggleFeature('tint', this.checked)" class="w-4 h-4 rounded accent-emerald-400 cursor-pointer" />
+        </label>
+      </section>
+
+    </div>
+
+    <!-- TAB 2: COLLAPSIBLE BILINGUAL STUDY NOTES -->
+    <div id="panelNotes" class="hidden p-4 space-y-2.5 overflow-y-auto flex-1 font-bengali">
+
+      <details class="glass-card rounded-2xl border-l-4 border-l-sky-400 overflow-hidden" open>
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-sky-300 font-sans">1. Single Crystal (একক ক্রিস্টাল)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70 pt-2">
+          <p>• পুরো পদার্থ জুড়ে পরমাণুগুলো একটি নিরবচ্ছিন্ন ও সুশৃঙ্খল ত্রিমাত্রিক ল্যাটিসে (Long-range order) সাজানো থাকে এবং ভেতরে কোনো <strong>Grain Boundary</strong> থাকে না।</p>
+          <p>• <strong>Anisotropic (অসমদিকধর্মী):</strong> দিক পরিবর্তনের সাথে এর পরিবাহিতা, প্রতিসরাঙ্ক ও যান্ত্রিক শক্তি পরিবর্তিত হয়।</p>
+          <p>• <strong>উদাহরণ:</strong> মনোক্রিস্টালাইন সিলিকন (মাইক্রোচিপ), হীরা, কোয়ার্টজ।</p>
+        </div>
+      </details>
+
+      <details class="glass-card rounded-2xl border-l-4 border-l-emerald-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-emerald-300 font-sans">2. Polycrystalline Solid (বহু-ক্রিস্টাল)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70 pt-2">
+          <p>• অসংখ্য ক্ষুদ্র ক্ষুদ্র ক্রিস্টাল দানা বা <strong>Grains</strong> নিয়ে গঠিত। প্রতিটি দানার ভেতরে দীর্ঘ-পাল্লার শৃঙ্খলা থাকলেও ভিন্ন ভিন্ন দানার অক্ষের দিক ভিন্ন হয়।</p>
+          <p>• দুটি দানার সংযোগস্থলকে <strong>Grain Boundary</strong> বলে। দানাগুলো এলোমেলোভাবে সাজানো থাকায় সামগ্রিকভাবে এটি <strong>Isotropic (সমদিকধর্মী)</strong> আচরণ করে।</p>
+          <p>• <strong>উদাহরণ:</strong> লোহা, ইস্পাত, তামা, অ্যালুমিনিয়াম, বরফ।</p>
+        </div>
+      </details>
+
+      <details class="glass-card rounded-2xl border-l-4 border-l-amber-400 overflow-hidden">
+        <summary class="p-3.5 flex items-center justify-between cursor-pointer select-none">
+          <h3 class="text-sm font-bold text-amber-300 font-sans">3. Amorphous Solid (অনিয়তাকার কঠিন)</h3>
+          <svg class="w-4 h-4 accordion-chevron text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-3.5 pb-3.5 text-xs text-slate-300 space-y-1.5 leading-relaxed border-t border-slate-800/70 pt-2">
+          <p>• এতে কোনো দীর্ঘ-পাল্লার পর্যাবৃত্ত ল্যাটিস নেই; কেবল নিকটতম প্রতিবেশী পরমাণুর মধ্যে স্বল্প-পাল্লার শৃঙ্খলা (Short-range order) থাকে।</p>
+          <p>• সব দিকেই ধর্ম সমান বলে এটি <strong>Isotropic</strong>। এর নির্দিষ্ট গলনাঙ্ক নেই; তাপ দিলে <strong>Glass Transition (Tg)</strong> তাপমাত্রার পর ধীরে ধীরে নরম হয়।</p>
+          <p>• <strong>উদাহরণ:</strong> কাঁচ (Glass), প্লাস্টিক/পলিমার, রাবার।</p>
+        </div>
+      </details>
+
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- ATOMIC LATTICE SIMULATION & INTERACTION LOGIC                         -->
+  <!-- ===================================================================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      // -------------------------------------------------------------------
+      // 1. STATE & BILINGUAL CONTENT
+      // -------------------------------------------------------------------
+      const state = {
+        lang: 'en',
+        viewMode: 'compare',   // 'compare' | 'single' | 'poly' | 'amorphous'
+        temperature: 300,      // 50 K - 1100 K
+        probeEnabled: false,
+        probeAngle: 0,         // 0 - 180 deg
+        showBonds: true,
+        showBoundaries: true,
+        showTint: true,
+        seed: 1,
+        hudExpanded: false,
+        drawerExpanded: false,
+        hintExpanded: false,
+      };
+
+      const i18n = {
+        en: {
+          btnInfoPill: "Info & Notes",
+          btnControlsPill: "Controls & Lab",
+          pillSingle: "Single Crystal",
+          pillPoly: "Polycrystalline",
+          pillAmorphous: "Amorphous",
+          hudFeaturesHdr: "Key Features & Examples",
+          hudTableHdr: "Comparison Matrix",
+          examplesLbl: "Examples",
+          thFeature: "Property",
+          rowOrder: "Order",
+          tdOrderS: "Long-range",
+          tdOrderP: "Grain-wise",
+          tdOrderA: "Short-range",
+          rowBound: "Boundaries",
+          tdBoundS: "None",
+          tdBoundP: "Present",
+          tdBoundA: "None",
+          rowIso: "Behavior",
+          tdIsoS: "Anisotropic",
+          tdIsoP: "Isotropic",
+          tdIsoA: "Isotropic",
+          rowMelt: "Melting",
+          tdMeltS: "Sharp",
+          tdMeltP: "Sharp",
+          tdMeltA: "Gradual",
+          probeTitle: "Directional Conductivity",
+          angleLbl: "Angle",
+          tabControls: "Lab Controls",
+          tabNotes: "Study Notes",
+          secViewMode: "1. Structure View Mode",
+          secTemp: "2. Temperature (Thermal Energy)",
+          secProbe: "3. Anisotropy / Isotropy Probe",
+          secOverlays: "4. Structural Overlays",
+          chkBonds: "Atomic Bonds & Unit Cell",
+          chkBoundaries: "Highlight Grain Boundaries",
+          chkTint: "Color-Code Crystal Grains",
+          hintText: "Click any crystal tag to inspect full-screen • Open Controls & Lab to test Temperature & Probe",
+          details: {
+            compare: {
+              badge: "Structural Hierarchy",
+              title: "Classification of Solid Materials",
+              desc: "Solid materials are categorized by the spatial regularity of their atoms into Crystalline (Single Crystal & Polycrystalline) and Non-Crystalline (Amorphous) solids.",
+              bullets: [
+                "Crystalline solids have repeating 3D periodic lattices.",
+                "Single crystals have one unbroken lattice; Polycrystalline solids consist of many grains.",
+                "Amorphous solids lack long-range order and soften gradually when heated."
+              ],
+              examples: "Silicon wafers (Single), Steel & Copper (Poly), Window Glass & Polymers (Amorphous)"
+            },
+            single: {
+              badge: "Crystalline Solid",
+              title: "1. Single Crystal",
+              desc: "A continuous, unbroken periodic atomic lattice extending throughout the entire solid with zero internal grain boundaries.",
+              bullets: [
+                "Built by repeating a fundamental Unit Cell (highlighted in amber).",
+                "Anisotropic: physical properties depend on crystallographic direction.",
+                "Exhibits a sharp, well-defined melting temperature."
+              ],
+              examples: "Monocrystalline Silicon, Diamond, Quartz, Single-crystal turbine blades"
+            },
+            poly: {
+              badge: "Crystalline Solid",
+              title: "2. Polycrystalline Solid",
+              desc: "Composed of many small crystalline grains separated by Grain Boundaries, where each grain has a different lattice orientation.",
+              bullets: [
+                "Long-range periodic order exists inside each individual grain.",
+                "Grain boundaries (rose lines) separate differently oriented lattices.",
+                "Isotropic in bulk because random grain orientations average out directional variations."
+              ],
+              examples: "Steel, Copper, Aluminum, Ceramics, Ice"
+            },
+            amorphous: {
+              badge: "Non-Crystalline Solid",
+              title: "3. Amorphous Solid",
+              desc: "A disordered atomic network lacking long-range periodicity, possessing only short-range order among immediate neighbors.",
+              bullets: [
+                "No unit cell and no grain boundaries exist.",
+                "Isotropic: physical properties are identical in all directions.",
+                "Softens gradually above the Glass Transition Temperature (Tg) instead of melting sharply."
+              ],
+              examples: "Window glass (SiO₂), Plastics / Polymers, Amorphous silicon, Rubber"
+            }
+          }
+        },
+        bn: {
+          btnInfoPill: "তথ্য ও ব্যাখ্যা",
+          btnControlsPill: "কন্ট্রোল ও ল্যাব",
+          pillSingle: "Single Crystal (একক ক্রিস্টাল)",
+          pillPoly: "Polycrystalline (বহু-ক্রিস্টাল)",
+          pillAmorphous: "Amorphous (অনিয়তাকার)",
+          hudFeaturesHdr: "মূল বৈশিষ্ট্য ও উদাহরণ",
+          hudTableHdr: "তুলনামূলক ছক (Comparison)",
+          examplesLbl: "উদাহরণ",
+          thFeature: "বৈশিষ্ট্য",
+          rowOrder: "বিন্যাস",
+          tdOrderS: "দীর্ঘ-পাল্লা",
+          tdOrderP: "দানাভিত্তিক",
+          tdOrderA: "স্বল্প-পাল্লা",
+          rowBound: "সীমারেখা",
+          tdBoundS: "নেই",
+          tdBoundP: "আছে",
+          tdBoundA: "নেই",
+          rowIso: "ধর্ম",
+          tdIsoS: "Anisotropic",
+          tdIsoP: "Isotropic",
+          tdIsoA: "Isotropic",
+          rowMelt: "গলন",
+          tdMeltS: "নির্দিষ্ট",
+          tdMeltP: "নির্দিষ্ট",
+          tdMeltA: "ধীরে নরম",
+          probeTitle: "দিকভিত্তিক পরিবাহিতা",
+          angleLbl: "কোণ",
+          tabControls: "ল্যাব কন্ট্রোল",
+          tabNotes: "সহজ পাঠ",
+          secViewMode: "১. স্ট্রাকচার ভিউ মোড",
+          secTemp: "২. তাপমাত্রা (তাপীয় শক্তি)",
+          secProbe: "৩. Anisotropy / Isotropy প্রোব",
+          secOverlays: "৪. ভিজ্যুয়াল লেয়ারসমূহ",
+          chkBonds: "পরমাণু বন্ধন ও Unit Cell",
+          chkBoundaries: "Grain Boundaries হাইলাইট করুন",
+          chkTint: "ক্রিস্টাল দানা রঙিন করুন",
+          hintText: "যেকোনো চিত্রে ক্লিক করে বড় করে দেখুন • উপরে 'কন্ট্রোল ও ল্যাব' থেকে তাপমাত্রা ও প্রোব পরীক্ষা করুন",
+          details: {
+            compare: {
+              badge: "শ্রেণিবিন্যাস",
+              title: "কঠিন পদার্থের শ্রেণিবিন্যাস",
+              desc: "পরমাণু বা অণুর বিন্যাসের নিয়মানুবর্তিতার ওপর ভিত্তি করে কঠিন পদার্থকে Crystalline (Single ও Polycrystalline) এবং Amorphous ভাগে ভাগ করা হয়।",
+              bullets: [
+                "Crystalline পদার্থে পরমাণুগুলো সুনির্দিষ্ট পর্যায়বৃত্ত ল্যাটিসে সাজানো থাকে।",
+                "Single Crystal-এ একটি অখণ্ড ল্যাটিস থাকে; Polycrystalline-এ অসংখ্য ক্ষুদ্র দানা (Grains) থাকে।",
+                "Amorphous পদার্থে দীর্ঘ-পাল্লার কোনো ল্যাটিস থাকে না।"
+              ],
+              examples: "সিলিকন ওয়েফার (Single), ইস্পাত ও তামা (Poly), কাঁচ ও প্লাস্টিক (Amorphous)"
+            },
+            single: {
+              badge: "Crystalline কঠিন",
+              title: "১. Single Crystal (একক ক্রিস্টাল)",
+              desc: "এমন একটি ক্রিস্টাল যেখানে পুরো পদার্থ জুড়ে পরমাণুর পর্যায়বৃত্ত বিন্যাস সম্পূর্ণ অখণ্ড থাকে এবং ভেতরে কোনো Grain Boundary থাকে না।",
+              bullets: [
+                "ক্ষুদ্রতম পুনরাবৃত্ত একক বা Unit Cell (হলুদ বর্গ) দ্বারা গঠিত।",
+                "Anisotropic: ভিন্ন ভিন্ন দিকে এর ভৌত ধর্ম ভিন্ন হয়।",
+                "এর গলনাঙ্ক অত্যন্ত সুনির্দিষ্ট (Sharp melting point)।"
+              ],
+              examples: "মনোক্রিস্টালাইন সিলিকন, হীরা, কোয়ার্টজ ক্রিস্টাল"
+            },
+            poly: {
+              badge: "Crystalline কঠিন",
+              title: "২. Polycrystalline (বহু-ক্রিস্টাল)",
+              desc: "অসংখ্য ক্ষুদ্র ক্রিস্টাল দানা বা Grains নিয়ে গঠিত কঠিন পদার্থ, যেখানে প্রতিটি দানার ল্যাটিসের দিক ভিন্ন ভিন্ন হয়।",
+              bullets: [
+                "প্রতিটি দানার ভেতরে দীর্ঘ-পাল্লার শৃঙ্খলা বজায় থাকে।",
+                "দানাগুলোর সংযোগস্থলকে Grain Boundary (গোলাপি রেখা) বলে।",
+                "দানাগুলো এলোমেলোভাবে সাজানো থাকায় সামগ্রিকভাবে এটি Isotropic হয়।"
+              ],
+              examples: "ইস্পাত, তামা, অ্যালুমিনিয়াম, সিরামিক, বরফ"
+            },
+            amorphous: {
+              badge: "Non-Crystalline কঠিন",
+              title: "৩. Amorphous (অনিয়তাকার কঠিন)",
+              desc: "যে কঠিন পদার্থে পরমাণুগুলোর কোনো দীর্ঘ-পাল্লার পর্যায়বৃত্ত ল্যাটিস নেই; কেবল নিকটতম প্রতিবেশী পরমাণুর মধ্যে স্বল্প-পাল্লার বিন্যাস থাকে।",
+              bullets: [
+                "এতে কোনো Unit Cell বা Grain Boundary থাকে না।",
+                "Isotropic: সব দিকেই এর ভৌত ধর্ম সমান।",
+                "নির্দিষ্ট তাপমাত্রায় না গলে Glass Transition (Tg) তাপমাত্রার পর ধীরে ধীরে নরম হয়।"
+              ],
+              examples: "জানালার কাঁচ (SiO₂), প্লাস্টিক / পলিমার, রাবার"
+            }
+          }
+        }
+      };
+
+      // -------------------------------------------------------------------
+      // 2. DOM REFERENCES & COLLAPSIBLE UI HANDLERS
+      // -------------------------------------------------------------------
+      const compareGrid = document.getElementById('compareGrid');
+      const focusWrapper = document.getElementById('focusWrapper');
+      const btnExpandHud = document.getElementById('btnExpandHud');
+      const btnCollapseHud = document.getElementById('btnCollapseHud');
+      const hudCard = document.getElementById('hudCard');
+      const btnOpenDrawer = document.getElementById('btnOpenDrawer');
+      const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+      const sidebarDrawer = document.getElementById('sidebarDrawer');
+      const btnToggleHint = document.getElementById('btnToggleHint');
+      const hintPill = document.getElementById('hintPill');
+
+      btnExpandHud.addEventListener('click', () => {
+        btnExpandHud.classList.add('hidden');
+        hudCard.classList.remove('hidden');
+      });
+      btnCollapseHud.addEventListener('click', () => {
+        hudCard.classList.add('hidden');
+        btnExpandHud.classList.remove('hidden');
+      });
+
+      btnOpenDrawer.addEventListener('click', () => {
+        sidebarDrawer.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+        sidebarDrawer.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+      });
+      btnCloseDrawer.addEventListener('click', () => {
+        sidebarDrawer.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+        sidebarDrawer.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+      });
+
+      btnToggleHint.addEventListener('click', () => {
+        state.hintExpanded = !state.hintExpanded;
+        hintPill.classList.toggle('hidden', !state.hintExpanded);
+      });
+
+      // Drawer Tabs
+      const tabBtnControls = document.getElementById('tabBtnControls');
+      const tabBtnNotes = document.getElementById('tabBtnNotes');
+      const panelControls = document.getElementById('panelControls');
+      const panelNotes = document.getElementById('panelNotes');
+
+      tabBtnControls.addEventListener('click', () => {
+        panelControls.classList.remove('hidden');
+        panelNotes.classList.add('hidden');
+        tabBtnControls.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.remove('text-slate-400');
+        tabBtnNotes.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnNotes.classList.add('text-slate-400');
+      });
+
+      tabBtnNotes.addEventListener('click', () => {
+        panelNotes.classList.remove('hidden');
+        panelControls.classList.add('hidden');
+        tabBtnNotes.classList.add('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnNotes.classList.remove('text-slate-400');
+        tabBtnControls.classList.remove('bg-sky-500/20', 'text-sky-300', 'border', 'border-sky-400/30');
+        tabBtnControls.classList.add('text-slate-400');
+      });
+
+      // -------------------------------------------------------------------
+      // 3. LANGUAGE & VIEW MODE UPDATES
+      // -------------------------------------------------------------------
+      window.setLanguage = function (lang) {
+        state.lang = lang;
+        const t = i18n[lang];
+
+        document.getElementById('btnLangEn').className = lang === 'en'
+          ? 'px-2.5 py-1 rounded-full text-[11px] font-semibold bg-sky-500/25 text-sky-300 border border-sky-400/30 transition'
+          : 'px-2.5 py-1 rounded-full text-[11px] font-semibold text-slate-400 hover:text-slate-200 transition';
+        document.getElementById('btnLangBn').className = lang === 'bn'
+          ? 'px-2.5 py-1 rounded-full text-[11px] font-bengali font-semibold bg-sky-500/25 text-sky-300 border border-sky-400/30 transition'
+          : 'px-2.5 py-1 rounded-full text-[11px] font-bengali font-semibold text-slate-400 hover:text-slate-200 transition';
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (t[key]) el.textContent = t[key];
+        });
+
+        updateHudDetails();
+        updateTemperature(state.temperature);
+        updateProbeReadout();
+      };
+
+      function updateHudDetails() {
+        const t = i18n[state.lang];
+        const info = t.details[state.viewMode];
+        document.getElementById('hudBadge').textContent = info.badge;
+        document.getElementById('hudTitle').textContent = info.title;
+        document.getElementById('hudDesc').textContent = info.desc;
+        document.getElementById('hudExamples').textContent = info.examples;
+
+        const ul = document.getElementById('hudBullets');
+        ul.innerHTML = '';
+        info.bullets.forEach((b) => {
+          const li = document.createElement('li');
+          li.textContent = b;
+          ul.appendChild(li);
+        });
+      }
+
+      window.setViewMode = function (mode) {
+        state.viewMode = mode;
+        const isCompare = mode === 'compare';
+
+        compareGrid.classList.toggle('hidden', !isCompare);
+        focusWrapper.classList.toggle('hidden', isCompare);
+
+        // Update Top Pills
+        document.querySelectorAll('.mode-pill').forEach((btn) => {
+          const active = btn.id === `modePill-${mode}`;
+          btn.className = active
+            ? 'mode-pill px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/25 text-indigo-300 border border-indigo-400/40 transition'
+            : 'mode-pill px-3 py-1 rounded-full text-xs font-semibold text-slate-400 hover:text-slate-200 transition';
+        });
+
+        // Update Drawer Buttons
+        document.querySelectorAll('.drawer-mode-btn').forEach((btn) => {
+          const active = btn.dataset.mode === mode;
+          btn.className = active
+            ? 'drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-indigo-500/20 border border-indigo-400/40 text-indigo-300 transition'
+            : 'drawer-mode-btn px-2.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/70 border border-slate-800 text-slate-300 hover:border-slate-700 transition';
+        });
+
+        // Focus Mode Badge Styling
+        const focusDot = document.getElementById('focusDot');
+        const focusTitleTag = document.getElementById('focusTitleTag');
+        if (mode === 'single') {
+          focusDot.className = 'w-2.5 h-2.5 rounded-full bg-sky-400';
+          focusTitleTag.textContent = 'Single Crystal';
+        } else if (mode === 'poly') {
+          focusDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+          focusTitleTag.textContent = 'Polycrystalline';
+        } else if (mode === 'amorphous') {
+          focusDot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+          focusTitleTag.textContent = 'Amorphous';
+        }
+
+        updateHudDetails();
+        updateProbeReadout();
+        resizeAllCanvases();
+      };
+
+      window.updateTemperature = function (val) {
+        state.temperature = parseInt(val, 10);
+        document.getElementById('tempDisplay').textContent = `${state.temperature} K`;
+        document.getElementById('focusTempTag').textContent = `${state.temperature} K`;
+
+        const banner = document.getElementById('thermalStateBanner');
+        if (state.temperature < 500) {
+          banner.className = 'text-[11px] font-bengali text-emerald-300 bg-emerald-950/35 border border-emerald-500/25 rounded-xl px-3 py-1.5';
+          banner.textContent = state.lang === 'bn'
+            ? `কঠিন অবস্থা (${state.temperature} K): পরমাণুগুলো নিজ অবস্থানে সামান্য কাঁপছে।`
+            : `Solid State (${state.temperature} K): Atoms vibrate gently around equilibrium positions.`;
+        } else if (state.temperature < 850) {
+          banner.className = 'text-[11px] font-bengali text-amber-300 bg-amber-950/35 border border-amber-500/25 rounded-xl px-3 py-1.5';
+          banner.textContent = state.lang === 'bn'
+            ? `Glass Softening (${state.temperature} K): Amorphous কাঁচ ধীরে ধীরে নরম হচ্ছে, কিন্তু ক্রিস্টাল এখনো দৃঢ়!`
+            : `Glass Transition (${state.temperature} K): Amorphous glass softens gradually while crystals stay rigid!`;
+        } else {
+          banner.className = 'text-[11px] font-bengali text-rose-300 bg-rose-950/35 border border-rose-500/25 rounded-xl px-3 py-1.5';
+          banner.textContent = state.lang === 'bn'
+            ? `গলন অবস্থা (${state.temperature} K): ক্রিস্টাল গলনাঙ্ক পেরিয়ে তরলে পরিণত হয়েছে!`
+            : `Melted State (${state.temperature} K): Crystals crossed their sharp melting point into liquid!`;
+        }
+      };
+
+      window.toggleProbe = function () {
+        state.probeEnabled = !state.probeEnabled;
+        const btn = document.getElementById('btnToggleProbe');
+        btn.textContent = state.probeEnabled ? 'Probe Active' : 'Enable Probe';
+        btn.className = state.probeEnabled
+          ? 'px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-fuchsia-500 text-white shadow-md transition'
+          : 'px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-fuchsia-500/20 border border-fuchsia-400/40 text-fuchsia-300 hover:bg-fuchsia-500/30 transition';
+        updateProbeReadout();
+      };
+
+      window.updateProbeAngle = function (val) {
+        state.probeAngle = parseInt(val, 10);
+        document.getElementById('angleSliderVal').textContent = `${state.probeAngle}°`;
+        updateProbeReadout();
+      };
+
+      function updateProbeReadout() {
+        const readout = document.getElementById('probeReadout');
+        if (!state.probeEnabled || state.viewMode === 'compare') {
+          readout.classList.add('hidden');
+          return;
+        }
+        readout.classList.remove('hidden');
+        document.getElementById('probeAngleVal').textContent = `${state.probeAngle}°`;
+
+        const rad = (state.probeAngle * Math.PI) / 180;
+        let metric = 85;
+        let verdict = '';
+
+        if (state.viewMode === 'single') {
+          // Strong directional variation along lattice axes (0°, 90°, 180°) vs diagonal (45°, 135°)
+          metric = Math.round(68 + 32 * Math.pow(Math.cos(2 * rad), 2));
+          verdict = state.lang === 'bn'
+            ? 'Anisotropic: দিক পরিবর্তনে মান বদলাচ্ছে'
+            : 'Anisotropic: Varies strongly with direction';
+        } else if (state.viewMode === 'poly') {
+          metric = Math.round(83 + 2 * Math.sin(3 * rad));
+          verdict = state.lang === 'bn'
+            ? 'Isotropic (Bulk): সব দিকে প্রায় সমান'
+            : 'Isotropic (Bulk): Averaged across random grains';
+        } else {
+          metric = 78;
+          verdict = state.lang === 'bn'
+            ? 'Isotropic: সব দিকে সম্পূর্ণ সমান'
+            : 'Isotropic: Identical in every direction';
+        }
+
+        document.getElementById('probeMetricVal').textContent = metric;
+        document.getElementById('probeBar').style.width = `${metric}%`;
+        document.getElementById('probeVerdict').textContent = verdict;
+      }
+
+      window.toggleFeature = function (feature, checked) {
+        if (feature === 'bonds') state.showBonds = checked;
+        if (feature === 'boundaries') state.showBoundaries = checked;
+        if (feature === 'tint') state.showTint = checked;
+      };
+
+      window.regenerateStructure = function () {
+        state.seed += 1;
+        buildStructuralData();
+      };
+
+      // -------------------------------------------------------------------
+      // 4. PROCEDURAL STRUCTURE DATA (SINGLE, POLY GRAINS, AMORPHOUS)
+      // -------------------------------------------------------------------
+      let polyGrains = [];
+      let amorphousNodes = [];
+
+      function seededRand(s) {
+        const x = Math.sin(s * 91.3458) * 47453.5453;
+        return x - Math.floor(x);
+      }
+
+      function buildStructuralData() {
+        // Generate 8 Voronoi Crystal Grains for Polycrystalline Solid
+        const grainColors = [
+          'rgba(56, 189, 248, 0.11)',
+          'rgba(52, 211, 153, 0.11)',
+          'rgba(167, 139, 250, 0.11)',
+          'rgba(251, 191, 36, 0.10)',
+          'rgba(244, 114, 182, 0.10)',
+          'rgba(45, 212, 191, 0.11)',
+          'rgba(96, 165, 250, 0.11)',
+          'rgba(192, 132, 252, 0.10)',
+        ];
+
+        polyGrains = [];
+        for (let i = 0; i < 8; i++) {
+          const base = state.seed * 31 + i * 17;
+          polyGrains.push({
+            nx: 0.15 + 0.7 * seededRand(base + 1),
+            ny: 0.15 + 0.7 * seededRand(base + 2),
+            angle: seededRand(base + 3) * Math.PI,
+            color: grainColors[i % grainColors.length],
+          });
+        }
+
+        // Generate Continuous Random Network (Normalized 0..1) for Amorphous Solid
+        amorphousNodes = [];
+        const cols = 15;
+        const rows = 12;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const idx = r * cols + c + state.seed * 101;
+            const jx = (seededRand(idx * 3 + 1) - 0.5) * 0.78;
+            const jy = (seededRand(idx * 3 + 2) - 0.5) * 0.78;
+            amorphousNodes.push({
+              nx: (c + 0.5 + jx) / cols,
+              ny: (r + 0.5 + jy) / rows,
+              phase: seededRand(idx * 3 + 3) * Math.PI * 2,
+            });
+          }
+        }
+      }
+
+      // -------------------------------------------------------------------
+      // 5. HIGH-DPI ATOMIC RENDERER
+      // -------------------------------------------------------------------
+      const canvases = {
+        single: document.getElementById('canvasSingle'),
+        poly: document.getElementById('canvasPoly'),
+        amorphous: document.getElementById('canvasAmorphous'),
+        focus: document.getElementById('canvasFocus'),
+      };
+
+      function resizeAllCanvases() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        Object.values(canvases).forEach((cvs) => {
+          const rect = cvs.parentElement.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            cvs.width = rect.width * dpr;
+            cvs.height = rect.height * dpr;
+            const c = cvs.getContext('2d');
+            c.setTransform(dpr, 0, 0, dpr, 0, 0);
+          }
+        });
+      }
+
+      function drawAtom(ctx, x, y, r, coreColor, glowColor) {
+        const grad = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, r * 0.1, x, y, r);
+        grad.addColorStop(0, coreColor);
+        grad.addColorStop(1, glowColor);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function drawProbeOverlay(ctx, w, h) {
+        if (!state.probeEnabled) return;
+        const cx = w * 0.5;
+        const cy = h * 0.5;
+        const rad = (state.probeAngle * Math.PI) / 180;
+        const len = Math.min(w, h) * 0.42;
+
+        const x1 = cx - Math.cos(rad) * len;
+        const y1 = cy + Math.sin(rad) * len;
+        const x2 = cx + Math.cos(rad) * len;
+        const y2 = cy - Math.sin(rad) * len;
+
+        ctx.save();
+        ctx.strokeStyle = '#e879f9';
+        ctx.lineWidth = 2.4;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#e879f9';
+        ctx.beginPath();
+        ctx.arc(x2, y2, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Render 1: Single Crystal
+      function renderSingleCrystal(cvs, timeSec, isFocus) {
+        const rect = cvs.parentElement.getBoundingClientRect();
+        const w = rect.width, h = rect.height;
+        if (w <= 0 || h <= 0) return;
+        const ctx = cvs.getContext('2d');
+        ctx.clearRect(0, 0, w, h);
+
+        const spacing = isFocus ? 38 : 28;
+        const atomR = isFocus ? 6.2 : 4.6;
+        const melted = state.temperature >= 850;
+        const vibAmp = melted ? 14 : (state.temperature / 850) * 3.8;
+
+        const cols = Math.ceil(w / spacing) + 2;
+        const rows = Math.ceil(h / spacing) + 2;
+        const offsetX = (w - (cols - 1) * spacing) * 0.5;
+        const offsetY = (h - (rows - 1) * spacing) * 0.5;
+
+        const pts = [];
+        for (let r = 0; r < rows; r++) {
+          pts[r] = [];
+          for (let c = 0; c < cols; c++) {
+            const phase = (r * 13 + c * 7) * 0.85;
+            const driftX = melted ? Math.sin(timeSec * 1.6 + phase) * 18 : Math.sin(timeSec * 8 + phase) * vibAmp;
+            const driftY = melted ? Math.cos(timeSec * 1.4 + phase * 1.3) * 18 : Math.cos(timeSec * 7.5 + phase) * vibAmp;
+            pts[r][c] = {
+              x: offsetX + c * spacing + driftX,
+              y: offsetY + r * spacing + driftY,
+            };
+          }
+        }
+
+        // Covalent / Lattice Bonds
+        if (state.showBonds && !melted) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.24)';
+          ctx.lineWidth = 1.4;
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              if (c + 1 < cols) {
+                ctx.beginPath();
+                ctx.moveTo(pts[r][c].x, pts[r][c].y);
+                ctx.lineTo(pts[r][c + 1].x, pts[r][c + 1].y);
+                ctx.stroke();
+              }
+              if (r + 1 < rows) {
+                ctx.beginPath();
+                ctx.moveTo(pts[r][c].x, pts[r][c].y);
+                ctx.lineTo(pts[r + 1][c].x, pts[r + 1][c].y);
+                ctx.stroke();
+              }
+            }
+          }
+          ctx.restore();
+        }
+
+        // Highlight Repeating Unit Cell (Amber Square)
+        if (state.showBonds && !melted && rows > 3 && cols > 3) {
+          const ur = Math.floor(rows * 0.42);
+          const uc = Math.floor(cols * 0.42);
+          const p00 = pts[ur][uc];
+          const p10 = pts[ur][uc + 1];
+          const p11 = pts[ur + 1][uc + 1];
+          const p01 = pts[ur + 1][uc];
+
+          ctx.save();
+          ctx.fillStyle = 'rgba(251, 191, 36, 0.16)';
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(p00.x, p00.y);
+          ctx.lineTo(p10.x, p10.y);
+          ctx.lineTo(p11.x, p11.y);
+          ctx.lineTo(p01.x, p01.y);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // Draw Atoms
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            drawAtom(ctx, pts[r][c].x, pts[r][c].y, atomR, '#7dd3fc', 'rgba(2, 132, 199, 0.45)');
+          }
+        }
+
+        if (isFocus) drawProbeOverlay(ctx, w, h);
+      }
+
+      // Render 2: Polycrystalline Solid (Multiple Grains + Boundaries)
+      function renderPolycrystalline(cvs, timeSec, isFocus) {
+        const rect = cvs.parentElement.getBoundingClientRect();
+        const w = rect.width, h = rect.height;
+        if (w <= 0 || h <= 0) return;
+        const ctx = cvs.getContext('2d');
+        ctx.clearRect(0, 0, w, h);
+
+        const spacing = isFocus ? 30 : 23;
+        const atomR = isFocus ? 5.2 : 3.9;
+        const melted = state.temperature >= 840;
+        const vibAmp = melted ? 14 : (state.temperature / 840) * 3.5;
+
+        const grains = polyGrains.map((g) => ({
+          x: g.nx * w,
+          y: g.ny * h,
+          angle: g.angle,
+          color: g.color,
+        }));
+
+        const findClosestGrain = (x, y) => {
+          let bestIdx = 0;
+          let bestD = Infinity;
+          let secondD = Infinity;
+          for (let i = 0; i < grains.length; i++) {
+            const d = Math.hypot(x - grains[i].x, y - grains[i].y);
+            if (d < bestD) {
+              secondD = bestD;
+              bestD = d;
+              bestIdx = i;
+            } else if (d < secondD) {
+              secondD = d;
+            }
+          }
+          return { idx: bestIdx, edgeDist: secondD - bestD };
+        };
+
+        // Optional Grain Tint & Boundary Detection via Coarse Grid
+        const cellStep = isFocus ? 10 : 12;
+        for (let py = 0; py < h; py += cellStep) {
+          for (let px = 0; px < w; px += cellStep) {
+            const res = findClosestGrain(px + cellStep * 0.5, py + cellStep * 0.5);
+            if (state.showTint && !melted) {
+              ctx.fillStyle = grains[res.idx].color;
+              ctx.fillRect(px, py, cellStep, cellStep);
+            }
+            if (state.showBoundaries && !melted && res.edgeDist < 5.5) {
+              ctx.fillStyle = 'rgba(251, 113, 133, 0.55)';
+              ctx.fillRect(px, py, cellStep * 0.55, cellStep * 0.55);
+            }
+          }
+        }
+
+        // Render Atoms Oriented to Each Grain's Angle
+        const diag = Math.hypot(w, h);
+        const steps = Math.ceil(diag / spacing);
+
+        grains.forEach((g, gIdx) => {
+          const cosA = Math.cos(g.angle);
+          const sinA = Math.sin(g.angle);
+
+          for (let r = -steps; r <= steps; r++) {
+            for (let c = -steps; c <= steps; c++) {
+              const lx = c * spacing;
+              const ly = r * spacing;
+              const wx = g.x + lx * cosA - ly * sinA;
+              const wy = g.y + lx * sinA + ly * cosA;
+
+              if (wx < 4 || wx > w - 4 || wy < 4 || wy > h - 4) continue;
+
+              const res = findClosestGrain(wx, wy);
+              if (res.idx !== gIdx) continue;
+              if (!melted && res.edgeDist < spacing * 0.28) continue;
+
+              const phase = (r * 11 + c * 19 + gIdx * 5) * 0.7;
+              const jx = melted ? Math.sin(timeSec * 1.7 + phase) * 18 : Math.sin(timeSec * 8 + phase) * vibAmp;
+              const jy = melted ? Math.cos(timeSec * 1.5 + phase) * 18 : Math.cos(timeSec * 7.5 + phase) * vibAmp;
+
+              drawAtom(ctx, wx + jx, wy + jy, atomR, '#6ee7b7', 'rgba(5, 150, 105, 0.45)');
+            }
+          }
+        });
+
+        if (isFocus) drawProbeOverlay(ctx, w, h);
+      }
+
+      // Render 3: Amorphous Solid (Disordered Short-Range Network)
+      function renderAmorphous(cvs, timeSec, isFocus) {
+        const rect = cvs.parentElement.getBoundingClientRect();
+        const w = rect.width, h = rect.height;
+        if (w <= 0 || h <= 0) return;
+        const ctx = cvs.getContext('2d');
+        ctx.clearRect(0, 0, w, h);
+
+        const atomR = isFocus ? 6.0 : 4.5;
+        // Gradual softening past 500 K (Glass Transition)
+        const softenFactor = state.temperature > 500
+          ? Math.min(1, (state.temperature - 500) / 500)
+          : 0;
+        const vibAmp = 1.2 + (state.temperature / 1100) * 4.5 + softenFactor * 11;
+
+        const pts = amorphousNodes.map((n) => {
+          const speed = softenFactor > 0.1 ? 1.8 : 7.5;
+          const dx = Math.sin(timeSec * speed + n.phase) * vibAmp;
+          const dy = Math.cos(timeSec * (speed * 0.9) + n.phase * 1.4) * vibAmp;
+          return {
+            x: n.nx * w + dx,
+            y: n.ny * h + dy,
+          };
+        });
+
+        // Short-range neighbor bonds only
+        const maxBondDist = Math.min(w, h) * (isFocus ? 0.13 : 0.15);
+        if (state.showBonds) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(251, 191, 36, 0.22)';
+          ctx.lineWidth = 1.4;
+          for (let i = 0; i < pts.length; i++) {
+            for (let j = i + 1; j < pts.length; j++) {
+              const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+              if (d < maxBondDist) {
+                ctx.beginPath();
+                ctx.moveTo(pts[i].x, pts[i].y);
+                ctx.lineTo(pts[j].x, pts[j].y);
+                ctx.stroke();
+              }
+            }
+          }
+          ctx.restore();
+        }
+
+        // Draw Disordered Atoms
+        for (const p of pts) {
+          drawAtom(ctx, p.x, p.y, atomR, '#fcd34d', 'rgba(217, 119, 6, 0.45)');
+        }
+
+        if (isFocus) drawProbeOverlay(ctx, w, h);
+      }
+
+      // -------------------------------------------------------------------
+      // 6. MAIN ANIMATION LOOP
+      // -------------------------------------------------------------------
+      function animate(nowMs) {
+        const timeSec = nowMs * 0.001;
+
+        if (state.viewMode === 'compare') {
+          renderSingleCrystal(canvases.single, timeSec, false);
+          renderPolycrystalline(canvases.poly, timeSec, false);
+          renderAmorphous(canvases.amorphous, timeSec, false);
+        } else if (state.viewMode === 'single') {
+          renderSingleCrystal(canvases.focus, timeSec, true);
+        } else if (state.viewMode === 'poly') {
+          renderPolycrystalline(canvases.focus, timeSec, true);
+        } else if (state.viewMode === 'amorphous') {
+          renderAmorphous(canvases.focus, timeSec, true);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      // Initialize
+      window.addEventListener('resize', resizeAllCanvases);
+      buildStructuralData();
+      resizeAllCanvases();
+      setLanguage('en');
+      setViewMode('compare');
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
