@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Phase Induction Motor - Live Cross-Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="w-screen h-screen overflow-hidden bg-slate-900">
+    <canvas id="simCanvas"></canvas>
+
+    <script>
+        /**
+         * Full 360° Cross-Sectional Animation of a 3-Phase Induction Motor
+         * Visualizes:
+         * 1. Outer Stator Frame, Laminations & 3-Phase Windings (R, Y, B)
+         * 2. Rotating Magnetic Field (RMF) with N & S poles sweeping clockwise
+         * 3. Magnetic Flux Lines crossing the air gap from N to S
+         * 4. Induced EMF & Current in Squirrel-Cage Rotor Bars (Dot ⊙ & Cross ⊗)
+         * 5. Local Flux distortion around active rotor bars producing Lorentz Torque
+         * 6. Rotor & Shaft rotating clockwise slightly slower than Stator Field (Slip)
+         */
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let time = 0;
+        let lastTimestamp = 0;
+
+        function resizeCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        /**
+         * Draw curved directional arrow (for Stator RMF and Rotor rotation)
+         */
+        function drawArcArrow(cx, cy, radius, startAngle, endAngle, clockwise, color, lineWidth = 3) {
+            ctx.save();
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = 'round';
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, startAngle, endAngle, !clockwise);
+            ctx.stroke();
+
+            const tipX = cx + radius * Math.cos(endAngle);
+            const tipY = cy + radius * Math.sin(endAngle);
+            const tangent = endAngle + (clockwise ? Math.PI / 2 : -Math.PI / 2);
+            const headLen = 11;
+
+            ctx.beginPath();
+            ctx.moveTo(tipX, tipY);
+            ctx.lineTo(tipX - headLen * Math.cos(tangent - 0.42), tipY - headLen * Math.sin(tangent - 0.42));
+            ctx.lineTo(tipX - headLen * Math.cos(tangent + 0.42), tipY - headLen * Math.sin(tangent + 0.42));
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /**
+         * Draw small arrowhead along a line or curve
+         */
+        function drawArrowHead(x, y, angle, color, size = 7) {
+            ctx.save();
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x + size * Math.cos(angle), y + size * Math.sin(angle));
+            ctx.lineTo(x - size * Math.cos(angle - 0.45), y - size * Math.sin(angle - 0.45));
+            ctx.lineTo(x - size * Math.cos(angle + 0.45), y - size * Math.sin(angle + 0.45));
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        /**
+         * Render complete 3-Phase Induction Motor cross-section
+         */
+        function drawMotor(cx, cy, maxRadius) {
+            // Speeds: Stator RMF rotates at synchronous speed ω_s, Rotor rotates at ω_r = (1 - s)ω_s
+            const omegaS = 1.35; // rad/s (Clockwise)
+            const slip = 0.22;   // 22% visual slip so relative motion is clearly visible
+            const omegaR = omegaS * (1 - slip);
+
+            const fieldAngle = time * omegaS;
+            const rotorAngle = time * omegaR;
+
+            // Radii proportions
+            const R_frameOuter = maxRadius * 0.88;
+            const R_statorOuter = maxRadius * 0.81;
+            const R_slotBottom = maxRadius * 0.67;
+            const R_statorInner = maxRadius * 0.56;
+            const R_rotorOuter = maxRadius * 0.525; // Air gap between 0.525 and 0.56
+            const R_barCircle = maxRadius * 0.455;
+            const R_rotorInner = maxRadius * 0.22;
+            const R_shaft = maxRadius * 0.14;
+
+            // -----------------------------------------------------------------
+            // 1. OUTER CAST-IRON MOTOR HOUSING & COOLING FINS + MOUNTING FEET
+            // -----------------------------------------------------------------
+            ctx.save();
+            // Mounting feet at bottom
+            ctx.fillStyle = '#334155';
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(cx - R_frameOuter * 0.68, cy + R_frameOuter * 0.72);
+            ctx.lineTo(cx - R_frameOuter * 0.85, cy + R_frameOuter * 1.02);
+            ctx.lineTo(cx - R_frameOuter * 0.45, cy + R_frameOuter * 1.02);
+            ctx.lineTo(cx - R_frameOuter * 0.35, cy + R_frameOuter * 0.88);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(cx + R_frameOuter * 0.68, cy + R_frameOuter * 0.72);
+            ctx.lineTo(cx + R_frameOuter * 0.85, cy + R_frameOuter * 1.02);
+            ctx.lineTo(cx + R_frameOuter * 0.45, cy + R_frameOuter * 1.02);
+            ctx.lineTo(cx + R_frameOuter * 0.35, cy + R_frameOuter * 0.88);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Outer cooling fins around housing
+            const numFins = 36;
+            for (let i = 0; i < numFins; i++) {
+                const a = (i / numFins) * Math.PI * 2;
+                // Skip bottom base area between feet
+                if (a > Math.PI * 0.36 && a < Math.PI * 0.64) continue;
+                const x1 = cx + (R_frameOuter - 2) * Math.cos(a);
+                const y1 = cy + (R_frameOuter - 2) * Math.sin(a);
+                const x2 = cx + (R_frameOuter + maxRadius * 0.045) * Math.cos(a);
+                const y2 = cy + (R_frameOuter + maxRadius * 0.045) * Math.sin(a);
+                ctx.strokeStyle = '#475569';
+                ctx.lineWidth = maxRadius * 0.018;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+
+            // Outer shell ring
+            const frameGrad = ctx.createRadialGradient(cx, cy, R_statorOuter, cx, cy, R_frameOuter);
+            frameGrad.addColorStop(0, '#1e293b');
+            frameGrad.addColorStop(1, '#334155');
+            ctx.fillStyle = frameGrad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_frameOuter, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
+
+            // -----------------------------------------------------------------
+            // 2. STATOR SILICON-STEEL LAMINATED CORE & 12 SLOTS WITH 3-PHASE COILS
+            // -----------------------------------------------------------------
+            ctx.save();
+            // Stator yoke
+            ctx.fillStyle = '#475569';
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_statorOuter, 0, Math.PI * 2);
+            ctx.arc(cx, cy, R_statorInner, 0, Math.PI * 2, true);
+            ctx.fill();
+
+            // Subtle magnetic pole glow inside stator core following rotating field
+            const northPoleAngle = fieldAngle - Math.PI / 2; // Starts at top
+            const southPoleAngle = northPoleAngle + Math.PI;
+
+            const nGlowX = cx + ((R_statorInner + R_statorOuter) * 0.5) * Math.cos(northPoleAngle);
+            const nGlowY = cy + ((R_statorInner + R_statorOuter) * 0.5) * Math.sin(northPoleAngle);
+            const nGrad = ctx.createRadialGradient(nGlowX, nGlowY, 5, nGlowX, nGlowY, maxRadius * 0.45);
+            nGrad.addColorStop(0, 'rgba(244, 63, 94, 0.42)');
+            nGrad.addColorStop(1, 'rgba(244, 63, 94, 0)');
+            ctx.fillStyle = nGrad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_statorOuter, 0, Math.PI * 2);
+            ctx.arc(cx, cy, R_statorInner, 0, Math.PI * 2, true);
+            ctx.fill();
+
+            const sGlowX = cx + ((R_statorInner + R_statorOuter) * 0.5) * Math.cos(southPoleAngle);
+            const sGlowY = cy + ((R_statorInner + R_statorOuter) * 0.5) * Math.sin(southPoleAngle);
+            const sGrad = ctx.createRadialGradient(sGlowX, sGlowY, 5, sGlowX, sGlowY, maxRadius * 0.45);
+            sGrad.addColorStop(0, 'rgba(56, 189, 248, 0.42)');
+            sGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+            ctx.fillStyle = sGrad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_statorOuter, 0, Math.PI * 2);
+            ctx.arc(cx, cy, R_statorInner, 0, Math.PI * 2, true);
+            ctx.fill();
+
+            // 12 Stator Slots & 3-Phase Windings (R = Red, Y = Amber, B = Blue)
+            const numStatorSlots = 12;
+            const phaseConfig = [
+                { color: '#ef4444', phaseShift: 0, sign: 1 },                 // R+
+                { color: '#3b82f6', phaseShift: (4 * Math.PI) / 3, sign: -1 }, // B-
+                { color: '#f59e0b', phaseShift: (2 * Math.PI) / 3, sign: 1 },  // Y+
+                { color: '#ef4444', phaseShift: 0, sign: -1 },                // R-
+                { color: '#3b82f6', phaseShift: (4 * Math.PI) / 3, sign: 1 },  // B+
+                { color: '#f59e0b', phaseShift: (2 * Math.PI) / 3, sign: -1 }, // Y-
+                { color: '#ef4444', phaseShift: 0, sign: 1 },                 // R+
+                { color: '#3b82f6', phaseShift: (4 * Math.PI) / 3, sign: -1 }, // B-
+                { color: '#f59e0b', phaseShift: (2 * Math.PI) / 3, sign: 1 },  // Y+
+                { color: '#ef4444', phaseShift: 0, sign: -1 },                // R-
+                { color: '#3b82f6', phaseShift: (4 * Math.PI) / 3, sign: 1 },  // B+
+                { color: '#f59e0b', phaseShift: (2 * Math.PI) / 3, sign: -1 }  // Y-
+            ];
+
+            for (let i = 0; i < numStatorSlots; i++) {
+                const slotAng = (i / numStatorSlots) * Math.PI * 2 - Math.PI / 2;
+                const slotCenterR = (R_statorInner + R_slotBottom) * 0.53;
+                const sx = cx + slotCenterR * Math.cos(slotAng);
+                const sy = cy + slotCenterR * Math.sin(slotAng);
+
+                // Slot cavity cutout
+                ctx.save();
+                ctx.translate(sx, sy);
+                ctx.rotate(slotAng);
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.roundRect(-maxRadius * 0.055, -maxRadius * 0.042, maxRadius * 0.11, maxRadius * 0.084, 6);
+                ctx.fill();
+                ctx.restore();
+
+                // 3-phase instantaneous sinusoidal current in each winding
+                const cfg = phaseConfig[i];
+                const instCurrent = cfg.sign * Math.sin(fieldAngle - cfg.phaseShift);
+                const mag = Math.abs(instCurrent);
+
+                // Copper winding bundle
+                const coilR = maxRadius * 0.036;
+                ctx.fillStyle = cfg.color;
+                ctx.globalAlpha = 0.35 + 0.65 * mag;
+                ctx.beginPath();
+                ctx.arc(sx, sy, coilR, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.globalAlpha = 1;
+                ctx.strokeStyle = '#fde68a';
+                ctx.lineWidth = 1.4;
+                ctx.stroke();
+
+                // Current direction symbol inside stator winding (Dot ⊙ or Cross ⊗)
+                if (mag > 0.22) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = 1.8;
+                    if (instCurrent > 0) {
+                        // Dot (current coming out)
+                        ctx.beginPath();
+                        ctx.arc(sx, sy, coilR * 0.32 * Math.min(1, mag + 0.3), 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        // Cross (current going in)
+                        const d = coilR * 0.38;
+                        ctx.beginPath();
+                        ctx.moveTo(sx - d, sy - d);
+                        ctx.lineTo(sx + d, sy + d);
+                        ctx.moveTo(sx + d, sy - d);
+                        ctx.lineTo(sx - d, sy + d);
+                        ctx.stroke();
+                    }
+                }
+            }
+            ctx.restore();
+
+            // -----------------------------------------------------------------
+            // 3. AIR GAP BACKGROUND
+            // -----------------------------------------------------------------
+            ctx.fillStyle = '#090d16';
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_statorInner, 0, Math.PI * 2);
+            ctx.fill();
+
+            // -----------------------------------------------------------------
+            // 4. SQUIRREL-CAGE ROTOR CORE, ROTOR BARS & INDUCED CURRENTS
+            // -----------------------------------------------------------------
+            ctx.save();
+            // Rotor iron core
+            const rotorGrad = ctx.createRadialGradient(cx, cy, R_shaft, cx, cy, R_rotorOuter);
+            rotorGrad.addColorStop(0, '#334155');
+            rotorGrad.addColorStop(0.75, '#64748b');
+            rotorGrad.addColorStop(1, '#475569');
+            ctx.fillStyle = rotorGrad;
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_rotorOuter, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Ventilation holes in rotor core (rotate with rotor)
+            const numVentHoles = 6;
+            for (let v = 0; v < numVentHoles; v++) {
+                const va = rotorAngle + (v / numVentHoles) * Math.PI * 2;
+                const vx = cx + (R_rotorInner + maxRadius * 0.08) * Math.cos(va);
+                const vy = cy + (R_rotorInner + maxRadius * 0.08) * Math.sin(va);
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.arc(vx, vy, maxRadius * 0.032, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // Central Steel Shaft + Keyway (rotates with rotor)
+            ctx.fillStyle = '#cbd5e1';
+            ctx.beginPath();
+            ctx.arc(cx, cy, R_shaft, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Shaft keyway notch so rotation speed is unmistakable
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(rotorAngle);
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(R_shaft * 0.55, -maxRadius * 0.018, R_shaft * 0.48, maxRadius * 0.036);
+            // Crosshair line on shaft
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(-R_shaft * 0.7, 0);
+            ctx.lineTo(R_shaft * 0.5, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // -----------------------------------------------------------------
+            // 5. ROTATING MAGNETIC FLUX LINES (N -> S ACROSS AIR GAP & ROTOR)
+            // -----------------------------------------------------------------
+            // Flux lines travel from North pole (top of field frame) through rotor to South pole (bottom)
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(fieldAngle); // Align coordinate frame with Rotating Magnetic Field (N at top, S at bottom)
+
+            const fluxOffsets = [-0.72, -0.48, -0.24, 0, 0.24, 0.48, 0.72];
+            fluxOffsets.forEach(frac => {
+                const startX = frac * R_statorInner * 0.82;
+                const startY = -Math.sqrt(Math.max(0, R_statorInner * R_statorInner - startX * startX));
+                const endY = -startY;
+
+                // Slight Lorentz flux crowding on the trailing side (left) where rotor flux reinforces stator flux
+                const bendX = startX * 0.72 - maxRadius * 0.035 * (1 - Math.abs(frac));
+
+                ctx.strokeStyle = 'rgba(56, 189, 248, 0.55)';
+                ctx.lineWidth = 1.7;
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.quadraticCurveTo(bendX, 0, startX, endY);
+                ctx.stroke();
+
+                // Animated flowing flux pulse arrows from N to S
+                const flowPos = ((time * 1.4 + Math.abs(frac) * 0.5) % 1) * 1.6 - 0.8; // -0.8 to +0.8
+                const py = flowPos * Math.abs(startY) * 0.85;
+                const t = (py - startY) / (endY - startY);
+                const px = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * bendX + t * t * startX;
+                const dx = 2 * (1 - t) * (bendX - startX) + 2 * t * (startX - bendX);
+                const dy = endY - startY;
+                const ang = Math.atan2(dy, dx);
+
+                drawArrowHead(px, py, ang, '#38bdf8', 5.5);
+            });
+
+            // Rotating N and S Pole Badges just inside stator bore
+            const poleBadgeR = R_statorInner - maxRadius * 0.01;
+            // N Pole (Red)
+            ctx.save();
+            ctx.translate(0, -poleBadgeR);
+            ctx.rotate(-fieldAngle); // Keep 'N' upright
+            ctx.fillStyle = '#e11d48';
+            ctx.beginPath();
+            ctx.arc(0, 0, maxRadius * 0.044, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${Math.round(maxRadius * 0.05)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('N', 0, 1);
+            ctx.restore();
+
+            // S Pole (Blue)
+            ctx.save();
+            ctx.translate(0, poleBadgeR);
+            ctx.rotate(-fieldAngle); // Keep 'S' upright
+            ctx.fillStyle = '#0284c7';
+            ctx.beginPath();
+            ctx.arc(0, 0, maxRadius * 0.044, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${Math.round(maxRadius * 0.05)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('S', 0, 1);
+            ctx.restore();
+
+            ctx.restore(); // End fieldAngle frame
+
+            // -----------------------------------------------------------------
+            // 6. SQUIRREL-CAGE ROTOR CONDUCTOR BARS & LOCAL FLUX LOOPS
+            // -----------------------------------------------------------------
+            const numRotorBars = 16;
+            const barRadius = maxRadius * 0.026;
+
+            for (let b = 0; b < numRotorBars; b++) {
+                const barAng = rotorAngle + (b / numRotorBars) * Math.PI * 2;
+                const bx = cx + R_barCircle * Math.cos(barAng);
+                const by = cy + R_barCircle * Math.sin(barAng);
+
+                // Angle of this bar relative to the North Pole (fieldAngle - Math.PI/2)
+                // Under N pole (relAng ≈ 0): induced EMF/current is OUTWARDS (Dot ⊙)
+                // Under S pole (relAng ≈ π): induced EMF/current is INWARDS (Cross ⊗)
+                const relAng = barAng - (fieldAngle - Math.PI / 2);
+                const inducedCurrent = Math.cos(relAng); // +1 under N, -1 under S
+                const cMag = Math.abs(inducedCurrent);
+
+                // Local circular magnetic flux loop around heavily loaded rotor bars (like Fig 34.16 b)
+                if (cMag > 0.65) {
+                    ctx.save();
+                    ctx.strokeStyle = 'rgba(250, 204, 21, 0.55)';
+                    ctx.lineWidth = 1.3;
+                    ctx.setLineDash([4, 3]);
+                    // Direction of local flux: anticlockwise for Dot (outward), clockwise for Cross (inward)
+                    const loopDir = inducedCurrent > 0 ? 1 : -1;
+                    ctx.lineDashOffset = loopDir * time * 24;
+                    ctx.beginPath();
+                    ctx.arc(bx, by, barRadius * 2.1, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                // Copper/Aluminum rotor bar circle
+                ctx.fillStyle = inducedCurrent > 0 ? '#fbbf24' : '#f97316';
+                ctx.globalAlpha = 0.45 + 0.55 * cMag;
+                ctx.beginPath();
+                ctx.arc(bx, by, barRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.globalAlpha = 1;
+                ctx.strokeStyle = '#fef3c7';
+                ctx.lineWidth = 1.4;
+                ctx.stroke();
+
+                // Induced current direction symbol (Dot ⊙ or Cross ⊗)
+                if (cMag > 0.25) {
+                    ctx.fillStyle = '#0f172a';
+                    ctx.strokeStyle = '#0f172a';
+                    ctx.lineWidth = 1.8;
+                    if (inducedCurrent > 0) {
+                        // Dot (⊙)
+                        ctx.beginPath();
+                        ctx.arc(bx, by, barRadius * 0.34, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        // Cross (⊗)
+                        const d = barRadius * 0.42;
+                        ctx.beginPath();
+                        ctx.moveTo(bx - d, by - d);
+                        ctx.lineTo(bx + d, by + d);
+                        ctx.moveTo(bx + d, by - d);
+                        ctx.lineTo(bx - d, by + d);
+                        ctx.stroke();
+                    }
+                }
+            }
+            ctx.restore();
+
+            // -----------------------------------------------------------------
+            // 7. DIRECTION ARROWS (Stator RMF Clockwise & Rotor Clockwise)
+            // -----------------------------------------------------------------
+            // Outer rotating field direction arrow (pink/rose)
+            drawArcArrow(
+                cx, cy,
+                R_frameOuter + maxRadius * 0.085,
+                -Math.PI * 0.65,
+                -Math.PI * 0.35,
+                true,
+                '#f43f5e',
+                3
+            );
+
+            // Inner rotor rotation direction arrow (amber/gold)
+            drawArcArrow(
+                cx, cy,
+                R_rotorInner + maxRadius * 0.03,
+                -Math.PI * 0.68,
+                -Math.PI * 0.32,
+                true,
+                '#fbbf24',
+                2.6
+            );
+        }
+
+        function render(timestamp) {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const dt = (timestamp - lastTimestamp) / 1000;
+            lastTimestamp = timestamp;
+            time += dt;
+
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, width, height);
+
+            const maxRadius = Math.min(width, height) * 0.44;
+            drawMotor(width * 0.5, height * 0.5, maxRadius);
+
+            requestAnimationFrame(render);
+        }
+
+        window.onload = function () {
+            resizeCanvas();
+            requestAnimationFrame(render);
+        };
+    </script>
+</body>
+</html>
