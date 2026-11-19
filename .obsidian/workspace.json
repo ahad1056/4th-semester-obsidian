@@ -35,7 +35,8 @@
               "title": "Stat Daily Class Note"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -214,10 +215,10 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "3f1a0460b61d030b",
+  "active": "57d7cae6fb889302",
   "lastOpenFiles": [
-    "Stat Daily Class Note.md",
     "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "Stat Daily Class Note.md",
     "481 Statistics and Probability '3'/statistics and probability.md",
     "Dashboard.md",
     "02_Daily_Notes",
