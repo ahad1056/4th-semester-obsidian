@@ -94,5 +94,5 @@ $$N_s = \frac{120f}{P}$$
 ---
 **Tags:** #machine #lorentz-force #motor-design #torque #speed-equation #class-notes
 # 19 November class 4
-![[IMG_20261119_112801.webp|340x453]]
-![[IMG_20261119_112808.webp]]
+![[IMG_20261119_112801.webp|164]]  ![[IMG_20261119_112808.webp|162]]
+
