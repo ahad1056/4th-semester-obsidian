@@ -4,80 +4,38 @@
     "type": "split",
     "children": [
       {
-        "id": "bf141e6f38c2bf1a",
-        "type": "split",
+        "id": "4636b1a5dcd77b66",
+        "type": "tabs",
         "children": [
           {
-            "id": "4636b1a5dcd77b66",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "3f1a0460b61d030b",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Dashboard.md",
-                    "mode": "preview",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "Dashboard"
-                }
-              }
-            ]
+            "id": "3f1a0460b61d030b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter 1 - Introduction to Statistics & Data Collection"
+            }
           },
           {
-            "id": "b5bad8c088d5ff24",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "c8b7ef99580eac05",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "Chapter 1 - Lattes Structure"
-                }
+            "id": "57d7cae6fb889302",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stat Daily Class Note.md",
+                "mode": "source",
+                "source": false
               },
-              {
-                "id": "33615a6d7eec7e72",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Solid State ANALYSED QUESTION.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "Solid State ANALYSED QUESTION"
-                }
-              },
-              {
-                "id": "6cf25bc807de71c5",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "Course Syllabus Solid State Electronics (0714-401)"
-                }
-              }
-            ],
-            "currentTab": 1
+              "icon": "lucide-file",
+              "title": "Stat Daily Class Note"
+            }
           }
-        ],
-        "direction": "horizontal"
+        ]
       }
     ],
     "direction": "vertical"
@@ -258,6 +216,9 @@
   },
   "active": "3f1a0460b61d030b",
   "lastOpenFiles": [
+    "Stat Daily Class Note.md",
+    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
     "Dashboard.md",
     "02_Daily_Notes",
     "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
@@ -284,8 +245,6 @@
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "LAW daily class notes.md",
-    "Stat Daily Class Note.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "mechanical Daily Class Note.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Machine Daily Class Notes.md",
