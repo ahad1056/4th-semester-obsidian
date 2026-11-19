@@ -1049,13 +1049,13 @@ $$\log_2(N) = \frac{\log_{10}(N)}{\log_{10}(2)}$$
 
 ## ⚖️ Distinction: Standard Deviation vs. Coefficient of Variation
 
-| Feature | Standard Deviation (S.D.) | Coefficient of Variation (Coff. of Variation) |
-| :--- | :--- | :--- |
-| **Type of Measure** | It is an absolute measure. | It is a relative measure. |
-| **Units** | It has a unit. | It has no unit. |
-| **Ratio/Percentage** | It is not a ratio. It is not a percentage. | It is a ratio. It is a percentage. |
-| **Value Range** | (Not specified in notes) | Since it is a ratio, it lies between 0 - 1. |
-| **Comparability** | It can be compared between 2 sets of data with the same unit. | It can be compared between 2 or more different datasets having different units. |
+| Feature              | Standard Deviation (S.D.)                                     | Coefficient of Variation (Coff. of Variation)                                   |
+| :------------------- | :------------------------------------------------------------ | :------------------------------------------------------------------------------ |
+| **Type of Measure**  | It is an absolute measure.                                    | It is a relative measure.                                                       |
+| **Units**            | It has a unit.                                                | It has no unit.                                                                 |
+| **Ratio/Percentage** | It is not a ratio. It is not a percentage.                    | It is a ratio. It is a percentage.                                              |
+| **Value Range**      | (Not specified in notes)                                      | Since it is a ratio, it lies between 0 - 1.                                     |
+| **Comparability**    | It can be compared between 2 sets of data with the same unit. | It can be compared between 2 or more different datasets having different units. |
 
 ---
 

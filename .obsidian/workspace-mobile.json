@@ -117,13 +117,13 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
+            "file": "Machine Daily Class Notes.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
             "showSearch": false,
             "searchQuery": "",
-            "backlinkCollapsed": false,
+            "backlinkCollapsed": true,
             "unlinkedCollapsed": true
           },
           "icon": "links-coming-in",
@@ -136,6 +136,7 @@
         "state": {
           "type": "outgoing-link",
           "state": {
+            "file": "Machine Daily Class Notes.md",
             "linksCollapsed": false,
             "unlinkedCollapsed": true
           },
@@ -149,6 +150,7 @@
         "state": {
           "type": "outline",
           "state": {
+            "file": "Machine Daily Class Notes.md",
             "followCursor": false,
             "showSearch": false,
             "searchQuery": ""
@@ -156,9 +158,19 @@
           "icon": "lucide-list",
           "title": "Outline"
         }
+      },
+      {
+        "id": "a49cced28f428e53",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {},
+          "icon": "git-pull-request",
+          "title": "Source Control"
+        }
       }
     ],
-    "currentTab": 0
+    "currentTab": 3
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -175,6 +187,10 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
+    "02_Daily_Notes/2026-11-19.md",
+    "02_Daily_Notes/2026-11-18.md",
+    "02_Daily_Notes",
+    "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Machine Daily Class Notes.md",
@@ -209,8 +225,6 @@
     "403 Communication system '3+1'/Communication system.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
-    "305 Statistics/PREVIOUS YEAR original question.md",
-    "305 Statistics/Important Formulas, Data Tables & Z-T-Tables.md",
     "mechanical Daily Class Note-1794671268457.webp",
     "Untitled.canvas",
     "Stat Daily Class Note-1794905624858.webp",
@@ -219,8 +233,6 @@
     "Screenshot_2026-11-10-16-48-41-784_com.flyersoft.moonreaderp.png",
     "Messenger_creation_EDF17EA4-C627-48D3-8183-29BD19C3447C.webp",
     "JPEG_20261117_222946_6793385384391749417.webp",
-    "JPEG_20261117_222806_3759878893920344629.webp",
-    "Mechanical Engineering",
-    "Excalidraw"
+    "JPEG_20261117_222806_3759878893920344629.webp"
   ]
 }

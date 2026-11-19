@@ -4,63 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b5bad8c088d5ff24",
+        "id": "4c6b2725a5b3205f",
         "type": "tabs",
         "children": [
           {
-            "id": "c8b7ef99580eac05",
+            "id": "b8db9cdcd23c0a4d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
+                "file": "LAW daily class notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 1 - Lattes Structure"
-            }
-          },
-          {
-            "id": "3f1a0460b61d030b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Solid State Daily Class Note.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Solid State Daily Class Note"
-            }
-          },
-          {
-            "id": "33615a6d7eec7e72",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Solid State ANALYSED QUESTION.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Solid State ANALYSED QUESTION"
-            }
-          },
-          {
-            "id": "6cf25bc807de71c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Course Syllabus Solid State Electronics (0714-401)"
+              "title": "LAW daily class notes"
             }
           }
         ]
@@ -242,33 +200,37 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "c8b7ef99580eac05",
+  "active": "b8db9cdcd23c0a4d",
   "lastOpenFiles": [
+    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
+    "Dashboard.md",
+    "305 Statistics/Chapter 1 - Introduction to Statistics & Data Collection.md",
+    "Stat Daily Class Note.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "02_Daily_Notes",
+    "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
+    "02_Daily_Notes/2026-11-19.md",
+    "Solid State Daily Class Note.md",
+    "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Solid State ANALYSED QUESTION.md",
     "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
-    "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
-    "Solid State Daily Class Note.md",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer.html",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Excalidraw/Drawing 2026-11-18 19.29.31.excalidraw.md",
-    "Dashboard.md",
     "Excalidraw/Drawing 2026-11-18 00.44.54.excalidraw.md",
     "Excalidraw/Libraries/local-library.excalidrawlib",
     "Excalidraw/Libraries",
     "Untitled.canvas",
-    "2026-11-18.md",
+    "02_Daily_Notes/2026-11-18.md",
     "Excalidraw",
     "Daily_Note_Template.md",
     "4th_Semester_Master_Roadmap.md",
     "491 Professional Law and Ethics '3'/Course Syllabus Professional Law & Ethics (EEE 491).md",
     "491 Professional Law and Ethics '3'/Chapter 1 - CONTRACT AND AGREEMENTS.md",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "491 Professional Law and Ethics '3'/PREVIOUS YEAR ANALYSED QUESTION.md",
     "LAW daily class notes.md",
-    "Stat Daily Class Note.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "mechanical Daily Class Note.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Machine Daily Class Notes.md",
@@ -286,9 +248,6 @@
     "IMG_20261117_094839.webp",
     "IMG_20261117_094547.webp",
     "ANIMATIONS AND HTML/rotating_magnetic_field_3_phase_visualizer.html",
-    "403 Communication system '3+1'/Communication system.md",
-    "Course Syllabus Electrical Machine II (0713-405).md",
-    "ANIMATIONS AND HTML/Amplitude modulation of sine wave .html",
-    "ANIMATIONS AND HTML/line_integral.html"
+    "403 Communication system '3+1'/Communication system.md"
   ]
 }
