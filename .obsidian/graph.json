@@ -7,20 +7,16 @@
   "showOrphans": true,
   "collapse-color-groups": true,
   "colorGroups": [],
-  "collapse-display": true,
+  "collapse-display": false,
   "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": false,
-  "centerStrength": 0.336032388663968,
-  "repelStrength": 20,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
   "linkStrength": 1,
-  "linkDistance": 30,
-<<<<<<< main
-  "scale": 0.13027707474085107,
-=======
-  "scale": 0.12029135043065303,
->>>>>>> origin/main
-  "close": true
+  "linkDistance": 250,
+  "scale": 0.32007553921558746,
+  "close": false
 }
