@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Communication Systems/Important Maths.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -77,8 +77,7 @@
               "title": "Course Syllabus Communication Systems (0714-403)"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -257,18 +256,18 @@
       "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "91bc29d8d2dcf2f9",
+  "active": "6d6c762cb9ebfa2b",
   "lastOpenFiles": [
+    "Electrical Machines/Chapter 1 - Induction Motor.md",
+    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Communication Systems/Important Maths.md",
     "Course Syllabus Communication Systems (0714-403).md",
-    "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "403 Communication system '3+1'/Communication system.md",
     "Dashboard.md",
     "02_Daily_Notes/2026-11-19.md",
     "4th_Semester_Master_Roadmap.md",
     "02_Daily_Notes/2026-11-20.md",
     "02_Daily_Notes/2026-11-18.md",
-    "Electrical Machines/Chapter 1 - Induction Motor.md",
     "Machine Daily Class Notes.md",
     "ANIMATIONS AND HTML/full_induction_motor_cross_section_animation.html",
     "IMG_20261119_112808.webp",
