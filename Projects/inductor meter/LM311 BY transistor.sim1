@@ -1,0 +1,27 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Package" CircId="Package-7" mainComp="false" Show_id="true" Show_Val="false" Pos="-12,-156" rotation="0" hflip="1" vflip="1" label="Package-7" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" SubcType="None" Width="4" Height="8" Name="Package" Logic_Symbol="true" />
+
+<item itemtype="Resistor" CircId="Resistor-1" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="144,-160" rotation="0" hflip="1" vflip="1" label="Resistor-1" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1000 Ω" />
+
+<item itemtype="Ground" CircId="Ground-2" mainComp="false" Show_id="false" Show_Val="false" Pos="184,-128" rotation="360" hflip="1" vflip="1" label="Ground-2" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="opAmp" CircId="opAmp-3" mainComp="false" Show_id="false" Show_Val="false" Pos="104,-160" rotation="0" hflip="1" vflip="1" label="opAmp-3" idLabPos="-16,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Gain="1000" Out_Imped="1e-14 Ω" Power_Pins="false" Switch_Pins="false" Volt_Pos="5 V" Volt_Neg="0 V" />
+
+<item itemtype="BJT" CircId="BJT-4" mainComp="false" Show_id="false" Show_Val="false" Pos="176,-160" rotation="0" hflip="1" vflip="1" label="BJT-4" idLabPos="18,0" labelrot="0" valLabPos="-16,20" valLabRot="0" PNP="false" Gain="100" Vcrit="0.670736 V" />
+
+<item itemtype="Tunnel" CircId="Tunnel-5" mainComp="false" Show_id="false" Show_Val="false" Pos="68,-168" rotation="0" hflip="1" vflip="1" label="Tunnel-5" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Name="IN -" IsBus="false" />
+
+<item itemtype="Tunnel" CircId="Tunnel-6" mainComp="false" Show_id="false" Show_Val="false" Pos="68,-152" rotation="0" hflip="1" vflip="1" label="Tunnel-6" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Name="IN +" IsBus="false" />
+
+<item itemtype="Connector" uid="Connector-1" startpinid="Tunnel-5-pin" endpinid="opAmp-3-inputNinv" pointList="68,-168,80,-168" />
+
+<item itemtype="Connector" uid="Connector-2" startpinid="opAmp-3-output" endpinid="Resistor-1-lPin" pointList="128,-160,128,-160" />
+
+<item itemtype="Connector" uid="Connector-3" startpinid="Resistor-1-rPin" endpinid="BJT-4-base" pointList="160,-160,160,-160" />
+
+<item itemtype="Connector" uid="Connector-4" startpinid="BJT-4-emiter" endpinid="Ground-2-Gnd" pointList="184,-144,184,-144" />
+
+<item itemtype="Connector" uid="Connector-5" startpinid="Tunnel-6-pin" endpinid="opAmp-3-inputInv" pointList="68,-152,80,-152" />
+
+</circuit>
