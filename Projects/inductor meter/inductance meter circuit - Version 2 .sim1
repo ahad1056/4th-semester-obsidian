@@ -8,6 +8,22 @@
 
 <item itemtype="Clock" CircId="Clock-17" mainComp="false" Show_id="false" Show_Val="false" Pos="-224,-176" rotation="270" hflip="1" vflip="1" label="Clock-17" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Out="true" Running="true" Voltage="3 V" Freq="5 MHz" Always_On="false" />
 
+<item itemtype="Battery" CircId="Battery-18" mainComp="false" Show_id="false" Show_Val="false" Pos="288,-320" rotation="270" hflip="1" vflip="1" label="Battery-18" idLabPos="-18,-22" labelrot="0" valLabPos="-10,10" valLabRot="0" Voltage="5 V" Resistance="1 mΩ" />
+
+<item itemtype="Switch" CircId="Switch-19" mainComp="false" Show_id="false" Show_Val="false" Pos="-4,-80" rotation="90" hflip="1" vflip="1" label="Switch-19" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" DT="true" Poles="1" />
+
+<item itemtype="Ground" CircId="Ground-20" mainComp="false" Show_id="false" Show_Val="false" Pos="176,-200" rotation="180" hflip="1" vflip="1" label="Ground-20" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Resistor" CircId="Resistor-21" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="136,-168" rotation="0" hflip="1" vflip="1" label="Resistor-21" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1000 Ω" />
+
+<item itemtype="Capacitor" CircId="Capacitor-23" mainComp="false" ShowProp="Capacitance" Show_id="false" Show_Val="true" Pos="100,-220" rotation="0" hflip="1" vflip="1" label="Capacitor-23" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Capacitance="10 µF" Resistance="1 µΩ" InitVolt="0 V" ReaStep="0 ns" />
+
+<item itemtype="Inductor" CircId="Inductor-25" mainComp="false" ShowProp="Inductance" Show_id="false" Show_Val="true" Pos="240,-168" rotation="0" hflip="1" vflip="1" label="Inductor-25" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Inductance="1 H" Resistance="1 µΩ" InitVolt="0 A" ReaStep="0 ns" />
+
+<item itemtype="opAmp" CircId="opAmp-26" mainComp="false" Show_id="false" Show_Val="false" Pos="96,-168" rotation="0" hflip="1" vflip="1" label="opAmp-26" idLabPos="-16,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Gain="1000" Out_Imped="1e-14 Ω" Power_Pins="false" Switch_Pins="false" Volt_Pos="5 V" Volt_Neg="0 V" />
+
+<item itemtype="BJT" CircId="BJT-28" mainComp="false" Show_id="false" Show_Val="false" Pos="168,-168" rotation="0" hflip="1" vflip="1" label="BJT-28" idLabPos="18,0" labelrot="0" valLabPos="-16,20" valLabRot="0" PNP="false" Gain="100" Vcrit="0.670736 V" />
+
 <item itemtype="Connector" uid="Connector-15" startpinid="mega328-2-PORTB4" endpinid="Hd44780-15-PinRS" pointList="-180,-132,-180,-108,-248,-108,-248,-224,-216,-224" />
 
 <item itemtype="Connector" uid="Connector-18" startpinid="Hd44780-15-dataPin5" endpinid="mega328-2-PORTD4" pointList="-152,-224,-152,-200,-140,-200,-140,-180" />
