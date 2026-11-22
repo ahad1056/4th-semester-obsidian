@@ -118,3 +118,5 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 
 ---
 **Tags:** #thermodynamics #specific-heat #mayers-relation #adiabatic-process #class-notes
+# 22 November class 4
+![[IMG_20261122_124819.webp]]

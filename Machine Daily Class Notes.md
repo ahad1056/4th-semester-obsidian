@@ -131,4 +131,4 @@ Torque ($T$) is directly proportional to several factors:
 **Tags:** #machine #torque #slip #synchronous-speed #skin-effect #class-notes
 
 # 22 November class 5
-![[JPEG_20261122_113658_7109734686903906235.webp]]
+![[JPEG_20261122_113658_7109734686903906235.webp|340x453]]
