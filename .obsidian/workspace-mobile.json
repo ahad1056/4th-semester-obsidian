@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
-                "mode": "preview",
+                "file": "Dashboard.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mechanical engineering"
+              "title": "Dashboard"
             }
           }
         ]
@@ -187,9 +187,9 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
+    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Dashboard.md",
     "403 Communication system '3+1'/Communication system.md",
-    "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Mechanical Engineering/Important Formulas, Material Constants & Thermodynamic Tables.md",
     "Screenshot_2026-11-22-11-41-14-175_com.miui.gallery.webp",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
