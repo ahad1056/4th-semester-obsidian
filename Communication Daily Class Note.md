@@ -173,3 +173,6 @@ The transmission medium is divided into two main categories:
 **Tags:** #signals #transmission-medium #fiber-optics #modulation #class-notes
 
 
+# 22 November class 4
+
+![[IMG_20261122_124826.webp|340x255]]![[IMG_20261122_124833.webp|340x453]]
