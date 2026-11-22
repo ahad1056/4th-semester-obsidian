@@ -175,4 +175,64 @@ The transmission medium is divided into two main categories:
 
 # 22 November class 4
 
-![[IMG_20261122_124826.webp|340x255]]![[IMG_20261122_124833.webp|340x453]]
+![[IMG_20261122_124826.webp|305x229]]![[IMG_20261122_124833.webp|179]] 
+## Class Notes: Communication - Amplitude Modulation (Nov 22)
+
+## 📡 Basic Signals in Amplitude Modulation (AM)
+- **Carrier Signal ($v_c$):** $v_c = V_c \sin(\omega_c t)$
+- **Message Signal ($v_m$):** $v_m = V_m \sin(\omega_m t)$
+  - Where $V_c$ and $V_m$ are peak amplitudes, and $\omega_c$ and $\omega_m$ are angular frequencies.
+
+---
+
+## 🧮 AM Wave Equation Derivation
+After modulation, the instantaneous amplitude ($A$) of the carrier wave varies according to the message signal:
+$$A = V_c + v_m = V_c + V_m \sin(\omega_m t)$$
+
+Substituting $A$ into the standard wave equation $v = A \sin(\omega_c t)$:
+1. $v = \{V_c + V_m \sin(\omega_m t)\} \sin(\omega_c t)$
+2. $v = V_c \sin(\omega_c t) + V_m \sin(\omega_m t) \sin(\omega_c t)$
+3. Applying the trigonometric identity $\sin A \sin B = \frac{1}{2}[\cos(A - B) - \cos(A + B)]$:
+   $$v = V_c \sin(\omega_c t) + \frac{V_m}{2} \{ \cos((\omega_c - \omega_m)t) - \cos((\omega_c + \omega_m)t) \}$$
+
+**Frequency Components in the Modulated Wave:**
+- **Carrier Frequency:** $\omega_c$ (or $f_c$)
+- **Lower Sideband (LSB):** $\omega_c - \omega_m$ (or $f_c - f_m$)
+- **Upper Sideband (USB):** $\omega_c + \omega_m$ (or $f_c + f_m$)
+
+---
+
+## 📊 Frequency Spectrum & Bandwidth
+- The frequency spectrum consists of the central carrier frequency ($f_c$) flanked symmetrically by the Lower Sideband ($f_c - f_m$) and Upper Sideband ($f_c + f_m$).
+- **Bandwidth ($BW$):** The difference between the highest and lowest frequency components:
+  $$BW = (f_c + f_m) - (f_c - f_m) = 2f_m$$
+
+---
+
+## 📈 Modulation Index & Waveform Analysis
+- **Modulation Index ($m$):** The ratio of the peak message voltage to the peak carrier voltage:
+  $$m = \frac{V_m}{V_c}$$
+
+**Determining Parameters from the AM Waveform:**
+Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min}$) of the modulated envelope:
+
+1. **Message Signal Amplitude ($V_m$):**
+   $$V_m = \frac{V_{\max} - V_{\min}}{2}$$
+
+2. **Carrier Signal Amplitude ($V_c$):**
+   $$V_c = V_{\max} - V_m$$
+   $$V_c = V_{\max} - \left(\frac{V_{\max} - V_{\min}}{2}\right)$$
+   $$V_c = \frac{2V_{\max} - V_{\max} + V_{\min}}{2}$$
+   $$V_c = \frac{V_{\max} + V_{\min}}{2}$$
+
+3. **Modulation Index from Waveform:**
+   $$m = \frac{V_m}{V_c} = \frac{V_{\max} - V_{\min}}{V_{\max} + V_{\min}}$$
+
+---
+
+## 📌 Exam Focus
+- **Derivations:** Be prepared to derive the complete AM wave equation showing the carrier, USB, and LSB terms.
+- **Numerical Problems:** Memorize the formulas for Bandwidth ($BW = 2f_m$), $V_m$, $V_c$, and Modulation Index ($m$) from waveform readings ($V_{\max}$ and $V_{\min}$).
+
+---
+**Tags:** #communication #amplitude-modulation #modulation-index #bandwidth #sidebands #class-notes
