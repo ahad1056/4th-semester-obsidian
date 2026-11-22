@@ -5,9 +5,16 @@
 // I2C LCD সেটআপ (লেখা না আসলে 0x27 এর বদলে 0x3F ব্যবহার করুন)
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const int inputPin = 5;               // Timer1 External Clock Input Pin (T1 / D5)
-const double capacitance = 2.274e-9;  // আপনার মাপা ক্যাপাসিটর: 2.274 nF
+const int inputPin = 5; // Timer1 External Clock Input Pin (T1 / D5)
+
+// ==========================================================
+// আপনার মাপা ক্যালিব্রেশন মান দুটি স্থায়ীভাবে সেভ করা হলো:
+const double F0 = 345851.0;  // শর্ট অবস্থায় বেস ফ্রিকোয়েন্সি (Hz)
+const double L0 = 93.13e-6;  // রেফারেন্স ইন্ডাক্ট্যান্স: 93.13 uH (Henry এককে)
+// ==========================================================
+
 bool signalPresent = false;
+int detectCount = 0; // ইন্ডাক্টর লাগানোর পর কত সেকেন্ড পার হলো তা ট্র্যাক করবে
 
 // ৫ সেকেন্ডের মুভিং গড় (১ সেকেন্ড গেট টাইম × ৫ স্যাম্পল = ৫ সেকেন্ড)
 const int numSamples = 5;
@@ -23,25 +30,26 @@ ISR(TIMER1_OVF_vect) {
   overflowCount++;
 }
 
-void resetMovingAverage() {
+void resetMeasurement() {
   for (int i = 0; i < numSamples; i++) {
     freqSamples[i] = 0;
   }
   sampleIndex = 0;
   sampleCount = 0;
   freqSum = 0;
+  detectCount = 0;
 }
 
 void setup() {
   lcd.init();
   lcd.backlight();
   lcd.setCursor(0, 0);
-  lcd.print("F0 Calibration");
+  lcd.print("Auto-Range LC");
   lcd.setCursor(0, 1);
-  lcd.print("C = 2.274 nF");
+  lcd.print("L0: 93.13 uH");
 
   pinMode(inputPin, INPUT);
-  resetMovingAverage();
+  resetMeasurement();
 
   delay(2000);
   lcd.clear();
@@ -60,22 +68,22 @@ void loop() {
   // Falling Edge-এ কাউন্ট করবে Pin D5 (T1) থেকে
   TCCR1B = (1 << CS12) | (1 << CS11);
 
-  // ঠিক ১ সেকেন্ড (১০০০ ms) ধরে পালস গোনা হবে (সরাসরি 1 Hz রেজোলিউশন)
+  // ঠিক ১ সেকেন্ড (১০০০ ms) ধরে পালস গোনা হবে (1 Hz রেজোলিউশন)
   delay(1000);
 
   // Timer1 ও ইন্টারাপ্ট বন্ধ করা হলো
   TCCR1B = 0;
   TIMSK1 = 0;
 
-  // ১ সেকেন্ডে মোট পালস = সরাসরি ফ্রিকোয়েন্সি (Hz)
+  // ১ সেকেন্ডে মোট পালস = ফ্রিকোয়েন্সি (Hz)
   unsigned long freq = (overflowCount * 65536UL) + TCNT1;
 
-  if (freq < 100) { // ফ্রিকোয়েন্সি না থাকলে বা সার্কিট ওপেন থাকলে
+  if (freq < 100) { // প্রোব খোলা থাকলে বা ইন্ডাক্টর না থাকলে
     if (signalPresent) {
       lcd.clear();
       signalPresent = false;
     }
-    resetMovingAverage();
+    resetMeasurement();
 
     lcd.setCursor(0, 0);
     lcd.print("Insert inductor ");
@@ -88,7 +96,25 @@ void loop() {
       signalPresent = true;
     }
 
-    // ৫ সেকেন্ডের মুভিং গড় হিসাব
+    detectCount++;
+
+    // প্রথম ২ সেকেন্ড অস্থির রিডিং বাদ দিয়ে স্ট্যাবিলাইজ করা হচ্ছে
+    if (detectCount <= 2) {
+      if (detectCount == 2) {
+        freqSamples[0] = freq;
+        freqSum = freq;
+        sampleIndex = 1;
+        sampleCount = 1;
+      }
+
+      lcd.setCursor(0, 0);
+      lcd.print("L detected      ");
+      lcd.setCursor(0, 1);
+      lcd.print("Calculating...  ");
+      return;
+    }
+
+    // ২ সেকেন্ড পর থেকে ৫ সেকেন্ডের মুভিং গড় হিসাব চলবে
     freqSum -= freqSamples[sampleIndex];
     freqSamples[sampleIndex] = freq;
     freqSum += freq;
@@ -100,27 +126,42 @@ void loop() {
 
     double avgFreq = (double)freqSum / (double)sampleCount;
 
-    // 2.274 nF ক্যাপাসিটর অনুযায়ী L0 হিসাব
-    double inductance = 1.0 / (4.0 * PI * PI * avgFreq * avgFreq * capacitance);
-    double inductance_mH = inductance * 1000.0;
+    // সিরিজ অনুপাত সূত্র: Lx = L0 * ((F0 / avgFreq)^2 - 1)
+    double freqRatio = F0 / avgFreq;
+    double inductance_H = L0 * ((freqRatio * freqRatio) - 1.0);
 
-    // লাইন ১: একদম নিখুঁত ফ্রিকোয়েন্সি (Hz এককে)
+    // সামান্য তাপমাত্রা ড্রিফটে নেগেটিভ মান আসলে 0.0 দেখাবে
+    if (inductance_H < 0.0) {
+      inductance_H = 0.0;
+    }
+
+    // লাইন ১: স্থির ফ্রিকোয়েন্সি
     lcd.setCursor(0, 0);
     lcd.print("F: ");
     lcd.print(avgFreq, 1);
-    lcd.print(" Hz    ");
+    lcd.print(" Hz     ");
 
-    // লাইন ২: ক্যালকুলেট হওয়া L0 মান
+    // লাইন ২: অটো-রেঞ্জিং ইন্ডাক্ট্যান্স (nH / uH / mH)
     lcd.setCursor(0, 1);
-    lcd.print("L0:");
+    lcd.print("L: ");
 
-    if (inductance_mH < 1.0) {
-      double inductance_uH = inductance_mH * 1000.0;
+    if (inductance_H < 1.0e-6) {
+      // 1 uH এর নিচে হলে Nanohenry (nH) দেখাবে
+      double inductance_nH = inductance_H * 1.0e9;
+      lcd.print(inductance_nH, 1);
+      lcd.print(" nH     ");
+    } 
+    else if (inductance_H < 1.0e-3) {
+      // 1 uH থেকে 999.99 uH পর্যন্ত Microhenry (uH) দেখাবে
+      double inductance_uH = inductance_H * 1.0e6;
       lcd.print(inductance_uH, 2);
-      lcd.print(" uH    ");
-    } else {
+      lcd.print(" uH     ");
+    } 
+    else {
+      // 1 mH বা তার বেশি হলে Millihenry (mH) দেখাবে
+      double inductance_mH = inductance_H * 1.0e3;
       lcd.print(inductance_mH, 3);
-      lcd.print(" mH    ");
+      lcd.print(" mH     ");
     }
   }
 }
