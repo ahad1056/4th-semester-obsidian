@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mechanical Daily Class Note.md",
+                "file": "Dashboard.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mechanical Daily Class Note"
+              "title": "Dashboard"
             }
           }
         ],
@@ -259,6 +259,7 @@
   },
   "active": "f8535ac042be27e7",
   "lastOpenFiles": [
+    "mechanical Daily Class Note.md",
     "Projects/inductance meter circuit - Version 2 save copy - dont edit .sim1",
     "Projects/inductor meter/inductance meter circuit - Version 2 .sim1",
     "Projects/inductor meter/inductance meter circuit - Version 2 save copy - dont edit .sim1",
@@ -296,7 +297,6 @@
     "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
     "401 Solid state Electronics '3'/Course Syllabus Solid State Electronics (0714-401).md",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
-    "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer.html",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Untitled.canvas",
     "JPEG_20261117_222946_6793385384391749417.webp",
