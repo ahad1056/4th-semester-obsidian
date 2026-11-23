@@ -214,5 +214,7 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 	$$N_s = \text{RPS} \times 60$$
 	
 	$$N_s = \frac{2f}{P} \times 60$$
-	
 	$$N_s = \frac{120f}{P}$$
+
+# 23 november class 6
+
