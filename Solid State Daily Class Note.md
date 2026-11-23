@@ -102,8 +102,9 @@ Tags: #solid-state #crystal-structure #polycrystalline #crystal-growth #class-no
 
 
 
-# n November class 4
-
+# 23 November class 4
+![[IMG_20261123_104016.webp|340x453]]
+![[IMG_20261123_104632.webp]]
 # n November class 5
 
 # n November class 6
