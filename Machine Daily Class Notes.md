@@ -99,9 +99,9 @@ $$N_s = \frac{120f}{P}$$
 ## Class Notes: Machine - Motor Principles & Torque
 
 ## ⚙️ Synchronous Speed & Magnetic Field
-- **Synchronous Speed Equation:** $N_s = \frac{120 f}{p}$ (in RPM).
+- **Synchronous Speed Equation:** [^1] $N_s = \frac{120 f}{p}$ (in RPM).
 - **Concept Question:** Where does this equation come from?
-- **Pole Definition:** In this context, "pole" refers to the number of poles of the rotating magnetic field.
+- **Pole Definition:** In this context, "pole" refers to the number of end point of the rotating magnetic field.
 
 ## 🔄 Torque Equations & Dependencies
 Torque ($T$) is directly proportional to several factors:
@@ -131,4 +131,90 @@ Torque ($T$) is directly proportional to several factors:
 **Tags:** #machine #torque #slip #synchronous-speed #skin-effect #class-notes
 
 # 22 November class 5
-![[JPEG_20261122_113658_7109734686903906235.webp|340x453]]
+![[JPEG_20261122_113658_7109734686903906235.webp|340x453]] 
+## Class Notes: Induction Motor - Starting & Running Torque
+
+## 🔄 Torque Fundamentals & Relationships
+Torque ($T$) in an induction motor depends on three main factors:
+- $T \propto \Phi$ (Air-gap magnetic flux per pole)
+- $T \propto I_2$ (Rotor current)
+- $T \propto \cos\phi_2$ (Rotor power factor)
+
+---
+
+## 🚀 Starting Torque ($s = 1$)
+At the moment of starting, the rotor is stationary, so the slip is $s = 1$.
+
+- **Condition for Maximum Starting Torque ($T_{st(\max)}$):** 
+  $$R_2 = X_2$$
+  *(Rotor resistance equals standstill rotor inductive reactance)*
+
+- **Methods to Achieve High Starting Torque:**
+  1. **Deep-Bar Rotor:** Using deeper cage bars to utilize the **skin effect** (increases effective rotor resistance at high starting frequency).
+  2. **Double-Cage Rotor:** Using two cages (an outer high-resistance cage for starting and an inner low-resistance cage for normal running).
+  3. **VFD (Variable Frequency Drive):** Controlling both voltage and frequency to maintain optimal torque during startup.
+
+---
+
+## 🏃 Running Torque & Breakdown Torque
+- **Condition for Maximum Running Torque ($T_{rt(\max)}$):** 
+  $$R_2 = s X_2$$
+  This peak torque during operation is also known as **Breakdown Torque** ($T_b$) or Pull-out Torque.
+
+---
+
+## 📈 Torque-Slip Characteristic Curve
+As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), the motor passes through four key torque points:
+1. **Starting Torque ($T_{st}$):** The torque developed at $s = 1$.
+2. **Pull-up Torque (Pulling Torque):** The lowest dip in torque as the rotor begins to accelerate.
+3. **Breakdown Torque ($T_b$):** The maximum torque the motor can develop before stalling (occurs where $R_2 = s X_2$).
+4. **Full-Load Torque ($T_f$):** The steady operating torque near $s \approx 0$.
+
+---
+
+## 📌 Exam & Viva Focus (Questions & Short Answers)
+
+- **Q1: At what angle $\phi_2$ does maximum torque occur?**
+  - **Answer:** Maximum torque occurs at **$\phi_2 = 45^\circ$**. While $\cos\phi_2$ alone is highest at $0^\circ$, the motor torque equation ($T \propto \frac{s E_2^2 R_2}{R_2^2 + (s X_2)^2}$) reaches its peak when $R_2 = s X_2$. At this condition, $\tan\phi_2 = \frac{s X_2}{R_2} = 1$, which gives $\phi_2 = 45^\circ$ (a rotor power factor of $0.707$).
+
+- **Q2: Why is torque proportional to $\cos\phi_2$ and not $\sin\phi_2$?**
+  - **Answer:** Only the active (in-phase) component of the rotor current ($I_2 \cos\phi_2$) aligns constructively with the rotating magnetic flux ($\Phi$) to produce net unidirectional torque. The reactive component ($I_2 \sin\phi_2$) is $90^\circ$ out of phase with the flux, resulting in zero net average torque.
+
+---
+**Tags:** #machine #induction-motor #starting-torque #running-torque #breakdown-torque #skin-effect #vfd #class-notes
+
+[^1]: Let:
+	
+	- $P$ = Total number of stator poles
+	    
+	- $f$ = Supply frequency in Hertz (cycles per second)
+	    
+	- $N_s$ = Synchronous speed in Revolutions Per Minute (RPM)
+	    
+	
+	**Step 1: Revolutions per cycle** When a three-phase AC supply is given to the stator winding, the rotating magnetic field travels across 1 pair of poles (1 North and 1 South pole) during 1 complete cycle of the AC supply.
+	
+	- Total number of pole pairs in the stator = $\frac{P}{2}$
+	    
+	- For 1 complete mechanical revolution, the magnetic field must pass through all $\frac{P}{2}$ pole pairs.
+	    
+	
+	Therefore, the fraction of a revolution completed in 1 cycle is:
+	
+	$$\text{Revolutions per cycle} = \frac{1}{P/2} = \frac{2}{P}$$
+	
+	**Step 2: Revolutions Per Second (RPS)** Since the supply completes $f$ cycles in 1 second, the number of revolutions completed per second is:
+	
+	$$\text{RPS} = (\text{Revolutions per cycle}) \times (\text{Cycles per second})$$
+	
+	$$\text{RPS} = \frac{2}{P} \times f = \frac{2f}{P}$$
+	
+	**Step 3: Revolutions Per Minute (RPM)** Since 1 minute equals 60 seconds, multiplying the RPS by 60 gives the synchronous speed ($N_s$) in RPM:
+	
+	$$N_s = \text{RPS} \times 60$$
+	
+	$$N_s = \frac{2f}{P} \times 60$$
+	$$N_s = \frac{120f}{P}$$
+
+# 23 november class 6
+

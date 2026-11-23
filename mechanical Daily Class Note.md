@@ -118,5 +118,42 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 
 ---
 **Tags:** #thermodynamics #specific-heat #mayers-relation #adiabatic-process #class-notes
-# 22 November class 4
-![[IMG_20261122_124819.webp]]
+
+
+# 22 November class 4 
+![[IMG_20261122_124819.webp|215]] 
+## Class Notes: Mechanical Engineering - 2nd Law of Thermodynamics (Nov 22)
+
+## 🔄 Fundamental Thermodynamic Concepts
+- **Reversible and Irreversible Processes:** Study of processes that can be reversed without leaving any trace on the surroundings versus natural processes that cannot.
+- **Cyclic Process:** A series of thermodynamic processes in which a system eventually returns to its initial state.
+- **Heat Reservoir and Heat Engine:** *(Corrected from "resurver")* Concepts of thermal energy reservoirs (high-temperature source and low-temperature sink) and devices that convert heat energy into mechanical work.
+
+---
+
+## 📜 Second Law of Thermodynamics
+The class covered four classical statements of the Second Law of Thermodynamics:
+- **Clausius Statement**
+- **Kelvin Statement** *(corrected from "Kelven")*
+- **Planck Statement**
+- **Edser Statement**
+
+---
+
+## ⚙️ Carnot Cycle & Carnot Reversible Engine
+- **Core Topics:** Carnot cycle, Carnot reversible engine, its working principle, and total work done.
+- **Four Stages of the Carnot Cycle:**
+  1. **Step 1:** Isothermal expansion
+  2. **Step 2:** Adiabatic expansion
+  3. **Step 3:** Isothermal compression
+  4. **Step 4:** Adiabatic compression
+
+---
+
+## 📌 Exam & Viva Focus
+- **Statements of the 2nd Law:** Memorize the formal definitions of the Clausius, Kelvin, Planck, and Edser statements.
+- **Carnot Engine Derivation:** Prepare the full working principle of the Carnot reversible engine, including its $P$-$V$ diagram and the step-by-step derivation of total work done ($W$) and efficiency ($\eta = 1 - \frac{T_2}{T_1}$) across the four stages.
+- **Conceptual Definitions:** Be ready to differentiate between reversible and irreversible processes, and define cyclic processes, heat reservoirs, and heat engines.
+
+---
+**Tags:** #mechanical-engineering #thermodynamics #second-law #carnot-cycle #heat-engine #class-notes
