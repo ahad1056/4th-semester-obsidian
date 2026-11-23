@@ -101,7 +101,7 @@ $$N_s = \frac{120f}{P}$$
 ## ⚙️ Synchronous Speed & Magnetic Field
 - **Synchronous Speed Equation:** [^1] $N_s = \frac{120 f}{p}$ (in RPM).
 - **Concept Question:** Where does this equation come from?
-- **Pole Definition:** In this context, "pole" refers to the number of poles of the rotating magnetic field.
+- **Pole Definition:** In this context, "pole" refers to the number of end point of the rotating magnetic field.
 
 ## 🔄 Torque Equations & Dependencies
 Torque ($T$) is directly proportional to several factors:
