@@ -218,3 +218,4 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 
 # 23 november class 6
 
+![[JPEG_20261123_231202_3261447743066415273.jpg]]
