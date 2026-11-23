@@ -99,7 +99,7 @@ $$N_s = \frac{120f}{P}$$
 ## Class Notes: Machine - Motor Principles & Torque
 
 ## ⚙️ Synchronous Speed & Magnetic Field
-- **Synchronous Speed Equation:** $N_s = \frac{120 f}{p}$ (in RPM).
+- **Synchronous Speed Equation:** [^1] $N_s = \frac{120 f}{p}$ (in RPM).
 - **Concept Question:** Where does this equation come from?
 - **Pole Definition:** In this context, "pole" refers to the number of poles of the rotating magnetic field.
 
@@ -182,3 +182,37 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 
 ---
 **Tags:** #machine #induction-motor #starting-torque #running-torque #breakdown-torque #skin-effect #vfd #class-notes
+
+[^1]: Let:
+	
+	- $P$ = Total number of stator poles
+	    
+	- $f$ = Supply frequency in Hertz (cycles per second)
+	    
+	- $N_s$ = Synchronous speed in Revolutions Per Minute (RPM)
+	    
+	
+	**Step 1: Revolutions per cycle** When a three-phase AC supply is given to the stator winding, the rotating magnetic field travels across 1 pair of poles (1 North and 1 South pole) during 1 complete cycle of the AC supply.
+	
+	- Total number of pole pairs in the stator = $\frac{P}{2}$
+	    
+	- For 1 complete mechanical revolution, the magnetic field must pass through all $\frac{P}{2}$ pole pairs.
+	    
+	
+	Therefore, the fraction of a revolution completed in 1 cycle is:
+	
+	$$\text{Revolutions per cycle} = \frac{1}{P/2} = \frac{2}{P}$$
+	
+	**Step 2: Revolutions Per Second (RPS)** Since the supply completes $f$ cycles in 1 second, the number of revolutions completed per second is:
+	
+	$$\text{RPS} = (\text{Revolutions per cycle}) \times (\text{Cycles per second})$$
+	
+	$$\text{RPS} = \frac{2}{P} \times f = \frac{2f}{P}$$
+	
+	**Step 3: Revolutions Per Minute (RPM)** Since 1 minute equals 60 seconds, multiplying the RPS by 60 gives the synchronous speed ($N_s$) in RPM:
+	
+	$$N_s = \text{RPS} \times 60$$
+	
+	$$N_s = \frac{2f}{P} \times 60$$
+	
+	$$N_s = \frac{120f}{P}$$
