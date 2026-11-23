@@ -1,5 +1,5 @@
 ## Course Chapters
-- [[Mechanical Engineering/Chapter 1 - Engineering Mechanics & Statics|Chapter 1: Engineering Mechanics & Statics]]
+- [[Chapter 1 - Thermodynmics and 1st law|Chapter 1: Engineering Mechanics & Statics]]
 - [[Mechanical Engineering/Chapter 2 - Strength of Materials & Mechanics of Solids|Chapter 2: Strength of Materials & Mechanics of Solids]]
 - [[Mechanical Engineering/Chapter 3 - Thermodynamics & Heat Transfer|Chapter 3: Thermodynamics & Heat Transfer]]
 - [[Mechanical Engineering/Chapter 4 - Fluid Mechanics & Machinery|Chapter 4: Fluid Mechanics & Machinery]]
