@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Communication Daily Class Note.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -197,10 +197,14 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
-    "Stat Daily Class Note.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
-    "Dashboard.md",
     "403 Communication system '3+1'/Communication system.md",
+    "Dashboard.md",
+    "481 Statistics and Probability '3'/statistics and probability.md",
+    "Stat Daily Class Note.md",
+    "JPEG_20261124_205359_5671629252352652905.webp",
+    "JPEG_20261124_205342_337986836068993449.webp",
+    "JPEG_20261124_205326_6290289306506491772.webp",
+    "JPEG_20261124_205253_5401005581551023649.webp",
     "Communication Daily Class Note.md",
     "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
@@ -215,15 +219,11 @@
     "JPEG_20261123_230725_8535476066596916059.webp",
     "JPEG_20261123_230704_2981202689339178074.webp",
     "JPEG_20261123_230646_2387467597871336865.webp",
-    "JPEG_20261123_230606_2307739748382005720.webp",
-    "JPEG_20261123_230539_9056416652506753446.webp",
-    "JPEG_20261123_230436_4816754204847746212.webp",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Solid State Daily Class Note.md",
     "mechanical Daily Class Note.md",
     "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
     "02_Daily_Notes/2026-11-23.md",
-    "IMG_20261123_104632.webp",
     "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Communication Systems/Chapter 2 -NOISE.md",
@@ -242,7 +242,6 @@
     "Electrical Machines/Chapter 1 - Induction Motor.md",
     "02_Daily_Notes/2026-11-20.md",
     "02_Daily_Notes/2026-11-19.md",
-    "02_Daily_Notes/2026-11-18.md",
-    "Mechanical Engineering/PREVIOUS YEAR original question.md"
+    "02_Daily_Notes/2026-11-18.md"
   ]
 }
