@@ -217,4 +217,4 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 	$$N_s = \frac{120f}{P}$$
 
 # 23 november class 6
-
+![[JPEG_20261124_220027_7548547501040896918.jpg]]
