@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+                "file": "Machine Daily Class Notes.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "ELECTRICAL MACHENE"
+              "title": "Machine Daily Class Notes"
             }
           },
           {
@@ -197,8 +197,8 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
-    "Dashboard.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "Dashboard.md",
     "Machine Daily Class Notes.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "mechanical Daily Class Note.md",
