@@ -239,8 +239,7 @@ Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min
 
 # 24 November class 5
 
-![[JPEG_20261124_205659_9164588245002462340.webp]]
-![[JPEG_20261124_205723_3656919469217429867.webp]]
+![[JPEG_20261124_205659_9164588245002462340.webp|177]]![[JPEG_20261124_205723_3656919469217429867.webp|177x236]]
 # n November class m
 # n November class m
 # n November class m
