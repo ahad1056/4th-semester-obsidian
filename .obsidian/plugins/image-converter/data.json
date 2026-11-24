@@ -260,7 +260,7 @@
   "ProcessCurrentNoteresizeModaldesiredWidth": 600,
   "ProcessCurrentNoteresizeModaldesiredHeight": 800,
   "ProcessCurrentNoteresizeModaldesiredLength": 1600,
-  "ProcessCurrentNoteskipImagesInTargetFormat": false,
+  "ProcessCurrentNoteskipImagesInTargetFormat": true,
   "ProcessCurrentNoteEnlargeOrReduce": "Always",
   "ProcessCurrentNoteSkipFormats": "tif,tiff,heic",
   "ProcessCurrentNoteIgnoreFolders": "",
