@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mechanical Engineering/Chapter 1 - Thermodynmics and 1st law.md",
-                "mode": "preview",
+                "file": "Mechanical Engineering/Important Formulas, Material Constants & Thermodynamic Tables.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 1 - Thermodynmics and 1st law"
+              "title": "Important Formulas, Material Constants & Thermodynamic Tables"
             }
           }
         ],
@@ -217,26 +217,31 @@
   },
   "active": "e3c28c93f55a65f8",
   "lastOpenFiles": [
-    "Chapter 1 - Thermodynmics and 1st law-1795448058474.webp",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "Mechanical Engineering/Chapter 1 - Thermodynmics and 1st law.md",
+    "mechanical Daily Class Note.md",
+    "Dashboard.md",
+    "Mechanical Engineering/Important Formulas, Material Constants & Thermodynamic Tables.md",
+    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
+    "Machine Daily Class Notes.md",
+    "JPEG_20261123_231202_3261447743066415273.webp",
+    "JPEG_20261123_230725_8535476066596916059.webp",
+    "JPEG_20261123_230704_2981202689339178074.webp",
+    "JPEG_20261123_230646_2387467597871336865.webp",
+    "JPEG_20261123_230606_2307739748382005720.webp",
+    "JPEG_20261123_230539_9056416652506753446.webp",
+    "JPEG_20261123_230436_4816754204847746212.webp",
+    "Chapter 1 - Thermodynmics and 1st law-1795448058474.webp",
     "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
     "IMG_20261123_104632.webp",
     "IMG_20261123_104016.webp",
-    "Dashboard.md",
-    "Machine Daily Class Notes.md",
-    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "02_Daily_Notes/2026-11-23.md",
     "Communication Systems/Important Maths.md",
     "Electrical Machines/Chapter 1 - Induction Motor.md",
     "02_Daily_Notes/2026-11-20.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
-    "mechanical Daily Class Note.md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Daily Class Note.md",
-    "IMG_20261122_124833.webp",
-    "IMG_20261122_124826.webp",
-    "IMG_20261122_124819.webp",
     "Projects/inductance meter circuit - Version 2 save copy - dont edit .sim1",
     "Projects/inductor meter/inductance meter circuit - Version 2 .sim1",
     "Projects/inductor meter/inductance meter circuit - Version 2 save copy - dont edit .sim1",
@@ -244,13 +249,10 @@
     "Projects/inductor meter/inductance meter circuit - Copy.sim1",
     "Communication Systems/Chapter 2 -NOISE.md",
     "Course Syllabus Communication Systems (0714-403).md",
-    "Important Maths-1795183218473.webp",
     "02_Daily_Notes/2026-11-19.md",
     "4th_Semester_Master_Roadmap.md",
     "02_Daily_Notes/2026-11-18.md",
     "ANIMATIONS AND HTML/full_induction_motor_cross_section_animation.html",
-    "IMG_20261119_112808.webp",
-    "IMG_20261119_112801.webp",
     "2026-11-18.md",
     "LAW daily class notes.md",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
@@ -261,8 +263,6 @@
     "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
     "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
     "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
-    "Untitled.canvas",
-    "JPEG_20261117_222946_6793385384391749417.webp",
-    "JPEG_20261117_222806_3759878893920344629.webp"
+    "Untitled.canvas"
   ]
 }

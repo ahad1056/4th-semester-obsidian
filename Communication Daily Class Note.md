@@ -2,7 +2,7 @@
 
 # 10 November class 2
 
-![[JPEG_20261111_063619_3092808849562626665.webp|200]]
+![[JPEG_20261111_063619_3092808849562626665.webp|200x267]]
 
 Class Notes: Communication
 
@@ -175,7 +175,7 @@ The transmission medium is divided into two main categories:
 
 # 22 November class 4
 
-![[IMG_20261122_124826.webp|305x229]]![[IMG_20261122_124833.webp|179]] 
+![[IMG_20261122_124826.webp|305x229]]![[IMG_20261122_124833.webp|179x239]] 
 ## Class Notes: Communication - Amplitude Modulation (Nov 22)
 
 ## 📡 Basic Signals in Amplitude Modulation (AM)
