@@ -1055,6 +1055,213 @@ $30, 36, 47, 50, 52, 52, 56, 60, 63, 70, 70, 110$
 ![[JPEG_20261123_230436_4816754204847746212.webp|190]]![[JPEG_20261123_230539_9056416652506753446.webp|142]]![[JPEG_20261123_230606_2307739748382005720.webp|145]]![[JPEG_20261123_230646_2387467597871336865.webp|144]]![[JPEG_20261123_230704_2981202689339178074.webp|170]]![[JPEG_20261123_230725_8535476066596916059.webp|174]] 
 
 
+## Class Notes: Statistics - Dispersion, Deviation Properties & Probability
+
+## 📐 Empirical Relations Between Measures of Dispersion
+For a symmetrical or moderately skewed distribution[^33], empirical relationships connect Quartile Deviation ($QD$)[^34], Mean Deviation ($MD$)[^35], and Standard Deviation ($SD$ or $\sigma$)[^36]:
+
+$$QD = \frac{2}{3} SD = \frac{2}{3} \sigma = \frac{2}{3} \cdot \frac{5}{4} MD$$
+
+$$MD = \frac{4}{5} SD = \frac{4}{5} \sigma$$
+
+$$SD = \frac{3}{2} QD = \frac{5}{4} MD$$
+
+*(Correction Note: One line in the handwritten note repeats `SD` on the right side of the second equals sign as `= 5/4 SD`; the standard empirical relation in terms of $MD$ is $SD = \frac{5}{4} MD$.)*
+
+### Solved Example: Finding $QD$, $MD$, and $SD$
+**Given:** $Q_1 = 15$ and $Q_3 = 40$ for a symmetrical distribution.
+
+1. **Interquartile Range ($IQR$) & Quartile Deviation ($QD$):**
+   $$IQR = Q_3 - Q_1 = 40 - 15 = 25$$
+   $$QD = \frac{IQR}{2} = \frac{25}{2} = 12.5$$
+
+2. **Standard Deviation ($SD$):**
+   $$SD = \frac{3}{2} \times QD = \frac{3}{2} \times 12.5 = \frac{75}{4} = 18.75$$
+
+3. **Mean Deviation ($MD$):** *(completed)*
+   Since $MD = \frac{4}{5} SD$:
+   $$MD = \frac{4}{5} \times \frac{75}{4} = 15$$
+
+---
+
+## ➕ Summation & Deviation Identities
+For $n$ observations $x_1, x_2, \dots, x_n$ with arithmetic mean $\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$:
+
+1. **Sum of Deviations from Arithmetic Mean:**
+   $$\sum_{i=1}^n (x_i - \bar{x}) = \sum_{i=1}^n x_i - \bar{x}\sum_{i=1}^n 1 = \sum_{i=1}^n x_i - \left(\frac{\sum_{i=1}^n x_i}{n}\right)n = 0$$
+
+2. **Sum of Squared Deviations & Raw Sum of Squares ($RSS - CT$):**
+   Expanding $\sum_{i=1}^n (x_i - \bar{x})^2$ gives:
+   $$\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n (x_i^2 - 2x_i\bar{x} + \bar{x}^2) = \sum_{i=1}^n x_i^2 - 2\bar{x}\sum_{i=1}^n x_i + n\bar{x}^2$$
+   Since $\sum_{i=1}^n x_i = n\bar{x}$, this simplifies to the **Raw Sum of Squares minus Correction Term ($CT$)**[^37]:
+   $$\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n}$$
+   *(Correction Note: The handwritten expansion has stray/miswritten terms in the intermediate lines marked `"Compleat the math, maybe worng written"`; the algebraic steps above show the exact derivation.)*
+
+   - **Variance ($V(x)$ or $\sigma^2$):**
+     $$V(x) = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2 = \frac{1}{n}\left[\sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n}\right]$$
+
+3. **Mean Deviation Least About Median:**
+   Mean deviation is least when measured from the median ($Me$) rather than another reference point such as the arithmetic mean ($\bar{x}$). Writing $|x_i - \bar{x}| = |(x_i - Me) + (Me - \bar{x})|$ shows the shift between $MD(\bar{x})$ and $MD(Me)$ (noting that $|a + b| \le |a| + |b|$ in general, so $\frac{1}{n}\sum_{i=1}^n |x_i - \bar{x}| \ge \frac{1}{n}\sum_{i=1}^n |x_i - Me|$).
+
+---
+
+## 🔢 First $n$ Natural Numbers: Mean, Variance, SD & CV
+For the first $n$ natural numbers $1, 2, 3, \dots, n$:
+
+- **Sum of First $n$ Natural Numbers:**
+  $$\sum_{i=1}^n x_i = 1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$$
+
+- **Sum of Squares of First $n$ Natural Numbers:**
+  $$\sum_{i=1}^n x_i^2 = 1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$$
+
+- **Arithmetic Mean ($\bar{x}$):**
+  $$\bar{x} = \frac{\sum_{i=1}^n x_i}{n} = \frac{n(n+1)}{2} \cdot \frac{1}{n} = \frac{n+1}{2}$$
+
+- **Variance ($V(x)$):**
+  $$V(x) = \frac{1}{n}\left[\frac{n(n+1)(2n+1)}{6} - \frac{\left(\frac{n(n+1)}{2}\right)^2}{n}\right] = \frac{(n+1)(n-1)}{12} = \frac{n^2 - 1}{12}$$
+
+- **Standard Deviation ($SD$) & Coefficient of Variation ($CV$)[^38]:** *(completed)*
+  $$SD = \sqrt{V(x)} = \sqrt{\frac{n^2 - 1}{12}}$$
+  $$CV = \frac{SD}{\bar{x}} \times 100\% = \frac{\sqrt{\frac{n^2 - 1}{12}}}{\frac{n+1}{2}} \times 100\% = \sqrt{\frac{n-1}{3(n+1)}} \times 100\%$$
+
+---
+
+## 📊 Key Properties of Absolute Dispersion & Symmetrical Distribution
+- **Larger vs. Smaller Spread:** Greater spread/variation in data produces larger dispersion values ($QD$, variance, $SD$), whereas high concentration or homogeneity yields smaller values ($QD$, range, variance, $SD$).
+- **Identical Observations:** If all observations in a dataset are equal, there is zero variation, so every absolute measure of dispersion is **zero**.
+- **Non-Negativity:** Absolute measures of dispersion are always **non-negative** ($\ge 0$; written as `"alwes posetive"` in the notes).
+- **Symmetrical / Bell-Shaped Distribution:** For a bell-shaped symmetrical distribution, **$\text{Mean} = \text{Median} = \text{Mode}$**.
+
+---
+
+## 🎲 Introduction to Probability
+Three types of probability[^39] are listed in the notes:
+1. **Subjective probability** *(spelled `"Subjective prob..."`)*
+2. **Empirical probability** *(spelled `"Empanical prob..."`)*
+3. **Axiomatic probability** *(spelled `"Axiomatic"`)*
+
+---
+
+## 📌 Exam & Viva Focus
+- **Must-Know Derivations:** Prove $\sum (x_i - \bar{x}) = 0$, derive the variance shortcut formula ($\text{RSS} - \text{CT}$), and derive the mean and variance of the first $n$ natural numbers ($\frac{n+1}{2}$ and $\frac{n^2-1}{12}$).
+- **Conceptual Viva Points:** Why is $\sum (x_i - \bar{x}) = 0$? Why are absolute dispersion measures zero when all values are identical? What holds for $\text{Mean}$, $\text{Median}$, and $\text{Mode}$ in a symmetric bell-shaped curve?
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^33]: **Symmetrical / Moderately Skewed Distribution:** A probability or frequency distribution that is balanced around its central peak (symmetrical, where mean, median, and mode coincide) or has mild asymmetry (moderately skewed) where standard empirical ratios among $QD$, $MD$, and $SD$ apply approximately.
+[^34]: **Quartile Deviation ($QD$):** Semi-interquartile range, defined as half the difference between the third quartile ($Q_3$, 75th percentile) and first quartile ($Q_1$, 25th percentile): $QD = \frac{Q_3 - Q_1}{2}$.
+[^35]: **Mean Deviation ($MD$):** The arithmetic mean of the absolute deviations of observations from a central value (such as the mean or median), measuring average distance from the center.
+[^36]: **Standard Deviation ($SD$ or $\sigma$):** The positive square root of variance, measuring data spread in the same units as the original observations.
+[^37]: **Correction Term ($CT$):** The adjustment term $\frac{(\sum x_i)^2}{n} = n\bar{x}^2$ subtracted from the raw sum of squares $\sum x_i^2$ to obtain the centered sum of squares $\sum (x_i - \bar{x})^2$.
+[^38]: **Coefficient of Variation ($CV$):** A relative measure of dispersion expressing standard deviation as a percentage of the mean ($CV = \frac{SD}{\bar{x}} \times 100\%$), useful for comparing variability across datasets with different units or scales.
+[^39]: **Probability (Subjective, Empirical, Axiomatic):** Quantitative measure of likelihood: *subjective* reflects personal judgment/belief; *empirical* comes from relative frequency in repeated experiments; *axiomatic* is defined rigorously via Kolmogorov's probability axioms.
+
+---
+**Tags:** #statistics #dispersion #variance #standard-deviation #quartile-deviation #probability #class-notes
+
+
+
 
 # 24 November class 7
 ![[JPEG_20261124_205253_5401005581551023649.webp|146]]![[JPEG_20261124_205326_6290289306506491772.webp|142]]![[JPEG_20261124_205342_337986836068993449.webp|144]]![[JPEG_20261124_205359_5671629252352652905.webp|132]]
+## Class Notes: Statistics - Curve Shape, Dispersion Formulas & Probability Fundamentals (Nov 24, 2026)
+
+**Book Reference:** *Fundamentals of Probability* by Monoranjan / Monendra Kumar Roy (written as `"Fundamental of probability - monendro kumer roy"`)
+
+---
+
+## 📈 Curve Shape Characteristics & Empirical Intervals
+For a normal / bell-shaped distribution, symmetric intervals around the mean ($\bar{x}$) capture approximate proportions of observations:
+- $\bar{x} \pm QD$ includes **$50\%$** of observations (corresponding to quartiles $Q_1$ and $Q_3$).
+- $\bar{x} \pm MD$ includes approximately **$57.51\%$** of observations.
+- $\bar{x} \pm SD$ includes approximately **$68.27\%$** of observations.
+
+**Empirical Rule (68–95–99.7 / "Almost All"):**
+- $\bar{x} \pm \sigma$ contains approximately **$68\%$** of observations.
+- $\bar{x} \pm 2\sigma$ contains approximately **$95\%$** of observations.
+- $\bar{x} \pm 3\sigma$ contains **almost all** ($\approx 99.7\%$) of observations.
+
+### Symmetry vs. Skewness ($\beta_1$)
+- **Symmetrical Distribution:** $\text{Mean} = \text{Median} = \text{Mode}$ (and $Q_1, Q_3$ are equidistant from $Me, Q_2$).
+- **Negatively Skewed ($-$ skewed, $\beta_1 < 0$):** Tail extends to the left; $\text{Mode} > \text{Median} > \text{Mean}$. *(Correction note: Handwritten arrow in the diagram shows $\beta_1 < 0$ for negative skewness.)*
+- **Positively Skewed ($+$ skewed, $\beta_1 > 0$):** Tail extends to the right; $\text{Mean} > \text{Median} > \text{Mode}$.
+
+---
+
+## 🧮 Dispersion & Variance Summary Formulas
+- **Coefficient of Variation ($CV$):**
+  $$CV = \frac{\sigma}{\bar{x}} \times 100\%$$
+  *(Note: In the handwritten note, `x 100` is written without the `%` symbol; multiplying by $100$ expresses $CV$ as a percentage.)*
+- **Population / Unbiased-by-$n$ Variance ($\sigma^2$):**
+  $$\sigma^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2 = \frac{1}{n}\left[\sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n}\right]$$
+- **Summary Calculation Checklist:** To compute variance using the shortcut formula, find $\sum x_i^2$, $\sum x_i$, and $n$.
+
+---
+
+## 🎲 Probability: Core Concepts & Approaches
+
+### Probability vs. Possibility
+- **Probability:** Quantitative measure of how likely an event is to occur; it *may or may not happen* (`may be happne or not`).
+- **Possibility:** Conceptual feasibility of an outcome occurring (*must happen* / logically possible outcome in the sample space, written as `"must happne"` in the note).
+
+### Approaches to Defining Probability
+1. **Classical Probability** (also called *a priori* / statistical or frequency probability under equally likely outcomes)[^40]
+2. **Empirical Probability** (experimental / relative-frequency approach)[^41]
+3. **Subjective Probability** (degree of personal belief / judgment)[^42]
+4. **Axiomatic Probability** (formal set-theoretic foundation using Kolmogorov's axioms)[^43]
+
+### Experiments, Trials & Sample Space
+- **Types of Experiment:**
+  - *Absolute experiment*
+  - *Comparative experiment*
+  - *Random experiment*[^44]
+- **Trial vs. Experiment:** A *trial* is a single performance/execution of an experiment, whereas an *experiment* is a process generating well-defined outcomes.
+- **Sample Space ($\Omega$ or $S$):** The set of all possible sample points ($\{\omega_1, \omega_2, \omega_3, \omega_4, \dots\}$)[^45]:
+  - **1 Coin Throw:** $\Omega = \{H, T\}$ ($2$ outcomes)
+  - **2 Coin Throws:** $\Omega = \{HH, HT, TH, TT\}$ ($4$ outcomes)
+  - **Die Throw** *(written as `"Dies throw"`)*: $\Omega = \{1, 2, 3, 4, 5, 6\}$ ($6$ outcomes)
+  - **Drawing a Marble** from a bag
+  - **Drawing a Card** from a standard deck ($52$ cards)
+
+---
+
+## 📌 Events & Properties of Probability
+- **Simple vs. Compound Event:** A *simple (elementary) event* consists of a single sample point, while a *compound (composite) event* consists of two or more sample points.
+- **Types of Events:**
+  - **Mutually Exclusive Events:** Two events $A$ and $B$ are mutually exclusive if they cannot occur simultaneously ($A \cap B = \emptyset$, so $P(A \cap B) = 0$)[^46].
+  - **Equally Likely Events:** Two or more events are equally likely if they have the same probability of occurring[^47].
+  - **Independent Events:** Events where the occurrence of one does not affect the probability of the other ($P(A \cap B) = P(A)P(B)$)[^48].
+  - **Exhaustive Events:** A set of events whose union covers the entire sample space ($\bigcup A_i = \Omega$)[^49].
+
+### Fundamental Properties of Probability
+For any event $A$:
+1. **Non-negativity:** Probability cannot be negative ($P(A) \ge 0$).
+2. **Boundedness:** Probability lies between $0$ and $1$:
+   $$0 \le P(A) \le 1$$
+3. **Total Probability:** The probability of the sure/certain event (entire sample space) equals unity ($1$):
+   $$P(\Omega) = 1$$
+
+---
+
+## 📌 Exam & Viva Focus
+- **Study Checklist (`সংজ্ঞা, example, সুবিধা, অসুবিধা`):** For every probability definition and approach (classical, empirical, subjective, axiomatic) and event type, prepare: **(1) formal definition, (2) concrete example, (3) advantages/merits, and (4) limitations/demerits**.
+- **Skewness Ordering:** Be careful not to mix up left/negative skew ($\text{Mean} < \text{Median} < \text{Mode}$, $\beta_1 < 0$) and right/positive skew ($\text{Mean} > \text{Median} > \text{Mode}$, $\beta_1 > 0$).
+- **Core Probability Bounds:** Always state $0 \le P(A) \le 1$ and $P(\text{Sample Space}) = 1$.
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^40]: **Classical Probability:** Defines the probability of an event $A$ as the ratio of the number of favorable outcomes ($n_A$) to the total number of equally likely, mutually exclusive outcomes ($N$) in the sample space: $P(A) = \frac{n_A}{N}$.
+[^41]: **Empirical (Experimental) Probability:** Estimates the probability of an event as the limiting relative frequency $\frac{n_A}{n}$ when a random experiment is repeated a large number of times ($n$) under identical conditions.
+[^42]: **Subjective Probability:** A probability assignment based on an individual's personal judgment, experience, or expert opinion rather than repeatable frequencies or symmetry.
+[^43]: **Axiomatic Probability:** A rigorous mathematical framework introduced by Andrey Kolmogorov where probability is a set function $P$ defined on events satisfying non-negativity, unit total measure ($P(\Omega)=1$), and countable additivity for mutually exclusive events.
+[^44]: **Random Experiment:** A repeatable process or observation whose outcome cannot be predicted with certainty in advance, although the set of all possible outcomes (sample space) is known.
+[^45]: **Sample Space ($\Omega$):** The set of all possible elementary outcomes of a random experiment.
+[^46]: **Mutually Exclusive Events:** Events that share no common outcomes ($A \cap B = \emptyset$), meaning if one happens, the other cannot happen in the same trial.
+[^47]: **Equally Likely Events:** Outcomes or events that have the exact same chance of occurring given the available evidence or symmetry.
+[^48]: **Independent Events:** Events where knowing one occurred does not change the probability of the other ($P(A \mid B) = P(A)$).
+[^49]: **Exhaustive Events:** A collection of events whose union accounts for every possible outcome in the sample space.
+
+---
+**Tags:** #statistics #probability #skewness #empirical-rule #variance #sample-space #events #class-notes
