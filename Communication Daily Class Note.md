@@ -142,13 +142,25 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	- **Sender:** The device, system, or entity that encodes a message into transmittable signals and initiates its delivery across a communication medium.
 	    
 	- **Source:** The original point, entity, or mechanism that generates the initial thought, event, or raw data prior to encoding and transmission.
+[^14]: একই পরিমাণ তথ্য পরিবহনের ক্ষেত্রে **Continuous Signal (অবিচ্ছিন্ন সংকেত)**-এর তুলনায় **Discrete Signal (বিচ্ছিন্ন বা ডিজিটাল সংকেত)** প্রেরণের জন্য **বেশি Bandwidth (ব্যান্ডউইথ)** প্রয়োজন হয়।
+	
+	এর প্রধান তাত্ত্বিক ও কারিগরি কারণগুলো নিচে আলোচনা করা হলো:
+	
+	- **দ্রুত পরিবর্তনশীলতা ও উচ্চ হারমোনিক্স (Rapid Transitions and Harmonics):** Continuous সংকেত সময়ের সাথে মসৃণভাবে (smoothly) পরিবর্তিত হয়, ফলে এর ফ্রিকোয়েন্সি স্পেকট্রাম একটি নির্দিষ্ট সীমার মধ্যে আবদ্ধ থাকে। বিপরীতে, Discrete বা ডিজিটাল সংকেতগুলো তীক্ষ্ণ প্রান্তযুক্ত পালস (sharp-edged pulses বা rectangular wave) আকারে থাকে, যেখানে সংকেতের মান হঠাৎ করে এক স্তর থেকে অন্য স্তরে পরিবর্তিত হয়। ফুরিয়ার বিশ্লেষণ (Fourier Analysis) অনুযায়ী, একটি তীক্ষ্ণ পালস মূল কম্পাঙ্কের পাশাপাশি অসংখ্য উচ্চ-কম্পাঙ্কের হারমোনিক্স ($f, 3f, 5f, 7f, \dots$)-এর সমন্বয়ে গঠিত। সংকেতের আকৃতি বিকৃতি ছাড়া রিসিভারে পৌঁছাতে হলে চ্যানেলটিকে এই উচ্চ-কম্পাঙ্কের উপাদানগুলোকেও পরিবহন করতে হয়, যার ফলে অধিক ব্যান্ডউইথের প্রয়োজন পড়ে।
+	    
+	- **সময় ও কম্পাঙ্কের বিপরীত সম্পর্ক (Time-Frequency Duality):** সিগন্যাল প্রসেসিংয়ের মৌলিক নীতি অনুযায়ী, টাইম ডোমেইনে (Time Domain) কোনো সংকেত যত সংক্ষিপ্ত বা দ্রুত পরিবর্তনশীল হয়, ফ্রিকোয়েন্সি ডোমেইনে (Frequency Domain) তার বিস্তৃতি তত বেশি হয়। Discrete সংকেতে প্রতিটি পালসের স্থায়িত্বকাল ($\Delta t$) অত্যন্ত ক্ষুদ্র হওয়ায় এর ফ্রিকোয়েন্সি ব্যান্ড ($\Delta f$) অনেক প্রশস্ত হয়ে যায়।
+	    
+	- **স্যাম্পলিং ও এনকোডিং জনিত বৃদ্ধি (Sampling and Encoding Overhead):** একটি $B$ ব্যান্ডউইথের Continuous সংকেতকে Discrete ডিজিটাল সংকেতে রূপান্তর করতে হলে নাইকুইস্ট উপপাদ্য (Nyquist Theorem) অনুসারে কমপক্ষে $f_s = 2B$ হারে স্যাম্পলিং করতে হয়। পরবর্তীতে প্রতিটি স্যাম্পলকে $n$-বিট বাইনারি কোডে রূপান্তর করলে ডেটা রেট দাঁড়ায় $R_b = 2nB$। এই বিট প্রবাহকে সঠিকভাবে পরিবহনের জন্য ন্যূনতম $nB$ পরিমাণ ব্যান্ডউইথ প্রয়োজন হয়, যা মূল Continuous সংকেতের ব্যান্ডউইথের তুলনায় $n$-গুণ বেশি।
+	    
+	
+	সংক্ষেপে, সংকেতের তীক্ষ্ণ আকৃতি অক্ষুণ্ণ রাখা এবং অধিক সংখ্যক উচ্চ-কম্পাঙ্কের হারমোনিক্স পরিবহনের প্রয়োজনীয়তাই Discrete Signal-এ বেশি ব্যান্ডউইথ লাগার মূল কারণ।
 
 # 15 th NOVEMBER CLASS 3 
 ![[JPEG_20261115_123559_2333545626851866127.webp|340x453]]
 
 ## Class Notes: Signals & Transmission Medium
 
-## 📌 Exam Focus & Important Questions
+## 📌 Exam Focus & Important Questions[^14]
 - **Bandwidth Question:** Between Continuous and Discrete signals, which one requires more bandwidth, and why? (Continuous নাকি Discrete Signal এর ক্ষেত্রে কোনটাতে বেশি Bandwidth লাগে? কেন?)
 
 ## 📡 Transmission Medium
