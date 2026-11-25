@@ -6,7 +6,7 @@
 
 Class Notes: Communication
 
-📌 Core Definitions
+📌 Core Definitions[^13]
 
 - Message: Raw data which is sent by the sender for the receiver.
 - Information: Organized data, or meaningful data.
@@ -135,6 +135,13 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	$$\text{NF (in dB)} = 10 \log_{10} (F)$$
 	
 	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
+[^13]: - **Message:** The discrete unit of raw data, symbols, or signals formatted and transmitted from a sender to a receiver over a communication channel.
+	    
+	- **Information:** Data that has been processed, organized, and structured within a specific context to provide meaning and value to the recipient.
+	    
+	- **Sender:** The device, system, or entity that encodes a message into transmittable signals and initiates its delivery across a communication medium.
+	    
+	- **Source:** The original point, entity, or mechanism that generates the initial thought, event, or raw data prior to encoding and transmission.
 
 # 15 th NOVEMBER CLASS 3 
 ![[JPEG_20261115_123559_2333545626851866127.webp|340x453]]
