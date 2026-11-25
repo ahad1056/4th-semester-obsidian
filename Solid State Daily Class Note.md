@@ -156,7 +156,76 @@ The class introduced core solid-state crystallography concepts, including crysta
 
 ---
 **Tags:** #solid-state-electronics #crystal-structure #unit-cell #bravais-lattice #miller-indices #vesta #class-notes
-# n November class 5
+# 25 November class 5
+
+![[Solid State Daily Class Note-1795627644531.webp|177]] ![[Solid State Daily Class Note-1795627678197.webp|176]]
+
+# Class Notes: Solid State Electronics - Miller Indices & Crystallographic Concepts (Nov 25, 2026)
+
+## 📐 Miller Indices Overview
+Miller indices[^13] are used to specify crystal directions (lattice point vectors from an origin) and crystal planes in a crystal system.
+
+- **Bracket Conventions:**
+  - $[hkl]$ or $[uvw]$: A specific **crystal direction** (written in square brackets; for lattice points/directions from an origin).
+  - $\langle hkl \rangle$ or $\langle uvw \rangle$: A **family of equivalent directions** (written in angle brackets).
+  - $(hkl)$: A specific **crystal plane** (written in parentheses / `plane এর জন্য ( )`).
+  - $\{hkl\}$: A **family of equivalent planes** (written in curly braces).
+- **Cubic Geometry Reference:** A cube has **6 faces**, **8 corners**, and **12 edges** (and in a cubic system, lattice parameters satisfy $a = b = c$ and interfacial angles satisfy $\alpha = \beta = \gamma = 90^\circ$).
+- **Reduction & Sign Rules:**
+  - Miller indices are always reduced to the **smallest integer values** (`Miller indices always minimum ride আসবে` / `এই point কে যাতে ছোট করা যায় কাটাকাটি করে, তা করব` — e.g., scaling down `[4 2]` by a common factor of $2$ gives `[2 1]`).
+  - For a **negative direction** along an axis, place a **bar** over the index rather than a minus sign (e.g., $\bar{2}$ instead of $-2$: `-ve দিকে move করতে দেখলে ¯ দিয়ে দেখানো হয়`).
+  - **Correction Note:** In one of the handwritten 2D examples, a vector written as $\vec{r} = n_1 \vec{a} - n_2 \vec{b} = 3$ is simplified to show the index pair $[3\;\bar{2}]$. Note that a position vector is a linear combination of basis vectors $\vec{a}$ and $\vec{b}$ (not a single scalar equal to $3$); the components along $\vec{a}$ and $\vec{b}$ (reduced to smallest integers) form the direction indices $[h\;\bar{k}]$.
+
+---
+
+## 📏 1D Lattice Direction Example
+Consider a 1D array of lattice points separated by the lattice parameter (unit distance) $\vec{a}$:
+- If point $P$ is taken as the **origin** and the displacement vector to point $Q$ is $\vec{r} = n\vec{a} = 2\vec{a}$, then the Miller direction index is:
+  $$[h] = [2]$$
+- If the origin is reversed to $Q$ and the vector points back to $P$, then $\vec{r} = -2\vec{a}$, giving:
+  $$[h] = [\bar{2}]$$
+
+---
+
+## 🧊 3D Crystal Planes & Hexagonal Indices
+To determine the Miller indices $(hkl)$ of a **crystal plane** in 3D:
+1. **Find Intercepts:** Determine where the plane intersects the $x$, $y$, and $z$ axes in units of the lattice parameters ($a, b, c$). If a plane is parallel to an axis, its intercept is $\infty$ (`for parallel, intersect ∞`).
+2. **Take Reciprocals:** Invert each intercept value (`তারপর reciprocal করব` / `find reciprocal`).
+3. **Clear Fractions to Smallest Integers:** Multiply through to clear any fractions so that $h, k, l$ are the smallest integers (`ভগ্নাংশ আসলে গুন করে integer করব`).
+   - *Example from notes:* For intercepts $(1, \infty, \infty)$, taking reciprocals gives $\left(\frac{1}{1}, \frac{1}{\infty}, \frac{1}{\infty}\right) = (1, 0, 0)$ (since $\frac{1}{\infty} = 0$).
+
+- **Hexagonal Crystal System (4-Index Notation):**
+  For hexagonal crystals, four indices are used: $(hkil)$ for planes and $[uvtw]$ (written as `[h k i l]` in the notes) for directions, where $i = -(h + k)$ or $t = -(u + v)$.
+
+---
+
+## 📚 Upcoming Topics Listed in Class
+The notes also list upcoming syllabus topics to study:
+- Packing fraction[^14] (`Packing fraction. (দেখবো)`)
+- Bragg's law[^15]
+- Binding energy[^16]
+- X-ray Diffraction (XRD)[^17]
+
+---
+
+## 📌 Exam & Viva Focus
+- **High-Priority Exam Topics:** Miller indices (both crystal directions $[uvw]$ / $[hkl]$ and crystal planes $(hkl)$), how to handle negative indices (bar notation), and how to reduce indices to smallest integers.
+- **Upcoming Topics to Prepare:** Packing fraction (APF for SC, BCC, FCC), Bragg's law ($2d\sin\theta = n\lambda$), binding energy, and XRD fundamentals.
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^13]: **Miller Indices:** A standard notation system in crystallography consisting of integers used to uniquely identify specific crystal planes $(hkl)$ and crystal directions $[uvw]$ within a crystal lattice.
+[^14]: **Packing Fraction (Atomic Packing Factor, APF):** The fraction of total unit cell volume occupied by constituent atoms (modeled as hard spheres), assuming adjacent atoms touch along a close-packed direction.
+[^15]: **Bragg's Law:** The diffraction condition given by $2d\sin\theta = n\lambda$, relating interplanar spacing ($d$), glancing/Bragg angle ($\theta$), diffraction order ($n$), and X-ray wavelength ($\lambda$) for constructive interference.
+[^16]: **Binding Energy (Cohesive Energy):** The net energy released when isolated constituent atoms/ions assemble into a stable crystal lattice from infinite separation (or equivalently, the energy required to disassemble the crystal into isolated constituents).
+[^17]: **XRD (X-Ray Diffraction):** A non-destructive characterization technique that uses scattered X-rays to determine crystal structure, lattice parameters, phase composition, and interplanar spacing.
+
+---
+**Tags:** #solid-state-electronics #miller-indices #crystal-planes #crystal-directions #braggs-law #packing-fraction #binding-energy #xrd #class-notes
+
+
+
 
 # n November class 6
 
