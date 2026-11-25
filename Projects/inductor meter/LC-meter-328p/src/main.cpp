@@ -48,17 +48,6 @@ void resetMeasurement() {
   detectCount = 0;
 }
 
-// বাফার রিসেট করে নতুন ফ্রিকোয়েন্সি দিয়ে তৎক্ষণাৎ গড় শুরু করার ফাংশন
-void resetBufferWith(unsigned long newFreq) {
-  for (int i = 0; i < numSamples; i++) {
-    freqSamples[i] = 0;
-  }
-  freqSamples[0] = newFreq;
-  freqSum = newFreq;
-  sampleIndex = 1;
-  sampleCount = 1;
-}
-
 // EEPROM থেকে সংরক্ষিত F0 লোড করার ফাংশন
 void loadF0FromEEPROM() {
   uint32_t magic = 0;
@@ -66,6 +55,7 @@ void loadF0FromEEPROM() {
   if (magic == MAGIC_NUMBER) {
     double savedF0 = 0.0;
     EEPROM.get(EEPROM_F0_ADDR, savedF0);
+    // মানটি যৌক্তিক সীমার মধ্যে থাকলে লোড করবে
     if (savedF0 > 10000.0 && savedF0 < 2000000.0) {
       F0 = savedF0;
     }
@@ -148,7 +138,10 @@ void loop() {
     // প্রথম ২ সেকেন্ড অস্থির রিডিং বাদ দিয়ে স্ট্যাবিলাইজ করা হচ্ছে
     if (detectCount <= 2) {
       if (detectCount == 2) {
-        resetBufferWith(freq);
+        freqSamples[0] = freq;
+        freqSum = freq;
+        sampleIndex = 1;
+        sampleCount = 1;
       }
 
       lcd.setCursor(0, 0);
@@ -158,27 +151,14 @@ void loop() {
       return;
     }
 
-    // আগের গড় ফ্রিকোয়েন্সির সাথে বর্তমান ফ্রিকোয়েন্সির পার্থক্য চেক (Fast Response)
-    double prevAvgFreq = (double)freqSum / (double)sampleCount;
-    double freqDiff = (double)freq - prevAvgFreq;
-    if (freqDiff < 0) {
-      freqDiff = -freqDiff; // পার্থক্যের পরম মান (Absolute difference)
-    }
+    // ৫ সেকেন্ডের মুভিং গড় হিসাব
+    freqSum -= freqSamples[sampleIndex];
+    freqSamples[sampleIndex] = freq;
+    freqSum += freq;
 
-    if (freqDiff >= 50.0) {
-      // ৫০ হার্জ বা তার বেশি পরিবর্তন হলে পুরোনো গড় মুছে তৎক্ষণাৎ নতুন মান নেবে
-      resetBufferWith(freq);
-    } 
-    else {
-      // ৫০ হার্জের কম পরিবর্তন হলে স্বাভাবিক ৫ সেকেন্ডের মুভিং গড় চলবে
-      freqSum -= freqSamples[sampleIndex];
-      freqSamples[sampleIndex] = freq;
-      freqSum += freq;
-
-      sampleIndex = (sampleIndex + 1) % numSamples;
-      if (sampleCount < numSamples) {
-        sampleCount++;
-      }
+    sampleIndex = (sampleIndex + 1) % numSamples;
+    if (sampleCount < numSamples) {
+      sampleCount++;
     }
 
     double avgFreq = (double)freqSum / (double)sampleCount;
