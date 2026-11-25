@@ -6,7 +6,7 @@
 
 Class Notes: Communication
 
-📌 Core Definitions
+📌 Core Definitions[^13]
 
 - Message: Raw data which is sent by the sender for the receiver.
 - Information: Organized data, or meaningful data.
@@ -135,13 +135,32 @@ Tags: #communication #bandwidth #noise #signals #class-notes
 	$$\text{NF (in dB)} = 10 \log_{10} (F)$$
 	
 	**Why it matters:** In system design, a lower Noise Figure means the device is of higher quality because it introduces very little additional noise to the signal passing through it.
+[^13]: - **Message:** The discrete unit of raw data, symbols, or signals formatted and transmitted from a sender to a receiver over a communication channel.
+	    
+	- **Information:** Data that has been processed, organized, and structured within a specific context to provide meaning and value to the recipient.
+	    
+	- **Sender:** The device, system, or entity that encodes a message into transmittable signals and initiates its delivery across a communication medium.
+	    
+	- **Source:** The original point, entity, or mechanism that generates the initial thought, event, or raw data prior to encoding and transmission.
+[^14]: একই পরিমাণ তথ্য পরিবহনের ক্ষেত্রে **Continuous Signal (অবিচ্ছিন্ন সংকেত)**-এর তুলনায় **Discrete Signal (বিচ্ছিন্ন বা ডিজিটাল সংকেত)** প্রেরণের জন্য **বেশি Bandwidth (ব্যান্ডউইথ)** প্রয়োজন হয়।
+	
+	এর প্রধান তাত্ত্বিক ও কারিগরি কারণগুলো নিচে আলোচনা করা হলো:
+	
+	- **দ্রুত পরিবর্তনশীলতা ও উচ্চ হারমোনিক্স (Rapid Transitions and Harmonics):** Continuous সংকেত সময়ের সাথে মসৃণভাবে (smoothly) পরিবর্তিত হয়, ফলে এর ফ্রিকোয়েন্সি স্পেকট্রাম একটি নির্দিষ্ট সীমার মধ্যে আবদ্ধ থাকে। বিপরীতে, Discrete বা ডিজিটাল সংকেতগুলো তীক্ষ্ণ প্রান্তযুক্ত পালস (sharp-edged pulses বা rectangular wave) আকারে থাকে, যেখানে সংকেতের মান হঠাৎ করে এক স্তর থেকে অন্য স্তরে পরিবর্তিত হয়। ফুরিয়ার বিশ্লেষণ (Fourier Analysis) অনুযায়ী, একটি তীক্ষ্ণ পালস মূল কম্পাঙ্কের পাশাপাশি অসংখ্য উচ্চ-কম্পাঙ্কের হারমোনিক্স ($f, 3f, 5f, 7f, \dots$)-এর সমন্বয়ে গঠিত। সংকেতের আকৃতি বিকৃতি ছাড়া রিসিভারে পৌঁছাতে হলে চ্যানেলটিকে এই উচ্চ-কম্পাঙ্কের উপাদানগুলোকেও পরিবহন করতে হয়, যার ফলে অধিক ব্যান্ডউইথের প্রয়োজন পড়ে।
+	    
+	- **সময় ও কম্পাঙ্কের বিপরীত সম্পর্ক (Time-Frequency Duality):** সিগন্যাল প্রসেসিংয়ের মৌলিক নীতি অনুযায়ী, টাইম ডোমেইনে (Time Domain) কোনো সংকেত যত সংক্ষিপ্ত বা দ্রুত পরিবর্তনশীল হয়, ফ্রিকোয়েন্সি ডোমেইনে (Frequency Domain) তার বিস্তৃতি তত বেশি হয়। Discrete সংকেতে প্রতিটি পালসের স্থায়িত্বকাল ($\Delta t$) অত্যন্ত ক্ষুদ্র হওয়ায় এর ফ্রিকোয়েন্সি ব্যান্ড ($\Delta f$) অনেক প্রশস্ত হয়ে যায়।
+	    
+	- **স্যাম্পলিং ও এনকোডিং জনিত বৃদ্ধি (Sampling and Encoding Overhead):** একটি $B$ ব্যান্ডউইথের Continuous সংকেতকে Discrete ডিজিটাল সংকেতে রূপান্তর করতে হলে নাইকুইস্ট উপপাদ্য (Nyquist Theorem) অনুসারে কমপক্ষে $f_s = 2B$ হারে স্যাম্পলিং করতে হয়। পরবর্তীতে প্রতিটি স্যাম্পলকে $n$-বিট বাইনারি কোডে রূপান্তর করলে ডেটা রেট দাঁড়ায় $R_b = 2nB$। এই বিট প্রবাহকে সঠিকভাবে পরিবহনের জন্য ন্যূনতম $nB$ পরিমাণ ব্যান্ডউইথ প্রয়োজন হয়, যা মূল Continuous সংকেতের ব্যান্ডউইথের তুলনায় $n$-গুণ বেশি।
+	    
+	
+	সংক্ষেপে, সংকেতের তীক্ষ্ণ আকৃতি অক্ষুণ্ণ রাখা এবং অধিক সংখ্যক উচ্চ-কম্পাঙ্কের হারমোনিক্স পরিবহনের প্রয়োজনীয়তাই Discrete Signal-এ বেশি ব্যান্ডউইথ লাগার মূল কারণ।
 
 # 15 th NOVEMBER CLASS 3 
 ![[JPEG_20261115_123559_2333545626851866127.webp|340x453]]
 
 ## Class Notes: Signals & Transmission Medium
 
-## 📌 Exam Focus & Important Questions
+## 📌 Exam Focus & Important Questions[^14]
 - **Bandwidth Question:** Between Continuous and Discrete signals, which one requires more bandwidth, and why? (Continuous নাকি Discrete Signal এর ক্ষেত্রে কোনটাতে বেশি Bandwidth লাগে? কেন?)
 
 ## 📡 Transmission Medium
@@ -159,7 +178,7 @@ The transmission medium is divided into two main categories:
 - Infrared
 
 ## 💡 Fiber Optics Key Concept
-- The refractive index of the **core** in fiber optics is higher (Fiber optics এর core এর refractive index বেশি).
+- The refractive index[^16] of the **core** in fiber optics is higher (Fiber optics এর core এর refractive index বেশি).
 
 ## 〰️ Signal & Modulation Techniques
 - **Signal Equation:** $A \sin(\omega t + \theta)$
@@ -239,9 +258,146 @@ Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min
 
 # 24 November class 5
 
-![[JPEG_20261124_205659_9164588245002462340.webp]]
-![[JPEG_20261124_205723_3656919469217429867.webp]]
+![[JPEG_20261124_205659_9164588245002462340.webp|177]]![[JPEG_20261124_205723_3656919469217429867.webp|177x236]]
+
+## Class Notes: Communication - Power & Current Relations in AM (Nov 24, 2026)
+
+## 📡 AM Spectrum & Bandwidth Summary
+An Amplitude Modulated (AM) wave consists of three frequency components: the Carrier[^17], the Upper Sideband (USB)[^18], and the Lower Sideband (LSB)[^19]:
+$$\text{AM Wave} = \text{Carrier } (f_c) + \text{USB } (f_c + f_m) + \text{LSB } (f_c - f_m)$$
+
+- **Conclusion 1 (Bandwidth):** The total Bandwidth ($BW$)[^20] required for AM transmission is twice the highest modulating frequency:
+  $$BW = (f_c + f_m) - (f_c - f_m) = 2f_m$$
+
+---
+
+## ⚡ Power Relations in Amplitude Modulation
+The total transmitted power ($P_t$) is the sum of the carrier power and the power in both sidebands, calculated using RMS[^22] voltages across an antenna load resistance $R$:
+$$P_t = P_c + P_{USB} + P_{LSB} = \frac{V_{c(\text{rms})}^2}{R} + \frac{V_{USB(\text{rms})}^2}{R} + \frac{V_{LSB(\text{rms})}^2}{R}$$
+
+1. **Unmodulated Carrier Power ($P_c$):**
+   Since $V_{c(\text{rms})} = \frac{V_c}{\sqrt{2}}$ (where $V_c$ is the peak carrier voltage):
+   $$P_c = \frac{\left(\frac{V_c}{\sqrt{2}}\right)^2}{R} = \frac{V_c^2}{2R}$$
+
+2. **Sideband Power ($P_{USB}$ and $P_{LSB}$):**
+   Each sideband has a peak amplitude of $\frac{m V_c}{2}$, so its RMS voltage is $\frac{m V_c}{2\sqrt{2}}$:
+   $$P_{USB} = P_{LSB} = \frac{\left(\frac{m V_c}{2} \cdot \frac{1}{\sqrt{2}}\right)^2}{R} = \frac{m^2 V_c^2}{8R}$$
+
+3. **Total Transmitted Power ($P_t$):**
+   $$P_t = \frac{V_c^2}{2R} + \frac{m^2 V_c^2}{8R} + \frac{m^2 V_c^2}{8R} = \frac{V_c^2}{2R} + \frac{m^2 V_c^2}{4R}$$
+   $$P_t = \frac{V_c^2}{2R}\left(1 + \frac{m^2}{2}\right) \implies P_t = P_c\left(1 + \frac{m^2}{2}\right)$$
+
+- **Conclusion 2 (Maximum Power at $100\%$ Modulation, $m = 1$):**
+  $$P_{t(\max)} = P_c\left(1 + \frac{1^2}{2}\right) = 1.5 P_c$$
+  *(Note: Even at $100\%$ modulation, the carrier consumes $\frac{2}{3}$ ($66.7\%$) of the total power, while the information-carrying sidebands share only $\frac{1}{3}$ ($33.3\%$). Transmission efficiency is $\eta = \frac{m^2}{2 + m^2} \times 100\%$.)*
+
+---
+
+## 🔌 Current Relations in Amplitude Modulation
+Since power is proportional to the square of the RMS current ($P = I^2 R$), we can relate the modulated antenna current ($I_t$) to the unmodulated carrier current ($I_c$):
+$$\frac{P_t}{P_c} = \frac{I_t^2 R}{I_c^2 R} = 1 + \frac{m^2}{2}$$
+$$I_t = I_c \sqrt{1 + \frac{m^2}{2}}$$
+
+- **Maximum Current (at $m = 1$):**
+  $$I_{t(\max)} = I_c \sqrt{1.5} \approx 1.225 I_c$$
+
+---
+
+## 📝 Homework: Modulation by Several Sine Waves
+When a carrier is modulated simultaneously by multiple sinusoidal signals[^23] with individual modulation indices $m_1, m_2, \dots, m_n$:
+- **Total Effective Modulation Index ($m_t$):**
+  $$m_t = \sqrt{m_1^2 + m_2^2 + \dots + m_n^2}$$
+  *(To avoid over-modulation distortion, $m_t$ must not exceed $1$.)*
+- **Total Power & Current:**
+  $$P_t = P_c \left(1 + \frac{m_t^2}{2}\right) \quad \text{and} \quad I_t = I_c \sqrt{1 + \frac{m_t^2}{2}}$$
+
+---
+
+## 🧮 Solved Practice Problems
+
+### Problem 1
+**Given:**
+- Carrier frequency ($f_c$) = $1\text{ MHz} = 1000\text{ kHz}$ *(corrected from `1 mHz` in notes)*
+- Carrier amplitude ($V_c$) = $100\text{ V}$
+- Modulating frequency ($f_m$) = $5\text{ kHz}$
+- Percentage of modulation = $50\% \implies m = 0.5$
+
+**Solutions:**
+1. **Frequency and Amplitude of USB:**
+  - $f_{USB} = f_c + f_m = 1000\text{ kHz} + 5\text{ kHz} = 1005\text{ kHz}$ ($1,005,000\text{ Hz}$)
+  - $V_{USB} = \frac{m V_c}{2} = \frac{0.5 \times 100}{2} = 25\text{ V}$ *(corrected formula notation from $V_m \cdot V_c / 2$)*
+2. **Frequency and Amplitude of LSB:** *(completed)*
+  - $f_{LSB} = f_c - f_m = 1000\text{ kHz} - 5\text{ kHz} = 995\text{ kHz}$ ($995,000\text{ Hz}$)
+  - $V_{LSB} = \frac{m V_c}{2} = \frac{0.5 \times 100}{2} = 25\text{ V}$
+3. **Frequency Band & Bandwidth:** *(completed)*
+  - **Frequency Band:** $995\text{ kHz} \text{ to } 1005\text{ kHz}$
+  - **Bandwidth ($BW$):** $2f_m = 2 \times 5\text{ kHz} = 10\text{ kHz}$
+
+---
+
+### Problem 2
+**Given:**
+- Carrier frequency ($f_c$) = $1200\text{ kHz}$
+- Modulating frequency ($f_m$) = $20\text{ kHz}$
+- Maximum modulated carrier amplitude ($V_{\max}$) = $110\text{ V}$
+- Minimum modulated carrier amplitude ($V_{\min}$) = $90\text{ V}$
+
+**Solutions:**
+1. **Frequencies of LSB and USB:**
+  - $f_{LSB} = f_c - f_m = 1200 - 20 = 1180\text{ kHz}$
+  - $f_{USB} = f_c + f_m = 1200 + 20 = 1220\text{ kHz}$
+2. **Unmodulated Carrier Amplitude ($V_c$):**
+   $$V_c = \frac{V_{\max} + V_{\min}}{2} = \frac{110 + 90}{2} = 100\text{ V}$$
+3. **Modulation Index ($m$):**
+   $$V_m = \frac{V_{\max} - V_{\min}}{2} = \frac{110 - 90}{2} = 10\text{ V}$$
+   $$m = \frac{V_m}{V_c} = \frac{10}{100} = 0.1 \text{ (or } 10\% \text{)}$$
+4. **Amplitude of Each Sideband:** *(completed)*
+   $$V_{USB} = V_{LSB} = \frac{m V_c}{2} = \frac{0.1 \times 100}{2} = 5\text{ V}$$
+
+---
+
+## 📌 Exam & Viva Focus
+- **Book Practice:** Practice all power and current-related numerical problems from **George Kennedy's** *Electronic Communication Systems* (কেনেডির বই এর power এবং current related math practice করতে হবে).
+- **Viva Question 1:** *Why is standard AM considered power-inefficient?*
+  - **Answer:** Because at least two-thirds ($66.7\%$) of the total transmitted power is wasted in the carrier wave, which carries no intelligence/information; only the sidebands carry the message signal.
+- **Viva Question 2:** *What happens to antenna current when modulation depth increases?*
+  - **Answer:** Antenna current increases according to $I_t = I_c\sqrt{1 + m^2/2}$, reaching a maximum of $1.225 I_c$ at $100\%$ modulation ($m=1$).
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^17]: **Carrier Signal ($C$):** A high-frequency sinusoidal wave of constant amplitude and frequency that is modulated to carry lower-frequency information signals through a transmission medium.
+[^18]: **Upper Sideband (USB):** The band of frequencies above the carrier frequency ($f_c + f_m$) generated during amplitude modulation, containing a replica of the message spectrum.
+[^19]: **Lower Sideband (LSB):** The band of frequencies below the carrier frequency ($f_c - f_m$) generated during amplitude modulation, containing an inverted replica of the message spectrum.
+[^20]: **Bandwidth ($BW$):** The total range of frequencies occupied by a modulated signal, calculated as the difference between the highest frequency component ($f_{USB}$) and the lowest frequency component ($f_{LSB}$).
+[^21]: **Modulation Index ($m$):** A dimensionless parameter ($0 \le m \le 1$) representing the ratio of the modulating signal amplitude ($V_m$) to the unmodulated carrier amplitude ($V_c$).
+[^22]: **RMS (Root Mean Square):** The effective value of an alternating voltage or current that produces the same heating/power dissipation in a resistive load as an equivalent DC value ($V_{\text{rms}} = V_{\text{peak}}/\sqrt{2}$).
+[^23]: **Multi-Tone Modulation:** The process of modulating a single carrier wave with two or more modulating frequencies simultaneously, where the net modulation index is the root-sum-square of individual indices.
+
+---
+**Tags:** #communication #amplitude-modulation #am-power #am-current #modulation-index #kennedy #class-notes
 # n November class m
 # n November class m
 # n November class m
 # n November class m
+
+
+[^16]: **প্রতিসরাঙ্ক (Refractive Index)** হলো কোনো স্বচ্ছ মাধ্যমের একটি মৌলিক আলোকীয় ধর্ম, যা নির্দেশ করে শূন্য মাধ্যমের তুলনায় ওই মাধ্যমে আলোর বেগ কতগুণ কমে যায়। নির্দিষ্ট বর্ণের আলোকরশ্মি এক স্বচ্ছ মাধ্যম থেকে অন্য স্বচ্ছ মাধ্যমে তির্যকভাবে প্রবেশ করলে আপতন কোণের সাইন ($\sin i$) এবং প্রতিসরণ কোণের সাইনের ($\sin r$) অনুপাত সর্বদা ধ্রুবক থাকে; এই ধ্রুবককেই প্রথম মাধ্যমের সাপেক্ষে দ্বিতীয় মাধ্যমের প্রতিসরাঙ্ক ($n$ বা $\mu$) বলা হয়।
+	
+	- **পরম প্রতিসরাঙ্ক (Absolute Refractive Index):** শূন্য মাধ্যমে আলোর বেগ ($c \approx 3 \times 10^8\text{ m/s}$) এবং কোনো নির্দিষ্ট মাধ্যমে আলোর বেগের ($v$) অনুপাতকে ওই মাধ্যমের পরম প্রতিসরাঙ্ক বলে:
+	    
+	    $$n = \frac{c}{v}$$
+	    
+	- **স্নেলের সূত্র ও আপেক্ষিক প্রতিসরাঙ্ক (Snell's Law & Relative Refractive Index):** প্রথম মাধ্যমে আপতন কোণ $i$ এবং দ্বিতীয় মাধ্যমে প্রতিসরণ কোণ $r$ হলে, প্রথম মাধ্যমের সাপেক্ষে দ্বিতীয় মাধ্যমের প্রতিসরাঙ্ক:
+	    
+	    $${}_1n_2 = \frac{\sin i}{\sin r} = \frac{n_2}{n_1} = \frac{v_1}{v_2}$$
+	    
+	- **একক ও মাত্রা:** যেহেতু এটি দুটি সমজাতীয় রাশির (বেগ বা কোণের সাইন) অনুপাত, তাই প্রতিসরাঙ্কের কোনো একক বা মাত্রা নেই।
+	    
+	- **আলোকীয় ঘনত্ব (Optical Density):** কোনো মাধ্যমের প্রতিসরাঙ্ক যত বেশি হয়, মাধ্যমটি আলোকীয়ভাবে তত বেশি ঘন এবং সেখানে আলোর বেগ তত কম হয়। ফলে আলো কম প্রতিসরাঙ্কের মাধ্যম থেকে বেশি প্রতিসরাঙ্কের মাধ্যমে প্রবেশ করলে অভিলম্বের দিকে সরে আসে।
+	    
+	- **মানের সীমা ও নির্ভরশীলতা:** শূন্য মাধ্যমের প্রতিসরাঙ্ক $1$ এবং যেকোনো ভৌত মাধ্যমের পরম প্রতিসরাঙ্ক সর্বদা $1$-এর চেয়ে বেশি হয়। এর মান মাধ্যমের প্রকৃতি, তাপমাত্রা এবং আপতিত আলোর তরঙ্গদৈর্ঘ্যের ($\lambda$) ওপর নির্ভর করে—তরঙ্গদৈর্ঘ্য কম হলে প্রতিসরাঙ্ক বেশি হয় (যেমন—কাচে লাল আলোর চেয়ে বেগুনি আলোর প্রতিসরাঙ্ক বেশি)।
+	    
+	- **কয়েকটি পরিচিত মাধ্যমের পরম প্রতিসরাঙ্ক:** বায়ু ($\approx 1.0003$), পানি ($1.33$), সাধারণ কাচ ($1.52$) এবং হীরা ($2.42$)।
+
+

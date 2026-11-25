@@ -217,10 +217,51 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 	$$N_s = \frac{120f}{P}$$
 
 # 23 november class 6
+<<<<<<< main
 ![[JPEG_20261124_220027_7548547501040896918.jpg]]
 
 
 
 # n November class m
 # n November class m
-# n November class m
+# n November class m=======
+![[JPEG_20261124_220027_7548547501040896918.jpg|118]] 
+
+## Class Notes: Electrical Machines - Torque Equations, Torque-Slip Curve & Phase-Wound Rotor
+
+## ⚡ Torque Equation & Maximum Torque Conditions
+The general electromagnetic torque equation in an induction motor is:
+$$T = k \phi I_2 \cos(\phi_2)$$
+where $k$ is a proportionality constant, $\phi$ is the magnetic flux per pole, $I_2$ is the rotor current, and $\cos(\phi_2)$ is the rotor power factor.
+
+- **Starting Torque ($T_{st}$):** Occurs at standstill when slip $s = 1$. Maximum starting torque, $T_{st(\max)}$, is achieved when rotor resistance equals standstill rotor reactance:
+  $$R_2 = X_2$$
+- **Running & Breakdown Torque ($T_r, T_b$):** During running conditions (slip $s$), maximum running torque—also known as **Breakdown Torque** ($T_b$) or pull-out torque—occurs when:
+  $$R_2 = s X_2$$
+
+---
+
+## 📈 Torque-Slip Characteristic Curve
+The torque-slip curve plots motor torque against slip ($s$) from standstill ($s = 1$) to synchronous speed ($s = 0$):
+- **At $s = 1$ (Standstill):** The motor produces its initial **Starting Torque** ($T_{st}$).
+- **Pulling Torque (Pull-up Torque):** Marked on the curve near the lower region during acceleration, representing the local minimum torque before torque rises toward its peak.
+- **Peak (Breakdown Torque, $T_b$):** The highest point on the curve (where $R_2 = s X_2$), representing the maximum torque the motor can develop before losing stability/stalling.
+- **At $s = 0$ (Synchronous Speed):** Torque drops to zero because there is no relative motion between the rotating magnetic field and the rotor conductors, so no rotor EMF or current is induced.
+
+---
+
+## 🔧 What is a Phase-Wound Rotor? (`# phase wound কি?`)
+A **phase-wound rotor** (commonly used in a **wound-rotor induction motor** or **slip-ring induction motor**) is a rotor constructed with insulated three-phase windings (typically star/Y-connected) rather than permanent shorted bars like a squirrel-cage rotor.
+- **How it works:** The three winding terminals are brought out to **slip rings** mounted on the shaft, where stationary **carbon brushes** make electrical contact.
+- **Why it is used:** External resistors (or rheostats) can be connected to the rotor circuit through the slip rings/brushes to adjust total rotor resistance ($R_2$). Because maximum torque occurs when $R_2 = s X_2$ (and $R_2 = X_2$ at starting), adding external resistance allows high starting torque with lower starting current and provides speed control.
+
+---
+
+## 📌 Exam & Viva Focus
+- **Maximum Torque Conditions:** Memorize $R_2 = X_2$ for maximum starting torque ($s = 1$) and $R_2 = s X_2$ for maximum running/breakdown torque.
+- **Curve Points:** Be able to sketch and label starting torque ($s = 1$), pulling torque, breakdown torque ($T_b$), and zero torque at synchronous speed ($s = 0$).
+- **Viva Question:** *Why use a phase-wound (slip-ring) rotor instead of a squirrel-cage rotor when high starting torque is required?* Because external resistance can be added to the rotor circuit to match rotor reactance at starting, increasing starting torque while limiting starting current.
+
+---
+**Tags:** #electrical-machines #induction-motor #torque #torque-slip-curve #breakdown-torque #phase-wound-rotor #class-notes
+>>>>>>> origin/main
