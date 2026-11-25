@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dashboard.md",
-                "mode": "source",
+                "file": "Solid State Daily Class Note.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dashboard"
+              "title": "Solid State Daily Class Note"
             }
           }
         ],
@@ -245,12 +245,13 @@
   },
   "active": "7f8e5ba41de5f30b",
   "lastOpenFiles": [
+    "401 Solid state Electronics '3'/solid state electronics.md",
+    "Dashboard.md",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "403 Communication system '3+1'/Communication system.md",
     "Communication Systems/Chapter 2 -NOISE.md",
     "Communication Systems/Important Maths.md",
     "Communication Daily Class Note.md",
-    "Dashboard.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Machine Daily Class Notes.md",
@@ -286,7 +287,6 @@
     "ANIMATIONS AND HTML/full_induction_motor_cross_section_animation.html",
     "2026-11-18.md",
     "LAW daily class notes.md",
-    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "02_Daily_Notes",
     "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
     "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
