@@ -259,6 +259,123 @@ Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min
 # 24 November class 5
 
 ![[JPEG_20261124_205659_9164588245002462340.webp|177]]![[JPEG_20261124_205723_3656919469217429867.webp|177x236]]
+
+# Class Notes: Communication - Power & Current Relations in AM (Nov 24, 2026)
+
+## 📡 AM Spectrum & Bandwidth Summary
+An Amplitude Modulated (AM) wave consists of three frequency components: the Carrier[^17], the Upper Sideband (USB)[^18], and the Lower Sideband (LSB)[^19]:
+$$\text{AM Wave} = \text{Carrier } (f_c) + \text{USB } (f_c + f_m) + \text{LSB } (f_c - f_m)$$
+
+- **Conclusion 1 (Bandwidth):** The total Bandwidth ($BW$)[^20] required for AM transmission is twice the highest modulating frequency:
+  $$BW = (f_c + f_m) - (f_c - f_m) = 2f_m$$
+
+---
+
+## ⚡ Power Relations in Amplitude Modulation
+The total transmitted power ($P_t$) is the sum of the carrier power and the power in both sidebands, calculated using RMS[^22] voltages across an antenna load resistance $R$:
+$$P_t = P_c + P_{USB} + P_{LSB} = \frac{V_{c(\text{rms})}^2}{R} + \frac{V_{USB(\text{rms})}^2}{R} + \frac{V_{LSB(\text{rms})}^2}{R}$$
+
+1. **Unmodulated Carrier Power ($P_c$):**
+   Since $V_{c(\text{rms})} = \frac{V_c}{\sqrt{2}}$ (where $V_c$ is the peak carrier voltage):
+   $$P_c = \frac{\left(\frac{V_c}{\sqrt{2}}\right)^2}{R} = \frac{V_c^2}{2R}$$
+
+2. **Sideband Power ($P_{USB}$ and $P_{LSB}$):**
+   Each sideband has a peak amplitude of $\frac{m V_c}{2}$, so its RMS voltage is $\frac{m V_c}{2\sqrt{2}}$:
+   $$P_{USB} = P_{LSB} = \frac{\left(\frac{m V_c}{2} \cdot \frac{1}{\sqrt{2}}\right)^2}{R} = \frac{m^2 V_c^2}{8R}$$
+
+3. **Total Transmitted Power ($P_t$):**
+   $$P_t = \frac{V_c^2}{2R} + \frac{m^2 V_c^2}{8R} + \frac{m^2 V_c^2}{8R} = \frac{V_c^2}{2R} + \frac{m^2 V_c^2}{4R}$$
+   $$P_t = \frac{V_c^2}{2R}\left(1 + \frac{m^2}{2}\right) \implies P_t = P_c\left(1 + \frac{m^2}{2}\right)$$
+
+- **Conclusion 2 (Maximum Power at $100\%$ Modulation, $m = 1$):**
+  $$P_{t(\max)} = P_c\left(1 + \frac{1^2}{2}\right) = 1.5 P_c$$
+  *(Note: Even at $100\%$ modulation, the carrier consumes $\frac{2}{3}$ ($66.7\%$) of the total power, while the information-carrying sidebands share only $\frac{1}{3}$ ($33.3\%$). Transmission efficiency is $\eta = \frac{m^2}{2 + m^2} \times 100\%$.)*
+
+---
+
+## 🔌 Current Relations in Amplitude Modulation
+Since power is proportional to the square of the RMS current ($P = I^2 R$), we can relate the modulated antenna current ($I_t$) to the unmodulated carrier current ($I_c$):
+$$\frac{P_t}{P_c} = \frac{I_t^2 R}{I_c^2 R} = 1 + \frac{m^2}{2}$$
+$$I_t = I_c \sqrt{1 + \frac{m^2}{2}}$$
+
+- **Maximum Current (at $m = 1$):**
+  $$I_{t(\max)} = I_c \sqrt{1.5} \approx 1.225 I_c$$
+
+---
+
+## 📝 Homework: Modulation by Several Sine Waves
+When a carrier is modulated simultaneously by multiple sinusoidal signals[^23] with individual modulation indices $m_1, m_2, \dots, m_n$:
+- **Total Effective Modulation Index ($m_t$):**
+  $$m_t = \sqrt{m_1^2 + m_2^2 + \dots + m_n^2}$$
+  *(To avoid over-modulation distortion, $m_t$ must not exceed $1$.)*
+- **Total Power & Current:**
+  $$P_t = P_c \left(1 + \frac{m_t^2}{2}\right) \quad \text{and} \quad I_t = I_c \sqrt{1 + \frac{m_t^2}{2}}$$
+
+---
+
+## 🧮 Solved Practice Problems
+
+### Problem 1
+**Given:**
+- Carrier frequency ($f_c$) = $1\text{ MHz} = 1000\text{ kHz}$ *(corrected from `1 mHz` in notes)*
+- Carrier amplitude ($V_c$) = $100\text{ V}$
+- Modulating frequency ($f_m$) = $5\text{ kHz}$
+- Percentage of modulation = $50\% \implies m = 0.5$
+
+**Solutions:**
+1. **Frequency and Amplitude of USB:**
+  - $f_{USB} = f_c + f_m = 1000\text{ kHz} + 5\text{ kHz} = 1005\text{ kHz}$ ($1,005,000\text{ Hz}$)
+  - $V_{USB} = \frac{m V_c}{2} = \frac{0.5 \times 100}{2} = 25\text{ V}$ *(corrected formula notation from $V_m \cdot V_c / 2$)*
+2. **Frequency and Amplitude of LSB:** *(completed)*
+  - $f_{LSB} = f_c - f_m = 1000\text{ kHz} - 5\text{ kHz} = 995\text{ kHz}$ ($995,000\text{ Hz}$)
+  - $V_{LSB} = \frac{m V_c}{2} = \frac{0.5 \times 100}{2} = 25\text{ V}$
+3. **Frequency Band & Bandwidth:** *(completed)*
+  - **Frequency Band:** $995\text{ kHz} \text{ to } 1005\text{ kHz}$
+  - **Bandwidth ($BW$):** $2f_m = 2 \times 5\text{ kHz} = 10\text{ kHz}$
+
+---
+
+### Problem 2
+**Given:**
+- Carrier frequency ($f_c$) = $1200\text{ kHz}$
+- Modulating frequency ($f_m$) = $20\text{ kHz}$
+- Maximum modulated carrier amplitude ($V_{\max}$) = $110\text{ V}$
+- Minimum modulated carrier amplitude ($V_{\min}$) = $90\text{ V}$
+
+**Solutions:**
+1. **Frequencies of LSB and USB:**
+  - $f_{LSB} = f_c - f_m = 1200 - 20 = 1180\text{ kHz}$
+  - $f_{USB} = f_c + f_m = 1200 + 20 = 1220\text{ kHz}$
+2. **Unmodulated Carrier Amplitude ($V_c$):**
+   $$V_c = \frac{V_{\max} + V_{\min}}{2} = \frac{110 + 90}{2} = 100\text{ V}$$
+3. **Modulation Index ($m$):**
+   $$V_m = \frac{V_{\max} - V_{\min}}{2} = \frac{110 - 90}{2} = 10\text{ V}$$
+   $$m = \frac{V_m}{V_c} = \frac{10}{100} = 0.1 \text{ (or } 10\% \text{)}$$
+4. **Amplitude of Each Sideband:** *(completed)*
+   $$V_{USB} = V_{LSB} = \frac{m V_c}{2} = \frac{0.1 \times 100}{2} = 5\text{ V}$$
+
+---
+
+## 📌 Exam & Viva Focus
+- **Book Practice:** Practice all power and current-related numerical problems from **George Kennedy's** *Electronic Communication Systems* (কেনেডির বই এর power এবং current related math practice করতে হবে).
+- **Viva Question 1:** *Why is standard AM considered power-inefficient?*
+  - **Answer:** Because at least two-thirds ($66.7\%$) of the total transmitted power is wasted in the carrier wave, which carries no intelligence/information; only the sidebands carry the message signal.
+- **Viva Question 2:** *What happens to antenna current when modulation depth increases?*
+  - **Answer:** Antenna current increases according to $I_t = I_c\sqrt{1 + m^2/2}$, reaching a maximum of $1.225 I_c$ at $100\%$ modulation ($m=1$).
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^17]: **Carrier Signal ($C$):** A high-frequency sinusoidal wave of constant amplitude and frequency that is modulated to carry lower-frequency information signals through a transmission medium.
+[^18]: **Upper Sideband (USB):** The band of frequencies above the carrier frequency ($f_c + f_m$) generated during amplitude modulation, containing a replica of the message spectrum.
+[^19]: **Lower Sideband (LSB):** The band of frequencies below the carrier frequency ($f_c - f_m$) generated during amplitude modulation, containing an inverted replica of the message spectrum.
+[^20]: **Bandwidth ($BW$):** The total range of frequencies occupied by a modulated signal, calculated as the difference between the highest frequency component ($f_{USB}$) and the lowest frequency component ($f_{LSB}$).
+[^21]: **Modulation Index ($m$):** A dimensionless parameter ($0 \le m \le 1$) representing the ratio of the modulating signal amplitude ($V_m$) to the unmodulated carrier amplitude ($V_c$).
+[^22]: **RMS (Root Mean Square):** The effective value of an alternating voltage or current that produces the same heating/power dissipation in a resistive load as an equivalent DC value ($V_{\text{rms}} = V_{\text{peak}}/\sqrt{2}$).
+[^23]: **Multi-Tone Modulation:** The process of modulating a single carrier wave with two or more modulating frequencies simultaneously, where the net modulation index is the root-sum-square of individual indices.
+
+---
+**Tags:** #communication #amplitude-modulation #am-power #am-current #modulation-index #kennedy #class-notes
 # n November class m
 # n November class m
 # n November class m
@@ -283,3 +400,5 @@ Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min
 	- **মানের সীমা ও নির্ভরশীলতা:** শূন্য মাধ্যমের প্রতিসরাঙ্ক $1$ এবং যেকোনো ভৌত মাধ্যমের পরম প্রতিসরাঙ্ক সর্বদা $1$-এর চেয়ে বেশি হয়। এর মান মাধ্যমের প্রকৃতি, তাপমাত্রা এবং আপতিত আলোর তরঙ্গদৈর্ঘ্যের ($\lambda$) ওপর নির্ভর করে—তরঙ্গদৈর্ঘ্য কম হলে প্রতিসরাঙ্ক বেশি হয় (যেমন—কাচে লাল আলোর চেয়ে বেগুনি আলোর প্রতিসরাঙ্ক বেশি)।
 	    
 	- **কয়েকটি পরিচিত মাধ্যমের পরম প্রতিসরাঙ্ক:** বায়ু ($\approx 1.0003$), পানি ($1.33$), সাধারণ কাচ ($1.52$) এবং হীরা ($2.42$)।
+
+
