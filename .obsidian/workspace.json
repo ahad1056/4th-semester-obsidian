@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Communication Systems/Important Maths.md",
+                "file": "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Important Maths"
+              "title": "Chapter 1 - Introduction to Communication Systems & Signals"
             }
           }
         ],
@@ -245,8 +245,9 @@
   },
   "active": "7f8e5ba41de5f30b",
   "lastOpenFiles": [
-    "Communication Systems/Chapter 2 -NOISE.md",
     "403 Communication system '3+1'/Communication system.md",
+    "Communication Systems/Chapter 2 -NOISE.md",
+    "Communication Systems/Important Maths.md",
     "Communication Daily Class Note.md",
     "Dashboard.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
@@ -270,7 +271,6 @@
     "JPEG_20261123_230725_8535476066596916059.webp",
     "Mechanical Engineering/PREVIOUS YEAR ANALYSED QUESTION.md",
     "02_Daily_Notes/2026-11-23.md",
-    "Communication Systems/Important Maths.md",
     "Electrical Machines/Chapter 1 - Induction Motor.md",
     "02_Daily_Notes/2026-11-20.md",
     "Projects/inductance meter circuit - Version 2 save copy - dont edit .sim1",
