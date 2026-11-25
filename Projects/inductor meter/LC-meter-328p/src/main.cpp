@@ -1,10 +1,9 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal.h>
 #include <EEPROM.h>
 
-// I2C LCD সেটআপ (লেখা না আসলে 0x27 এর বদলে 0x3F ব্যবহার করুন)
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+// সরাসরি 4-bit LCD পিন সেটআপ: LiquidCrystal(RS, E, D4, D5, D6, D7)
+LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
 const int inputPin = 5;     // Timer1 External Clock Input Pin (T1 / D5 / Chip Pin 11)
 const int zeroBtnPin = 2;   // Zero Calibration Push Switch (D2 / Chip Pin 4)
@@ -19,7 +18,7 @@ double F0 = DEFAULT_F0;             // EEPROM থেকে লোড ও আপ�
 // EEPROM ঠিকানা ও ভ্যালিডেশন কোড
 const int EEPROM_MAGIC_ADDR = 0;
 const int EEPROM_F0_ADDR = 4;
-const uint32_t MAGIC_NUMBER = 0x4C433031; // সেভ করা ডেটা চেনার সংকেত
+const uint32_t MAGIC_NUMBER = 0x4C433031;
 
 bool signalPresent = false;
 int detectCount = 0;
@@ -55,7 +54,6 @@ void loadF0FromEEPROM() {
   if (magic == MAGIC_NUMBER) {
     double savedF0 = 0.0;
     EEPROM.get(EEPROM_F0_ADDR, savedF0);
-    // মানটি যৌক্তিক সীমার মধ্যে থাকলে লোড করবে
     if (savedF0 > 10000.0 && savedF0 < 2000000.0) {
       F0 = savedF0;
     }
@@ -70,12 +68,11 @@ void saveF0ToEEPROM(double newF0) {
 
 void setup() {
   pinMode(inputPin, INPUT);
-  pinMode(zeroBtnPin, INPUT_PULLUP); // বাটনের জন্য ইন্টারনাল পুল-আপ চালু
+  pinMode(zeroBtnPin, INPUT_PULLUP);
 
-  loadF0FromEEPROM(); // পাওয়ার অন হলেই মেমোরি থেকে সেভ করা F0 লোড হবে
+  loadF0FromEEPROM();
 
-  lcd.init();
-  lcd.backlight();
+  lcd.begin(16, 2); // সরাসরি 16x2 LCD শুরু করা হলো
   lcd.setCursor(0, 0);
   lcd.print("Auto-Range LC");
   lcd.setCursor(0, 1);
@@ -163,7 +160,7 @@ void loop() {
 
     double avgFreq = (double)freqSum / (double)sampleCount;
 
-    // বাটন চাপা হলে বর্তমান গড় ফ্রিকোয়েন্সিকে নতুন F0 হিসেবে সেভ করবে
+    // বাটন চাপা হলে বর্তমান গড় ফ্রিকোয়েন্সিকে নতুন F0 হিসেবে সেভ করবে
     if (zeroPressed) {
       F0 = avgFreq;
       saveF0ToEEPROM(F0);
