@@ -260,7 +260,7 @@ Using the maximum peak voltage ($V_{\max}$) and minimum trough voltage ($V_{\min
 
 ![[JPEG_20261124_205659_9164588245002462340.webp|177]]![[JPEG_20261124_205723_3656919469217429867.webp|177x236]]
 
-# Class Notes: Communication - Power & Current Relations in AM (Nov 24, 2026)
+## Class Notes: Communication - Power & Current Relations in AM (Nov 24, 2026)
 
 ## 📡 AM Spectrum & Bandwidth Summary
 An Amplitude Modulated (AM) wave consists of three frequency components: the Carrier[^17], the Upper Sideband (USB)[^18], and the Lower Sideband (LSB)[^19]:
@@ -381,7 +381,6 @@ When a carrier is modulated simultaneously by multiple sinusoidal signals[^23] w
 # n November class m
 # n November class m
 
-[^15]: 
 
 [^16]: **প্রতিসরাঙ্ক (Refractive Index)** হলো কোনো স্বচ্ছ মাধ্যমের একটি মৌলিক আলোকীয় ধর্ম, যা নির্দেশ করে শূন্য মাধ্যমের তুলনায় ওই মাধ্যমে আলোর বেগ কতগুণ কমে যায়। নির্দিষ্ট বর্ণের আলোকরশ্মি এক স্বচ্ছ মাধ্যম থেকে অন্য স্বচ্ছ মাধ্যমে তির্যকভাবে প্রবেশ করলে আপতন কোণের সাইন ($\sin i$) এবং প্রতিসরণ কোণের সাইনের ($\sin r$) অনুপাত সর্বদা ধ্রুবক থাকে; এই ধ্রুবককেই প্রথম মাধ্যমের সাপেক্ষে দ্বিতীয় মাধ্যমের প্রতিসরাঙ্ক ($n$ বা $\mu$) বলা হয়।
 	
