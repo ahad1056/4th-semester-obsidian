@@ -259,3 +259,7 @@ A **phase-wound rotor** (commonly used in a **wound-rotor induction motor** or *
 ---
 **Tags:** #electrical-machines #induction-motor #torque #torque-slip-curve #breakdown-torque #phase-wound-rotor #class-notes
 >>>>>>> origin/main
+
+
+# 26 November class 7
+![[IMG_20261126_101904.webp]]
