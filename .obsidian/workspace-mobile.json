@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Machine Daily Class Notes.md",
-                "mode": "preview",
+                "file": "Dashboard.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Machine Daily Class Notes"
+              "title": "Dashboard"
             }
           },
           {
@@ -197,6 +197,7 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
+    "Machine Daily Class Notes.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Dashboard.md",
     "Stat Daily Class Note.md",
@@ -204,7 +205,6 @@
     "Solid State Daily Class Note-1795627678197.webp",
     "Solid State Daily Class Note-1795627644531.webp",
     "JPEG_20261124_220027_7548547501040896918.jpg",
-    "Machine Daily Class Notes.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "mechanical Daily Class Note.md",
     "403 Communication system '3+1'/Communication system.md",
