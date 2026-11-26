@@ -217,6 +217,14 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 	$$N_s = \frac{120f}{P}$$
 
 # 23 november class 6
+<<<<<<< main
+![[JPEG_20261124_220027_7548547501040896918.jpg]]
+
+
+
+# n November class m
+# n November class m
+# n November class m=======
 ![[JPEG_20261124_220027_7548547501040896918.jpg|118]] 
 
 ## Class Notes: Electrical Machines - Torque Equations, Torque-Slip Curve & Phase-Wound Rotor
@@ -256,3 +264,4 @@ A **phase-wound rotor** (commonly used in a **wound-rotor induction motor** or *
 
 ---
 **Tags:** #electrical-machines #induction-motor #torque #torque-slip-curve #breakdown-torque #phase-wound-rotor #class-notes
+>>>>>>> origin/main
