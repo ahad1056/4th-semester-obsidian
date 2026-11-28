@@ -160,7 +160,7 @@ The class introduced core solid-state crystallography concepts, including crysta
 
 ![[Solid State Daily Class Note-1795627644531.webp|177]] ![[Solid State Daily Class Note-1795627678197.webp|176]]
 
-# Class Notes: Solid State Electronics - Miller Indices & Crystallographic Concepts (Nov 25, 2026)
+## Class Notes: Solid State Electronics - Miller Indices & Crystallographic Concepts (Nov 25, 2026)
 
 ## 📐 Miller Indices Overview
 Miller indices[^13] are used to specify crystal directions (lattice point vectors from an origin) and crystal planes in a crystal system.
@@ -227,7 +227,8 @@ The notes also list upcoming syllabus topics to study:
 
 
 
-# n November class 6
+# 26 November class 6
+
 
 # n November class 7
 
