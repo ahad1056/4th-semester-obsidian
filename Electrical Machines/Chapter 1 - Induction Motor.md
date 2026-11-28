@@ -99,7 +99,11 @@ $$I_2 = \frac{sE_2}{Z_2} = \frac{sE_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
 **Rotor power factor ($\cos\phi_2$):**
 $$\cos\phi_2 = \frac{R_2}{Z_2} = \frac{R_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
 
-Now, the **Gross Mechanical Power ($P_m$)** developed per phase is given by:
+Now, the **Gross Mechanical Power ($P_m$)** developed per phase is given b
+
+
+
+$$\text{Rotor Input Power} = E_2 I_2 \cos\phi_2$$ $$\text{Rotor Copper Loss} = (sE_2) I_2 \cos\phi_2$$
 $$P_m = \text{Rotor Input Power} - \text{Rotor Copper Loss}$$
 $$P_m = (sE_2) I_2 \cos\phi_2 \cdot \left(\frac{1-s}{s}\right) = (1-s) E_2 I_2 \cos\phi_2$$
 
@@ -153,3 +157,69 @@ $$\mathbf{s_m = \frac{R_2}{X_2}}$$
 * **Low Slip Region ($s \approx 0$):** $sX_2 \ll R_2$, so $T \propto s$ (Linear straight line).
 * **Maximum Torque Point ($s = s_m$):** $R_2 = sX_2$, torque reaches its peak ($T_{\max}$).
 * **High Slip Region ($s > s_m$):** $sX_2 \gg R_2$, so $T \propto \frac{1}{s}$ (Rectangular hyperbola).
+
+
+## Question: Derive the torque equation developed by an induction motor under running condition.
+
+### Answer:
+
+#### **1. Rotor Parameters Under Running Condition**
+
+Let,
+* $E_2$ = Rotor induced EMF per phase at standstill ($s = 1$)
+* $R_2$ = Rotor resistance per phase
+* $X_2$ = Rotor standstill reactance per phase
+* $s$ = Fractional slip
+* $N_s$ = Synchronous speed in rpm ($\omega_s = \frac{2\pi N_s}{60}$ rad/s)
+* $N$ = Actual rotor speed in rpm ($\omega_r = \frac{2\pi N}{60}$ rad/s)
+
+When the rotor runs at a slip $s$:
+* **Rotor induced EMF per phase** $= sE_2$
+* **Rotor reactance per phase** $= sX_2$
+* **Rotor impedance per phase:**
+  $$Z_2 = \sqrt{R_2^2 + (sX_2)^2}$$
+
+* **Rotor current per phase ($I_2$):**
+  $$I_2 = \frac{sE_2}{Z_2} = \frac{sE_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
+
+* **Rotor power factor ($\cos\phi_2$):**
+  $$cos\phi_2 = \frac{R_2}{Z_2} = \frac{R_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
+
+---
+
+#### **2. Derivation of Gross Torque ($T$)**
+
+Per phase power relations in the rotor:
+* **Rotor Input Power** $= E_2 I_2 \cos\phi_2$
+* **Rotor Copper Loss** $= (sE_2) I_2 \cos\phi_2$
+
+Therefore, **Gross Mechanical Power ($P_m$)** developed per phase:
+$$P_m = \text{Rotor Input Power} - \text{Rotor Copper Loss}$$
+$$P_m = E_2 I_2 \cos\phi_2 - sE_2 I_2 \cos\phi_2$$
+$$P_m = (1 - s) E_2 I_2 \cos\phi_2$$
+
+For a **3-phase** induction motor, total gross mechanical power developed:
+$$P_{m(\text{total})} = 3(1 - s) E_2 I_2 \cos\phi_2 \quad \text{--- (i)}$$
+
+Again, in terms of gross torque ($T$) and rotor angular speed ($\omega_r$), mechanical power is:
+$$P_{m(\text{total})} = T \cdot \omega_r = T \cdot \omega_s(1 - s) \quad \text{--- (ii)}$$
+*(Since $N = N_s(1 - s) \implies \omega_r = \omega_s(1 - s)$)*
+
+Equating equations (i) and (ii):
+$$T \cdot \omega_s(1 - s) = 3(1 - s) E_2 I_2 \cos\phi_2$$
+
+$$T = \frac{3}{\omega_s} E_2 I_2 \cos\phi_2$$
+
+Substituting the expressions for $I_2$ and $\cos\phi_2$:
+$$T = \frac{3}{\omega_s} E_2 \left(\frac{sE_2}{\sqrt{R_2^2 + (sX_2)^2}}\right) \left(\frac{R_2}{\sqrt{R_2^2 + (sX_2)^2}}\right)$$
+
+$$\mathbf{T = \frac{3}{\omega_s} \cdot \frac{s E_2^2 R_2}{R_2^2 + (sX_2)^2}} \quad \text{N-m}$$
+
+*(Alternatively, substituting $\omega_s = \frac{2\pi N_s}{60}$, where $N_s$ is in rpm and $n_s = \frac{N_s}{60}$ is in rps)*:
+$$\mathbf{T = \frac{3}{2\pi n_s} \cdot \frac{s E_2^2 R_2}{R_2^2 + (sX_2)^2}} \quad \text{N-m}$$
+
+---
+
+#### **Conclusion:**
+The equation above represents the gross torque developed by a 3-phase induction motor under running condition at slip $s$. Since $\frac{3}{2\pi n_s} = K$ (constant), it can also be expressed as:
+$$T = \frac{K s E_2^2 R_2}{R_2^2 + (sX_2)^2}$$

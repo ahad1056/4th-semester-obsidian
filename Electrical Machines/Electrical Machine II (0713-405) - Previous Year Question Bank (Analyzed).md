@@ -3,7 +3,7 @@
 - [Y25 Q5b M1] Why is the starting torque of a slip-ring induction motor higher than that of a squirrel-cage motor? #theory
 - [Y25 Q5c M2] A 150-kW, 3000-V, 50-Hz, 6-pole star-connected induction motor has a star-connected slip-ring rotor with a transformation ratio of 3.6 (stator/rotor). The rotor resistance is 0.1 Ω/phase and its per-phase leakage reactance is 3.61 mH. The stator impedance may be neglected. Find the starting current and starting torque on rated voltage with short-circuited slip rings. #math
 - [Y25 Q5d M3] Discuss the relation between torque and rotor power factor in different rotor characteristics of an induction motor with necessary diagrams. #theory
-- [Y25 Q6a M3] Derive the torque-slip characteristic equation of a 3-phase induction motor and indicate the condition for maximum torque. #derivation
+- [Y25 Q6a M3] ==🟢Derive the torque-slip characteristic equation of a 3-phase induction motor and indicate the condition for maximum torque.== #derivation
 - [Y25 Q6b M3] Draw and explain the characteristics of an induction motor in various operation modes. #theory
 - [Y25 Q6c M2] Show that the rotor gross power P_m = (1-s) P_{in}, where s is the slip and P_{in} is the input to the induction motor. #derivation
 - [Y25 Q6d M1] A 400-V, 60-Hz, 8-pole, 3-\phi induction motor runs at a speed of 1140 rpm when connected to a 440-V line. Calculate the speed if the voltage increases to 550 V. #math

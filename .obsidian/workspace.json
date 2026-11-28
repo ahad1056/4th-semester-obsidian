@@ -42,7 +42,7 @@
               "type": "markdown",
               "state": {
                 "file": "Electrical Machines/Chapter 1 - Induction Motor.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -113,7 +113,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 630.5538444519043
+    "width": 969.1779289245605
   },
   "right": {
     "id": "6f01bfb913ba84a3",
