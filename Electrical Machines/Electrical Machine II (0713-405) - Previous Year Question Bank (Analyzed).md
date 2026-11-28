@@ -26,7 +26,7 @@
 - [Y23 Q5a M2] Discuss the different types of induction motor with their differences and features. #theory
 - [Y23 Q5b M3] ==🟢Prove that an induction motor with a 3-phase supply can produce a rotating field at a constant magnitude and speed==. #derivation
 - [Y23 Q5c M2] A 150 kW, 3000 V, 50 Hz, 6-pole, star-connected induction motor has a star-connected slip-ring rotor with a transformation ratio of 3.6 (stator/rotor). The rotor resistance is 0.1 Ω per phase and its leakage reactance per phase is 3.61 mH. The stator impedance may be neglected. Find the starting current and starting torque on rated voltage with short-circuited slip-rings. #math
-- [Y23 Q5d M2] Derive the torque equation developed by an induction motor under running condition. #derivation
+- [Y23 Q5d M2] ==🟢Derive the torque equation developed by an induction motor under running condition.== #derivation
 - [Y23 Q6a M2] Discuss the relation between the torque and slip in an induction motor. #theory
 - [Y23 Q6b M3] A 230 V, 6-pole, 3-phase, 50 Hz, 15 kW induction motor drives a constant torque load at rated frequency, rated voltage and rated kW output, and has a speed of 980 rpm and an efficiency of 93%. Calculate (i) the new operating speed if there is a 10% drop in voltage and 5% drop in frequency and (ii) the new output power. Assume all losses to remain constant. #math
 - [Y23 Q6c M2] The power input to the rotor of a 400 V, 50 Hz, 6-pole, 3-phase induction motor is 20 kW. The slip is 3%. Calculate (i) the frequency of rotor currents (ii) rotor speed (iii) rotor copper losses and (iv) rotor resistance per phase if rotor current is 60 A. #math
@@ -38,7 +38,7 @@
 - [Y23 Q8d M2] Write the short notes on the plugging of an induction motor. #theory
 - [Y22 Q5a M2] Why is induction motor called as rotating transformer? #theory
 - [Y22 Q5b M2] The rotor slots of 3 phase induction motor are not quite parallel to the shaft but are purposely given a slight skew. Why? #theory
-- [Y22 Q5c M2] Prove that the resultant flux in the induction motor due to three phase supply is 1.5 times the maximum value of the flux due to any phase. #derivation
+- [Y22 Q5c M2] ==🟢Prove that the resultant flux in the induction motor due to three phase supply is 1.5 times the maximum value of the flux due to any phase==. #derivation
 - [Y22 Q5d M3] Calculate the torque exerted by an 8 pole, 50 Hz, 3 phase induction motor operating with a 4% slip which develops a maximum torque of 150 kg-m at a speed of 660 rpm. The resistance per phase of the rotor is 0.5 Ω. #math
 - [Y22 Q6a M2] Show that for the larger value of slip is inversely proportional to the torque in induction motor. #derivation
 - [Y22 Q6b M2] Explain plugging of induction motor. #theory

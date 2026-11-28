@@ -161,6 +161,7 @@ $$\mathbf{s_m = \frac{R_2}{X_2}}$$
 
 ## Question: Derive the torque equation developed by an induction motor under running condition.
 
+
 ### Answer:
 
 #### **1. Rotor Parameters Under Running Condition**
@@ -223,3 +224,68 @@ $$\mathbf{T = \frac{3}{2\pi n_s} \cdot \frac{s E_2^2 R_2}{R_2^2 + (sX_2)^2}} \qu
 #### **Conclusion:**
 The equation above represents the gross torque developed by a 3-phase induction motor under running condition at slip $s$. Since $\frac{3}{2\pi n_s} = K$ (constant), it can also be expressed as:
 $$T = \frac{K s E_2^2 R_2}{R_2^2 + (sX_2)^2}$$
+
+
+## Question: Prove that the resultant flux in an induction motor due to a three-phase supply is 1.5 times the maximum value of the flux due to any phase.
+
+---
+
+### Answer:
+
+Consider a 3-phase induction motor whose three stator windings ($R, Y, B$) are displaced by $120^\circ$ in space and fed by a balanced 3-phase supply. 
+
+Let the alternating fluxes produced by the three phases be:
+$$\Phi_R = \Phi_m \sin(\omega t)$$
+$$\Phi_Y = \Phi_m \sin(\omega t - 120^\circ)$$
+$$\Phi_B = \Phi_m \sin(\omega t - 240^\circ)$$
+
+Where $\Phi_m$ is the maximum flux due to any single phase. The resultant flux ($\Phi_r$) at any instant is the vector sum of these three space-displaced fluxes.
+
+We determine $\Phi_r$ at four different instants ($\omega t = 0^\circ, 60^\circ, 120^\circ, 180^\circ$):
+
+#### **Case 1: At $\omega t = 0^\circ$**
+* $\Phi_R = \Phi_m \sin(0^\circ) = 0$
+* $\Phi_Y = \Phi_m \sin(-120^\circ) = -\frac{\sqrt{3}}{2}\Phi_m$
+* $\Phi_B = \Phi_m \sin(-240^\circ) = +\frac{\sqrt{3}}{2}\Phi_m$
+
+Due to the negative sign, the vector $\Phi_Y$ reverses its direction by $180^\circ$, making the angle between $-\Phi_Y$ and $\Phi_B$ equal to $60^\circ$. Since both have equal magnitudes ($\frac{\sqrt{3}}{2}\Phi_m$):
+$$\Phi_r = 2 \times \left(\frac{\sqrt{3}}{2}\Phi_m\right) \cos\left(\frac{60^\circ}{2}\right) = \sqrt{3}\Phi_m \times \frac{\sqrt{3}}{2} = \mathbf{1.5\Phi_m}$$
+*(Resultant points vertically upwards at $90^\circ$)*
+
+---
+
+#### **Case 2: At $\omega t = 60^\circ$**
+* $\Phi_R = \Phi_m \sin(60^\circ) = +\frac{\sqrt{3}}{2}\Phi_m$
+* $\Phi_Y = \Phi_m \sin(-60^\circ) = -\frac{\sqrt{3}}{2}\Phi_m$
+* $\Phi_B = \Phi_m \sin(-180^\circ) = 0$
+
+Reversing $\Phi_Y$ makes the angle between $\Phi_R$ and $-\Phi_Y$ equal to $60^\circ$:
+$$\Phi_r = 2 \times \left(\frac{\sqrt{3}}{2}\Phi_m\right) \cos\left(\frac{60^\circ}{2}\right) = \mathbf{1.5\Phi_m}$$
+*(Resultant shifts $60^\circ$ clockwise from Case 1)*
+
+---
+
+#### **Case 3: At $\omega t = 120^\circ$**
+* $\Phi_R = \Phi_m \sin(120^\circ) = +\frac{\sqrt{3}}{2}\Phi_m$
+* $\Phi_Y = \Phi_m \sin(0^\circ) = 0$
+* $\Phi_B = \Phi_m \sin(-120^\circ) = -\frac{\sqrt{3}}{2}\Phi_m$
+
+Reversing $\Phi_B$ makes the angle between $\Phi_R$ and $-\Phi_B$ equal to $60^\circ$:
+$$\Phi_r = 2 \times \left(\frac{\sqrt{3}}{2}\Phi_m\right) \cos\left(\frac{60^\circ}{2}\right) = \mathbf{1.5\Phi_m}$$
+*(Resultant shifts $120^\circ$ clockwise from Case 1)*
+
+---
+
+#### **Case 4: At $\omega t = 180^\circ$**
+* $\Phi_R = \Phi_m \sin(180^\circ) = 0$
+* $\Phi_Y = \Phi_m \sin(60^\circ) = +\frac{\sqrt{3}}{2}\Phi_m$
+* $\Phi_B = \Phi_m \sin(-60^\circ) = -\frac{\sqrt{3}}{2}\Phi_m$
+
+Reversing $\Phi_B$ makes the angle between $\Phi_Y$ and $-\Phi_B$ equal to $60^\circ$:
+$$\Phi_r = 2 \times \left(\frac{\sqrt{3}}{2}\Phi_m\right) \cos\left(\frac{60^\circ}{2}\right) = \mathbf{1.5\Phi_m}$$
+*(Resultant shifts $180^\circ$ clockwise from Case 1)*
+
+---
+
+#### **Conclusion:**
+At every instant of time, the magnitude of the resultant magnetic flux remains constant and is equal to **$1.5\Phi_m$** (i.e., $1.5$ times the maximum flux due to any phase).
