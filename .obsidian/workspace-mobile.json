@@ -14,8 +14,8 @@
               "type": "markdown",
               "state": {
                 "file": "Stat Daily Class Note.md",
-                "mode": "preview",
-                "source": false
+                "mode": "source",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "Stat Daily Class Note"
@@ -197,6 +197,9 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
+    "IMG_20261128_062152.webp",
+    "IMG_20261128_062144.webp",
+    "IMG_20261128_062135.webp",
     "Projects/Buzzer game/test/README",
     "Projects/Buzzer game/src/main.cpp",
     "Projects/Buzzer game/lib/README",
@@ -227,8 +230,6 @@
     "JPEG_20261124_205659_9164588245002462340.webp",
     "JPEG_20261124_205359_5671629252352652905.webp",
     "JPEG_20261124_205342_337986836068993449.webp",
-    "JPEG_20261124_205326_6290289306506491772.webp",
-    "JPEG_20261124_205253_5401005581551023649.webp",
     "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
     "Mechanical Engineering/Important Formulas, Material Constants & Thermodynamic Tables.md",
@@ -238,7 +239,6 @@
     "401 Solid state Electronics '3'/Chapter 1 - Lattes Structure.md",
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Communication Systems/Chapter 2 -NOISE.md",
-    "Projects/inductor meter/inductance meter circuit - Version 2 .sim1",
     "Course Syllabus Communication Systems (0714-403).md",
     "Untitled.canvas",
     "Electrical Machines/Chapter 1 - Induction Motor.md",
