@@ -228,8 +228,47 @@ The notes also list upcoming syllabus topics to study:
 
 
 # 26 November class 6
-![[IMG_20261128_063423.webp]]
+![[IMG_20261128_063423.webp|259]]
+## Class Notes: Solid State Electronics - Miller Indices & X-Ray Diffraction (XRD)
 
+## 📐 Introduction to Miller Indices
+Miller indices[^18] are used to designate crystal planes $(hkl)$ and crystal directions $[uvw]$ within a crystal lattice.
+
+### Steps to Determine Miller Indices of a Crystal Plane
+1. **Intercepts:** Find the intercepts of the plane along the crystallographic axes ($x, y, z$ or $\vec{a}, \vec{b}, \vec{c}$) in units of the lattice parameters. (If a plane is parallel to an axis, its intercept is $\infty$.)
+2. **Reciprocal:** Take the reciprocal of each intercept value (with $\frac{1}{\infty} = 0$).
+3. **Reduction to Smallest Integer:** Multiply or clear fractions so that the values are reduced to the smallest set of integers (`Intercept, reciprocal, reduction, miller indices`).
+4. **Enclose in Parentheses:** Write the resulting integers as $(hkl)$ for a plane (using a bar over a number, such as $\bar{h}$, for negative intercepts).
+
+---
+
+## 🔬 X-Ray Diffraction (XRD) & Bragg's Law
+The notes sketch an **XRD**[^19] setup where an incoming **X-ray** beam strikes parallel crystal planes at a glancing/Bragg angle $\theta$ and is collected at a **Detector** (`Detecter` in the diagram).
+
+- **Bragg's Law Condition for Constructive Interference:**
+  $$n\lambda = 2d\sin\theta$$
+  where:
+  - $n$ = diffraction order (positive integer: $1, 2, 3, \dots$)
+  - $\lambda$ = wavelength of the incident X-rays
+  - $d$ = interplanar spacing between adjacent parallel lattice planes
+  - $\theta$ = Bragg (glancing) angle between the incident X-ray beam and the scattering plane
+
+*(Note: The path difference between X-rays scattered from two adjacent crystal planes separated by distance $d$ is $2d\sin\theta$; constructive interference occurs when this path difference equals an integer multiple $n\lambda$ of the wavelength.)*
+
+---
+
+## 📌 Exam, Viva & Actionable Study Tips
+- **Exam & Viva Core:** Know the step-by-step procedure for finding Miller indices (*intercept $\rightarrow$ reciprocal $\rightarrow$ reduce to smallest integers*) and be able to state and explain **Bragg's law** ($n\lambda = 2d\sin\theta$) from the scattering diagram.
+- **Actionable Study Tip:** Practice converting sample plane intercepts—such as $(1, \infty, \infty) \rightarrow (100)$, $(\frac{1}{2}, \infty, \infty) \rightarrow (200)$, and $(1, 1, 1) \rightarrow (111)$—and solve basic Bragg's law problems to find interplanar spacing $d$ or angle $\theta$.
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^18]: **Miller Indices:** A set of three integers $(hkl)$ (or four indices $(hkil)$ in hexagonal systems) used to uniquely identify a family of parallel crystal planes in a lattice, obtained by taking reciprocals of axial intercepts and reducing to the smallest integers.
+[^19]: **X-Ray Diffraction (XRD):** An analytical technique in which X-rays are directed at a crystalline sample and diffracted according to Bragg's law to reveal crystal structure, phase identity, orientation, and lattice spacing.
+
+---
+**Tags:** #solid-state-electronics #miller-indices #xrd #braggs-law #crystallography #class-notes
 # n November class 7
 
 
