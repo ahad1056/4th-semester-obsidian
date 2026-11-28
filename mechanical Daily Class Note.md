@@ -84,14 +84,33 @@ Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
 
 [^1]: "If two thermodynamic systems are each in thermal equilibrium with a third one, then they are in thermal equilibrium with each other." _(যদি দুটি তাপগতীয় সিস্টেম তৃতীয় কোনো সিস্টেমের সাথে আলাদাভাবে তাপীয় সাম্যাবস্থায় থাকে, তবে তারা নিজেরাও একে অপরের সাথে তাপীয় সাম্যাবস্থায় থাকবে।)_ 
 [^2]: A process which can be retraced in the opposite direction so
-	
 	that the working substance passes through exactly the same
-	
 	conditions as it does in the direct process.
-	
 	It means both system and surroundings are returned to their
-	
 	initial states at the end of the reverse process.
+	
+	**Conditions of Reversibility for any heat engine process:**
+	
+	- All the processes must be infinitely slow.
+	- The working parts of the engine must be completely free
+	from friction.
+	-  No loss of energy due to conduction, convection or radiation
+	   during the cycle of operation
+	
+	**Reversible process is only an ideal case.**
+	
+	-  In practice no mechanical process is frictionless
+	- No insulator or conductor is perfect.
+	- There is always loss of heat due to friction, conduction,
+	  convection or radiation.
+	
+	#### Some examples of nearly reversible processes are:
+	
+	(i) Expansion and compression of spring.
+	(ii) Frictionless adiabatic expansion or compression of fluid.
+	(iii) Isothermal expansion or compression.
+	(iv)Evaporation
+
 
 # 17 November class 3
 
@@ -134,8 +153,8 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 ## Class Notes: Mechanical Engineering - 2nd Law of Thermodynamics (Nov 22)
 
 ## 🔄 Fundamental Thermodynamic Concepts
-- **Reversible[^2] and Irreversible Processes:** Study of processes that can be reversed without leaving any trace on the surroundings versus natural processes that cannot.
-- **Cyclic Process:** A series of thermodynamic processes in which a system eventually returns to its initial state.
+- **Reversible[^2] and Irreversible[^3] Processes:**
+- **Cyclic[^4] Process:**
 - **Heat Reservoir and Heat Engine:** *(Corrected from "resurver")* Concepts of thermal energy reservoirs (high-temperature source and low-temperature sink) and devices that convert heat energy into mechanical work.
 
 ---
@@ -169,3 +188,18 @@ The class covered four classical statements of the Second Law of Thermodynamics:
 
 # 26 November class 5
 ![[IMG_20261128_063442.webp]]![[IMG_20261128_063449.webp]]
+
+[^3]: The process which cannot be retraced in opposite order by
+	reversing the controlling factors is called an Irreversible
+	process. In nature all changes are irreversible.
+	
+	**Examples of irreversible processes
+	
+	(i) Heat produced by Friction
+	(ii) Electricity flow through a resistance
+	(iii)Heat transfer by Radiation
+	(iv)Plastic deformation
+[^4]: 
+	
+	
+	
