@@ -219,8 +219,7 @@ As slip ($s$) decreases from $1$ (standstill) toward $0$ (synchronous speed), th
 
 
 # 23 November class 6
-![[JPEG_20261124_220027_7548547501040896918.jpg|118]] 
-
+ ![[Machine Daily Class Notes-1795839654264.webp|163]]
 ## Class Notes: Electrical Machines - Torque Equations, Torque-Slip Curve & Phase-Wound Rotor
 
 ## ⚡ Torque Equation & Maximum Torque Conditions
@@ -258,8 +257,67 @@ A **phase-wound rotor** (commonly used in a **wound-rotor induction motor** or *
 
 ---
 **Tags:** #electrical-machines #induction-motor #torque #torque-slip-curve #breakdown-torque #phase-wound-rotor #class-notes
->>>>>>> origin/main
-
 
 # 26 November class 7
-![[IMG_20261126_101904.webp]]
+![[IMG_20261126_101904.webp|155]]   
+
+## Class Notes: Electrical Machines - Induction Motor Power Flow, Torque & Starting/Control
+
+> **Notice (`* আগামী সপ্তাহে Viva বা CT হতে পারে`):** A Viva or Class Test (CT) may take place next week.
+
+## 📝 Assignment
+- **Task:** Produce the **slip–torque characteristic** curve from the torque equation using **MATLAB** (plot electromagnetic torque $T$ vs. slip $s$ from $s = 1$ down to $s = 0$).
+
+---
+
+## ⚡ Induction Motor Power Flow & Torque Relations
+Tracing power from stator input to mechanical shaft output (neglecting rotational/stray losses unless specified)
+- **Primary (Stator) Power ($P_1$):** Electrical input power supplied to the stator windings
+- **Secondary (Air-Gap) Power ($P_2$):** Power transferred across the air gap from stator to rotor (note: in the handwritten note, $P_2$ is written as `"Secondry power"`, though in induction motor terminology $P_2$ or $P_{ag}$ represents air-gap power)
+- **Rotor Copper Loss ($P_{cu}$):**
+  $$P_{cu} = s P_2$$
+- **Gross Mechanical Power Developed ($P_m$):**
+  $$P_m = P_2 - P_{cu} = P_2 - s P_2 = (1 - s) P_2$$
+- **Power Ratio Identity:**
+  $$P_2 : P_m : P_{cu} = 1 : (1 - s) : s$$
+
+### Speed & Torque Equations
+- **Rotor Mechanical Angular Speed ($\omega_r$):**
+  $$\omega_r = (1 - s)\omega_s$$
+  where $\omega_s = \frac{2\pi N_s}{60}$ is the synchronous angular speed.
+- **Electromagnetic / Gross Torque ($T_g$):**
+  Starting from $T = \frac{P}{\omega}$:
+  $$T_g = \frac{P_m}{\omega_r} = \frac{(1 - s)P_2}{(1 - s)\omega_s} = \frac{P_2}{\omega_s}$$
+  *(Correction note: In the handwritten equation, the numerator of the middle expression is written as $P_g$ while the top flow uses $P_m$; both refer to gross mechanical power developed, which simplifies cleanly to $\frac{P_2}{\omega_s}$.)*
+- **Link to Flux–Current Torque Relation (`T = P/w থেকে T = \Phi I \cos\phi_2 তে আসতে হবে`):** Since air-gap power $P_2$ is proportional to induced rotor EMF ($E_2 \propto \phi$), rotor current ($I_2$), and rotor power factor ($\cos\phi_2$), dividing by $\omega_s$ leads to the proportional torque form $T \propto \phi I_2 \cos\phi_2$.
+
+---
+
+## 🔧 Starting, VFD, Vector Control & Magnetic Coupling
+- **Rickshaw Load Torque Calculation (`methodically calculate the torque from weight of rickshaw`):**
+  To compute required wheel/motor torque methodically from total mass/weight ($W = mg$):
+  1. Find rolling resistance force: $F_{\text{roll}} = \mu_r W$ (plus incline force $W\sin\theta$ if climbing and aerodynamic drag if applicable).
+  2. Multiply total tractive force by wheel radius ($r$): $T_{\text{wheel}} = F_{\text{total}} \cdot r$.
+  3. Account for gear ratio / transmission efficiency ($\eta_{\text{drive}}$) to find required motor shaft torque: $T_{\text{motor}} = \frac{T_{\text{wheel}}}{G \cdot \eta_{\text{drive}}}$.
+- **Star–Delta Starting (`we use star-delta connection when starting`):**
+  Reduces per-phase stator voltage by a factor of $\frac{1}{\sqrt{3}}$ during starting, which lowers the high starting current (drawn when back/induced EMF is initially low/zero) and reduces starting torque to $\frac{1}{3}$ of direct-on-line (DOL) starting torque.
+- **VFD & Starting Current Solution (`we use VFD for increase the starting torque (X_2 = R), but the current goes up. what the solution?`):**
+  A **Variable Frequency Drive (VFD)**[^2] adjusts both frequency and voltage (typically keeping a constant $V/f$ ratio) so the motor develops strong torque smoothly without excessive current spikes. To prevent overcurrent during startup or high-torque demands, use **current limiting / ramp-up (acceleration time) settings** in the VFD, avoid sudden frequency/voltage steps, and ensure proper $V/f$ boost or closed-loop torque/current control rather than applying full voltage at low speed.
+- **Vector Control (Field-Oriented Control, FOC):** A control technique[^3] that decomposes stator currents into flux-producing and torque-producing components (analogous to separate excitation in a DC motor) for precise dynamic torque and speed control.
+- **Magnetic Coupling:** A torque-transmission mechanism[^4] that transfers mechanical power across an air gap using magnetic fields without direct physical/mechanical contact between driving and driven shafts.
+
+---
+
+## 📌 Exam, Viva & Actionable Study Tips
+- **Viva High-Alert Topics:** Be ready to explain **Star–Delta starting**, **VFD current rise & how to limit it**, **Vector Control**, **Magnetic Coupling**, and how to derive $T = \frac{P_2}{\omega_s}$ and $P_2 : P_m : P_{cu} = 1 : (1 - s) : s$.
+- **Actionable Study Tip:** Write a short MATLAB script (`s = linspace(0, 1, 500);`) to plot $T(s)$ for two different rotor resistances ($R_2$) so you can visually verify how changing $R_2$ shifts the slip at which maximum torque occurs ($R_2 = s X_2$).
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^2]: **Variable Frequency Drive (VFD):** A power electronics motor controller that varies supply frequency (and correspondingly voltage) to control AC motor speed, acceleration ramp, and torque smoothly.
+[^3]: **Vector Control (Field-Oriented Control):** An advanced AC motor control method that transforms three-phase currents into a rotating reference frame to independently regulate magnetic flux and electromagnetic torque.
+[^4]: **Magnetic Coupling:** A non-contact power transmission device using permanent magnets or electromagnetic fields across an air gap to transmit torque while providing overload protection and misalignment tolerance.
+
+---
+**Tags:** #electrical-machines #induction-motor #power-flow #torque #vfd #vector-control #magnetic-coupling #matlab #class-notes
