@@ -76,7 +76,7 @@ Hence, a 3-phase supply feeding a 3-phase winding produces a magnetic field of *
 
 
 ## Question: Derive the torque-slip characteristic equation of a 3-phase induction motor and indicate the condition for maximum torque.
-
+ 
 ### Answer:
 
 #### **1. Derivation of Torque-Slip Equation**
