@@ -364,3 +364,56 @@ Combining all three relationships, the fundamental power ratio in an induction m
 $$\mathbf{P_2 : P_{cu} : P_m = 1 : s : (1 - s)}$$
 
 *(Where $P_2$ = Rotor Power Input, $P_{cu}$ = Rotor Copper Loss, and $P_m$ = Gross Mechanical Power Developed)*
+
+
+
+
+
+
+
+## Question: **Derive the equation for starting torque of a squirrel cage induction motor. In a case where a higher starting torque is required, what solution should you provide? Explain.**
+
+---
+
+### Answer:
+
+#### **Part 1: Derivation of Starting Torque ($T_{st}$)**
+
+Let,
+* $E_2$ = Rotor induced EMF per phase at standstill ($s = 1$)
+* $R_2$ = Rotor resistance per phase
+* $X_2$ = Rotor standstill reactance per phase
+* $\omega_s = \frac{2\pi N_s}{60}$ = Synchronous angular velocity (rad/s)
+
+Under running condition at slip $s$, the gross torque ($T$) developed by a 3-phase induction motor is given by:
+$$T = \frac{3}{\omega_s} \cdot \frac{s E_2^2 R_2}{R_2^2 + (sX_2)^2}$$
+
+At the instant of **starting**, the rotor is stationary ($N = 0$), so the fractional slip is **$s = 1$**:
+$$s = \frac{N_s - 0}{N_s} = 1$$
+
+Substituting $s = 1$ into the running torque equation, we get the **Starting Torque ($T_{st}$)**:
+$$T_{st} = \frac{3}{\omega_s} \cdot \frac{(1) \cdot E_2^2 R_2}{R_2^2 + (1 \cdot X_2)^2}$$
+
+$$\mathbf{T_{st} = \frac{3}{\omega_s} \cdot \frac{E_2^2 R_2}{R_2^2 + X_2^2}} \quad \text{N-m}$$
+
+*(Alternatively, since $\frac{3}{\omega_s} = K$ is a constant and rotor induced EMF $E_2 \propto V$, where $V$ is the applied stator voltage per phase)*:
+$$\mathbf{T_{st} = \frac{K E_2^2 R_2}{R_2^2 + X_2^2}} \quad \text{or} \quad \mathbf{T_{st} \propto \frac{V^2 R_2}{R_2^2 + X_2^2}}$$
+
+---
+
+#### **Part 2: Solution for Higher Starting Torque & Explanation**
+
+**Problem in Standard Squirrel Cage Motor:**
+In a standard squirrel cage induction motor, the rotor bars are permanently short-circuited by end rings, resulting in a **very low rotor resistance ($R_2$)** compared to its standstill reactance ($X_2$). Consequently:
+* Starting current is very high, and rotor power factor ($\cos\phi_2 = \frac{R_2}{\sqrt{R_2^2 + X_2^2}}$) is very poor.
+* Therefore, **starting torque ($T_{st}$) is low** (typically $1.2$ to $1.5$ times full-load torque), and external resistance **cannot** be added to increase $R_2$.
+
+**Recommended Solutions:**
+
+1. **Replace with a Slip-Ring (Wound Rotor) Induction Motor (Primary Solution):**
+   * **How it works:** A slip-ring motor allows external resistors to be connected in series with the rotor circuit via brushes and slip rings during starting.
+   * **Explanation:** From the equation $T_{st} = \frac{K E_2^2 R_2}{R_2^2 + X_2^2}$, increasing total rotor resistance ($R_2 + R_{\text{ext}}$) increases the rotor power factor ($\cos\phi_2$) and reduces starting current. Maximum starting torque ($T_{st} = T_{\max}$) is achieved when total rotor resistance equals standstill reactance (**$R_2 + R_{\text{ext}} = X_2$**). Once the motor accelerates, the external resistance is gradually cut out so the motor runs with low $R_2$ and high efficiency.
+
+2. **Use a Double Squirrel Cage Induction Motor (If brushless/rugged construction is mandatory):**
+   * **How it works:** The rotor has two parallel cages—an **outer cage** (high resistance, low reactance) and an **inner cage** (low resistance, high reactance).
+   * **Explanation:** At starting ($f_r = f = 50\text{ Hz}$), the inner cage has high reactance ($X = 2\pi f L$), forcing most current through the high-resistance outer cage. This produces **high starting torque**. At running speed ($f_r = sf$ is very low), reactance becomes negligible, and current flows mainly through the low-resistance inner cage, ensuring **high running efficiency**.
