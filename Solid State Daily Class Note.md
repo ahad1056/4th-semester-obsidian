@@ -228,7 +228,7 @@ The notes also list upcoming syllabus topics to study:
 
 
 # 26 November class 6
-
+![[IMG_20261128_063423.webp]]
 
 # n November class 7
 

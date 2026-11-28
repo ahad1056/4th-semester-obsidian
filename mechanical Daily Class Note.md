@@ -157,3 +157,6 @@ The class covered four classical statements of the Second Law of Thermodynamics:
 
 ---
 **Tags:** #mechanical-engineering #thermodynamics #second-law #carnot-cycle #heat-engine #class-notes
+
+# 26 November class 5
+![[IMG_20261128_063442.webp]]![[IMG_20261128_063449.webp]]
