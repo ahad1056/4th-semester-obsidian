@@ -83,6 +83,15 @@
 Tags: #mechanical-engineering #thermodynamics #heat-capacity #class-notes
 
 [^1]: "If two thermodynamic systems are each in thermal equilibrium with a third one, then they are in thermal equilibrium with each other." _(যদি দুটি তাপগতীয় সিস্টেম তৃতীয় কোনো সিস্টেমের সাথে আলাদাভাবে তাপীয় সাম্যাবস্থায় থাকে, তবে তারা নিজেরাও একে অপরের সাথে তাপীয় সাম্যাবস্থায় থাকবে।)_ 
+[^2]: A process which can be retraced in the opposite direction so
+	
+	that the working substance passes through exactly the same
+	
+	conditions as it does in the direct process.
+	
+	It means both system and surroundings are returned to their
+	
+	initial states at the end of the reverse process.
 
 # 17 November class 3
 
@@ -125,7 +134,7 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 ## Class Notes: Mechanical Engineering - 2nd Law of Thermodynamics (Nov 22)
 
 ## 🔄 Fundamental Thermodynamic Concepts
-- **Reversible and Irreversible Processes:** Study of processes that can be reversed without leaving any trace on the surroundings versus natural processes that cannot.
+- **Reversible[^2] and Irreversible Processes:** Study of processes that can be reversed without leaving any trace on the surroundings versus natural processes that cannot.
 - **Cyclic Process:** A series of thermodynamic processes in which a system eventually returns to its initial state.
 - **Heat Reservoir and Heat Engine:** *(Corrected from "resurver")* Concepts of thermal energy reservoirs (high-temperature source and low-temperature sink) and devices that convert heat energy into mechanical work.
 
