@@ -3,3 +3,6 @@
 
 ![[full_induction_motor_cross_section_animation.html]]
 
+
+
+
