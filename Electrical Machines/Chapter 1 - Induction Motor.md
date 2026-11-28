@@ -5,6 +5,7 @@
 
 
 
+
 ## Question: Prove that an induction motor with a 3-phase supply can produce a rotating magnetic field at a constant magnitude and speed.
 ### Answer:
 
@@ -72,6 +73,8 @@ Since both frequency ($f$) and number of poles ($P$) are constant for a given ma
 
 #### **Conclusion:**
 Hence, a 3-phase supply feeding a 3-phase winding produces a magnetic field of **constant magnitude ($1.5\Phi_m$)** rotating at a **constant synchronous speed ($N_s = \frac{120f}{P}$)**.
+
+
 
 
 
@@ -157,6 +160,8 @@ $$\mathbf{s_m = \frac{R_2}{X_2}}$$
 * **Low Slip Region ($s \approx 0$):** $sX_2 \ll R_2$, so $T \propto s$ (Linear straight line).
 * **Maximum Torque Point ($s = s_m$):** $R_2 = sX_2$, torque reaches its peak ($T_{\max}$).
 * **High Slip Region ($s > s_m$):** $sX_2 \gg R_2$, so $T \propto \frac{1}{s}$ (Rectangular hyperbola).
+
+
 
 
 ## Question: Derive the torque equation developed by an induction motor under running condition.
@@ -289,3 +294,73 @@ $$\Phi_r = 2 \times \left(\frac{\sqrt{3}}{2}\Phi_m\right) \cos\left(\frac{60^\ci
 
 #### **Conclusion:**
 At every instant of time, the magnitude of the resultant magnetic flux remains constant and is equal to **$1.5\Phi_m$** (i.e., $1.5$ times the maximum flux due to any phase).
+
+
+
+## Question: From fundamentals, deduce a relationship between rotor power input, rotor copper loss, and developed mechanical power in the case of an induction motor.
+
+### Answer:
+
+#### **1. Fundamental Definitions & Power Flow**
+
+In a 3-phase induction motor, power is transferred from the stator to the rotor across the air gap via the Rotating Magnetic Field (RMF) moving at synchronous speed $N_s$.
+
+Let,
+* $T_g$ = Gross torque developed by the rotor (in N-m)
+* $N_s$ = Synchronous speed (in rpm), where $\omega_s = \frac{2\pi N_s}{60}$ rad/s
+* $N$ = Actual rotor speed (in rpm), where $\omega_r = \frac{2\pi N}{60}$ rad/s
+* $s$ = Fractional slip $= \frac{N_s - N}{N_s} = \frac{\omega_s - \omega_r}{\omega_s}$
+
+The power flow in the rotor follows the conservation of energy:
+$$\text{Rotor Power Input } (P_2) = \text{Gross Mechanical Power } (P_m) + \text{Rotor Copper Loss } (P_{cu})$$
+
+---
+
+#### **2. Step-by-Step Derivation**
+
+**Step 1: Rotor Power Input ($P_2$)**
+The air-gap power (or rotor input power) is delivered by the rotating magnetic field rotating at synchronous angular velocity $\omega_s$ with gross torque $T_g$:
+$$P_2 = T_g \cdot \omega_s \quad \text{--- (i)}$$
+
+**Step 2: Gross Mechanical Power Developed ($P_m$)**
+The mechanical power developed by the rotor shaft rotating at actual angular velocity $\omega_r$ is:
+$$P_m = T_g \cdot \omega_r \quad \text{--- (ii)}$$
+
+**Step 3: Rotor Copper Loss ($P_{cu}$)**
+The difference between the rotor input power and the gross mechanical power developed is dissipated as heat in the rotor circuit resistance, known as rotor copper loss:
+$$P_{cu} = P_2 - P_m$$
+
+Substituting equations (i) and (ii):
+$$P_{cu} = T_g \omega_s - T_g \omega_r = T_g (\omega_s - \omega_r) \quad \text{--- (iii)}$$
+
+---
+
+#### **3. Establishing the Ratios**
+
+**Relation between $P_{cu}$ and $P_2$:**
+Dividing equation (iii) by equation (i):
+$$\frac{P_{cu}}{P_2} = \frac{T_g (\omega_s - \omega_r)}{T_g \omega_s} = \frac{\omega_s - \omega_r}{\omega_s} = s$$
+
+$$\implies \mathbf{P_{cu} = s \cdot P_2}$$
+
+**Relation between $P_m$ and $P_2$:**
+Dividing equation (ii) by equation (i):
+$$\frac{P_m}{P_2} = \frac{T_g \omega_r}{T_g \omega_s} = \frac{\omega_r}{\omega_s} = 1 - s$$
+*(Since $s = 1 - \frac{\omega_r}{\omega_s} \implies \frac{\omega_r}{\omega_s} = 1 - s$)*
+
+$$\implies \mathbf{P_m = (1 - s) \cdot P_2}$$
+
+**Relation between $P_{cu}$ and $P_m$:**
+Dividing $P_{cu}$ by $P_m$:
+$$\frac{P_{cu}}{P_m} = \frac{s \cdot P_2}{(1 - s) \cdot P_2} = \frac{s}{1 - s}$$
+
+$$\implies \mathbf{P_{cu} = \left(\frac{s}{1 - s}\right) P_m}$$
+
+---
+
+#### **Conclusion (Summary Ratio):**
+Combining all three relationships, the fundamental power ratio in an induction motor rotor is:
+
+$$\mathbf{P_2 : P_{cu} : P_m = 1 : s : (1 - s)}$$
+
+*(Where $P_2$ = Rotor Power Input, $P_{cu}$ = Rotor Copper Loss, and $P_m$ = Gross Mechanical Power Developed)*
