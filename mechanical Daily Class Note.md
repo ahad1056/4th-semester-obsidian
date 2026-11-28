@@ -161,10 +161,10 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 
 ## 📜 Second Law of Thermodynamics
 The class covered four classical statements of the Second[^7] Law of Thermodynamics:
-- **Clausius Statement**
-- **Kelvin Statement** *(corrected from "Kelven")*
-- **Planck Statement**
-- **Edser Statement**
+- **Clausius Statement**[^8]
+- **Kelvin Statement**[^9] *(corrected from "Kelven")*
+- **Planck Statement**[^10]
+- **Edser Statement**[^11]
 
 ---
 
@@ -222,13 +222,13 @@ The class covered four classical statements of the Second[^7] Law of Thermodynam
 	heat reservoir which absorbs heat is called **sink**.
 [^6]: HEAT ENGINE a device used for converting heat into work.
 [^7]: First law of thermodynamics establishes equivalence
-	between the quantity of heat used and the mechanical work , but does not specify the conditions under which conversion of heat into work is possible, neither the direction in which
-	heat transfer can take place.
+	between the quantity of heat used and the mechanical work , but does not specify the conditions under which conversion of heat into work is possible, neither the direction in which heat transfer can take place.
 	 This gap has been bridged by the second law of
 	thermodynamics.
-	First Law- Law of conservation of energy
-	Second Law- Law of possibility of energy transformation and
-	direction.
 	
-	
-	
+	**First Law**- Law of conservation of energy
+	**Second Law**- Law of possibility of energy transformation and direction.
+[^8]: **Clausius statement:** it is impossible for a self acting machine working in a cyclic process, without any external force, to transfer heat from a body at a lower temperature to a body at a higher temperature.
+[^9]: **Kelvin statement:** it is impossible to get a continuous supply of work from a body by cooling it to a temperature lower than that of its surroundings.
+[^10]: **Planck statement:** it is not possible to construct an engine which, working in a complete cycle, will produce no other effect than the absorption of heat from a reservoir and its conversion into an equivalent amount of work.
+[^11]: **Edser statement :** The heat itself flows from a body of higher temperature to a body of lower temperature.
