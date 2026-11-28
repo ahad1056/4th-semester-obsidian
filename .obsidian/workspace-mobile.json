@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Communication Daily Class Note.md",
+                "file": "Stat Daily Class Note.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Communication Daily Class Note"
+              "title": "Stat Daily Class Note"
             }
           },
           {
@@ -197,15 +197,26 @@
   },
   "active": "7049c109541acbd1",
   "lastOpenFiles": [
-    "403 Communication system '3+1'/Communication system.md",
+    "Projects/Buzzer game/test/README",
+    "Projects/Buzzer game/src/main.cpp",
+    "Projects/Buzzer game/lib/README",
+    "Projects/Buzzer game/include/README",
+    "Projects/Buzzer game/platformio.ini",
+    "Projects/Buzzer game/test",
+    "Projects/Buzzer game/src",
+    "Projects/Buzzer game/lib",
+    "Projects/Buzzer game/include",
+    "Projects/Buzzer game",
+    "481 Statistics and Probability '3'/statistics and probability.md",
     "Dashboard.md",
+    "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
+    "403 Communication system '3+1'/Communication system.md",
     "Communication Daily Class Note.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Machine Daily Class Notes.md",
     "IMG_20261126_101904.webp",
     "401 Solid state Electronics '3'/solid state electronics.md",
     "Stat Daily Class Note.md",
-    "481 Statistics and Probability '3'/statistics and probability.md",
     "Solid State Daily Class Note-1795627678197.webp",
     "Solid State Daily Class Note-1795627644531.webp",
     "JPEG_20261124_220027_7548547501040896918.jpg",
@@ -228,20 +239,10 @@
     "Communication Systems/PREVIOUS YEAR ANALYSED QUESTION.md",
     "Communication Systems/Chapter 2 -NOISE.md",
     "Projects/inductor meter/inductance meter circuit - Version 2 .sim1",
-    "Projects/inductance meter circuit - Version 2 save copy - dont edit .sim1",
     "Course Syllabus Communication Systems (0714-403).md",
     "Untitled.canvas",
-    "Projects/inductor meter/LC-meter-328p/test/README",
-    "Projects/inductor meter/LC-meter-328p/src/main.cpp",
-    "Projects/inductor meter/LC-meter-328p/lib/README",
-    "Projects/inductor meter/LC-meter-328p/include/README",
-    "Projects/inductor meter/LC-meter-328p/platformio.ini",
-    "Projects/inductor meter/inductance meter circuit.sim1",
-    "Projects/inductor meter/inductance meter circuit - Version 2 save copy - dont edit .sim1",
-    "Projects/inductor meter/LM311 BY transistor.sim1",
     "Electrical Machines/Chapter 1 - Induction Motor.md",
     "02_Daily_Notes/2026-11-20.md",
-    "02_Daily_Notes/2026-11-19.md",
-    "02_Daily_Notes/2026-11-18.md"
+    "02_Daily_Notes/2026-11-19.md"
   ]
 }
