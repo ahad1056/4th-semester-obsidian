@@ -155,12 +155,12 @@ From the first law of thermodynamics (at constant pressure, $dQ = dU + dW$, so $
 ## 🔄 Fundamental Thermodynamic Concepts
 - **Reversible[^2] and Irreversible[^3] Processes:**
 - **Cyclic[^4] Process:**
-- **Heat Reservoir and Heat Engine:** *(Corrected from "resurver")* Concepts of thermal energy reservoirs (high-temperature source and low-temperature sink) and devices that convert heat energy into mechanical work.
+- **Heat Reservoir[^5] and Heat Engine[^6] :** *(Corrected from "resurver")* Concepts of thermal energy reservoirs (high-temperature source and low-temperature sink) and devices that convert heat energy into mechanical work.
 
 ---
 
 ## 📜 Second Law of Thermodynamics
-The class covered four classical statements of the Second Law of Thermodynamics:
+The class covered four classical statements of the Second[^7] Law of Thermodynamics:
 - **Clausius Statement**
 - **Kelvin Statement** *(corrected from "Kelven")*
 - **Planck Statement**
@@ -199,7 +199,36 @@ The class covered four classical statements of the Second Law of Thermodynamics:
 	(ii) Electricity flow through a resistance
 	(iii)Heat transfer by Radiation
 	(iv)Plastic deformation
-[^4]: 
+[^4]: ## Cyclic process
+	
+	When a process returns to its original state after completing a series of changes, then it is called a cyclic process.
+	
+	- $U$ of a system depends only on the state of a system
+	- In a cyclic process, the initial state and final state are same.
+	- $\Delta U$ will be zero i.e., $\Delta U = 0$.
+	
+	Hence from the first law of energy,
+	$$\Delta Q = \Delta U + \Delta W$$
+	or
+	$$\Delta Q = 0 + \Delta W$$
+	$$\Delta Q = \Delta W$$
+	
+	The work done by the system in a cyclic process is equal to the heat absorbed by the system.
+[^5]: HEAT RESERVOIR a system having very large heat capacity i.e.  it is a body capable of absorbing or rejecting finite amount of energy (heat) without any appreciable change in its’ temperature.
+	
+	Two types depending upon nature of heat.
+	
+	Heat reservoir which rejects heat from it is called **source**.
+	heat reservoir which absorbs heat is called **sink**.
+[^6]: HEAT ENGINE a device used for converting heat into work.
+[^7]: First law of thermodynamics establishes equivalence
+	between the quantity of heat used and the mechanical work , but does not specify the conditions under which conversion of heat into work is possible, neither the direction in which
+	heat transfer can take place.
+	 This gap has been bridged by the second law of
+	thermodynamics.
+	First Law- Law of conservation of energy
+	Second Law- Law of possibility of energy transformation and
+	direction.
 	
 	
 	
