@@ -24,7 +24,7 @@
 - [Y24 Q8a M2] What do you mean by crawling and cogging? #theory
 - [Y24 Q8c M3] An overhead crane in a factory is driven horizontally by means of two similar linear induction motors, whose rotors are the two steel I-beams. The 3-phase, 4 pole linear stators have a pole pitch of 6 mm and are energized by a variable frequency electronic source. When one of the motors was tested, it was found that stator frequency was 25 Hz, power to stator was 6 kW, stator Cu and iron losses were 1.2 kW and crane speed was 2.4 m/s. Calculate (i) synchronous speed, (ii) slip, (iii) power input to rotor, (iv) Cu losses in the rotor, (v) gross mechanical power developed and (vi) thrust. #math
 - [Y23 Q5a M2] Discuss the different types of induction motor with their differences and features. #theory
-- [Y23 Q5b M3] Prove that an induction motor with a 3-phase supply can produce a rotating field at a constant magnitude and speed. #derivation
+- [Y23 Q5b M3] ==🟢Prove that an induction motor with a 3-phase supply can produce a rotating field at a constant magnitude and speed==. #derivation
 - [Y23 Q5c M2] A 150 kW, 3000 V, 50 Hz, 6-pole, star-connected induction motor has a star-connected slip-ring rotor with a transformation ratio of 3.6 (stator/rotor). The rotor resistance is 0.1 Ω per phase and its leakage reactance per phase is 3.61 mH. The stator impedance may be neglected. Find the starting current and starting torque on rated voltage with short-circuited slip-rings. #math
 - [Y23 Q5d M2] Derive the torque equation developed by an induction motor under running condition. #derivation
 - [Y23 Q6a M2] Discuss the relation between the torque and slip in an induction motor. #theory

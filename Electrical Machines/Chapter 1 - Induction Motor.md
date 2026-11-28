@@ -72,3 +72,84 @@ Since both frequency ($f$) and number of poles ($P$) are constant for a given ma
 
 #### **Conclusion:**
 Hence, a 3-phase supply feeding a 3-phase winding produces a magnetic field of **constant magnitude ($1.5\Phi_m$)** rotating at a **constant synchronous speed ($N_s = \frac{120f}{P}$)**.
+
+
+
+## Question: Derive the torque-slip characteristic equation of a 3-phase induction motor and indicate the condition for maximum torque.
+
+### Answer:
+
+#### **1. Derivation of Torque-Slip Equation**
+
+Let,
+* $E_2$ = Rotor induced EMF per phase at standstill ($s = 1$)
+* $R_2$ = Rotor resistance per phase
+* $X_2$ = Rotor standstill reactance per phase
+* $s$ = Fractional slip
+* $N_s$ = Synchronous speed in rpm ($\omega_s = \frac{2\pi N_s}{60}$ rad/s)
+
+Under running condition at slip $s$:
+* Rotor induced EMF per phase = $sE_2$
+* Rotor reactance per phase = $sX_2$
+* Rotor impedance per phase, $Z_2 = \sqrt{R_2^2 + (sX_2)^2}$
+
+Therefore, **Rotor current per phase ($I_2$):**
+$$I_2 = \frac{sE_2}{Z_2} = \frac{sE_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
+
+**Rotor power factor ($\cos\phi_2$):**
+$$\cos\phi_2 = \frac{R_2}{Z_2} = \frac{R_2}{\sqrt{R_2^2 + (sX_2)^2}}$$
+
+Now, the **Gross Mechanical Power ($P_m$)** developed per phase is given by:
+$$P_m = \text{Rotor Input Power} - \text{Rotor Copper Loss}$$
+$$P_m = (sE_2) I_2 \cos\phi_2 \cdot \left(\frac{1-s}{s}\right) = (1-s) E_2 I_2 \cos\phi_2$$
+
+For a **3-phase** induction motor, total gross power developed:
+$$P_{m(\text{total})} = 3(1-s) E_2 I_2 \cos\phi_2$$
+
+We know that mechanical power is related to gross torque ($T$) and rotor angular speed ($\omega_r$) by:
+$$P_{m(\text{total})} = T \cdot \omega_r = T \cdot \omega_s(1-s)$$
+
+Equating the two expressions for $P_{m(\text{total})}$:
+$$T \cdot \omega_s(1-s) = 3(1-s) E_2 I_2 \cos\phi_2$$
+
+$$T = \frac{3}{\omega_s} E_2 I_2 \cos\phi_2$$
+
+Substituting the expressions for $I_2$ and $\cos\phi_2$:
+$$T = \frac{3}{\omega_s} E_2 \left(\frac{sE_2}{\sqrt{R_2^2 + (sX_2)^2}}\right) \left(\frac{R_2}{\sqrt{R_2^2 + (sX_2)^2}}\right)$$
+
+$$\mathbf{T = \frac{3}{\omega_s} \cdot \frac{s E_2^2 R_2}{R_2^2 + (sX_2)^2}} \quad \text{N-m}$$
+
+*(Where $K = \frac{3}{\omega_s} = \frac{3 \times 60}{2\pi N_s}$ is a constant for a given motor).*
+
+---
+
+#### **2. Condition for Maximum Torque ($T_{\max}$)**
+
+For a constant supply voltage, $E_2$ and $\omega_s$ are constant. Thus, torque $T$ depends solely on slip $s$. To find the condition for maximum torque, we differentiate $T$ with respect to $s$ and equate to zero ($\frac{dT}{ds} = 0$):
+
+$$\frac{d}{ds} \left[ \frac{s R_2}{R_2^2 + s^2 X_2^2} \right] = 0$$
+
+Applying the quotient rule of differentiation:
+$$\frac{(R_2^2 + s^2 X_2^2)(R_2) - (s R_2)(2s X_2^2)}{(R_2^2 + s^2 X_2^2)^2} = 0$$
+
+$$R_2^3 + s^2 R_2 X_2^2 - 2s^2 R_2 X_2^2 = 0$$
+
+$$R_2^3 - s^2 R_2 X_2^2 = 0$$
+
+$$R_2 (R_2^2 - s^2 X_2^2) = 0$$
+
+Since $R_2 \neq 0$:
+$$R_2^2 = s^2 X_2^2 \implies \mathbf{R_2 = s X_2}$$
+
+Therefore, the **slip at maximum torque ($s_m$)** is:
+$$\mathbf{s_m = \frac{R_2}{X_2}}$$
+
+**Key Condition:** Maximum torque occurs at that value of slip where **rotor resistance per phase equals rotor reactance per phase under running condition ($R_2 = sX_2$)**.
+
+---
+
+#### **3. Torque-Slip Characteristic Curve (Draw in Exam)**
+
+* **Low Slip Region ($s \approx 0$):** $sX_2 \ll R_2$, so $T \propto s$ (Linear straight line).
+* **Maximum Torque Point ($s = s_m$):** $R_2 = sX_2$, torque reaches its peak ($T_{\max}$).
+* **High Slip Region ($s > s_m$):** $sX_2 \gg R_2$, so $T \propto \frac{1}{s}$ (Rectangular hyperbola).
