@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Solid State Daily Class Note.md",
-                "mode": "preview",
+                "file": "Machine Daily Class Notes.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Solid State Daily Class Note"
+              "title": "Machine Daily Class Notes"
             }
           }
         ],
@@ -245,8 +245,12 @@
   },
   "active": "7f8e5ba41de5f30b",
   "lastOpenFiles": [
-    "401 Solid state Electronics '3'/solid state electronics.md",
+    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Dashboard.md",
+    "403 Communication system '3+1'/Communication system.md",
+    "Communication Daily Class Note.md",
+    "401 Solid state Electronics '3'/solid state electronics.md",
+    "Solid State Daily Class Note.md",
     "LAW daily class notes.md",
     "461 fundamental of Mechanical engineering '3+1'/mechanical engineering.md",
     "mechanical Daily Class Note.md",
@@ -271,11 +275,7 @@
     "Projects/Buzzer game/platformio.ini",
     "Projects/Buzzer game",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
-    "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Machine Daily Class Notes.md",
-    "403 Communication system '3+1'/Communication system.md",
-    "Communication Daily Class Note.md",
-    "Solid State Daily Class Note.md",
     "Solid State Daily Class Note-1795627678197.webp",
     "Solid State Daily Class Note-1795627644531.webp",
     "Communication Systems/Chapter 1 - Introduction to Communication Systems & Signals.md",
