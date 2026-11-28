@@ -187,7 +187,92 @@ The class covered four classical statements of the Second[^7] Law of Thermodynam
 **Tags:** #mechanical-engineering #thermodynamics #second-law #carnot-cycle #heat-engine #class-notes
 
 # 26 November class 5
-![[IMG_20261128_063442.webp]]![[IMG_20261128_063449.webp]]
+![[IMG_20261128_063442.webp|159]] ![[IMG_20261128_063449.webp|160]] 
+## Class Notes: Mechanical Engineering - Heat Engine Efficiency, Carnot Cycle & Entropy (Nov 26, 2026)
+
+## 🔥 Schematic Diagram of a Heat Engine
+A cyclic heat engine[^12] operates between a high-temperature **Hot Reservoir** (source at temperature $T_1$) and a low-temperature **Cold Reservoir** (sink at temperature $T_2$):
+- Absorbs heat $Q_1$ from the hot reservoir.
+- Produces net mechanical work $W_{\text{net}}$
+- Rejects waste heat $Q_2$ to the cold reservoir.
+
+
+---
+
+## ⚙️ Thermal Efficiency & Adiabatic Expansion Relation
+Thermal efficiency ($\eta$)[^13] is the ratio of desired work output to total heat input:
+$$\eta = \frac{\text{Useful Output}}{\text{Heat Input}} = \frac{W_{\text{net}}}{Q_1} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+
+### Net Work Done ($W_{\text{net}}$)
+For a complete cycle ($dU = 0$):
+$$W_{\text{net}} = Q_{\text{net}} = Q_1 - Q_2$$
+
+### Carnot Engine Efficiency & Adiabatic Expansion Ratio
+For a reversible Carnot heat engine[^14] operating between absolute temperatures $T_1$ (source) and $T_2$ (sink), $\frac{Q_2}{Q_1} = \frac{T_2}{T_1}$, so:
+$$\eta_{\text{Carnot}} = 1 - \frac{T_2}{T_1}$$
+
+Relating this to the **adiabatic expansion ratio**[^15] ($\rho$ or $r_e = \frac{V_3}{V_2}$ in a Carnot cycle, where $T_2 V_3^{\gamma - 1} = T_1 V_2^{\gamma - 1}$):
+$$\frac{T_2}{T_1} = \left(\frac{V_2}{V_3}\right)^{\gamma - 1} = \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+$$\eta_{\text{Carnot}} = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+where $\gamma = \frac{C_p}{C_v}$ is the adiabatic index (specific heat ratio).
+
+*(Note: `"সর্বদা alwrs."` written vertically in the margin highlights that for any real/irreversible engine, $\eta_{\text{actual}} < \eta_{\text{Carnot}} < 1$, and $\eta$ is always less than $100\%$.)*
+
+---
+
+## 🚀 Effective Ways to Increase Heat Engine Efficiency
+From $\eta = 1 - \frac{T_2}{T_1}$, efficiency increases when $\frac{T_2}{T_1}$ decreases:
+1. **Keep $T_1$ constant and make $T_2$ as low as possible** (lowering the sink temperature toward ambient/lowest practical temperature).
+2. **Make $T_1$ as high as possible and keep $T_2$ constant** (raising the source temperature up to material/metallurgical limits).
+
+*(Note: Increasing $T_1$ while keeping $T_2$ fixed is generally more effective in practice because $T_2$ is bounded below by surrounding ambient temperature, whereas raising $T_1$ has a stronger leverage effect on $1 - \frac{T_2}{T_1}$.)*
+
+---
+
+## 🌀 Entropy, Reversible Process & $T$-$s$ Diagram
+The second page introduces **Entropy**[^16] and marks key topics/derivations to complete:
+
+- **Change in Entropy ($\Delta S$):** For a reversible process, the change in entropy between states $1$ and $2$ is:
+  $$\Delta S = S_2 - S_1 = \int_{1}^{2} \frac{\delta Q_{\text{rev}}}{T}$$
+  For an isothermal process at temperature $T$, $\Delta S = \frac{Q_{\text{rev}}}{T}$. In a Carnot cycle, heat added at $T_1$ is $Q_1$ and heat rejected at $T_2$ is $Q_2$, giving the reversible heat-temperature ratio relation $\frac{Q_1}{T_1} = \frac{Q_2}{T_2}$ (so net entropy change over a complete reversible cycle is $\oint \frac{\delta Q_{\text{rev}}}{T} = 0$).
+
+- **Entropy Change in a Reversible Process:**
+  - Isothermal reversible process: $\Delta S = \frac{Q}{T}$ (positive for heat addition, negative for heat rejection).
+  - Adiabatic reversible (isentropic) process ($\delta Q_{\text{rev}} = 0$): $\Delta S = 0$ (constant entropy).
+
+- **$T$-$s$ Diagram for the Carnot Cycle:**
+  On a Temperature–Entropy ($T$-$s$) diagram, the Carnot cycle forms a **rectangle**:
+  1. **Isothermal heat addition** ($T = T_1$, constant): horizontal line from left to right; entropy increases by $\Delta s = s_B - s_A > 0$.
+  2. **Reversible adiabatic expansion** ($\delta Q = 0$): vertical line downward at constant entropy from $T_1$ to $T_2$.
+  3. **Isothermal heat rejection** ($T = T_2$, constant): horizontal line from right to left; entropy decreases by $\Delta s$.
+  4. **Reversible adiabatic compression** ($\delta Q = 0$): vertical line upward at constant entropy from $T_2$ back to $T_1$.
+  *(The enclosed area on the $T$-$s$ diagram equals net work $W_{\text{net}} = (T_1 - T_2)\Delta S$.)*
+
+---
+
+## 📌 Exam, Viva & Actionable Study Tips
+- **High-Priority Exam Derivation (`পরীক্ষায় ডেরিভেশন আসবে`):** Practice deriving $\eta = 1 - \frac{T_2}{T_1}$ and expressing it in terms of the adiabatic expansion ratio $\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$, along with the change in entropy ($\Delta S$) and the Carnot cycle on both $P$-$V$ and $T$-$s$ diagrams.
+- **Viva Question:** *Why can't a heat engine have $100\%$ thermal efficiency?*
+  - **Answer:** By the Kelvin–Planck statement of the Second Law of Thermodynamics, no cyclic heat engine can convert all absorbed heat into work without rejecting some heat ($Q_2 > 0$) to a lower-temperature reservoir, and absolute zero ($T_2 = 0\text{ K}$) is unattainable.
+- **Actionable Study Tip:** Redraw the heat engine schematic, Carnot $P$-$V$ and $T$-$s$ diagrams from memory, and write out the $\eta = 1 - \frac{T_2}{T_1}$ to $\rho$ substitution step-by-step once a day until you can do it without looking at your notes.
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^12]: **Heat Engine:** A cyclic thermodynamic device that receives heat energy from a high-temperature source, converts part of it into net mechanical work, and rejects the remaining heat to a low-temperature sink.
+[^13]: **Thermal Efficiency ($\eta$):** A dimensionless performance measure indicating the fraction of supplied heat input converted into net work output ($\eta = W_{\text{net}}/Q_1$).
+[^14]: **Carnot Heat Engine:** An idealized, completely reversible thermodynamic engine operating on the four-step Carnot cycle between two thermal reservoirs; it sets the maximum possible efficiency between two fixed temperatures.
+[^15]: **Adiabatic Expansion Ratio:** The ratio of volumes before and after an adiabatic expansion process (or the expansion ratio in a cycle) used to express cycle efficiency in terms of volume ratio and specific heat ratio $\gamma$.
+[^16]: **Entropy ($S$):** A thermodynamic state property measuring molecular disorder or unavailable energy per unit temperature, defined via $dS = \frac{\delta Q_{\text{rev}}}{T}$ for reversible processes.
+
+---
+**Tags:** #mechanical-engineering #thermodynamics #heat-engine #efficiency #carnot-cycle #entropy #ts-diagram #class-notes
+
+
+
+
+
+
 
 [^3]: The process which cannot be retraced in opposite order by
 	reversing the controlling factors is called an Irreversible
