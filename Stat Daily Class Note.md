@@ -1265,3 +1265,6 @@ For any event $A$:
 
 ---
 **Tags:** #statistics #probability #skewness #empirical-rule #variance #sample-space #events #class-notes
+
+# 26 November class 8
+![[IMG_20261128_062135.webp]]![[IMG_20261128_062144.webp]]![[IMG_20261128_062152.webp]]
