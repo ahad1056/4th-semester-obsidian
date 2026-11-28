@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stat Daily Class Note.md",
-                "mode": "preview",
+                "file": "305 Statistics/STAT-471 Exam Questions Archive (Clustered by Syllabus).md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Stat Daily Class Note"
+              "title": "STAT-471 Exam Questions Archive (Clustered by Syllabus)"
             }
           }
         ],
@@ -246,6 +246,7 @@
   "active": "7f8e5ba41de5f30b",
   "lastOpenFiles": [
     "481 Statistics and Probability '3'/statistics and probability.md",
+    "Stat Daily Class Note.md",
     "Dashboard.md",
     "405 electrical machene 2 '3+1'/ELECTRICAL MACHENE.md",
     "Machine Daily Class Notes.md",
@@ -265,7 +266,6 @@
     "IMG_20261128_062152.webp",
     "IMG_20261128_062144.webp",
     "IMG_20261128_062135.webp",
-    "Stat Daily Class Note.md",
     "IMG_20261126_101904.webp",
     "Projects/Buzzer game/src/main.cpp",
     "Projects/Buzzer game/test/README",
