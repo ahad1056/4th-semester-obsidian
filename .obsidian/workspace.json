@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "LAW daily class notes.md",
+                "file": "Dashboard.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LAW daily class notes"
+              "title": "Dashboard"
             }
           }
         ],
@@ -245,6 +245,16 @@
   },
   "active": "7f8e5ba41de5f30b",
   "lastOpenFiles": [
+    "Projects/Buzzer game/src/main.cpp",
+    "Projects/Buzzer game/test/README",
+    "Projects/Buzzer game/test",
+    "Projects/Buzzer game/lib/README",
+    "Projects/Buzzer game/lib",
+    "Projects/Buzzer game/include/README",
+    "Projects/Buzzer game/include",
+    "Projects/Buzzer game/src",
+    "Projects/Buzzer game/platformio.ini",
+    "Projects/Buzzer game",
     "491 Professional Law and Ethics '3'/491 Professional Law and Ethics - Course Index.md",
     "Dashboard.md",
     "Stat Daily Class Note.md",
@@ -278,19 +288,9 @@
     "Electrical Machines/Chapter 1 - Induction Motor.md",
     "02_Daily_Notes/2026-11-20.md",
     "Projects/inductance meter circuit - Version 2 save copy - dont edit .sim1",
-    "Projects/inductor meter/inductance meter circuit - Version 2 .sim1",
-    "Projects/inductor meter/inductance meter circuit - Version 2 save copy - dont edit .sim1",
-    "Projects/inductor meter/LM311 BY transistor.sim1",
-    "Projects/inductor meter/inductance meter circuit - Copy.sim1",
     "Course Syllabus Communication Systems (0714-403).md",
     "02_Daily_Notes/2026-11-19.md",
     "4th_Semester_Master_Roadmap.md",
-    "02_Daily_Notes/2026-11-18.md",
-    "ANIMATIONS AND HTML/full_induction_motor_cross_section_animation.html",
-    "02_Daily_Notes",
-    "ANIMATIONS AND HTML/classification_of_solid_materials_clean_visualizer.html",
-    "ANIMATIONS AND HTML/2d_3d_bravais_lattice_crystal_explorer.html",
-    "ANIMATIONS AND HTML/2d_bravais_lattice_crystal_explorer (1).html",
     "Untitled.canvas"
   ]
 }
