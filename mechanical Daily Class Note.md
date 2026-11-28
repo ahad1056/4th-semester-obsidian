@@ -251,7 +251,7 @@ The second page introduces **Entropy**[^16] and marks key topics/derivations to 
 ---
 
 ## 📌 Exam, Viva & Actionable Study Tips
-- **High-Priority Exam Derivation (`পরীক্ষায় ডেরিভেশন আসবে`):** Practice deriving $\eta = 1 - \frac{T_2}{T_1}$ and expressing it in terms of the adiabatic expansion ratio $\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$, along with the change in entropy ($\Delta S$) and the Carnot cycle on both $P$-$V$ and $T$-$s$ diagrams.
+- **High-Priority Exam Derivation (`পরীক্ষায় ডেরিভেশন আসবে`):** Practice deriving $\eta = 1 - \frac{T_2}{T_1}$ and expressing it in terms of the adiabatic expansion ratio $\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$, along with the change in entropy ($\Delta S$) and the Carnot cycle on both $P$-$V$ and $T$-$s$ diagrams.[^17]
 - **Viva Question:** *Why can't a heat engine have $100\%$ thermal efficiency?*
   - **Answer:** By the Kelvin–Planck statement of the Second Law of Thermodynamics, no cyclic heat engine can convert all absorbed heat into work without rejecting some heat ($Q_2 > 0$) to a lower-temperature reservoir, and absolute zero ($T_2 = 0\text{ K}$) is unattainable.
 - **Actionable Study Tip:** Redraw the heat engine schematic, Carnot $P$-$V$ and $T$-$s$ diagrams from memory, and write out the $\eta = 1 - \frac{T_2}{T_1}$ to $\rho$ substitution step-by-step once a day until you can do it without looking at your notes.
@@ -317,3 +317,180 @@ The second page introduces **Entropy**[^16] and marks key topics/derivations to 
 [^9]: **Kelvin statement:** it is impossible to get a continuous supply of work from a body by cooling it to a temperature lower than that of its surroundings.
 [^10]: **Planck statement:** it is not possible to construct an engine which, working in a complete cycle, will produce no other effect than the absorption of heat from a reservoir and its conversion into an equivalent amount of work.
 [^11]: **Edser statement :** The heat itself flows from a body of higher temperature to a body of lower temperature.
+[^17]: ## Carnot Engine Efficiency Derivation
+	
+	Consider an ideal gas undergoing a reversible Carnot cycle between a heat source at absolute temperature $T_1$ and a heat sink at absolute temperature $T_2$ ($T_1 > T_2$). The cycle consists of four stages ($A \to B \to C \to D \to A$):
+	
+	1. **Isothermal Expansion ($A \to B$ at $T_1$):**
+	   The gas expands from $(P_1, V_1)$ to $(P_2, V_2)$ while absorbing heat $Q_1$ from the source. Since temperature is constant, $\Delta U = 0$:
+	   $$Q_1 = W_1 = \int_{V_1}^{V_2} P \, dV = nRT_1 \ln\left(\frac{V_2}{V_1}\right)$$
+	
+	2. **Adiabatic Expansion ($B \to C$ from $T_1$ to $T_2$):**
+	   The gas expands thermally insulated ($Q = 0$) from $(P_2, V_2, T_1)$ to $(P_3, V_3, T_2)$:
+	   $$W_2 = \frac{nR(T_1 - T_2)}{\gamma - 1}$$
+	   Using the adiabatic temperature-volume relation $T V^{\gamma - 1} = \text{constant}$:
+	   $$T_1 V_2^{\gamma - 1} = T_2 V_3^{\gamma - 1} \implies \frac{T_1}{T_2} = \left(\frac{V_3}{V_2}\right)^{\gamma - 1} \quad \text{--- (i)}$$
+	
+	3. **Isothermal Compression ($C \to D$ at $T_2$):**
+	   The gas is compressed from $(P_3, V_3)$ to $(P_4, V_4)$ while rejecting heat $Q_2$ to the sink:
+	   $$Q_2 = W_3 = nRT_2 \ln\left(\frac{V_3}{V_4}\right)$$
+	
+	4. **Adiabatic Compression ($D \to A$ from $T_2$ to $T_1$):**
+	   The gas is compressed thermally insulated ($Q = 0$) from $(P_4, V_4, T_2)$ back to $(P_1, V_1, T_1)$:
+	   $$W_4 = \frac{nR(T_1 - T_2)}{\gamma - 1}$$
+	   Using the adiabatic relation $T V^{\gamma - 1} = \text{constant}$:
+	   $$T_1 V_1^{\gamma - 1} = T_2 V_4^{\gamma - 1} \implies \frac{T_1}{T_2} = \left(\frac{V_4}{V_1}\right)^{\gamma - 1} \quad \text{--- (ii)}$$
+	
+	---
+	
+	### 1. Efficiency in Terms of Temperature ($\eta = 1 - \frac{T_2}{T_1}$)
+	
+	Comparing equations **(i)** and **(ii)**:
+	$$\left(\frac{V_3}{V_2}\right)^{\gamma - 1} = \left(\frac{V_4}{V_1}\right)^{\gamma - 1} \implies \frac{V_3}{V_2} = \frac{V_4}{V_1} \implies \frac{V_2}{V_1} = \frac{V_3}{V_4}$$
+	
+	The thermal efficiency ($\eta$) of the Carnot engine is:
+	$$\eta = \frac{\text{Net Work Done } (W)}{\text{Heat Absorbed } (Q_1)} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+	
+	Substituting $Q_1$ and $Q_2$:
+	$$\eta = 1 - \frac{nRT_2 \ln\left(\frac{V_3}{V_4}\right)}{nRT_1 \ln\left(\frac{V_2}{V_1}\right)}$$
+	
+	Since $\frac{V_2}{V_1} = \frac{V_3}{V_4}$, the logarithmic terms cancel out:
+	$$\eta = 1 - \frac{T_2}{T_1}$$
+	
+	---
+	
+	### 2. Efficiency in Terms of Adiabatic Expansion Ratio ($\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$)
+	
+	Let $\rho$ be the **adiabatic expansion ratio** (ratio of final volume to initial volume during adiabatic expansion):
+	$$\rho = \frac{V_3}{V_2}$$
+	
+	From equation **(i)**:
+	$$\frac{T_1}{T_2} = \left(\frac{V_3}{V_2}\right)^{\gamma - 1} = \rho^{\gamma - 1}$$
+	
+	Inverting both sides gives:
+	$$\frac{T_2}{T_1} = \frac{1}{\rho^{\gamma - 1}} = \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+	
+	Substituting this into $\eta = 1 - \frac{T_2}{T_1}$:
+	$$\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+	
+	---
+	
+	### 3. Change in Entropy ($\Delta S$) in a Carnot Cycle
+	
+	Entropy is a state function defined as $dS = \frac{dQ_{\text{rev}}}{T}$. Calculating $\Delta S$ across each step of the cycle:
+	
+	- **$A \to B$ (Isothermal Expansion at $T_1$):** Heat $Q_1$ is absorbed:
+	  $$\Delta S_1 = +\frac{Q_1}{T_1}$$
+	- **$B \to C$ (Adiabatic Expansion):** No heat transfer ($dQ = 0$):
+	  $$\Delta S_2 = 0$$
+	- **$C \to D$ (Isothermal Compression at $T_2$):** Heat $Q_2$ is rejected:
+	  $$\Delta S_3 = -\frac{Q_2}{T_2}$$
+	- **$D \to A$ (Adiabatic Compression):** No heat transfer ($dQ = 0$):
+	  $$\Delta S_4 = 0$$
+	
+	**Total Change in Entropy for the Complete Cycle:**
+	$$\Delta S_{\text{cycle}} = \Delta S_1 + \Delta S_2 + \Delta S_3 + \Delta S_4 = \frac{Q_1}{T_1} - \frac{Q_2}{T_2}$$
+	
+	Since $\frac{Q_2}{Q_1} = \frac{T_2}{T_1} \implies \frac{Q_1}{T_1} = \frac{Q_2}{T_2}$:
+	$$\Delta S_{\text{cycle}} = 0$$
+	
+	*(In a reversible Carnot cycle, the net change in entropy of the working substance and the universe is zero.)*
+	
+	---
+	
+	### 4. Carnot Cycle Diagrams (Mermaid Auto-Rendered)
+	
+	#### A. Carnot Cycle Process Flow ($P$-$V$ Relationship)
+	```mermaid
+	flowchart LR
+	    A["<b>State A</b><br>(P₁, V₁, T₁)"] -->|"<b>1. Isothermal Expansion</b><br>T = T₁ (const) | Heat Absorbed (+Q₁)<br>V₁ → V₂, P₁ → P₂"| B["<b>State B</b><br>(P₂, V₂, T₁)"]
+	    B -->|"<b>2. Adiabatic Expansion</b><br>Q = 0 | Temp drops T₁ → T₂<br>V₂ → V₃, P₂ → P₃"| C["<b>State C</b><br>(P₃, V₃, T₂)"]
+	    C -->|"<b>3. Isothermal Compression</b><br>T = T₂ (const) | Heat Rejected (-Q₂)<br>V₃ → V₄, P₃ → P₄"| D["<b>State D</b><br>(P₄, V₄, T₂)"]
+	    D -->|"<b>4. Adiabatic Compression</b><br>Q = 0 | Temp rises T₂ → T₁<br>V₄ → V₁, P₄ → P₁"| A
+	
+	    style A fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+	    style B fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+	    style C fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+	    style D fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+	```
+	
+	- **Area enclosed on $P$-$V$ curve ($ABCDA$):** Represents the net work done ($W = Q_1 - Q_2$) per cycle.
+	- **Slope comparison:** Adiabatic curves ($B \to C$ and $D \to A$) are $\gamma$ times steeper than isothermal curves ($A \to B$ and $C \to D$).
+	
+	---
+	
+	#### B. $T$-$S$ Diagram (Temperature vs. Entropy)
+	```mermaid
+	block-beta
+	  columns 3
+	  A["<b>State A</b><br>(T₁, S₁)"]
+	  AB["<b>Isothermal Expansion (A → B)</b><br>T = T₁ (Constant) | S₁ → S₂<br>Heat Absorbed: Q₁ = T₁(S₂ - S₁)"]
+	  B["<b>State B</b><br>(T₁, S₂)"]
+	
+	  DA["<b>Adiabatic Compression</b><br>D → A<br>ΔS = 0 (S = S₁)<br>T₂ → T₁"]
+	  W["<b>Net Work Done (W)</b><br>Area = Q₁ - Q₂<br>W = (T₁ - T₂)(S₂ - S₁)"]
+	  BC["<b>Adiabatic Expansion</b><br>B → C<br>ΔS = 0 (S = S₂)<br>T₁ → T₂"]
+	
+	  D["<b>State D</b><br>(T₂, S₁)"]
+	  CD["<b>Isothermal Compression (C → D)</b><br>T = T₂ (Constant) | S₂ → S₁<br>Heat Rejected: Q₂ = T₂(S₂ - S₁)"]
+	  C["<b>State C</b><br>(T₂, S₂)"]
+	
+	  style A fill:#ffcdd2,stroke:#b71c1c,color:#000
+	  style B fill:#ffcdd2,stroke:#b71c1c,color:#000
+	  style C fill:#bbdefb,stroke:#0d47a1,color:#000
+	  style D fill:#bbdefb,stroke:#0d47a1,color:#000
+	  style W fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+	  style AB fill:#fff3e0,stroke:#ef6c00,color:#000
+	  style CD fill:#e1f5fe,stroke:#0277bd,color:#000
+	  style BC fill:#f3e5f5,stroke:#6a1b9a,color:#000
+	  style DA fill:#f3e5f5,stroke:#6a1b9a,color:#000
+	```
+	
+	- **$A \to B$ (Top):** Horizontal line at $T_1$; entropy increases from $S_1$ to $S_2$.
+	- **$B \to C$ (Right):** Vertical drop at constant entropy $S_2$ ($\Delta S = 0$).
+	- **$C \to D$ (Bottom):** Horizontal line at $T_2$; entropy decreases from $S_2$ to $S_1$.
+	- **$D \to A$ (Left):** Vertical rise at constant entropy $S_1$ ($\Delta S = 0$).
+
+For the two adiabatic processes ($T V^{\gamma - 1} = \text{constant}$):
+		- Along $2 \to 3$: $T_1 V_2^{\gamma - 1} = T_2 V_3^{\gamma - 1} \implies \frac{T_1}{T_2} = \left(\frac{V_3}{V_2}\right)^{\gamma - 1}$
+		- Along $4 \to 1$: $T_1 V_1^{\gamma - 1} = T_2 V_4^{\gamma - 1} \implies \frac{T_1}{T_2} = \left(\frac{V_4}{V_1}\right)^{\gamma - 1}$
+	
+Equating both expressions gives:
+		$$\frac{V_3}{V_2} = \frac{V_4}{V_1} \implies \frac{V_2}{V_1} = \frac{V_3}{V_4}$$
+	
+Net work done in one complete cycle is $W_{\text{net}} = Q_1 - Q_2$. Therefore, thermal efficiency ($\eta$) is:
+		$$\eta = \frac{W_{\text{net}}}{Q_1} = \frac{Q_1 - Q_2}{Q_1} = 1 - \frac{Q_2}{Q_1}$$
+		$$\eta = 1 - \frac{n R T_2 \ln(V_3/V_4)}{n R T_1 \ln(V_2/V_1)}$$
+	
+Since $\frac{V_2}{V_1} = \frac{V_3}{V_4}$, the logarithmic terms cancel out:
+		$$\eta = 1 - \frac{T_2}{T_1}$$
+	
+---
+### 3. Efficiency in Terms of Adiabatic Expansion Ratio ($\rho$)
+Let $\rho$ be the adiabatic expansion ratio (ratio of volume at the end of adiabatic expansion to volume at the start of adiabatic expansion):
+		$$\rho = \frac{V_3}{V_2} = \frac{V_4}{V_1}$$
+	
+From the adiabatic relation for process $2 \to 3$:
+		$$T_1 V_2^{\gamma - 1} = T_2 V_3^{\gamma - 1}$$
+		$$\frac{T_2}{T_1} = \left(\frac{V_2}{V_3}\right)^{\gamma - 1} = \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+	
+Substituting $\frac{T_2}{T_1}$ into the efficiency equation $\eta = 1 - \frac{T_2}{T_1}$:
+		$$\eta = 1 - \left(\frac{1}{\rho}\right)^{\gamma - 1}$$
+	
+---
+	
+### 4. Change in Entropy ($\Delta S$) Across the Carnot Cycle
+Entropy change for a reversible process is defined as $\Delta S = \int \frac{\delta Q_{\text{rev}}}{T}$:
+		1. **Process $1 \to 2$ (Isothermal Expansion at $T_1$):**
+		   $$\Delta S_{1\to 2} = +\frac{Q_1}{T_1} = nR \ln\left(\frac{V_2}{V_1}\right)$$
+		2. **Process $2 \to 3$ (Reversible Adiabatic Expansion, $\delta Q = 0$):**
+		   $$\Delta S_{2\to 3} = 0$$
+		3. **Process $3 \to 4$ (Isothermal Compression at $T_2$):**
+		   $$\Delta S_{3\to 4} = -\frac{Q_2}{T_2} = -nR \ln\left(\frac{V_3}{V_4}\right)$$
+		4. **Process $4 \to 1$ (Reversible Adiabatic Compression, $\delta Q = 0$):**
+		   $$\Delta S_{4\to 1} = 0$$
+	
+**Total Change in Entropy ($\Delta S_{\text{cycle}}$):**
+        Since $\frac{Q_1}{T_1} = \frac{Q_2}{T_2}$ (or $\frac{V_2}{V_1} = \frac{V_3}{V_4}$):
+		$$\Delta S_{\text{cycle}} = \Delta S_{1\to 2} + \Delta S_{2\to 3} + \Delta S_{3\to 4} + \Delta S_{4\to 1} = \frac{Q_1}{T_1} - \frac{Q_2}{T_2} = 0$$
+*(Because entropy is a state function, the net entropy change of the working substance over any complete cycle is zero.)*
