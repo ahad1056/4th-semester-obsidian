@@ -1267,4 +1267,80 @@ For any event $A$:
 **Tags:** #statistics #probability #skewness #empirical-rule #variance #sample-space #events #class-notes
 
 # 26 November class 8
-![[IMG_20261128_062135.webp]]![[IMG_20261128_062144.webp]]![[IMG_20261128_062152.webp]]
+![[IMG_20261128_062135.webp|189]]![[IMG_20261128_062144.webp|189]]![[IMG_20261128_062152.webp|190]] 
+
+# Class Notes: Statistics - Dispersion of Two Values, Probability & Random Variables (Nov 26, 2026)
+
+## 📏 Range, Mean Deviation & Standard Deviation for Two Values
+Consider two non-negative observations $x_1$ and $x_2$ such that $x_2 > x_1$:
+
+1. **Range ($R$):**
+   $$R = x_2 - x_1$$
+
+2. **Arithmetic Mean ($\bar{x}$) & Mean Deviation ($MD$):**
+   $$\bar{x} = \frac{x_1 + x_2}{2}$$
+   $$MD(\bar{x}) = \frac{1}{2}\left(|x_1 - \bar{x}| + |x_2 - \bar{x}|\right) = \frac{1}{2}\left(\left|\frac{x_1 - x_2}{2}\right| + \left|\frac{x_2 - x_1}{2}\right|\right) = \frac{|x_1 - x_2|}{2} = \frac{R}{2}$$
+   *(Correction note: Because $x_2 > x_1$, $x_1 - \bar{x} = -\frac{x_2 - x_1}{2}$ and $x_2 - \bar{x} = +\frac{x_2 - x_1}{2}$; taking absolute values gives $\frac{R}{2}$ cleanly.)*
+
+3. **Variance ($\sigma^2$) & Standard Deviation ($\sigma$):**
+   $$\sigma^2 = \frac{1}{2}\left[(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2\right] = \frac{1}{2}\left[\left(-\frac{R}{2}\right)^2 + \left(\frac{R}{2}\right)^2\right] = \frac{1}{2}\left(\frac{R^2}{4} + \frac{R^2}{4}\right) = \frac{R^2}{4}$$
+   $$\sigma = \sqrt{\frac{R^2}{4}} = \frac{R}{2}$$
+
+- **Comment on the Two-Observation Result:** For any two distinct observations, the mean deviation about the mean and the standard deviation are both equal to **half of the range** ($\frac{R}{2}$), and their squared deviations about the mean are equal in magnitude ($\frac{R^2}{4}$ each).
+
+---
+
+## 🎲 Sample Spaces, Exhaustive Events & Classical Probability
+
+### Coin-Toss Outcomes & Sample Space Size ($2^k$)
+The notes tabulate outcomes for coin throws (written as $2^0$, $2^1$, $2^2$ in the third column, representing $1$, $2$, and $3$ coins):
+- **1 Coin ($2^1 = 2$ outcomes):** $\{H, T\}$
+- **2 Coins ($2^2 = 4$ outcomes):** $\{HH, HT, TH, TT\}$
+- **3 Coins ($2^3 = 8$ outcomes):** $\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$
+
+### Exhaustive Events & Classical Definition of Probability
+- **Exhaustive Event (`Exasting` / `exestive event`):** The totality of all possible outcomes/events in a sample space.
+- **Classical Probability Formula:** Let $A$ be an event, $m$ be the number of favorable cases, and $n$ be the total number of equally likely, mutually exclusive cases:
+  $$P(A) = \frac{m}{n}$$
+- **Validity Conditions for a Probability Function:**
+  1. $P(x) \ge 0$ (non-negativity; note: in the handwritten box the inequality sign is slightly overdrawn, but valid probabilities are always $\ge 0$)
+  2. $\sum P(x_i) = 1$ (total probability across all mutually exclusive, exhaustive outcomes equals $1$)
+
+---
+
+## 📊 Random Variables & Binomial Distribution
+
+### Types of Random Variables ($X$)
+- **Discrete Random Variable:** Takes countable values; described by a **Probability Mass Function (PMF)**, $P(x)$.
+- **Continuous Random Variable:** Takes values over a continuous interval; described by a **Probability Density Function (PDF)**, $f(x)$.
+
+### Bernoulli Trials & Binomial Probability Formula
+For $n$ independent **Bernoulli trials** (`Barnuli trail` in the notes), each with probability of success $p$ and probability of failure $q = 1 - p$:
+- **Binomial Expansion Identity:**
+  $$(p + q)^n = q^n + \binom{n}{1}q^{n-1}p + \binom{n}{2}q^{n-2}p^2 + \dots + p^n$$
+  *(Correction note: In the handwritten expansion, the second term is written with $p^1$ but superscript $n-1$ on $q$, and the third term is written as $^nC_2 q^{n-1} p^2$; in standard binomial expansion $(q+p)^n = \sum_{x=0}^n \binom{n}{x} p^x q^{n-x}$, the exponents of $p$ and $q$ sum to $n$ in every term.)*
+- **Binomial PMF (Probability of $x$ successes in $n$ trials):**
+  $$P(x) = \binom{n}{x} p^x q^{n-x} \quad (\text{written as } {}^nC_x p^x q^{n-x})$$
+- **Note on Handwritten Lines (`P(1) = ...`, `P(2) = ...` with `"কি লেখা হয়? ঠিকঠাক করে দিও।"`):** For a binomial distribution, $P(1) = \binom{n}{1}p^1 q^{n-1} = n p q^{n-1}$ (probability of $1$ success) and $P(2) = \binom{n}{2}p^2 q^{n-2}$ (probability of $2$ successes).
+- **Drawback Noted (`Drawback: only for fabourable cases`):** Classical probability (`m/n`) requires identifying favorable and total equally likely outcomes explicitly, which becomes impractical or inapplicable when outcomes are not equally likely or cannot be enumerated cleanly.
+
+---
+
+## 📌 Exam, Viva & Actionable Study Tips
+- **High-Yield Proof:** Practice proving that for two observations $x_2 > x_1$, $MD(\bar{x}) = \frac{R}{2}$ and $\sigma = \frac{R}{2}$.
+- **Viva Question:** *Why is $\sum P(x_i) = 1$ required for a valid discrete probability distribution?* Because the sample space is exhaustive—every trial must result in one of the mutually exclusive elementary outcomes, so the sum of their probabilities must equal $1$.
+- **Actionable Study Tip:** Write out the binomial probability formula $P(x) = \binom{n}{x} p^x q^{n-x}$ alongside the expansion $(q+p)^n$ and verify that for $p + q = 1$, $\sum_{x=0}^n P(x) = (p+q)^n = 1^n = 1$.
+
+---
+
+## 📖 Key Definitions (Footnotes)
+[^50]: **Range ($R$):** The difference between the largest and smallest observations in a dataset ($R = x_{\max} - x_{\min}$), measuring total spread.
+[^51]: **Exhaustive Events:** A set of events whose union includes every possible outcome of a random experiment so that at least one event in the collection is guaranteed to occur.
+[^52]: **Random Variable ($X$):** A real-valued function defined on a sample space that assigns a numerical value to each outcome of a random experiment.
+[^53]: **Probability Mass Function (PMF):** A function $P(x) = P(X = x)$ giving the exact probability that a discrete random variable equals a specific value $x$, satisfying $P(x) \ge 0$ and $\sum_x P(x) = 1$.
+[^54]: **Probability Density Function (PDF):** A non-negative function $f(x)$ describing a continuous random variable such that the area under $f(x)$ over an interval $[a, b]$ equals $P(a \le X \le b)$ and $\int_{-\infty}^{\infty} f(x)\,dx = 1$.
+[^55]: **Bernoulli Trial:** A random experiment with exactly two mutually exclusive possible outcomes—typically termed "success" (with probability $p$) and "failure" (with probability $q = 1 - p$).
+[^56]: **Binomial Distribution:** The discrete probability distribution of the number of successes $x$ in $n$ independent, identical Bernoulli trials, given by $P(x) = \binom{n}{x}p^x q^{n-x}$ for $x = 0, 1, \dots, n$.
+
+---
+**Tags:** #statistics #dispersion #range #standard-deviation #probability #random-variable #binomial-distribution #class-notes
